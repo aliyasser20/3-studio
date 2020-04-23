@@ -1,8 +1,10 @@
 import React from "react";
 
+import CanvasArea from "./CanvasArea/CanvasArea";
+
 const App = () => (
   <div className="App">
-    <h1>Three-tutorial</h1>
+    <CanvasArea />
   </div>
 );
 
