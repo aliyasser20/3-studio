@@ -30,9 +30,7 @@ const Model = props => {
   // const { nodes, materials, animations } = useLoader(GLTFLoader, props.url);
   // console.log(nodes, materials, animations);
 
-  return model ? (
-    <primitive object={model.scene} position={[5, 10, 0]} />
-  ) : null;
+  return model ? <primitive object={model.scene} /> : null;
 };
 
 export default Model;
