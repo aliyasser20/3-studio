@@ -1,10 +1,12 @@
 import React from "react";
 
-import CanvasArea from "./CanvasArea/CanvasArea";
+import Car from "./Models/Car/Car";
+import Rocket from "./Models/Rocket/Rocket";
 
 const App = () => (
   <div className="App">
-    <CanvasArea />
+    <Car />
+    {/* <Rocket /> */}
   </div>
 );
 
