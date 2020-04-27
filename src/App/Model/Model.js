@@ -13,15 +13,19 @@ const Model = props => {
       shininess: 10
     });
 
+    let part;
+
     console.log(theModel);
     theModel.traverse(o => {
       if (o.isMesh && o.name === "Body_carbon_fibre_0") {
         console.log(o);
+        part = o;
         o.material = INITIAL_MTL;
       }
     });
 
-    setModel(gltf.scene);
+    setModel(part);
+    // setModel(theModel);
   };
 
   useEffect(() => {
