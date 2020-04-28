@@ -6,6 +6,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import Car from "./Models/Car/Car";
 import Rocket from "./Models/Rocket/Rocket";
 import Duck from "./Models/Duck/Duck";
+import Mustard from "./Models/Mustard/Mustard";
 
 const App = () => (
   // let scene;
@@ -52,7 +53,8 @@ const App = () => (
 
   <div className="App">
     {/* <Duck /> */}
-    <Car />
+    <Mustard />
+    {/* <Car /> */}
     {/* <Rocket /> */}
   </div>
 );
