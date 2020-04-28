@@ -16,7 +16,7 @@ const Model = props => {
     const INITIAL_MTL_METAL = new THREE.MeshStandardMaterial({
       color: 0x008000,
       metalness: 1,
-      roughness: 0
+      roughness: 0.5
     });
 
     let part;
@@ -38,7 +38,9 @@ const Model = props => {
     new GLTFLoader().load(props.url, createModel);
   }, [props.url]);
 
-  return model ? <primitive object={model} /> : null;
+  return model ? (
+    <primitive object={model} position={[0, 0, 0]} scale={[1, 1, 1]} />
+  ) : null;
 };
 
 export default Model;
