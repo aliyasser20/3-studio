@@ -8,9 +8,10 @@ import Controls from "../../Controls/Controls";
 
 const Mustard = props => {
   const [model, setModel] = useState();
-  const [center, setCenter] = useState({ x: 0, y: 0 });
+  const [center, setCenter] = useState({ x: 0, y: 0, z: 0 });
   const [z, setZ] = useState(0);
   const [box, setBox] = useState();
+  const [newOrigin, setNewOrigin] = useState({ x: 0, y: 0, z: 0 });
 
   const createModel = gltf => {
     const theModel = gltf.scene;
@@ -27,11 +28,11 @@ const Mustard = props => {
 
     let part;
 
-    console.log(theModel.position);
+    // console.log("model position ", theModel);
 
     theModel.traverse(o => {
       if (o.isMesh) {
-        console.log(o);
+        // console.log(o);
         part = o;
         o.material = INITIAL_MTL_METAL;
       }
@@ -50,15 +51,26 @@ const Mustard = props => {
     const maxDim = Math.max(size.x, size.y, size.z);
     const cameraZ = Math.abs((maxDim / 4) * Math.tan(fov * 2));
 
-    console.log(boundingBox);
-    console.log(centerNew);
+    // console.log(boundingBox);
+    // console.log(centerNew);
 
     const boxNew = new THREE.BoxHelper(theModel, 0xffff00);
 
+    // setNewOrigin({
+    //   x: (boundingBox.max.x - boundingBox.min.x) / 2,
+    //   y: (boundingBox.max.y - boundingBox.min.y) / 2,
+    //   z: (boundingBox.max.z - boundingBox.min.z) / 2
+    // });
+
+    setNewOrigin({
+      x: theModel.position.x - centerNew.x,
+      y: theModel.position.y - centerNew.y,
+      z: theModel.position.z - centerNew.z
+    });
     // const sizeBoxNew = new THREE.Vector3();
     // boxNew.getSize(sizeBoxNew);
 
-    console.log(boundingBox.max.y - boundingBox.min.y);
+    // console.log(boundingBox.max.y - boundingBox.min.y);
     setCenter(centerNew);
     setZ(cameraZ);
     setBox(boxNew);
@@ -71,7 +83,8 @@ const Mustard = props => {
     new GLTFLoader().load(props.url, createModel);
   }, [props.url]);
 
-  console.log(center);
+  console.log("center", center);
+  console.log("newOrigin", newOrigin);
 
   return (
     <Canvas>
@@ -90,10 +103,10 @@ const Mustard = props => {
         <Fragment>
           <primitive
             object={model}
-            position={[0, -1.537343144416809 / 2, 0]}
+            position={[newOrigin.x, newOrigin.y, newOrigin.z]}
             scale={[1, 1, 1]}
           />
-          <primitive object={box} />
+          <boxHelper object={box} />
         </Fragment>
       ) : null}
     </Canvas>
