@@ -12,6 +12,7 @@ const TestCenter = props => {
   const [z, setZ] = useState(0);
   const [box, setBox] = useState();
   const [far, setFar] = useState(0);
+  const [near, setNear] = useState(0);
   // const [newOrigin, setNewOrigin] = useState({ x: 0, y: 0, z: 0 });
 
   const createModel = gltf => {
@@ -50,16 +51,46 @@ const TestCenter = props => {
 
     console.log("size", size);
 
-    const fov = 75 * (Math.PI / 180);
-    const maxDim = Math.max(size.x, size.y, size.z);
-    let cameraZ = Math.abs((maxDim / 4) * Math.tan(fov * 2));
+    // const fov = 75 * (Math.PI / 180);
+    // const maxDim = Math.max(size.x, size.y, size.z);
+    // let cameraZ = Math.abs((maxDim / 4) * Math.tan(fov * 2));
 
-    const offset = 1;
+    // const offset = 1;
 
-    cameraZ *= offset;
+    // cameraZ *= offset;
 
-    const minZ = boundingBox.min.z;
-    const cameraToFarEdge = minZ < 0 ? -minZ + cameraZ : cameraZ - minZ;
+    // const minZ = boundingBox.min.z;
+    // const cameraToFarEdge = minZ < 0 ? -minZ + cameraZ : cameraZ - minZ;
+
+    // ! -------------------
+
+    // const camera = new THREE.PerspectiveCamera();
+    // console.log(camera);
+
+    const maxSize = Math.max(size.x, size.y, size.z);
+
+    const fitHeightDistance = maxSize / (2 * Math.atan((Math.PI * 75) / 360));
+
+    const fitWidthDistance = fitHeightDistance / 1;
+    const distance = 0.5 * Math.max(fitHeightDistance, fitWidthDistance);
+
+    // const direction = controls.target
+    //   .clone()
+    //   .sub(camera.position)
+    //   .normalize()
+    //   .multiplyScalar(distance);
+
+    // controls.maxDistance = distance * 10;
+    // controls.target.copy( center );
+
+    // camera.near = distance / 100;
+    // camera.far = distance * 100;
+    // camera.updateProjectionMatrix();
+
+    // camera.position.copy( controls.target ).sub(direction);
+
+    // controls.update();
+    // ! -------------------
 
     console.log(boundingBox);
     // console.log(centerNew);
@@ -72,9 +103,11 @@ const TestCenter = props => {
     console.log("boxNew", boxNew);
 
     setCenter(centerNew);
-    setZ(cameraZ);
+    // setZ(cameraZ);
     setBox(boxNew);
-    setFar(cameraToFarEdge * 3);
+    // setFar(cameraToFarEdge * 3);
+    setFar(distance * 100);
+    setNear(distance / 100);
 
     // setModel(part);
     setModel(theModel);
@@ -88,7 +121,7 @@ const TestCenter = props => {
   // console.log("newOrigin", newOrigin);
 
   return (
-    <Canvas camera={{ position: [center.x, center.y, z], far }}>
+    <Canvas camera={{ position: [center.x, center.y, z], far, near }}>
       {/* <ambientLight intensity={100} /> */}
       <pointLight intensity={1} position={[0, 300, 500]} />
       <pointLight intensity={5} position={[0, 100, -500]} />
