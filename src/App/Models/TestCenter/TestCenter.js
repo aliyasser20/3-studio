@@ -23,7 +23,7 @@ const TestCenter = props => {
     });
 
     const INITIAL_MTL_METAL = new THREE.MeshStandardMaterial({
-      color: 0x008000,
+      color: 0xffff00,
       metalness: 1,
       roughness: 0.5
     });

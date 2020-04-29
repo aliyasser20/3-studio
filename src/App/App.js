@@ -15,7 +15,7 @@ const App = () => (
     {/* <Mustard /> */}
     {/* <Car /> */}
     {/* <Rocket /> */}
-    <TestCenter url="/models/duck/duck.glb" />
+    <TestCenter url="/models/mustard/mustard.glb" />
   </div>
 );
 export default App;
