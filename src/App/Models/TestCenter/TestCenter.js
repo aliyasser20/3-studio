@@ -54,19 +54,17 @@ const Mustard = props => {
     // console.log(boundingBox);
     // console.log(centerNew);
 
+    theModel.position.x -= centerNew.x;
+    theModel.position.y -= centerNew.y;
+    theModel.position.z -= centerNew.z;
+
     const boxNew = new THREE.BoxHelper(theModel, 0xffff00);
-
+    console.log("boxNew", boxNew);
     // setNewOrigin({
-    //   x: (boundingBox.max.x - boundingBox.min.x) / 2,
-    //   y: (boundingBox.max.y - boundingBox.min.y) / 2,
-    //   z: (boundingBox.max.z - boundingBox.min.z) / 2
+    //   x: theModel.position.x - centerNew.x,
+    //   y: theModel.position.y - centerNew.y,
+    //   z: theModel.position.z - centerNew.z
     // });
-
-    setNewOrigin({
-      x: theModel.position.x - centerNew.x,
-      y: theModel.position.y - centerNew.y,
-      z: theModel.position.z - centerNew.z
-    });
     // const sizeBoxNew = new THREE.Vector3();
     // boxNew.getSize(sizeBoxNew);
 
@@ -101,11 +99,7 @@ const Mustard = props => {
       <axesHelper scale={[200, 200, 200]} />
       {model ? (
         <Fragment>
-          <primitive
-            object={model}
-            position={[newOrigin.x, newOrigin.y, newOrigin.z]}
-            scale={[1, 1, 1]}
-          />
+          <primitive object={model} scale={[1, 1, 1]} />
           <boxHelper object={box} />
         </Fragment>
       ) : null}
