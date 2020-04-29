@@ -6,12 +6,13 @@ import * as THREE from "three";
 import Model from "../../Model/Model";
 import Controls from "../../Controls/Controls";
 
-const Mustard = props => {
+const TestCenter = props => {
   const [model, setModel] = useState();
   const [center, setCenter] = useState({ x: 0, y: 0, z: 0 });
   const [z, setZ] = useState(0);
   const [box, setBox] = useState();
-  const [newOrigin, setNewOrigin] = useState({ x: 0, y: 0, z: 0 });
+  const [far, setFar] = useState(0);
+  // const [newOrigin, setNewOrigin] = useState({ x: 0, y: 0, z: 0 });
 
   const createModel = gltf => {
     const theModel = gltf.scene;
@@ -47,11 +48,20 @@ const Mustard = props => {
     const size = new THREE.Vector3();
     boundingBox.getSize(size);
 
+    console.log("size", size);
+
     const fov = 75 * (Math.PI / 180);
     const maxDim = Math.max(size.x, size.y, size.z);
-    const cameraZ = Math.abs((maxDim / 4) * Math.tan(fov * 2));
+    let cameraZ = Math.abs((maxDim / 4) * Math.tan(fov * 2));
 
-    // console.log(boundingBox);
+    const offset = 1;
+
+    cameraZ *= offset;
+
+    const minZ = boundingBox.min.z;
+    const cameraToFarEdge = minZ < 0 ? -minZ + cameraZ : cameraZ - minZ;
+
+    console.log(boundingBox);
     // console.log(centerNew);
 
     theModel.position.x -= centerNew.x;
@@ -60,18 +70,11 @@ const Mustard = props => {
 
     const boxNew = new THREE.BoxHelper(theModel, 0xffff00);
     console.log("boxNew", boxNew);
-    // setNewOrigin({
-    //   x: theModel.position.x - centerNew.x,
-    //   y: theModel.position.y - centerNew.y,
-    //   z: theModel.position.z - centerNew.z
-    // });
-    // const sizeBoxNew = new THREE.Vector3();
-    // boxNew.getSize(sizeBoxNew);
 
-    // console.log(boundingBox.max.y - boundingBox.min.y);
     setCenter(centerNew);
     setZ(cameraZ);
     setBox(boxNew);
+    setFar(cameraToFarEdge * 3);
 
     // setModel(part);
     setModel(theModel);
@@ -81,16 +84,11 @@ const Mustard = props => {
     new GLTFLoader().load(props.url, createModel);
   }, [props.url]);
 
-  console.log("center", center);
-  console.log("newOrigin", newOrigin);
+  // console.log("center", center);
+  // console.log("newOrigin", newOrigin);
 
   return (
-    <Canvas>
-      <perspectiveCamera
-        position={[center.x, center.y, z]}
-        lookAt={center}
-        onUpdate={self => self.updateProjectionMatrix()}
-      />
+    <Canvas camera={{ position: [center.x, center.y, z], far }}>
       {/* <ambientLight intensity={100} /> */}
       <pointLight intensity={1} position={[0, 300, 500]} />
       <pointLight intensity={5} position={[0, 100, -500]} />
@@ -99,7 +97,7 @@ const Mustard = props => {
       <axesHelper scale={[200, 200, 200]} />
       {model ? (
         <Fragment>
-          <primitive object={model} scale={[1, 1, 1]} />
+          <primitive object={model} />
           <boxHelper object={box} />
         </Fragment>
       ) : null}
@@ -107,26 +105,10 @@ const Mustard = props => {
   );
 };
 
-export default Mustard;
+export default TestCenter;
 
-// const boundingBox = new THREE.Box3();
-// boundingBox.setFromObject(cube);
-
-// const center = new THREE.Vector3();
-// boundingBox.getCenter(center);
-
-// camera.position.y = center.y;
-// camera.position.x = center.x;
-// // camera.updateProjectionMatrix()
-
-// const size = new THREE.Vector3();
-// boundingBox.getSize(size);
-
-// const fov = camera.fov * (Math.PI / 180);
-// const maxDim = Math.max(size.x, size.y, size.z);
-// const cameraZ = Math.abs((maxDim / 4) * Math.tan(fov * 2));
-
-// camera.position.z = cameraZ;
-// camera.updateProjectionMatrix();
-
-// camera.lookAt(center);
+// <perspectiveCamera
+//         position={[10, center.y, z]}
+//         // lookAt={center}
+//         // onUpdate={self => self.updateProjectionMatrix()}
+//       />
