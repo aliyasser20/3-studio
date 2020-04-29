@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Canvas, useThree, useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
@@ -10,6 +10,7 @@ const Mustard = props => {
   const [model, setModel] = useState();
   const [center, setCenter] = useState({ x: 0, y: 0 });
   const [z, setZ] = useState(0);
+  const [box, setBox] = useState();
 
   const createModel = gltf => {
     const theModel = gltf.scene;
@@ -26,7 +27,8 @@ const Mustard = props => {
 
     let part;
 
-    console.log(theModel);
+    console.log(theModel.position);
+
     theModel.traverse(o => {
       if (o.isMesh) {
         console.log(o);
@@ -49,9 +51,17 @@ const Mustard = props => {
     const cameraZ = Math.abs((maxDim / 4) * Math.tan(fov * 2));
 
     console.log(boundingBox);
+    console.log(centerNew);
 
+    const boxNew = new THREE.BoxHelper(theModel, 0xffff00);
+
+    // const sizeBoxNew = new THREE.Vector3();
+    // boxNew.getSize(sizeBoxNew);
+
+    console.log(boundingBox.max.y - boundingBox.min.y);
     setCenter(centerNew);
     setZ(cameraZ);
+    setBox(boxNew);
 
     // setModel(part);
     setModel(theModel);
@@ -65,7 +75,11 @@ const Mustard = props => {
 
   return (
     <Canvas>
-      <perspectiveCamera position={[center.x, center.y, z]} lookAt={center} />
+      <perspectiveCamera
+        position={[center.x, center.y, z]}
+        lookAt={center}
+        onUpdate={self => self.updateProjectionMatrix()}
+      />
       {/* <ambientLight intensity={100} /> */}
       <pointLight intensity={1} position={[0, 300, 500]} />
       <pointLight intensity={5} position={[0, 100, -500]} />
@@ -73,7 +87,14 @@ const Mustard = props => {
       <Controls />
       <axesHelper scale={[200, 200, 200]} />
       {model ? (
-        <primitive object={model} position={[0, 0, 0]} scale={[1, 1, 1]} />
+        <Fragment>
+          <primitive
+            object={model}
+            position={[0, -1.537343144416809 / 2, 0]}
+            scale={[1, 1, 1]}
+          />
+          <primitive object={box} />
+        </Fragment>
       ) : null}
     </Canvas>
   );
