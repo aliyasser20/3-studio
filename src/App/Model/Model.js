@@ -1,46 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { useLoader } from "react-three-fiber";
+import { Canvas } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import * as THREE from "three";
+
+import Controls from "../Controls/Controls";
+
+import createModel from "../../helpers/create_model";
 
 const Model = props => {
-  const [model, setModel] = useState();
-
-  const createModel = gltf => {
-    const theModel = gltf.scene;
-    const INITIAL_MTL = new THREE.MeshPhongMaterial({
-      color: 0x008000,
-      shininess: 2
-    });
-
-    const INITIAL_MTL_METAL = new THREE.MeshStandardMaterial({
-      color: 0x008000,
-      metalness: 1,
-      roughness: 0.5
-    });
-
-    let part;
-
-    console.log(theModel);
-    theModel.traverse(o => {
-      if (o.isMesh) {
-        console.log(o);
-        part = o;
-        o.material = INITIAL_MTL_METAL;
-      }
-    });
-
-    // setModel(part);
-    setModel(theModel);
-  };
+  const [model, setModel] = useState(null);
+  const [box, setBox] = useState();
+  const [far, setFar] = useState(0);
+  const [near, setNear] = useState(0);
+  const [sizeBounding, setSizeBounding] = useState({ x: 0, y: 0, z: 0 });
 
   useEffect(() => {
-    new GLTFLoader().load(props.url, createModel);
+    new GLTFLoader().load(props.url, gltf =>
+      createModel(gltf, setBox, setFar, setModel, setSizeBounding, setNear)
+    );
   }, [props.url]);
 
-  return model ? (
-    <primitive object={model} position={[0, 0, 0]} scale={[1, 1, 1]} />
+  const output = model ? (
+    <Canvas
+      camera={{
+        position: [-sizeBounding.x, sizeBounding.y, sizeBounding.z],
+        fov: 45,
+        far,
+        near
+      }}
+    >
+      <pointLight intensity={1} position={[0, 300, 500]} />
+      <pointLight intensity={5} position={[0, 100, -500]} />
+      <pointLight intensity={5} position={[0, 100, -500]} />
+      <Controls />
+      {/* <axesHelper scale={[200, 200, 200]} /> */}
+      <primitive object={model} />
+      {/* <boxHelper object={box} /> */}
+    </Canvas>
   ) : null;
+
+  return <div>{output}</div>;
 };
 
 export default Model;
