@@ -7,13 +7,14 @@ import Model from "../../Model/Model";
 import Controls from "../../Controls/Controls";
 
 const TestCenter = props => {
-  const [model, setModel] = useState();
+  const [model, setModel] = useState(null);
   const [center, setCenter] = useState({ x: 0, y: 0, z: 0 });
   const [z, setZ] = useState(0);
   const [box, setBox] = useState();
   const [far, setFar] = useState(0);
   const [near, setNear] = useState(0);
   // const [newOrigin, setNewOrigin] = useState({ x: 0, y: 0, z: 0 });
+  const [sizeBounding, setSizeBounding] = useState({ x: 0, y: 0, z: 0 });
 
   const createModel = gltf => {
     const theModel = gltf.scene;
@@ -32,13 +33,13 @@ const TestCenter = props => {
 
     // console.log("model position ", theModel);
 
-    theModel.traverse(o => {
-      if (o.isMesh) {
-        // console.log(o);
-        part = o;
-        // o.material = INITIAL_MTL_METAL;
-      }
-    });
+    // theModel.traverse(o => {
+    //   if (o.isMesh) {
+    //     // console.log(o);
+    //     part = o;
+    //     // o.material = INITIAL_MTL_METAL;
+    //   }
+    // });
 
     const boundingBox = new THREE.Box3();
     boundingBox.setFromObject(theModel);
@@ -69,11 +70,17 @@ const TestCenter = props => {
 
     const maxSize = Math.max(size.x, size.y, size.z);
 
-    const fitHeightDistance = maxSize / (2 * Math.atan((Math.PI * 75) / 360));
+    const fitHeightDistance = maxSize / (2 * Math.atan((Math.PI * 45) / 360));
 
     const fitWidthDistance = fitHeightDistance / 1;
-    const distance = 0.5 * Math.max(fitHeightDistance, fitWidthDistance);
+    const distance = 1.2 * Math.max(fitHeightDistance, fitWidthDistance);
 
+    // console.log(fitHeightDistance, distance);
+
+    // const fov =
+    //   2 * Math.atan(fitHeightDistance / (2 * size.y)) * (180 / Math.PI);
+
+    // console.log(fov);
     // const direction = controls.target
     //   .clone()
     //   .sub(camera.position)
@@ -92,7 +99,7 @@ const TestCenter = props => {
     // controls.update();
     // ! -------------------
 
-    console.log(boundingBox);
+    // console.log(boundingBox);
     // console.log(centerNew);
 
     theModel.position.x -= centerNew.x;
@@ -102,12 +109,13 @@ const TestCenter = props => {
     const boxNew = new THREE.BoxHelper(theModel, 0xffff00);
     console.log("boxNew", boxNew);
 
-    setCenter(centerNew);
+    // setCenter(centerNew);
     // setZ(cameraZ);
     setBox(boxNew);
     // setFar(cameraToFarEdge * 3);
     setFar(distance * 100);
     setNear(distance / 100);
+    setSizeBounding(size);
 
     // setModel(part);
     setModel(theModel);
@@ -117,25 +125,30 @@ const TestCenter = props => {
     new GLTFLoader().load(props.url, createModel);
   }, [props.url]);
 
-  // console.log("center", center);
+  console.log("center", center);
+  console.log("size", sizeBounding.x, sizeBounding.y, sizeBounding.z);
   // console.log("newOrigin", newOrigin);
 
-  return (
-    <Canvas camera={{ position: [center.x, center.y, z], far, near }}>
-      {/* <ambientLight intensity={100} /> */}
+  const output = model ? (
+    <Canvas
+      camera={{
+        position: [-sizeBounding.x, sizeBounding.y, sizeBounding.z],
+        fov: 45,
+        far,
+        near
+      }}
+    >
       <pointLight intensity={1} position={[0, 300, 500]} />
       <pointLight intensity={5} position={[0, 100, -500]} />
       <pointLight intensity={5} position={[0, 100, -500]} />
       <Controls />
       <axesHelper scale={[200, 200, 200]} />
-      {model ? (
-        <Fragment>
-          <primitive object={model} />
-          <boxHelper object={box} />
-        </Fragment>
-      ) : null}
+      <primitive object={model} />
+      <boxHelper object={box} />
     </Canvas>
-  );
+  ) : null;
+
+  return <div>{output}</div>;
 };
 
 export default TestCenter;
