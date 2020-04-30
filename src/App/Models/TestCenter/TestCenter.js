@@ -36,7 +36,7 @@ const TestCenter = props => {
       if (o.isMesh) {
         // console.log(o);
         part = o;
-        o.material = INITIAL_MTL_METAL;
+        // o.material = INITIAL_MTL_METAL;
       }
     });
 
