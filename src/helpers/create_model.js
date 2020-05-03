@@ -17,35 +17,37 @@ const createModel = (
   //   shininess: 2
   // });
 
-  const INITIAL_MTL_METAL = new THREE.MeshStandardMaterial({
-    color: 0xffff00,
-    metalness: 1,
-    roughness: 0.5
-  });
+  // const INITIAL_MTL_METAL = new THREE.MeshStandardMaterial({
+  //   color: 0xffff00,
+  //   metalness: 1,
+  //   roughness: 0.5
+  // });
 
   const texture = new THREE.TextureLoader().load(
-    "/appearances/metals/Scuffed-Aluminum-PBR/color.png"
+    "/appearances/metals/Alien/color.png"
   );
 
-  const textureRoughness = new THREE.TextureLoader().load(
-    "/appearances/metals/Scuffed-Aluminum-PBR/roughness.png"
-  );
-
-  const textureNormal = new THREE.TextureLoader().load(
-    "/appearances/metals/Scuffed-Aluminum-PBR/normal.png"
-  );
-  // const textureHeight = new THREE.TextureLoader().load(
-  //   "/appearances/height.png"
+  // const textureRoughness = new THREE.TextureLoader().load(
+  //   "/appearances/metals/Rust/roughness.jpg"
   // );
+
+  // const textureNormal = new THREE.TextureLoader().load(
+  //   "/appearances/metals/Rust/normal.jpg"
+  // );
+
+  const textureHeight = new THREE.TextureLoader().load(
+    "/appearances/metals/Alien/height.png"
+  );
+
   // const textureAO = new THREE.TextureLoader().load("/appearances/ao.png");
 
   const textureMetalness = new THREE.TextureLoader().load(
-    "/appearances/metals/Scuffed-Aluminum-PBR/metalness.png"
+    "/appearances/metals/Alien/metalness.png"
   );
 
-  const environmentPath = new THREE.TextureLoader().load(
-    "/environments/venice.hdr"
-  );
+  // const environmentPath = new THREE.TextureLoader().load(
+  //   "/environments/venice.hdr"
+  // );
 
   // let envMap;
 
@@ -57,17 +59,17 @@ const createModel = (
   //   });
 
   const texturedMaterial = new THREE.MeshStandardMaterial({
-    // map: texture,
+    map: texture,
     // roughnessMap: textureRoughness,
-    // normalMap: textureNormal,
-    // metalnessMap: textureMetalness,
-    // color: 0xffff00,
+    // normalMap: textureNormal
+    metalnessMap: textureMetalness,
+    color: 0xffff00,
     // envMap: textureCube
     // metalness: 1
     // alphaMap: texture,
     // aoMap: textureAO,
-    // bumpMap: textureHeight,
-    // bumpScale: 10,
+    bumpMap: textureHeight,
+    bumpScale: 1500
     // displacementScale: 0.5,
     // displacementMap: textureHeight,
   });
@@ -76,14 +78,14 @@ const createModel = (
 
   // console.log("model position ", theModel);
 
-  // theModel.traverse(o => {
-  //   if (o.isMesh) {
-  //     // console.log(o);
-  //     // part = o;
-  //     o.material = texturedMaterial;
-  //     // o.material = INITIAL_MTL_METAL;
-  //   }
-  // });
+  theModel.traverse(o => {
+    if (o.isMesh) {
+      // console.log(o);
+      // part = o;
+      o.material = texturedMaterial;
+      // o.material = INITIAL_MTL_METAL;
+    }
+  });
   // ?
 
   // ? Math for a few things including size, center, far, near
