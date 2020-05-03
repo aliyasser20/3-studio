@@ -7,9 +7,13 @@ const Environment = props => {
   const { gl, scene } = useThree();
 
   // ? Load HDR file
-  const texture = useLoader(RGBELoader, "/environments/hd.hdr", loader => {
-    loader.setDataType(THREE.UnsignedByteType);
-  });
+  const texture = useLoader(
+    RGBELoader,
+    "/environments/autoshop.hdr",
+    loader => {
+      loader.setDataType(THREE.UnsignedByteType);
+    }
+  );
 
   // ? Set HDR to canvas
   useEffect(() => {
