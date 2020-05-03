@@ -45,19 +45,6 @@ const createModel = (
     "/appearances/metals/Alien/metalness.png"
   );
 
-  // const environmentPath = new THREE.TextureLoader().load(
-  //   "/environments/venice.hdr"
-  // );
-
-  // let envMap;
-
-  // new THREE.DataTextureLoader()
-  //   .setDataType(THREE.UnsignedByteType)
-  //   .load(environmentPath, envTexture => {
-  //     envMap = THREE.PMREMGenerator.fromEquirectangular(envTexture).texture;
-  //     this.pmremGenerator.dispose();
-  //   });
-
   const texturedMaterial = new THREE.MeshStandardMaterial({
     map: texture,
     // roughnessMap: textureRoughness,
@@ -114,14 +101,7 @@ const createModel = (
   const visualBoundingBox = new THREE.BoxHelper(theModel, 0xffff00);
   // ?
 
-  // ? Set states
-  setBox(visualBoundingBox);
-  setFar(distance * 100);
-  setNear(distance / 100);
-  setSizeBounding(size);
-  setModel(theModel);
-  // ?
-
+  // ? Load environment file to texture
   const r = "https://threejs.org/examples/textures/cube/Bridge2/";
   const urls = [
     `${r}posx.jpg`,
@@ -134,8 +114,16 @@ const createModel = (
 
   const textureCube = new THREE.CubeTextureLoader().load(urls);
   textureCube.format = THREE.RGBFormat;
+  // ?
 
+  // ? Set states
+  setBox(visualBoundingBox);
+  setFar(distance * 100);
+  setNear(distance / 100);
+  setSizeBounding(size);
+  setModel(theModel);
   setEnvironment(textureCube);
+  // ?
 };
 
 export default createModel;

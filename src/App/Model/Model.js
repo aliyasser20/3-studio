@@ -21,8 +21,8 @@ const Model = props => {
   // ? Environment & background states //
   const [environment, setEnvironment] = useState(null);
   const [bgSolid, setBgSolid] = useState(true);
-  const [bgEnvironment, setBgEnvironment] = useState(false);
-  const [mapEnvironment, setMapEnvironment] = useState(true);
+  const [bgEnvironment, setBgEnvironment] = useState(true);
+  const [mapEnvironment, setMapEnvironment] = useState(false);
   const [bgColor, setBgColor] = useState("555555");
 
   // ? Lights states //
