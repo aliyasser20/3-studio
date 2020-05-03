@@ -21,6 +21,8 @@ const Model = props => {
 
   const output = model ? (
     <Canvas
+      // shadowMap
+      // gl={{ toneMapping: 0.1 }}
       camera={{
         position: [-sizeBounding.x, sizeBounding.y, sizeBounding.z],
         fov: 45,
@@ -28,11 +30,18 @@ const Model = props => {
         near
       }}
     >
-      <pointLight intensity={1} position={[0, 300, 500]} />
-      <pointLight intensity={5} position={[0, 100, -500]} />
-      <pointLight intensity={5} position={[0, 100, -500]} />
+      {/* <pointLight intensity={1} position={[1000, 1000, 1000]} /> */}
+      {/* <spotLight intensity={1} position={[1000, 1000, 1000]} />
+      <spotLight intensity={1} position={[-1000, -1000, -1000]} /> */}
+      <directionalLight intensity={0.8 * Math.PI} position={[0.5, 0, 0.86]} />
+      {/* <directionalLight intensity={0.8 * Math.PI} position={[-0.5, 0, -0.86]} /> */}
+      {/* <pointLight intensity={1} position={[-1000, -1000, -1000]} /> */}
+      {/* <hemisphereLight /> */}
+      <ambientLight intensity={0.3} color={0xffffff} />
+      {/* <pointLight intensity={1} position={[-50, 50, -50]} /> */}
+      {/* <pointLight intensity={1} position={[0, 100, -500]} /> */}
       <Controls />
-      {/* <axesHelper scale={[200, 200, 200]} /> */}
+      <axesHelper scale={[200, 200, 200]} />
       <primitive object={model} />
       {/* <boxHelper object={box} /> */}
     </Canvas>

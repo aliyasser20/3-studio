@@ -16,23 +16,86 @@ const createModel = (
   //   shininess: 2
   // });
 
-  // const INITIAL_MTL_METAL = new THREE.MeshStandardMaterial({
-  //   color: 0xffff00,
-  //   metalness: 1,
-  //   roughness: 0.5
-  // });
+  const INITIAL_MTL_METAL = new THREE.MeshStandardMaterial({
+    color: 0xffff00,
+    metalness: 1,
+    roughness: 0.5
+  });
+
+  const texture = new THREE.TextureLoader().load(
+    "/appearances/metals/Scuffed-Aluminum-PBR/color.png"
+  );
+
+  const textureRoughness = new THREE.TextureLoader().load(
+    "/appearances/metals/Scuffed-Aluminum-PBR/roughness.png"
+  );
+
+  const textureNormal = new THREE.TextureLoader().load(
+    "/appearances/metals/Scuffed-Aluminum-PBR/normal.png"
+  );
+  // const textureHeight = new THREE.TextureLoader().load(
+  //   "/appearances/height.png"
+  // );
+  // const textureAO = new THREE.TextureLoader().load("/appearances/ao.png");
+
+  const textureMetalness = new THREE.TextureLoader().load(
+    "/appearances/metals/Scuffed-Aluminum-PBR/metalness.png"
+  );
+
+  // const environmentPath = new THREE.TextureLoader().load(
+  //   "/environments/venice.hdr"
+  // );
+
+  const r = "https://threejs.org/examples/textures/cube/Bridge2/";
+  const urls = [
+    `${r}posx.jpg`,
+    `${r}negx.jpg`,
+    `${r}posy.jpg`,
+    `${r}negy.jpg`,
+    `${r}posz.jpg`,
+    `${r}negz.jpg`
+  ];
+
+  const textureCube = new THREE.CubeTextureLoader().load(urls);
+  textureCube.format = THREE.RGBFormat;
+
+  // let envMap;
+
+  // new THREE.DataTextureLoader()
+  //   .setDataType(THREE.UnsignedByteType)
+  //   .load(environmentPath, envTexture => {
+  //     envMap = THREE.PMREMGenerator.fromEquirectangular(envTexture).texture;
+  //     this.pmremGenerator.dispose();
+  //   });
+
+  const texturedMaterial = new THREE.MeshBasicMaterial({
+    // map: texture,
+    // roughnessMap: textureRoughness,
+    // normalMap: textureNormal,
+    // metalnessMap: textureMetalness,
+    // color: 0xffff00,
+    envMap: textureCube
+    // metalness: 1
+    // alphaMap: texture,
+    // aoMap: textureAO,
+    // bumpMap: textureHeight,
+    // bumpScale: 10,
+    // displacementScale: 0.5,
+    // displacementMap: textureHeight,
+  });
 
   // let part;
 
   // console.log("model position ", theModel);
 
-  // theModel.traverse(o => {
-  //   if (o.isMesh) {
-  //     // console.log(o);
-  //     part = o;
-  //     o.material = INITIAL_MTL_METAL;
-  //   }
-  // });
+  theModel.traverse(o => {
+    if (o.isMesh) {
+      // console.log(o);
+      // part = o;
+      o.material = texturedMaterial;
+      // o.material = INITIAL_MTL_METAL;
+    }
+  });
   // ?
 
   // ? Math for a few things including size, center, far, near

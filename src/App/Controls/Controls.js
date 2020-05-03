@@ -13,7 +13,11 @@ const Controls = () => {
   });
 
   return (
-    <orbitControls autoRotate args={[camera, gl.domElement]} ref={orbitRef} />
+    <orbitControls
+      //  autoRotate
+      args={[camera, gl.domElement]}
+      ref={orbitRef}
+    />
   );
 };
 
