@@ -88,10 +88,6 @@ const Model = props => {
           scene.background = new THREE.Color(`#${bgColor}`);
           scene.background.convertSRGBToLinear();
         }
-
-        if (bgEnvironment) {
-          scene.background = environment;
-        }
       }}
     >
       <primitive object={model} />
