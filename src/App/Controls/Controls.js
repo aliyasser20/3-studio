@@ -4,7 +4,7 @@ import { extend, useThree, useFrame } from "react-three-fiber";
 
 extend({ OrbitControls });
 
-const Controls = () => {
+const Controls = props => {
   const orbitRef = useRef();
   const { camera, gl } = useThree();
 
@@ -14,7 +14,7 @@ const Controls = () => {
 
   return (
     <orbitControls
-      // autoRotate
+      autoRotate={props.autoRotate}
       args={[camera, gl.domElement]}
       ref={orbitRef}
     />
