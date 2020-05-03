@@ -6,7 +6,8 @@ const createModel = (
   setFar,
   setModel,
   setSizeBounding,
-  setNear
+  setNear,
+  setEnvironment
 ) => {
   const theModel = gltf.scene;
 
@@ -42,22 +43,9 @@ const createModel = (
     "/appearances/metals/Scuffed-Aluminum-PBR/metalness.png"
   );
 
-  // const environmentPath = new THREE.TextureLoader().load(
-  //   "/environments/venice.hdr"
-  // );
-
-  const r = "https://threejs.org/examples/textures/cube/Bridge2/";
-  const urls = [
-    `${r}posx.jpg`,
-    `${r}negx.jpg`,
-    `${r}posy.jpg`,
-    `${r}negy.jpg`,
-    `${r}posz.jpg`,
-    `${r}negz.jpg`
-  ];
-
-  const textureCube = new THREE.CubeTextureLoader().load(urls);
-  textureCube.format = THREE.RGBFormat;
+  const environmentPath = new THREE.TextureLoader().load(
+    "/environments/venice.hdr"
+  );
 
   // let envMap;
 
@@ -68,13 +56,13 @@ const createModel = (
   //     this.pmremGenerator.dispose();
   //   });
 
-  const texturedMaterial = new THREE.MeshBasicMaterial({
+  const texturedMaterial = new THREE.MeshStandardMaterial({
     // map: texture,
     // roughnessMap: textureRoughness,
     // normalMap: textureNormal,
     // metalnessMap: textureMetalness,
     // color: 0xffff00,
-    envMap: textureCube
+    // envMap: textureCube
     // metalness: 1
     // alphaMap: texture,
     // aoMap: textureAO,
@@ -88,14 +76,14 @@ const createModel = (
 
   // console.log("model position ", theModel);
 
-  theModel.traverse(o => {
-    if (o.isMesh) {
-      // console.log(o);
-      // part = o;
-      o.material = texturedMaterial;
-      // o.material = INITIAL_MTL_METAL;
-    }
-  });
+  // theModel.traverse(o => {
+  //   if (o.isMesh) {
+  //     // console.log(o);
+  //     // part = o;
+  //     o.material = texturedMaterial;
+  //     // o.material = INITIAL_MTL_METAL;
+  //   }
+  // });
   // ?
 
   // ? Math for a few things including size, center, far, near
@@ -131,6 +119,21 @@ const createModel = (
   setSizeBounding(size);
   setModel(theModel);
   // ?
+
+  const r = "https://threejs.org/examples/textures/cube/Bridge2/";
+  const urls = [
+    `${r}posx.jpg`,
+    `${r}negx.jpg`,
+    `${r}posy.jpg`,
+    `${r}negy.jpg`,
+    `${r}posz.jpg`,
+    `${r}negz.jpg`
+  ];
+
+  const textureCube = new THREE.CubeTextureLoader().load(urls);
+  textureCube.format = THREE.RGBFormat;
+
+  setEnvironment(textureCube);
 };
 
 export default createModel;
