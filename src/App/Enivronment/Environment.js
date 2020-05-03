@@ -5,6 +5,8 @@ import { HDRCubeTextureLoader } from "three/examples/jsm/loaders/HDRCubeTextureL
 
 const Environment = props => {
   const { gl, scene } = useThree();
+
+  // ? Load HDR files
   const [cubeMap] = useLoader(
     HDRCubeTextureLoader,
     [["px.hdr", "nx.hdr", "py.hdr", "ny.hdr", "pz.hdr", "nz.hdr"]],
@@ -13,6 +15,8 @@ const Environment = props => {
       loader.setPath("/pisaHDR/");
     }
   );
+
+  // ? Set HDR to canvas
   useEffect(() => {
     const gen = new THREE.PMREMGenerator(gl);
     gen.compileEquirectangularShader();
@@ -26,6 +30,7 @@ const Environment = props => {
       scene.background = null;
     };
   }, [props.background, cubeMap, gl, scene.background, scene.environment]);
+
   return null;
 };
 

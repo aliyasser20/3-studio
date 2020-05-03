@@ -20,8 +20,8 @@ const Model = props => {
 
   // ? Environment & background states //
   const [environment, setEnvironment] = useState(null);
-  const [bgSolid, setBgSolid] = useState(true);
-  const [bgEnvironment, setBgEnvironment] = useState(false);
+  const [bgSolid, setBgSolid] = useState(false);
+  const [bgEnvironment, setBgEnvironment] = useState(true);
   const [mapEnvironment, setMapEnvironment] = useState(true);
   const [bgColor, setBgColor] = useState("262626");
 
@@ -120,9 +120,9 @@ const Model = props => {
       {showAxis && (
         <axesHelper
           scale={[
-            1.2 * sizeBounding.x,
-            1.2 * sizeBounding.y,
-            1.2 * sizeBounding.z
+            0.75 * sizeBounding.x,
+            0.75 * sizeBounding.y,
+            0.75 * sizeBounding.z
           ]}
         />
       )}
