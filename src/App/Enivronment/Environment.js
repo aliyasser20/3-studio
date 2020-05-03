@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useThree, useLoader } from "react-three-fiber";
 import { HDRCubeTextureLoader } from "three/examples/jsm/loaders/HDRCubeTextureLoader";
 
-export default function Environment({ background = false }) {
+const Environment = props => {
   const { gl, scene } = useThree();
   const [cubeMap] = useLoader(
     HDRCubeTextureLoader,
@@ -19,10 +19,14 @@ export default function Environment({ background = false }) {
     const hdrCubeRenderTarget = gen.fromCubemap(cubeMap);
     cubeMap.dispose();
     gen.dispose();
-    if (background) scene.background = hdrCubeRenderTarget.texture;
+    if (props.background) scene.background = hdrCubeRenderTarget.texture;
     scene.environment = hdrCubeRenderTarget.texture;
-    scene.background.convertSRGBToLinear();
-    return () => (scene.environment = scene.background = null);
-  }, [background, cubeMap, gl, scene.background, scene.environment]);
+    return () => {
+      scene.environment = null;
+      scene.background = null;
+    };
+  }, [props.background, cubeMap, gl, scene.background, scene.environment]);
   return null;
-}
+};
+
+export default Environment;

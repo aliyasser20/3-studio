@@ -6,8 +6,7 @@ const createModel = (
   setFar,
   setModel,
   setSizeBounding,
-  setNear,
-  setEnvironment
+  setNear
 ) => {
   const theModel = gltf.scene;
 
@@ -65,14 +64,14 @@ const createModel = (
 
   // console.log("model position ", theModel);
 
-  theModel.traverse(o => {
-    if (o.isMesh) {
-      // console.log(o);
-      // part = o;
-      o.material = texturedMaterial;
-      // o.material = INITIAL_MTL_METAL;
-    }
-  });
+  // theModel.traverse(o => {
+  //   if (o.isMesh) {
+  //     // console.log(o);
+  //     // part = o;
+  //     o.material = texturedMaterial;
+  //     // o.material = INITIAL_MTL_METAL;
+  //   }
+  // });
   // ?
 
   // ? Math for a few things including size, center, far, near
@@ -101,28 +100,12 @@ const createModel = (
   const visualBoundingBox = new THREE.BoxHelper(theModel, 0xffff00);
   // ?
 
-  // ? Load environment file to texture
-  const r = "https://threejs.org/examples/textures/cube/Bridge2/";
-  const urls = [
-    `${r}posx.jpg`,
-    `${r}negx.jpg`,
-    `${r}posy.jpg`,
-    `${r}negy.jpg`,
-    `${r}posz.jpg`,
-    `${r}negz.jpg`
-  ];
-
-  const textureCube = new THREE.CubeTextureLoader().load(urls);
-  textureCube.format = THREE.RGBFormat;
-  // ?
-
   // ? Set states
   setBox(visualBoundingBox);
   setFar(distance * 100);
   setNear(distance / 100);
   setSizeBounding(size);
   setModel(theModel);
-  setEnvironment(textureCube);
   // ?
 };
 

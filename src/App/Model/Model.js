@@ -21,9 +21,9 @@ const Model = props => {
   // ? Environment & background states //
   const [environment, setEnvironment] = useState(null);
   const [bgSolid, setBgSolid] = useState(true);
-  const [bgEnvironment, setBgEnvironment] = useState(true);
-  const [mapEnvironment, setMapEnvironment] = useState(false);
-  const [bgColor, setBgColor] = useState("555555");
+  const [bgEnvironment, setBgEnvironment] = useState(false);
+  const [mapEnvironment, setMapEnvironment] = useState(true);
+  const [bgColor, setBgColor] = useState("262626");
 
   // ? Lights states //
   // Ambient
@@ -58,15 +58,7 @@ const Model = props => {
   // ? Load model with materials
   useEffect(() => {
     new GLTFLoader().load(props.url, gltf =>
-      createModel(
-        gltf,
-        setBox,
-        setFar,
-        setModel,
-        setSizeBounding,
-        setNear,
-        setEnvironment
-      )
+      createModel(gltf, setBox, setFar, setModel, setSizeBounding, setNear)
     );
   }, [props.url]);
 
@@ -94,6 +86,7 @@ const Model = props => {
 
         if (bgSolid) {
           scene.background = new THREE.Color(`#${bgColor}`);
+          scene.background.convertSRGBToLinear();
         }
 
         if (bgEnvironment) {
@@ -120,7 +113,7 @@ const Model = props => {
       )}
       {mapEnvironment && (
         <Suspense fallback={fallbackElement}>
-          <Environment />
+          <Environment background={bgEnvironment} />
         </Suspense>
       )}
       {allowOrbitControls && <Controls autoRotate={autoRotate} />}
