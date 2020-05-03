@@ -26,52 +26,55 @@ const createModel = (
     "/appearances/metals/Alien/color.png"
   );
 
-  // const textureRoughness = new THREE.TextureLoader().load(
-  //   "/appearances/metals/Rust/roughness.jpg"
-  // );
+  const textureRoughness = new THREE.TextureLoader().load(
+    "/appearances/metals/Alien/roughness.png"
+  );
 
-  // const textureNormal = new THREE.TextureLoader().load(
-  //   "/appearances/metals/Rust/normal.jpg"
-  // );
+  const textureNormal = new THREE.TextureLoader().load(
+    "/appearances/metals/Alien/normal.png"
+  );
 
   const textureHeight = new THREE.TextureLoader().load(
     "/appearances/metals/Alien/height.png"
   );
 
-  // const textureAO = new THREE.TextureLoader().load("/appearances/ao.png");
+  const textureAO = new THREE.TextureLoader().load(
+    "/appearances/metals/Alien/ao.png"
+  );
 
   const textureMetalness = new THREE.TextureLoader().load(
     "/appearances/metals/Alien/metalness.png"
   );
 
   const texturedMaterial = new THREE.MeshStandardMaterial({
-    map: texture,
+    // map: texture,
     // roughnessMap: textureRoughness,
+    roughness: 0.1,
     // normalMap: textureNormal
-    metalnessMap: textureMetalness,
+    // metalnessMap: textureMetalness,
     color: 0xffff00,
     // envMap: textureCube
-    // metalness: 1
+    metalness: 1
     // alphaMap: texture,
-    // aoMap: textureAO,
-    bumpMap: textureHeight,
-    bumpScale: 1500
-    // displacementScale: 0.5,
-    // displacementMap: textureHeight,
+    // aoMap: textureAO
+    // bumpMap: textureNormal,
+    // bumpScale: 1500
+    // displacementScale: 100,
+    // displacementMap: textureHeight
   });
 
   // let part;
 
   // console.log("model position ", theModel);
 
-  // theModel.traverse(o => {
-  //   if (o.isMesh) {
-  //     // console.log(o);
-  //     // part = o;
-  //     o.material = texturedMaterial;
-  //     // o.material = INITIAL_MTL_METAL;
-  //   }
-  // });
+  theModel.traverse(o => {
+    if (o.isMesh) {
+      console.log(o.material);
+      // part = o;
+      o.material = texturedMaterial;
+      // o.material = INITIAL_MTL_METAL;
+    }
+  });
   // ?
 
   // ? Math for a few things including size, center, far, near
