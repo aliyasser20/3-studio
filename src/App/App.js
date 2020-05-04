@@ -3,7 +3,7 @@ import Model from "./Model/Model";
 
 const App = () => (
   <div className="App">
-    <Model url="/models/mustard/mustard.glb" />
+    <Model url="/models/sphere/sphere.glb" />
   </div>
 );
 export default App;

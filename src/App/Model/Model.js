@@ -6,7 +6,7 @@ import * as THREE from "three";
 import Controls from "../Controls/Controls";
 import Environment from "../Enivronment/Environment";
 
-import createModel from "../../helpers/create_model";
+import createModel from "../../helpers/createModel";
 
 const Model = props => {
   // ! State ------------------------------------------------- //
@@ -20,8 +20,8 @@ const Model = props => {
 
   // ? Environment & background states //
   const [environment, setEnvironment] = useState(null);
-  const [bgSolid, setBgSolid] = useState(false);
-  const [bgEnvironment, setBgEnvironment] = useState(true);
+  const [bgSolid, setBgSolid] = useState(true);
+  const [bgEnvironment, setBgEnvironment] = useState(false);
   const [mapEnvironment, setMapEnvironment] = useState(true);
   const [bgColor, setBgColor] = useState("262626");
 
