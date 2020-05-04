@@ -15,6 +15,12 @@ const createMaterial = config => {
     textureConfiguration.map.encoding = THREE.sRGBEncoding;
   }
 
+  if (config.alphaMap) {
+    textureConfiguration.map = new THREE.TextureLoader().load(
+      `${initialPath}${config.name}/alpha.png`
+    );
+  }
+
   if (config.roughnessMap) {
     textureConfiguration.roughnessMap = new THREE.TextureLoader().load(
       `${initialPath}${config.name}/roughness.png`
@@ -27,7 +33,7 @@ const createMaterial = config => {
 
   if (config.displacementMap) {
     textureConfiguration.displacementMap = new THREE.TextureLoader().load(
-      `${initialPath}${config.name}/height.png`
+      `${initialPath}${config.name}/displacement.png`
     );
     textureConfiguration.displacementScale = config.displacementScale;
   }
@@ -144,6 +150,7 @@ const materialLibrary = () => {
     bumpScale: 25,
     ambientOcclusionMap: true
   });
+
   // ?
 
   // ? Ceramics
@@ -163,9 +170,18 @@ const materialLibrary = () => {
     group: "ceramics",
     colorMap: true,
     bumpMap: true,
-    bumpScale: 1,
+    bumpScale: 10,
     roughnessMap: true,
     ambientOcclusionMap: true
+  });
+
+  materials.polishedGranite = createMaterial({
+    name: "polished-granite",
+    group: "ceramics",
+    colorMap: true,
+    bumpMap: true,
+    bumpScale: 10,
+    clearcoat: 0.1
   });
   // ?
 

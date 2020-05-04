@@ -28,6 +28,7 @@ const createModel = (
       // ? Ceramics
       // o.material = materialLibrary().marbleOne;
       o.material = materialLibrary().fleshyGranite;
+      // o.material = materialLibrary().polishedGranite;
     }
   });
   // ?
