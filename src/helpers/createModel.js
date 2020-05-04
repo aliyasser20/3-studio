@@ -18,10 +18,15 @@ const createModel = (
   theModel.traverse(o => {
     if (o.isMesh) {
       // part = o;
+      // ? Metals
       // o.material = materialLibrary().alien;
       // o.material = materialLibrary().scuffedAluminumPBR;
       // o.material = materialLibrary().metalGrid;
-      o.material = materialLibrary().rust;
+      // o.material = materialLibrary().rust;
+      // o.material = materialLibrary().brushedMetal;
+
+      // ? Ceramics
+      o.material = materialLibrary().marbleOne;
     }
   });
   // ?

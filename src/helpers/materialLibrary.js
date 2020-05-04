@@ -1,8 +1,8 @@
 import * as THREE from "three";
 
-const createMetalMaterial = config => {
+const createMaterial = config => {
   const textureConfiguration = {};
-  const initialPath = "/appearances/metals/";
+  const initialPath = `/appearances/${config.group}/`;
 
   if (config.color) {
     textureConfiguration.color = config.color;
@@ -44,8 +44,30 @@ const createMetalMaterial = config => {
     );
   }
 
+  if (config.specularMap) {
+    textureConfiguration.aoMap = new THREE.TextureLoader().load(
+      `${initialPath}${config.name}/specular.png`
+    );
+  }
+
+  if (config.reflectivity) {
+    textureConfiguration.reflectivity = config.reflectivity;
+  }
+
+  if (config.shininess) {
+    textureConfiguration.shininess = config.shininess;
+  }
+
   if (config.metalness) {
     textureConfiguration.metalness = config.metalness;
+  }
+
+  if (config.clearcoat) {
+    textureConfiguration.clearcoat = config.clearcoat;
+  }
+
+  if (config.clearcoatRoughness) {
+    textureConfiguration.clearcoatRoughness = config.clearcoatRoughness;
   }
 
   if (config.metalnessMap) {
@@ -54,14 +76,24 @@ const createMetalMaterial = config => {
     );
   }
 
-  return new THREE.MeshStandardMaterial(textureConfiguration);
+  switch (config.group) {
+    case "metals":
+      return new THREE.MeshStandardMaterial(textureConfiguration);
+    case "ceramics":
+      return new THREE.MeshPhysicalMaterial(textureConfiguration);
+    // return new THREE.MeshBasicMaterial(textureConfiguration);
+    default:
+      break;
+  }
 };
 
 const materialLibrary = () => {
   const materials = {};
 
-  materials.alien = createMetalMaterial({
+  // ? Metals
+  materials.alien = createMaterial({
     name: "alien",
+    group: "metals",
     colorMap: true,
     roughnessMap: true,
     ambientOcclusionMap: true,
@@ -70,8 +102,9 @@ const materialLibrary = () => {
     bumpScale: 100
   });
 
-  materials.scuffedAluminumPBR = createMetalMaterial({
+  materials.scuffedAluminumPBR = createMaterial({
     name: "scuffed-aluminum-pbr",
+    group: "metals",
     colorMap: true,
     color: "#222222",
     roughnessMap: true,
@@ -80,8 +113,9 @@ const materialLibrary = () => {
     bumpScale: 200
   });
 
-  materials.metalGrid = createMetalMaterial({
+  materials.metalGrid = createMaterial({
     name: "metal-grid",
+    group: "metals",
     colorMap: true,
     roughnessMap: true,
     metalness: 1,
@@ -90,14 +124,40 @@ const materialLibrary = () => {
     ambientOcclusionMap: true
   });
 
-  materials.rust = createMetalMaterial({
+  materials.rust = createMaterial({
     name: "rust",
+    group: "metals",
     colorMap: true,
     roughnessMap: true,
     metalness: 1,
     bumpMap: true,
-    bumpScale: 25
+    bumpScale: 100
   });
+
+  materials.brushedMetal = createMaterial({
+    name: "brushed-metal",
+    group: "metals",
+    colorMap: true,
+    roughnessMap: true,
+    metalness: 1,
+    bumpMap: true,
+    bumpScale: 25,
+    ambientOcclusionMap: true
+  });
+  // ?
+
+  // ? Ceramics
+  materials.marbleOne = createMaterial({
+    name: "marble-one",
+    group: "ceramics",
+    colorMap: true,
+    bumpMap: true,
+    bumpScale: 200,
+    clearcoat: 0.2,
+    specularMap: true,
+    roughnessMap: true
+  });
+  // ?
 
   return materials;
 };
