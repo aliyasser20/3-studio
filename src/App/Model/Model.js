@@ -83,11 +83,6 @@ const Model = props => {
         gl.outputEncoding = THREE.sRGBEncoding;
         gl.gammaFactor = 2.2;
         gl.gammaOutput = true;
-
-        if (bgSolid) {
-          scene.background = new THREE.Color(`#${bgColor}`);
-          scene.background.convertSRGBToLinear();
-        }
       }}
     >
       <primitive object={model} />
@@ -107,11 +102,14 @@ const Model = props => {
       {ambient && (
         <ambientLight intensity={ambientIntensity} color={`#${ambientColor}`} />
       )}
-      {mapEnvironment && (
-        <Suspense fallback={fallbackElement}>
-          <Environment background={bgEnvironment} />
-        </Suspense>
-      )}
+      <Suspense fallback={fallbackElement}>
+        <Environment
+          bgEnvironment={bgEnvironment}
+          bgSolid={bgSolid}
+          bgColor={bgColor}
+          mapEnvironment={mapEnvironment}
+        />
+      </Suspense>
       {allowOrbitControls && <Controls autoRotate={autoRotate} />}
       {showAxis && (
         <axesHelper

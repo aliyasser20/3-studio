@@ -22,13 +22,30 @@ const Environment = props => {
     texture.dispose();
     gen.dispose();
 
-    if (props.background) scene.background = envMap;
-    scene.environment = envMap;
+    if (props.bgEnvironment) scene.background = envMap;
+
+    if (props.bgSolid) {
+      scene.background = new THREE.Color(`#${props.bgColor}`);
+      scene.background.convertSRGBToLinear();
+    }
+
+    if (props.mapEnvironment) scene.environment = envMap;
+
     return () => {
       scene.environment = null;
       scene.background = null;
     };
-  }, [props.background, gl, scene.background, scene.environment, texture]);
+  }, [
+    props.background,
+    gl,
+    scene.background,
+    scene.environment,
+    texture,
+    props.bgEnvironment,
+    props.bgSolid,
+    props.bgColor,
+    props.mapEnvironment
+  ]);
 
   return null;
 };
