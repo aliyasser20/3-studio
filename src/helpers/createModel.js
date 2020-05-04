@@ -19,19 +19,17 @@ const createModel = (
     if (o.isMesh) {
       // part = o;
       // ? Metals
-      // o.material = materialLibrary().alien;
+      o.material = materialLibrary().alien;
       // o.material = materialLibrary().scuffedAluminumPBR;
       // o.material = materialLibrary().metalGrid;
       // o.material = materialLibrary().rust;
       // o.material = materialLibrary().brushedMetal;
-
       // ? Ceramics
-      o.material = materialLibrary().marbleOne;
+      // o.material = materialLibrary().marbleOne;
       // o.material = materialLibrary().fleshyGranite;
       // o.material = materialLibrary().polishedGranite;
       // o.material = materialLibrary().marbleTwo;
       // o.material = materialLibrary().marbleThree;
-
       // ? Woods
       // o.material = materialLibrary().woodOne;
       // o.material = materialLibrary().woodFlooringOne;
