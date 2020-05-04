@@ -12,6 +12,7 @@ const createMaterial = config => {
     textureConfiguration.map = new THREE.TextureLoader().load(
       `${initialPath}${config.name}/color.png`
     );
+    textureConfiguration.map.encoding = THREE.sRGBEncoding;
   }
 
   if (config.roughnessMap) {
@@ -81,7 +82,6 @@ const createMaterial = config => {
       return new THREE.MeshStandardMaterial(textureConfiguration);
     case "ceramics":
       return new THREE.MeshPhysicalMaterial(textureConfiguration);
-    // return new THREE.MeshBasicMaterial(textureConfiguration);
     default:
       break;
   }
@@ -131,7 +131,7 @@ const materialLibrary = () => {
     roughnessMap: true,
     metalness: 1,
     bumpMap: true,
-    bumpScale: 100
+    bumpScale: 50
   });
 
   materials.brushedMetal = createMaterial({
@@ -156,6 +156,16 @@ const materialLibrary = () => {
     clearcoat: 0.2,
     specularMap: true,
     roughnessMap: true
+  });
+
+  materials.fleshyGranite = createMaterial({
+    name: "fleshy-granite",
+    group: "ceramics",
+    colorMap: true,
+    bumpMap: true,
+    bumpScale: 1,
+    roughnessMap: true,
+    ambientOcclusionMap: true
   });
   // ?
 

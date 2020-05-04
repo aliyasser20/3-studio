@@ -26,7 +26,8 @@ const createModel = (
       // o.material = materialLibrary().brushedMetal;
 
       // ? Ceramics
-      o.material = materialLibrary().marbleOne;
+      // o.material = materialLibrary().marbleOne;
+      o.material = materialLibrary().fleshyGranite;
     }
   });
   // ?
