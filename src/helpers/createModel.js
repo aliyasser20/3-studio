@@ -17,9 +17,10 @@ const createModel = (
 
   theModel.traverse(o => {
     if (o.isMesh) {
+      // console.log(o);
       // part = o;
       // ? Metals
-      o.material = materialLibrary().alien;
+      // o.material = materialLibrary().alien;
       // o.material = materialLibrary().scuffedAluminumPBR;
       // o.material = materialLibrary().metalGrid;
       // o.material = materialLibrary().rust;
