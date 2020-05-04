@@ -88,6 +88,8 @@ const createMaterial = config => {
       return new THREE.MeshStandardMaterial(textureConfiguration);
     case "ceramics":
       return new THREE.MeshPhysicalMaterial(textureConfiguration);
+    case "woods":
+      return new THREE.MeshStandardMaterial(textureConfiguration);
     default:
       break;
   }
@@ -182,6 +184,62 @@ const materialLibrary = () => {
     bumpMap: true,
     bumpScale: 10,
     clearcoat: 0.1
+  });
+
+  materials.marbleTwo = createMaterial({
+    name: "marble-two",
+    group: "ceramics",
+    colorMap: true,
+    bumpMap: true,
+    bumpScale: 200,
+    clearcoat: 0.2,
+    roughnessMap: true
+  });
+
+  materials.marbleThree = createMaterial({
+    name: "marble-three",
+    group: "ceramics",
+    colorMap: true,
+    bumpMap: true,
+    bumpScale: 200,
+    clearcoat: 0.2,
+    roughnessMap: true
+  });
+  // ?
+
+  // ? Woods
+  materials.woodOne = createMaterial({
+    name: "wood-one",
+    group: "woods",
+    colorMap: true,
+    bumpMap: true,
+    bumpScale: 200,
+    roughnessMap: true,
+    displacementMap: true,
+    displacementScale: 200
+  });
+
+  materials.woodFlooringOne = createMaterial({
+    name: "wood-flooring-one",
+    group: "woods",
+    colorMap: true,
+    bumpMap: true,
+    bumpScale: 50,
+    roughnessMap: true,
+    displacementMap: true,
+    displacementScale: 200
+  });
+
+  materials.woodFlooringTwo = createMaterial({
+    name: "wood-flooring-two",
+    group: "woods",
+    colorMap: true,
+    bumpMap: true,
+    bumpScale: 100,
+    roughnessMap: true,
+    ambientOcclusionMap: true,
+    displacementMap: true,
+    displacementScale: 1
   });
   // ?
 
