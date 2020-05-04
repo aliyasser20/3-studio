@@ -70,6 +70,35 @@ const materialLibrary = () => {
     bumpScale: 100
   });
 
+  materials.scuffedAluminumPBR = createMetalMaterial({
+    name: "scuffed-aluminum-pbr",
+    colorMap: true,
+    color: "#222222",
+    roughnessMap: true,
+    metalness: 1,
+    bumpMap: true,
+    bumpScale: 200
+  });
+
+  materials.metalGrid = createMetalMaterial({
+    name: "metal-grid",
+    colorMap: true,
+    roughnessMap: true,
+    metalness: 1,
+    bumpMap: true,
+    bumpScale: 300,
+    ambientOcclusionMap: true
+  });
+
+  materials.rust = createMetalMaterial({
+    name: "rust",
+    colorMap: true,
+    roughnessMap: true,
+    metalness: 1,
+    bumpMap: true,
+    bumpScale: 25
+  });
+
   return materials;
 };
 
