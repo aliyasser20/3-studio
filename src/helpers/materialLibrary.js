@@ -8,6 +8,13 @@ const createMaterial = config => {
     textureConfiguration.color = config.color;
   }
 
+  // if (config.colorMap) {
+  //   textureConfiguration.map = new THREE.TextureLoader().load(
+  //     "https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?id=18aWRn6RBLUcN8MZGbSc5c5VIwtSpMF_B"
+  //   );
+  //   textureConfiguration.map.encoding = THREE.sRGBEncoding;
+  // }
+
   if (config.colorMap) {
     textureConfiguration.map = new THREE.TextureLoader().load(
       `${initialPath}${config.name}/color.png`
@@ -20,6 +27,12 @@ const createMaterial = config => {
       `${initialPath}${config.name}/alpha.png`
     );
   }
+
+  // if (config.roughnessMap) {
+  //   textureConfiguration.roughnessMap = new THREE.TextureLoader().load(
+  //     "https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?id=1qAo1F1PAic0kaYx2TjDburnlmIl7HPzE"
+  //   );
+  // }
 
   if (config.roughnessMap) {
     textureConfiguration.roughnessMap = new THREE.TextureLoader().load(
@@ -37,6 +50,13 @@ const createMaterial = config => {
     );
     textureConfiguration.displacementScale = config.displacementScale;
   }
+
+  // if (config.bumpMap) {
+  //   textureConfiguration.bumpMap = new THREE.TextureLoader().load(
+  //     "https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?id=1GkBaobd1XdsO7plo9AraGE8TODqCNRn-"
+  //   );
+  //   textureConfiguration.bumpScale = config.bumpScale;
+  // }
 
   if (config.bumpMap) {
     textureConfiguration.bumpMap = new THREE.TextureLoader().load(

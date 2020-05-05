@@ -20,7 +20,7 @@ function saveString(text, filename) {
 
 const exporter = () => {
   const scene = sceneExport;
-  console.log(scene);
+  // console.log(scene);
   const gltfExporter = new GLTFExporter();
   // Parse the input and generate the glTF output
   gltfExporter.parse(
@@ -30,7 +30,7 @@ const exporter = () => {
       //   saveArrayBuffer(result, "scene.glb");
       // } else {
       const output = JSON.stringify(result, null, 2);
-      console.log(output);
+      // console.log(output);
       saveString(output, "scene.gltf");
     }
     // },

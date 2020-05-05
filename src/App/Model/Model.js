@@ -21,8 +21,8 @@ const Model = props => {
 
   // ? Environment & background states //
   const [environment, setEnvironment] = useState(null);
-  const [bgSolid, setBgSolid] = useState(true);
-  const [bgEnvironment, setBgEnvironment] = useState(false);
+  const [bgSolid, setBgSolid] = useState(false);
+  const [bgEnvironment, setBgEnvironment] = useState(true);
   const [mapEnvironment, setMapEnvironment] = useState(true);
   const [bgColor, setBgColor] = useState("262326");
 
@@ -129,7 +129,7 @@ const Model = props => {
         {showBoundingBox && <boxHelper object={box} />}
       </Canvas>
       <button type="button" onClick={() => exporter(scene)}>
-        Save
+        Download
       </button>
     </Fragment>
   ) : null;

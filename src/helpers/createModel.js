@@ -22,9 +22,9 @@ const createModel = (
       // ? Default
       // o.material = materialLibrary().default;
       // ? Metals
-      o.material = materialLibrary().goldPolished;
-      // o.material = materialLibrary().cherryRough;
-      // o.material = materialLibrary().alien;
+      // o.material = materialLibrary().goldPolished;
+      // o.material = materialLibrary().cherryPolished;
+      o.material = materialLibrary().alien;
       // o.material = materialLibrary().scuffedAluminumPBR;
       // o.material = materialLibrary().metalGrid;
       // o.material = materialLibrary().rust;

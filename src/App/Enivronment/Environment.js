@@ -1,23 +1,30 @@
 import * as THREE from "three";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useThree, useLoader } from "react-three-fiber";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
+import axios from "axios";
 
 export let sceneExport;
 
 const Environment = props => {
   const { gl, scene } = useThree();
 
+  // const [image, setImage] = useState(
+  //   "https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?id=1Nvg2o_QLf1kw_BmzN_rpZByJrtZO6sFj"
+  // );
+
+  // const [image, setImage] = useState(
+  //   "https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?id=1uBOBR40ovXh-Nu2V33SxqUzKX2YRrEez"
+  // );
+
+  const [image, setImage] = useState("/environments/studio-2.hdr");
+
   sceneExport = scene;
 
   // ? Load HDR file
-  const texture = useLoader(
-    RGBELoader,
-    "/environments/studio-2.hdr",
-    loader => {
-      loader.setDataType(THREE.UnsignedByteType);
-    }
-  );
+  const texture = useLoader(RGBELoader, image, loader => {
+    loader.setDataType(THREE.UnsignedByteType);
+  });
 
   // ? Set HDR to canvas
   useEffect(() => {
