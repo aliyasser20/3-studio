@@ -109,11 +109,9 @@ const materialLibrary = () => {
   // ? Metals
 
   // Basic
-
   const BASICMETALS = {
     gold: "#DAA520",
     aluminum: "#C0C0C0",
-    // steel: "#808080",
     steel: "#43464B",
     copper: "#CB6D51",
     brass: "#b5a642"
@@ -121,18 +119,24 @@ const materialLibrary = () => {
 
   // eslint-disable-next-line
   for (const metal in BASICMETALS) {
-    console.log(metal);
+    // Basic polished
     materials[`${metal}Polished`] = createMaterial({
       name: `${metal}-polished`,
       group: "metals",
       roughness: 0.01,
       metalness: 1,
-      // color: "#ff0000"
+      color: BASICMETALS[metal]
+    });
+
+    // Basic rough
+    materials[`${metal}Rough`] = createMaterial({
+      name: `${metal}-rough`,
+      group: "metals",
+      roughness: 0.2,
+      metalness: 1,
       color: BASICMETALS[metal]
     });
   }
-
-  console.log(materials);
 
   materials.alien = createMaterial({
     name: "alien",
