@@ -9,7 +9,7 @@ const Environment = props => {
   // ? Load HDR file
   const texture = useLoader(
     RGBELoader,
-    "/environments/sidewalk.hdr",
+    "/environments/studio-2.hdr",
     loader => {
       loader.setDataType(THREE.UnsignedByteType);
     }

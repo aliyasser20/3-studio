@@ -20,8 +20,9 @@ const createModel = (
       // console.log(o);
       // part = o;
       // ? Default
-      o.material = materialLibrary().default;
+      // o.material = materialLibrary().default;
       // ? Metals
+      o.material = materialLibrary().goldPolished;
       // o.material = materialLibrary().alien;
       // o.material = materialLibrary().scuffedAluminumPBR;
       // o.material = materialLibrary().metalGrid;
