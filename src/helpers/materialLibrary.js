@@ -114,7 +114,15 @@ const materialLibrary = () => {
     aluminum: "#C0C0C0",
     steel: "#43464B",
     copper: "#CB6D51",
-    brass: "#b5a642"
+    brass: "#b5a642",
+    blue: "#2d5b7d",
+    graphite: "#1e1d19",
+    black: "#000000",
+    green: "#008000",
+    lightGreen: "#8bc34a",
+    lightBlue: "#03a9f4",
+    purple: "#673ab7",
+    cherry: "#AE2321"
   };
 
   // eslint-disable-next-line
