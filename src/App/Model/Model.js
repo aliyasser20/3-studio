@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Suspense } from "react";
-import { Canvas, Dom } from "react-three-fiber";
+import React, { useState, useEffect, Suspense, Fragment } from "react";
+import { Canvas, Dom, useThree } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
 
@@ -7,6 +7,7 @@ import Controls from "../Controls/Controls";
 import Environment from "../Enivronment/Environment";
 
 import createModel from "../../helpers/createModel";
+import exporter from "../../helpers/exporter";
 
 const Model = props => {
   // ! State ------------------------------------------------- //
@@ -69,59 +70,69 @@ const Model = props => {
     </Dom>
   );
 
+  const { scene } = useThree();
+
   // ? Canvas output
   const canvasElement = model ? (
-    <Canvas
-      camera={{
-        position: [-sizeBounding.x, sizeBounding.y, sizeBounding.z],
-        fov,
-        far,
-        near
-      }}
-      onCreated={({ gl, scene }) => {
-        gl.toneMapping = THREE.ACESFilmicToneMapping;
-        gl.outputEncoding = THREE.sRGBEncoding;
-        gl.gammaFactor = 2.2;
-        gl.gammaOutput = true;
-      }}
-    >
-      <primitive object={model} />
-      {directional && (
-        <directionalLight
-          intensity={directionalIntensity}
-          color={`#${directionalColor}`}
-          position={directionalPosition}
-        />
-      )}
-      {hemisphere && (
-        <hemisphereLight
-          intensity={hemisphereIntensity}
-          color={`#${hemisphereColor}`}
-        />
-      )}
-      {ambient && (
-        <ambientLight intensity={ambientIntensity} color={`#${ambientColor}`} />
-      )}
-      <Suspense fallback={fallbackElement}>
-        <Environment
-          bgEnvironment={bgEnvironment}
-          bgSolid={bgSolid}
-          bgColor={bgColor}
-          mapEnvironment={mapEnvironment}
-        />
-      </Suspense>
-      {allowOrbitControls && <Controls autoRotate={autoRotate} />}
-      {showAxis && (
-        <axesHelper
-          scale={[
-            0.75 * sizeBounding.x,
-            0.75 * sizeBounding.y,
-            0.75 * sizeBounding.z
-          ]}
-        />
-      )}
-      {showBoundingBox && <boxHelper object={box} />}
-    </Canvas>
+    <Fragment>
+      <Canvas
+        camera={{
+          position: [-sizeBounding.x, sizeBounding.y, sizeBounding.z],
+          fov,
+          far,
+          near
+        }}
+        onCreated={({ gl }) => {
+          gl.toneMapping = THREE.ACESFilmicToneMapping;
+          gl.outputEncoding = THREE.sRGBEncoding;
+          gl.gammaFactor = 2.2;
+          gl.gammaOutput = true;
+        }}
+      >
+        <primitive object={model} />
+        {directional && (
+          <directionalLight
+            intensity={directionalIntensity}
+            color={`#${directionalColor}`}
+            position={directionalPosition}
+          />
+        )}
+        {hemisphere && (
+          <hemisphereLight
+            intensity={hemisphereIntensity}
+            color={`#${hemisphereColor}`}
+          />
+        )}
+        {ambient && (
+          <ambientLight
+            intensity={ambientIntensity}
+            color={`#${ambientColor}`}
+          />
+        )}
+        <Suspense fallback={fallbackElement}>
+          <Environment
+            bgEnvironment={bgEnvironment}
+            bgSolid={bgSolid}
+            bgColor={bgColor}
+            mapEnvironment={mapEnvironment}
+          />
+        </Suspense>
+        {allowOrbitControls && <Controls autoRotate={autoRotate} />}
+        {showAxis && (
+          <axesHelper
+            scale={[
+              0.75 * sizeBounding.x,
+              0.75 * sizeBounding.y,
+              0.75 * sizeBounding.z
+            ]}
+          />
+        )}
+        {showBoundingBox && <boxHelper object={box} />}
+      </Canvas>
+      <button type="button" onClick={() => exporter(scene)}>
+        Save
+      </button>
+    </Fragment>
   ) : null;
 
   return <div>{canvasElement}</div>;

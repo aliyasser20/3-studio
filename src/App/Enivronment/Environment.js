@@ -3,8 +3,12 @@ import { useEffect } from "react";
 import { useThree, useLoader } from "react-three-fiber";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 
+export let sceneExport;
+
 const Environment = props => {
   const { gl, scene } = useThree();
+
+  sceneExport = scene;
 
   // ? Load HDR file
   const texture = useLoader(
