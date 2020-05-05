@@ -19,6 +19,8 @@ const createModel = (
     if (o.isMesh) {
       // console.log(o);
       // part = o;
+      // ? Default
+      o.material = materialLibrary().default;
       // ? Metals
       // o.material = materialLibrary().alien;
       // o.material = materialLibrary().scuffedAluminumPBR;

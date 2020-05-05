@@ -91,12 +91,20 @@ const createMaterial = config => {
     case "woods":
       return new THREE.MeshStandardMaterial(textureConfiguration);
     default:
-      break;
+      return new THREE.MeshStandardMaterial(textureConfiguration);
   }
 };
 
 const materialLibrary = () => {
   const materials = {};
+
+  // ? Default
+  materials.default = createMaterial({
+    name: "default",
+    group: "default",
+    color: "#363636"
+  });
+  // ?
 
   // ? Metals
   materials.alien = createMaterial({
