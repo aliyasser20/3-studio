@@ -86,7 +86,6 @@ const Model = props => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
           gl.outputEncoding = THREE.sRGBEncoding;
           gl.gammaFactor = 2.2;
-          gl.gammaOutput = true;
         }}
       >
         <primitive object={model} />
