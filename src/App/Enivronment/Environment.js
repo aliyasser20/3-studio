@@ -4,8 +4,6 @@ import { useThree, useLoader } from "react-three-fiber";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import axios from "axios";
 
-export let sceneExport;
-
 const Environment = props => {
   const { gl, scene } = useThree();
 
@@ -17,9 +15,7 @@ const Environment = props => {
   //   "https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?id=1uBOBR40ovXh-Nu2V33SxqUzKX2YRrEez"
   // );
 
-  const [image, setImage] = useState("/environments/venice.hdr");
-
-  sceneExport = scene;
+  const [image, setImage] = useState("/environments/studio-2.hdr");
 
   // ? Load HDR file
   const texture = useLoader(RGBELoader, image, loader => {

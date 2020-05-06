@@ -5,9 +5,9 @@ import * as THREE from "three";
 
 import Controls from "../Controls/Controls";
 import Environment from "../Enivronment/Environment";
+import Bridge from "../Bridge/Bridge";
 
 import createModel from "../../helpers/createModel";
-import exporter from "../../helpers/exporter";
 
 const Model = props => {
   // ! State ------------------------------------------------- //
@@ -21,7 +21,7 @@ const Model = props => {
 
   // ? Environment & background states //
   const [environment, setEnvironment] = useState(null);
-  const [bgSolid, setBgSolid] = useState(false);
+  const [bgSolid, setBgSolid] = useState(true);
   const [bgEnvironment, setBgEnvironment] = useState(false);
   const [mapEnvironment, setMapEnvironment] = useState(true);
   const [bgColor, setBgColor] = useState("262326");
@@ -70,8 +70,6 @@ const Model = props => {
     </Dom>
   );
 
-  const { scene } = useThree();
-
   // ? Canvas output
   const canvasElement = model ? (
     <Fragment>
@@ -115,6 +113,7 @@ const Model = props => {
             bgColor={bgColor}
             mapEnvironment={mapEnvironment}
           />
+          <Bridge />
         </Suspense>
         {allowOrbitControls && <Controls autoRotate={autoRotate} />}
         {showAxis && (
@@ -128,9 +127,6 @@ const Model = props => {
         )}
         {showBoundingBox && <boxHelper object={box} />}
       </Canvas>
-      <button type="button" onClick={() => exporter(scene)}>
-        Download
-      </button>
     </Fragment>
   ) : null;
 

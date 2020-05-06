@@ -1,11 +1,9 @@
 import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter";
 import lo from "lodash";
 
-import { sceneExport } from "../App/Enivronment/Environment";
+import { sceneExport } from "../App/Bridge/Bridge";
 
 const link = document.createElement("a");
-link.style.display = "none";
-document.body.appendChild(link);
 
 function save(blob, filename) {
   link.href = URL.createObjectURL(blob);
@@ -33,6 +31,7 @@ const exporter = () => {
   scene.children = [scene.children[0]];
 
   const gltfExporter = new GLTFExporter();
+
   // Parse the input and generate the glTF output
   gltfExporter.parse(
     scene,
