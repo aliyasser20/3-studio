@@ -185,7 +185,6 @@ const materialLibrary = () => {
     roughnessMetalnessMap: true,
     metalness: 1,
     normalMap: true
-    // bumpScale: 200
   });
 
   materials.metalGrid = createMaterial({
@@ -195,7 +194,6 @@ const materialLibrary = () => {
     roughnessMetalnessMap: true,
     metalness: 1,
     normalMap: true,
-    // bumpScale: 300,
     ambientOcclusionMap: true
   });
 
@@ -206,7 +204,6 @@ const materialLibrary = () => {
     roughnessMetalnessMap: true,
     metalness: 1,
     normalMap: true
-    // bumpScale: 50
   });
 
   materials.brushedMetal = createMaterial({
@@ -216,7 +213,6 @@ const materialLibrary = () => {
     roughnessMetalnessMap: true,
     metalness: 1,
     normalMap: true,
-    // bumpScale: 25,
     ambientOcclusionMap: true
   });
 
