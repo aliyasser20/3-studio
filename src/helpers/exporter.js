@@ -18,6 +18,21 @@ function saveString(text, filename) {
   save(new Blob([text], { type: "text/plain" }), filename);
 }
 
+function saveArrayBuffer(buffer, filename) {
+  save(new Blob([buffer], { type: "application/octet-stream" }), filename);
+}
+
+const options = {
+  // trs: document.getElementById("option_trs").checked,
+  // onlyVisible: document.getElementById("option_visible").checked,
+  // truncateDrawRange: document.getElementById("option_drawrange").checked,
+  // binary: document.getElementById("option_binary").checked,
+  binary: true
+  // forcePowerOfTwoTextures: document.getElementById("option_forcepot").checked,
+  // maxTextureSize:
+  //   Number(document.getElementById("option_maxsize").value) || Infinity // To prevent NaN value
+};
+
 const exporter = () => {
   const scene = sceneExport;
   // console.log(scene);
@@ -26,15 +41,15 @@ const exporter = () => {
   gltfExporter.parse(
     scene,
     function(result) {
-      // if (result instanceof ArrayBuffer) {
-      //   saveArrayBuffer(result, "scene.glb");
-      // } else {
-      const output = JSON.stringify(result, null, 2);
-      // console.log(output);
-      saveString(output, "scene.gltf");
-    }
-    // },
-    // options
+      if (result instanceof ArrayBuffer) {
+        saveArrayBuffer(result, "scene.glb");
+      } else {
+        const output = JSON.stringify(result, null, 2);
+        // console.log(output);
+        saveString(output, "scene.gltf");
+      }
+    },
+    options
   );
 };
 

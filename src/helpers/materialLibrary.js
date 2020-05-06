@@ -28,16 +28,18 @@ const createMaterial = config => {
     );
   }
 
-  // if (config.roughnessMap) {
+  // if (config.roughnessMetalnessMap) {
   //   textureConfiguration.roughnessMap = new THREE.TextureLoader().load(
   //     "https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?id=1qAo1F1PAic0kaYx2TjDburnlmIl7HPzE"
   //   );
   // }
 
-  if (config.roughnessMap) {
+  if (config.roughnessMetalnessMap) {
     textureConfiguration.roughnessMap = new THREE.TextureLoader().load(
-      `${initialPath}${config.name}/roughness.png`
+      `${initialPath}${config.name}/roughness-metalness.png`
     );
+
+    textureConfiguration.metalnessMap = textureConfiguration.roughnessMap;
   }
 
   if (config.roughness) {
@@ -51,18 +53,23 @@ const createMaterial = config => {
     textureConfiguration.displacementScale = config.displacementScale;
   }
 
-  // if (config.bumpMap) {
-  //   textureConfiguration.bumpMap = new THREE.TextureLoader().load(
-  //     "https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?id=1GkBaobd1XdsO7plo9AraGE8TODqCNRn-"
-  //   );
-  //   textureConfiguration.bumpScale = config.bumpScale;
-  // }
-
   if (config.bumpMap) {
     textureConfiguration.bumpMap = new THREE.TextureLoader().load(
       `${initialPath}${config.name}/normal.png`
     );
     textureConfiguration.bumpScale = config.bumpScale;
+  }
+
+  // if (config.normalMap) {
+  //   textureConfiguration.bumpMap = new THREE.TextureLoader().load(
+  //     "https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?id=1GkBaobd1XdsO7plo9AraGE8TODqCNRn-"
+  //   );
+  // }
+
+  if (config.normalMap) {
+    textureConfiguration.normalMap = new THREE.TextureLoader().load(
+      `${initialPath}${config.name}/normal.png`
+    );
   }
 
   if (config.ambientOcclusionMap) {
@@ -72,7 +79,7 @@ const createMaterial = config => {
   }
 
   if (config.specularMap) {
-    textureConfiguration.aoMap = new THREE.TextureLoader().load(
+    textureConfiguration.specularMap = new THREE.TextureLoader().load(
       `${initialPath}${config.name}/specular.png`
     );
   }
@@ -95,12 +102,6 @@ const createMaterial = config => {
 
   if (config.clearcoatRoughness) {
     textureConfiguration.clearcoatRoughness = config.clearcoatRoughness;
-  }
-
-  if (config.metalnessMap) {
-    textureConfiguration.metalnessMap = new THREE.TextureLoader().load(
-      `${initialPath}${config.name}/metalness.psd`
-    );
   }
 
   switch (config.group) {
@@ -170,11 +171,10 @@ const materialLibrary = () => {
     name: "alien",
     group: "metals",
     colorMap: true,
-    roughnessMap: true,
+    roughnessMetalnessMap: true,
     ambientOcclusionMap: true,
     metalness: 1,
-    bumpMap: true,
-    bumpScale: 100
+    normalMap: true
   });
 
   materials.scuffedAluminumPBR = createMaterial({
@@ -182,20 +182,20 @@ const materialLibrary = () => {
     group: "metals",
     colorMap: true,
     color: "#222222",
-    roughnessMap: true,
+    roughnessMetalnessMap: true,
     metalness: 1,
-    bumpMap: true,
-    bumpScale: 200
+    normalMap: true
+    // bumpScale: 200
   });
 
   materials.metalGrid = createMaterial({
     name: "metal-grid",
     group: "metals",
     colorMap: true,
-    roughnessMap: true,
+    roughnessMetalnessMap: true,
     metalness: 1,
-    bumpMap: true,
-    bumpScale: 300,
+    normalMap: true,
+    // bumpScale: 300,
     ambientOcclusionMap: true
   });
 
@@ -203,20 +203,20 @@ const materialLibrary = () => {
     name: "rust",
     group: "metals",
     colorMap: true,
-    roughnessMap: true,
+    roughnessMetalnessMap: true,
     metalness: 1,
-    bumpMap: true,
-    bumpScale: 50
+    normalMap: true
+    // bumpScale: 50
   });
 
   materials.brushedMetal = createMaterial({
     name: "brushed-metal",
     group: "metals",
     colorMap: true,
-    roughnessMap: true,
+    roughnessMetalnessMap: true,
     metalness: 1,
-    bumpMap: true,
-    bumpScale: 25,
+    normalMap: true,
+    // bumpScale: 25,
     ambientOcclusionMap: true
   });
 
@@ -227,20 +227,17 @@ const materialLibrary = () => {
     name: "marble-one",
     group: "ceramics",
     colorMap: true,
-    bumpMap: true,
-    bumpScale: 200,
-    clearcoat: 0.2,
-    specularMap: true,
-    roughnessMap: true
+    normalMap: true,
+    clearcoat: 0.1,
+    roughnessMetalnessMap: true
   });
 
   materials.fleshyGranite = createMaterial({
     name: "fleshy-granite",
     group: "ceramics",
     colorMap: true,
-    bumpMap: true,
-    bumpScale: 10,
-    roughnessMap: true,
+    normalMap: true,
+    roughnessMetalnessMap: true,
     ambientOcclusionMap: true
   });
 
@@ -248,8 +245,7 @@ const materialLibrary = () => {
     name: "polished-granite",
     group: "ceramics",
     colorMap: true,
-    bumpMap: true,
-    bumpScale: 10,
+    normalMap: true,
     clearcoat: 0.1
   });
 
@@ -257,20 +253,18 @@ const materialLibrary = () => {
     name: "marble-two",
     group: "ceramics",
     colorMap: true,
-    bumpMap: true,
-    bumpScale: 200,
+    normalMap: true,
     clearcoat: 0.2,
-    roughnessMap: true
+    roughnessMetalnessMap: true
   });
 
   materials.marbleThree = createMaterial({
     name: "marble-three",
     group: "ceramics",
     colorMap: true,
-    bumpMap: true,
-    bumpScale: 200,
+    normalMap: true,
     clearcoat: 0.2,
-    roughnessMap: true
+    roughnessMetalnessMap: true
   });
   // ?
 
@@ -281,7 +275,7 @@ const materialLibrary = () => {
     colorMap: true,
     bumpMap: true,
     bumpScale: 200,
-    roughnessMap: true,
+    roughnessMetalnessMap: true,
     displacementMap: true,
     displacementScale: 200
   });
@@ -292,7 +286,7 @@ const materialLibrary = () => {
     colorMap: true,
     bumpMap: true,
     bumpScale: 50,
-    roughnessMap: true,
+    roughnessMetalnessMap: true,
     displacementMap: true,
     displacementScale: 200
   });
@@ -303,7 +297,7 @@ const materialLibrary = () => {
     colorMap: true,
     bumpMap: true,
     bumpScale: 100,
-    roughnessMap: true,
+    roughnessMetalnessMap: true,
     ambientOcclusionMap: true,
     displacementMap: true,
     displacementScale: 1
