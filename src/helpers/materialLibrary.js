@@ -120,15 +120,23 @@ const materialLibrary = () => {
   const materials = {};
 
   // ? Default
-  materials.default = createMaterial({
-    name: "default",
-    group: "default",
-    color: "#363636"
-  });
+  const DEFAULTCOLORS = {
+    black: "#000000",
+    white: "#ffffff",
+    grey: "#808080"
+  };
+
+  // eslint-disable-next-line
+    for (const color in DEFAULTCOLORS) {
+    materials[`${color}Default`] = createMaterial({
+      name: `${color}Default`,
+      group: "defaults",
+      color: DEFAULTCOLORS[color]
+    });
+  }
   // ?
 
   // ? Metals
-
   // Basic
   const BASICMETALS = {
     gold: "#DAA520",
