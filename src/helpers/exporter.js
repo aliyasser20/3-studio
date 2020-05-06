@@ -1,4 +1,5 @@
 import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter";
+import lo from "lodash";
 
 import { sceneExport } from "../App/Enivronment/Environment";
 
@@ -10,8 +11,6 @@ function save(blob, filename) {
   link.href = URL.createObjectURL(blob);
   link.download = filename;
   link.click();
-
-  // URL.revokeObjectURL( url ); breaks Firefox...
 }
 
 function saveString(text, filename) {
@@ -23,19 +22,16 @@ function saveArrayBuffer(buffer, filename) {
 }
 
 const options = {
-  // trs: document.getElementById("option_trs").checked,
-  // onlyVisible: document.getElementById("option_visible").checked,
-  // truncateDrawRange: document.getElementById("option_drawrange").checked,
-  // binary: document.getElementById("option_binary").checked,
   binary: true
-  // forcePowerOfTwoTextures: document.getElementById("option_forcepot").checked,
-  // maxTextureSize:
-  //   Number(document.getElementById("option_maxsize").value) || Infinity // To prevent NaN value
 };
 
 const exporter = () => {
-  const scene = sceneExport;
-  // console.log(scene);
+  const scene = lo.cloneDeep(sceneExport);
+
+  //  Remove environment and lights from export scene
+  scene.environment = null;
+  scene.children = [scene.children[0]];
+
   const gltfExporter = new GLTFExporter();
   // Parse the input and generate the glTF output
   gltfExporter.parse(
@@ -45,7 +41,6 @@ const exporter = () => {
         saveArrayBuffer(result, "scene.glb");
       } else {
         const output = JSON.stringify(result, null, 2);
-        // console.log(output);
         saveString(output, "scene.gltf");
       }
     },

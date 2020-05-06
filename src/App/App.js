@@ -3,7 +3,7 @@ import Model from "./Model/Model";
 
 const App = () => (
   <div className="App">
-    <Model url="/models/test/marble-one.glb" />
+    <Model url="/models/test/metal-grid.glb" />
   </div>
 );
 export default App;
