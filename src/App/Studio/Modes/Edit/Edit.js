@@ -5,8 +5,8 @@ import UserControls from "./UserControls/UserControls";
 
 const Edit = () => (
   <div className="edit">
-    <Model url="/models/duck.glb" />
-    <UserControls />
+    {/* <Model url="/models/duck.glb" />
+    <UserControls /> */}
   </div>
 );
 

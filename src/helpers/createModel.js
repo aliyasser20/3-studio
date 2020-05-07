@@ -2,6 +2,7 @@ import * as THREE from "three";
 
 import materialLibrary from "./materialLibrary";
 
+// Functions that creates model and other canvas factors and sets them as state using the setters input
 const createModel = (
   gltf,
   setBox,
@@ -15,7 +16,9 @@ const createModel = (
   // ? This is where we change materials
   // let part;
 
+  // Loop over model components
   theModel.traverse(o => {
+    // If component is a part
     if (o.isMesh) {
       // console.log(o);
       // part = o;
