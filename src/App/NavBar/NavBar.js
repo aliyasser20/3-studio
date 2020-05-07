@@ -21,40 +21,35 @@ const NavBar = () => {
 
   return (
     <ThemeProvider theme={themeCreator(grey[900])}>
-      <AppBar position="fixed" color="primary">
-        <Container maxWidth="xl">
-          <Toolbar>
-            <div className="navbar-flex">
-              <Typography variant="h5">
-                <div className="text-color-grad">
-                  <Box fontWeight="700">Final Project</Box>
-                </div>
-              </Typography>
-              <Box>
-                <Button
-                  classes={{ label: "text-button" }}
-                  color="inherit"
-                  href="#text-buttons"
-                >
-                  <Box fontWeight="700">Login</Box>
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  classes={{ label: "gradient-button" }}
-                  style={{
-                    background:
-                      "linear-gradient(rgb(244, 92, 67), rgb(235, 51, 73))",
-                    marginLeft: "1.5em"
-                  }}
-                >
-                  <Box fontWeight="700">Signup</Box>
-                </Button>
-              </Box>
-            </div>
-          </Toolbar>
-        </Container>
-      </AppBar>
+      <div className="navbar">
+        <AppBar position="fixed" color="primary">
+          <Container maxWidth="xl">
+            <Toolbar>
+              <div className="navbar-flex">
+                <Typography variant="h5">
+                  <div className="text-color-grad">
+                    <Box fontWeight="700">Final Project</Box>
+                  </div>
+                </Typography>
+                <Box>
+                  <Button
+                    classes={{ label: "text-button" }}
+                    color="inherit"
+                    href="#text-buttons"
+                  >
+                    <Box fontWeight="700">Login</Box>
+                  </Button>
+                  <span className="gradient-button">
+                    <Button variant="contained" color="primary">
+                      <Box fontWeight="700">Signup</Box>
+                    </Button>
+                  </span>
+                </Box>
+              </div>
+            </Toolbar>
+          </Container>
+        </AppBar>
+      </div>
     </ThemeProvider>
   );
 };

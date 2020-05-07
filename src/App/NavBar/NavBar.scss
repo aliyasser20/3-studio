@@ -1,21 +1,16 @@
-.navbar-flex {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.text-button {
-  color: rgb(196, 196, 196);
-
-  &:hover {
-    color: white;
+.navbar {
+  .navbar-flex {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
   }
-}
 
-.gradient-button {
-  &:hover {
-    .MuiTouchRipple-root {
-      background: linear-gradient(rgb(244, 92, 0), rgb(235, 51, 73)) !important;
+  .text-button {
+    color: rgb(196, 196, 196);
+    margin-right: 1.5em;
+
+    &:hover {
+      color: white;
     }
   }
 }

@@ -11,15 +11,16 @@ const UserControls = () => {
   const theme = useTheme();
   return (
     <div>
-      <Button
-        variant="contained"
-        color="primary"
-        style={{ background: theme.palette.primary.mainGradient }}
-        startIcon={<GetAppRounded />}
-        onClick={fileExporter}
-      >
-        Download
-      </Button>
+      <span className="gradient-button">
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<GetAppRounded />}
+          onClick={fileExporter}
+        >
+          Download
+        </Button>
+      </span>
     </div>
   );
 };
