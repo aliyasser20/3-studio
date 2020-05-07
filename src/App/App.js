@@ -1,17 +1,17 @@
 import React from "react";
 
 import { ThemeProvider } from "@material-ui/core/styles";
+import red from "@material-ui/core/colors/red";
+import purple from "@material-ui/core/colors/purple";
 
-import Model from "./Model/Model";
-import UserControls from "./UserControls/UserControls";
+import Studio from "./Studio/Studio";
 
 import themeCreator from "../helpers/themeCreator";
 
 const App = () => (
   <div className="App">
-    <ThemeProvider theme={themeCreator()}>
-      <Model url="/models/car.glb" />
-      <UserControls />
+    <ThemeProvider theme={themeCreator(red[600], purple[800])}>
+      <Studio />
     </ThemeProvider>
   </div>
 );

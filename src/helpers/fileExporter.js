@@ -1,29 +1,11 @@
 import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter";
 import lo from "lodash";
 
-import { sceneExport } from "../App/Bridge/Bridge";
+import saveArrayBuffer from "./saveArrayBuffer";
+import saveString from "./saveString";
+import { sceneExport } from "../App/Studio/Modes/Edit/Bridge/Bridge";
 
-const link = document.createElement("a");
-
-function save(blob, filename) {
-  link.href = URL.createObjectURL(blob);
-  link.download = filename;
-  link.click();
-}
-
-function saveString(text, filename) {
-  save(new Blob([text], { type: "text/plain" }), filename);
-}
-
-function saveArrayBuffer(buffer, filename) {
-  save(new Blob([buffer], { type: "application/octet-stream" }), filename);
-}
-
-const options = {
-  binary: true
-};
-
-const exporter = () => {
+const fileExporter = () => {
   const scene = lo.cloneDeep(sceneExport);
 
   //  Remove environment and lights from export scene
@@ -31,6 +13,10 @@ const exporter = () => {
   scene.children = [scene.children[0]];
 
   const gltfExporter = new GLTFExporter();
+
+  const options = {
+    binary: true
+  };
 
   // Parse the input and generate the glTF output
   gltfExporter.parse(
@@ -47,4 +33,4 @@ const exporter = () => {
   );
 };
 
-export default exporter;
+export default fileExporter;
