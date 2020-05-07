@@ -3,3 +3,19 @@
   width: 100%;
   justify-content: space-between;
 }
+
+.text-button {
+  color: rgb(196, 196, 196);
+
+  &:hover {
+    color: white;
+  }
+}
+
+.gradient-button {
+  &:hover {
+    .MuiTouchRipple-root {
+      background: linear-gradient(rgb(244, 92, 0), rgb(235, 51, 73)) !important;
+    }
+  }
+}

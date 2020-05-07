@@ -31,12 +31,17 @@ const NavBar = () => {
                 </div>
               </Typography>
               <Box>
-                <Button color="inherit" href="#text-buttons">
+                <Button
+                  classes={{ label: "text-button" }}
+                  color="inherit"
+                  href="#text-buttons"
+                >
                   <Box fontWeight="700">Login</Box>
                 </Button>
                 <Button
                   variant="contained"
                   color="primary"
+                  classes={{ label: "gradient-button" }}
                   style={{
                     background:
                       "linear-gradient(rgb(244, 92, 67), rgb(235, 51, 73))",
