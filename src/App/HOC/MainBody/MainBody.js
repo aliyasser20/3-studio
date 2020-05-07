@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const MainBody = props => <div className="main-body">{props.children}</div>;
+const MainBody = props => <main className="main-body">{props.children}</main>;
 
 MainBody.propTypes = {
   children: PropTypes.element
