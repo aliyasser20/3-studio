@@ -20,7 +20,7 @@ const createModel = (
       // console.log(o);
       // part = o;
       // ? Default
-      o.material = materialLibrary().blackDefault;
+      // o.material = materialLibrary().blackDefault;
       // ? Metals
       // o.material = materialLibrary().goldPolished;
       // o.material = materialLibrary().cherryPolished;

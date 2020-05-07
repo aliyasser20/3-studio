@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { createStore, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 import App from "./App/App";
 
@@ -22,6 +23,7 @@ const store = createStore(rootReducer, composeEnhancers());
 const app = (
   <Provider store={store}>
     <BrowserRouter>
+      <CssBaseline />
       <App />
     </BrowserRouter>
   </Provider>
