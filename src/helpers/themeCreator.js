@@ -4,7 +4,8 @@ const themeCreator = (primary, secondary) => {
   const theme = createMuiTheme({
     palette: {
       primary: {
-        main: primary
+        main: primary,
+        mainGradient: "linear-gradient(#F45C43, #EB3349)"
       },
       secondary: {
         main: secondary
