@@ -14,7 +14,7 @@ import themeCreator from "../../helpers/themeCreator";
 
 const NavBar = () => (
   <ThemeProvider theme={themeCreator(grey[900], purple[800])}>
-    <AppBar position="static" color="primary">
+    <AppBar position="fixed" color="primary">
       <Toolbar>
         <Typography variant="h5">
           <div className="text-color-grad">
