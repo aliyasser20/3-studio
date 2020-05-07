@@ -1,5 +1,7 @@
 import React from "react";
+
 import { useTheme } from "@material-ui/core/styles";
+import GetAppRounded from "@material-ui/icons/GetAppRounded";
 
 import Button from "@material-ui/core/Button/Button";
 
@@ -13,6 +15,7 @@ const UserControls = () => {
         variant="contained"
         color="primary"
         style={{ background: theme.palette.primary.mainGradient }}
+        startIcon={<GetAppRounded />}
         onClick={fileExporter}
       >
         Download
