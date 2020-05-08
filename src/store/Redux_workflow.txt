@@ -4,3 +4,5 @@ Workflow for redux:
 2. Add controller inside the actions
 3. Export the controller in the index file
 4. Create reducer
+5. Connect reducer to the root
+6. connect state and/or dispatch to specific component

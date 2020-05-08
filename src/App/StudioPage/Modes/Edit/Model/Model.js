@@ -2,6 +2,8 @@ import React, { useState, useEffect, Suspense, Fragment } from "react";
 import { Canvas, Dom } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import Controls from "../Controls/Controls";
 import Environment from "../Enivronment/Environment";
@@ -10,6 +12,8 @@ import Camera from "../Camera/Camera";
 
 import createModel from "../../../../../helpers/createModel";
 import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
+
+import * as actions from "../../../../../store/actions/index";
 
 const Model = props => {
   // ! State ------------------------------------------------- //
@@ -22,11 +26,7 @@ const Model = props => {
   const [sizeBounding, setSizeBounding] = useState({ x: 0, y: 0, z: 0 });
 
   // ? Environment & background states //
-  const [environment, setEnvironment] = useState(null);
-  const [bgSolid, setBgSolid] = useState(true);
-  const [bgEnvironment, setBgEnvironment] = useState(false);
   const [mapEnvironment, setMapEnvironment] = useState(true);
-  const [bgColor, setBgColor] = useState("262326");
 
   // ? Lights states //
   // Ambient
@@ -60,7 +60,6 @@ const Model = props => {
   // ? Cameras
   const [perspective, setPerspective] = useState(true);
   const [ortho, setOrtho] = useState(null);
-  const [cameraCurrent, setCameraCurrent] = useState(null);
 
   // ! ------------------------------------------------- //
   // ? Load model with materials
@@ -95,11 +94,10 @@ const Model = props => {
   const canvasElement = model ? (
     <Fragment>
       <Canvas
-        onCreated={({ gl, camera }) => {
+        onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
           gl.outputEncoding = THREE.sRGBEncoding;
           gl.gammaFactor = 2.2;
-          setCameraCurrent(camera);
         }}
       >
         <Camera
@@ -134,9 +132,9 @@ const Model = props => {
         )}
         <Suspense fallback={fallbackElement}>
           <Environment
-            bgEnvironment={bgEnvironment}
-            bgSolid={bgSolid}
-            bgColor={bgColor}
+            bgEnvironment={props.bgEnvironment}
+            bgSolid={props.bgSolid}
+            bgColor={props.bgColor}
             mapEnvironment={mapEnvironment}
           />
           <Bridge />
@@ -178,28 +176,18 @@ const Model = props => {
       <button
         type="button"
         onClick={() => {
-          setBgEnvironment(false);
-          setBgSolid(true);
+          props.onToggleBackground();
         }}
       >
-        Set Solid Background
+        Toggle Background
       </button>
       <button
         type="button"
         onClick={() => {
-          setBgSolid(false);
-          setBgEnvironment(true);
+          props.onBgSolidColor("0000ff");
         }}
       >
-        Set Environment Background
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          setBgColor("f44336");
-        }}
-      >
-        Set Background Red
+        Set Background Blue
       </button>
       <button
         type="button"
@@ -223,4 +211,24 @@ const Model = props => {
   return <div>{canvasElement}</div>;
 };
 
-export default Model;
+Model.propTypes = {
+  bgEnvironment: PropTypes.bool.isRequired,
+  bgSolid: PropTypes.bool.isRequired,
+  bgColor: PropTypes.string.isRequired,
+  onToggleBackground: PropTypes.func.isRequired,
+  onBgSolidColor: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired
+};
+
+const mapStateToProps = state => ({
+  bgEnvironment: state.environmentControls.bgEnvironment,
+  bgSolid: state.environmentControls.bgSolid,
+  bgColor: state.environmentControls.bgColor
+});
+
+const mapDispatchToProps = dispatch => ({
+  onToggleBackground: () => dispatch(actions.toggleBackground()),
+  onBgSolidColor: color => dispatch(actions.setBackgroundColor(color))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Model);
