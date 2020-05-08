@@ -153,8 +153,69 @@ const Model = props => {
         )}
         {showBoundingBox && <boxHelper object={box} />}
       </Canvas>
+      {/* Testing Buttons */}
       <button type="button" onClick={() => generateOrthoCamera("front")}>
         Front
+      </button>
+      <button type="button" onClick={() => generateOrthoCamera("back")}>
+        Back
+      </button>
+      <button type="button" onClick={() => generateOrthoCamera("top")}>
+        Top
+      </button>
+      <button type="button" onClick={() => generateOrthoCamera("bottom")}>
+        Bottom
+      </button>
+      <button type="button" onClick={() => generateOrthoCamera("right")}>
+        Right
+      </button>
+      <button type="button" onClick={() => generateOrthoCamera("left")}>
+        Left
+      </button>
+      <button type="button" onClick={generatePerspectiveCamera}>
+        Perspective
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          setBgEnvironment(false);
+          setBgSolid(true);
+        }}
+      >
+        Set Solid Background
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          setBgSolid(false);
+          setBgEnvironment(true);
+        }}
+      >
+        Set Environment Background
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          setBgColor("f44336");
+        }}
+      >
+        Set Background Red
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          setShowAxis(!showAxis);
+        }}
+      >
+        Show Axis
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          setShowBoundingBox(!showBoundingBox);
+        }}
+      >
+        Toggle Bounding Box
       </button>
     </Fragment>
   ) : null;
