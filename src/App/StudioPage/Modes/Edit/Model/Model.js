@@ -60,7 +60,6 @@ const Model = props => {
   // ? Cameras
   const [perspective, setPerspective] = useState(true);
   const [ortho, setOrtho] = useState(null);
-  const [cameraCurrent, setCameraCurrent] = useState(null);
 
   // ! ------------------------------------------------- //
   // ? Load model with materials
@@ -95,11 +94,10 @@ const Model = props => {
   const canvasElement = model ? (
     <Fragment>
       <Canvas
-        onCreated={({ gl, camera }) => {
+        onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
           gl.outputEncoding = THREE.sRGBEncoding;
           gl.gammaFactor = 2.2;
-          setCameraCurrent(camera);
         }}
       >
         <Camera
@@ -218,7 +216,8 @@ Model.propTypes = {
   bgSolid: PropTypes.bool.isRequired,
   bgColor: PropTypes.string.isRequired,
   onToggleBackground: PropTypes.func.isRequired,
-  onBgSolidColor: PropTypes.func.isRequired
+  onBgSolidColor: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
