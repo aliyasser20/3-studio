@@ -2,7 +2,8 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   bgEnvironment: false,
-  bgSolid: true
+  bgSolid: true,
+  bgColor: "ffffff"
 };
 
 const reducer = (state = initialState, action) => {
@@ -10,8 +11,13 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_BACKGROUND_ENVIRONMENT:
       return {
         ...state,
-        bgEnvironment: true,
-        bgSolid: false
+        bgEnvironment: !state.bgEnvironment,
+        bgSolid: !state.bgSolid
+      };
+    case actionTypes.SET_BACKGROUND_COLOR:
+      return {
+        ...state,
+        bgColor: action.color
       };
     default:
       return state;

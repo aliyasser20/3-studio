@@ -139,7 +139,7 @@ const Model = props => {
           <Environment
             bgEnvironment={props.bgEnvironment}
             bgSolid={props.bgSolid}
-            bgColor={bgColor}
+            bgColor={props.bgColor}
             mapEnvironment={mapEnvironment}
           />
           <Bridge />
@@ -200,7 +200,8 @@ const Model = props => {
       <button
         type="button"
         onClick={() => {
-          setBgColor("f44336");
+          // setBgColor("f44336");
+          props.onBgSolidColor("0000ff");
         }}
       >
         Set Background Red
@@ -229,11 +230,13 @@ const Model = props => {
 
 const mapStateToProps = state => ({
   bgEnvironment: state.environmentControls.bgEnvironment,
-  bgSolid: state.environmentControls.bgSolid
+  bgSolid: state.environmentControls.bgSolid,
+  bgColor: state.environmentControls.bgColor
 });
 
 const mapDispatchToProps = dispatch => ({
-  onBgEnvironment: () => dispatch(actions.setBackgroundEnvironment())
+  onBgEnvironment: () => dispatch(actions.setBackgroundEnvironment()),
+  onBgSolidColor: color => dispatch(actions.setBackgroundColor(color))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Model);
