@@ -2,10 +2,10 @@ import React from "react";
 
 import Modes from "./Modes/Modes";
 
-const Studio = () => (
-  <div className="modes">
+const StudioPage = () => (
+  <div className="studio-page">
     <Modes />
   </div>
 );
 
-export default Studio;
+export default StudioPage;

@@ -3,7 +3,7 @@ import lo from "lodash";
 
 import saveArrayBuffer from "./saveArrayBuffer";
 import saveString from "./saveString";
-import { sceneExport } from "../App/Studio/Modes/Edit/Bridge/Bridge";
+import { sceneExport } from "../App/StudioPage/Modes/Edit/Bridge/Bridge";
 
 // Function that exports model form current scene
 const fileExporter = () => {
