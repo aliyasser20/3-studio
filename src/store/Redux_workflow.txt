@@ -1,0 +1,6 @@
+Workflow for redux:
+
+1. Add action to actionTypes 
+2. Add controller inside the actions
+3. Export the controller in the index file
+4. Create reducer

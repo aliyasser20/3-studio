@@ -7,6 +7,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 
 import App from "./App/App";
 
+import environmentControls from "./store/reducers/environmentControls";
+
 import * as serviceWorker from "./serviceWorker";
 
 import "./index.css";
@@ -16,7 +18,9 @@ const composeEnhancers =
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     : null || compose;
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  environmentControls
+});
 
 const store = createStore(rootReducer, composeEnhancers());
 
