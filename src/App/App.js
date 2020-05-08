@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import Layout from "./HOC/Layout/Layout";
 import LandingPage from "./LandingPage/LandingPage";
+import LoginPage from "./Login_Signup/LoginPage/LoginPage";
 
 import "./App.scss";
 
@@ -11,8 +12,8 @@ const App = () => {
 
   const routes = (
     <Switch>
-      {/* <Route path="/login" component={LoginPage}></Route>
-      <Route path="/signup" component={SignupPage}></Route> */}
+      <Route path="/login" component={LoginPage}></Route>
+      {/* <Route path="/signup" component={SignupPage}></Route> */} */}
       <Route path="/" exact component={LandingPage}></Route>
       <Redirect to="/" />
     </Switch>
