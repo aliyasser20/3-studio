@@ -10,10 +10,11 @@ import "./ProjectCard.scss";
 
 const ProjectCard = () => (
   <div className="project-card">
-    <Card classes={{ label: "single-card" }}>
+    <Card classes={{ root: "single-card" }}>
       <CardActionArea>
         <CardMedia
-          image="/static/images/cards/contemplative-reptile.jpg"
+          classes={{ root: "card-image" }}
+          image="./assets/shaver-test.jpg"
           title="Contemplative Reptile"
         />
         <CardContent>
