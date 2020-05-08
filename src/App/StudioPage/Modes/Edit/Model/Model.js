@@ -2,6 +2,7 @@ import React, { useState, useEffect, Suspense, Fragment } from "react";
 import { Canvas, Dom } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
+import { connect } from "react-redux";
 
 import Controls from "../Controls/Controls";
 import Environment from "../Enivronment/Environment";
@@ -10,6 +11,8 @@ import Camera from "../Camera/Camera";
 
 import createModel from "../../../../../helpers/createModel";
 import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
+
+import * as actions from "../../../../../store/actions/index";
 
 const Model = props => {
   // ! State ------------------------------------------------- //
@@ -23,8 +26,8 @@ const Model = props => {
 
   // ? Environment & background states //
   const [environment, setEnvironment] = useState(null);
-  const [bgSolid, setBgSolid] = useState(true);
-  const [bgEnvironment, setBgEnvironment] = useState(false);
+  // const [bgSolid, setBgSolid] = useState(true);
+  // const [bgEnvironment, setBgEnvironment] = useState(false);
   const [mapEnvironment, setMapEnvironment] = useState(true);
   const [bgColor, setBgColor] = useState("262326");
 
@@ -134,8 +137,8 @@ const Model = props => {
         )}
         <Suspense fallback={fallbackElement}>
           <Environment
-            bgEnvironment={bgEnvironment}
-            bgSolid={bgSolid}
+            bgEnvironment={props.bgEnvironment}
+            bgSolid={props.bgSolid}
             bgColor={bgColor}
             mapEnvironment={mapEnvironment}
           />
@@ -175,7 +178,7 @@ const Model = props => {
       <button type="button" onClick={generatePerspectiveCamera}>
         Perspective
       </button>
-      <button
+      {/* <button
         type="button"
         onClick={() => {
           setBgEnvironment(false);
@@ -183,12 +186,13 @@ const Model = props => {
         }}
       >
         Set Solid Background
-      </button>
+      </button> */}
       <button
         type="button"
         onClick={() => {
-          setBgSolid(false);
-          setBgEnvironment(true);
+          // setBgSolid(false);
+          // setBgEnvironment(true);
+          props.onBgEnvironment();
         }}
       >
         Set Environment Background
@@ -223,4 +227,13 @@ const Model = props => {
   return <div>{canvasElement}</div>;
 };
 
-export default Model;
+const mapStateToProps = state => ({
+  bgEnvironment: state.environmentControls.bgEnvironment,
+  bgSolid: state.environmentControls.bgSolid
+});
+
+const mapDispatchToProps = dispatch => ({
+  onBgEnvironment: () => dispatch(actions.setBackgroundEnvironment())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Model);
