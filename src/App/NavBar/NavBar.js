@@ -17,8 +17,6 @@ import "./NavBar.scss";
 const NavBar = () => {
   const theme = useTheme();
 
-  console.log(theme);
-
   return (
     <ThemeProvider theme={themeCreator(grey[900])}>
       <div className="navbar">

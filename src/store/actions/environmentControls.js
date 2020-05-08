@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 
-export const setBackgroundEnvironment = () => ({
-  type: actionTypes.SET_BACKGROUND_ENVIRONMENT
+export const toggleBackground = () => ({
+  type: actionTypes.TOGGLE_BACKGROUND
 });
 
 export const setBackgroundColor = color => ({

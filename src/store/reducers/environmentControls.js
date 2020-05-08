@@ -3,12 +3,12 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   bgEnvironment: false,
   bgSolid: true,
-  bgColor: "ffffff"
+  bgColor: "262326"
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SET_BACKGROUND_ENVIRONMENT:
+    case actionTypes.TOGGLE_BACKGROUND:
       return {
         ...state,
         bgEnvironment: !state.bgEnvironment,

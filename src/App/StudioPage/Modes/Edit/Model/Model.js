@@ -3,6 +3,7 @@ import { Canvas, Dom } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import Controls from "../Controls/Controls";
 import Environment from "../Enivronment/Environment";
@@ -25,11 +26,7 @@ const Model = props => {
   const [sizeBounding, setSizeBounding] = useState({ x: 0, y: 0, z: 0 });
 
   // ? Environment & background states //
-  const [environment, setEnvironment] = useState(null);
-  // const [bgSolid, setBgSolid] = useState(true);
-  // const [bgEnvironment, setBgEnvironment] = useState(false);
   const [mapEnvironment, setMapEnvironment] = useState(true);
-  const [bgColor, setBgColor] = useState("262326");
 
   // ? Lights states //
   // Ambient
@@ -178,33 +175,21 @@ const Model = props => {
       <button type="button" onClick={generatePerspectiveCamera}>
         Perspective
       </button>
-      {/* <button
-        type="button"
-        onClick={() => {
-          setBgEnvironment(false);
-          setBgSolid(true);
-        }}
-      >
-        Set Solid Background
-      </button> */}
       <button
         type="button"
         onClick={() => {
-          // setBgSolid(false);
-          // setBgEnvironment(true);
-          props.onBgEnvironment();
+          props.onToggleBackground();
         }}
       >
-        Set Environment Background
+        Toggle Background
       </button>
       <button
         type="button"
         onClick={() => {
-          // setBgColor("f44336");
           props.onBgSolidColor("0000ff");
         }}
       >
-        Set Background Red
+        Set Background Blue
       </button>
       <button
         type="button"
@@ -228,6 +213,14 @@ const Model = props => {
   return <div>{canvasElement}</div>;
 };
 
+Model.propTypes = {
+  bgEnvironment: PropTypes.bool.isRequired,
+  bgSolid: PropTypes.bool.isRequired,
+  bgColor: PropTypes.string.isRequired,
+  onToggleBackground: PropTypes.func.isRequired,
+  onBgSolidColor: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
   bgEnvironment: state.environmentControls.bgEnvironment,
   bgSolid: state.environmentControls.bgSolid,
@@ -235,7 +228,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onBgEnvironment: () => dispatch(actions.setBackgroundEnvironment()),
+  onToggleBackground: () => dispatch(actions.toggleBackground()),
   onBgSolidColor: color => dispatch(actions.setBackgroundColor(color))
 });
 
