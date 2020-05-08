@@ -6,6 +6,7 @@ import * as THREE from "three";
 import Controls from "../Controls/Controls";
 import Environment from "../Enivronment/Environment";
 import Bridge from "../Bridge/Bridge";
+import Camera from "../Camera/Camera";
 
 import createModel from "../../../../../helpers/createModel";
 import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
@@ -59,6 +60,7 @@ const Model = props => {
   // ? Cameras
   const [perspective, setPerspective] = useState(true);
   const [ortho, setOrtho] = useState(null);
+  const [cameraCurrent, setCameraCurrent] = useState(null);
 
   // ! ------------------------------------------------- //
   // ? Load model with materials
@@ -75,12 +77,14 @@ const Model = props => {
     </Dom>
   );
 
+  // ? Update camera to ortho with selected side handler
   const generateOrthoCamera = side => {
     setPerspective(false);
-    setOrtho(orthoViewPositions()[side]);
+    setOrtho(orthoViewPositions(sizeBounding)[side]);
     setFov(30);
   };
 
+  // ? Update camera to perspective handler
   const generatePerspectiveCamera = () => {
     setPerspective(true);
     setOrtho(null);
@@ -91,20 +95,23 @@ const Model = props => {
   const canvasElement = model ? (
     <Fragment>
       <Canvas
-        camera={{
-          position: perspective
-            ? [-sizeBounding.x, sizeBounding.y, sizeBounding.z]
-            : ortho,
-          fov,
-          far,
-          near
-        }}
-        onCreated={({ gl }) => {
+        onCreated={({ gl, camera }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
           gl.outputEncoding = THREE.sRGBEncoding;
           gl.gammaFactor = 2.2;
+          setCameraCurrent(camera);
         }}
       >
+        <Camera
+          position={
+            perspective
+              ? [-sizeBounding.x, sizeBounding.y, sizeBounding.z]
+              : ortho
+          }
+          fov={fov}
+          far={far}
+          near={near}
+        />
         <primitive object={model} />
         {directional && (
           <directionalLight
@@ -146,6 +153,9 @@ const Model = props => {
         )}
         {showBoundingBox && <boxHelper object={box} />}
       </Canvas>
+      <button type="button" onClick={() => generateOrthoCamera("front")}>
+        Front
+      </button>
     </Fragment>
   ) : null;
 
