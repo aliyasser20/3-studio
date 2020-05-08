@@ -1,3 +1,4 @@
+// Function that saves blob
 const save = (blob, filename) => {
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);

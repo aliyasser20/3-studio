@@ -15,7 +15,7 @@ const Environment = props => {
   //   "https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?id=1uBOBR40ovXh-Nu2V33SxqUzKX2YRrEez"
   // );
 
-  const [image, setImage] = useState("/environments/studio-2.hdr");
+  const [image, setImage] = useState("/environments/venice.hdr");
 
   // ? Load HDR file
   const texture = useLoader(RGBELoader, image, loader => {

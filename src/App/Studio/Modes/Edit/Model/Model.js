@@ -6,8 +6,10 @@ import * as THREE from "three";
 import Controls from "../Controls/Controls";
 import Environment from "../Enivronment/Environment";
 import Bridge from "../Bridge/Bridge";
+import Camera from "../Camera/Camera";
 
 import createModel from "../../../../../helpers/createModel";
+import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
 
 const Model = props => {
   // ! State ------------------------------------------------- //
@@ -21,7 +23,7 @@ const Model = props => {
 
   // ? Environment & background states //
   const [environment, setEnvironment] = useState(null);
-  const [bgSolid, setBgSolid] = useState(false);
+  const [bgSolid, setBgSolid] = useState(true);
   const [bgEnvironment, setBgEnvironment] = useState(false);
   const [mapEnvironment, setMapEnvironment] = useState(true);
   const [bgColor, setBgColor] = useState("262326");
@@ -50,10 +52,15 @@ const Model = props => {
   ]);
 
   // ? Additional helpers and controls states //
-  const [showAxis, setShowAxis] = useState(false);
-  const [showBoundingBox, setShowBoundingBox] = useState(false);
+  const [showAxis, setShowAxis] = useState(true);
+  const [showBoundingBox, setShowBoundingBox] = useState(true);
   const [allowOrbitControls, setAllowOrbitControls] = useState(true);
   const [autoRotate, setAutoRotate] = useState(false);
+
+  // ? Cameras
+  const [perspective, setPerspective] = useState(true);
+  const [ortho, setOrtho] = useState(null);
+  const [cameraCurrent, setCameraCurrent] = useState(null);
 
   // ! ------------------------------------------------- //
   // ? Load model with materials
@@ -70,22 +77,41 @@ const Model = props => {
     </Dom>
   );
 
+  // ? Update camera to ortho with selected side handler
+  const generateOrthoCamera = side => {
+    setPerspective(false);
+    setOrtho(orthoViewPositions(sizeBounding)[side]);
+    setFov(30);
+  };
+
+  // ? Update camera to perspective handler
+  const generatePerspectiveCamera = () => {
+    setPerspective(true);
+    setOrtho(null);
+    setFov(45);
+  };
+
   // ? Canvas output
   const canvasElement = model ? (
     <Fragment>
       <Canvas
-        camera={{
-          position: [-sizeBounding.x, sizeBounding.y, sizeBounding.z],
-          fov,
-          far,
-          near
-        }}
-        onCreated={({ gl }) => {
+        onCreated={({ gl, camera }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
           gl.outputEncoding = THREE.sRGBEncoding;
           gl.gammaFactor = 2.2;
+          setCameraCurrent(camera);
         }}
       >
+        <Camera
+          position={
+            perspective
+              ? [-sizeBounding.x, sizeBounding.y, sizeBounding.z]
+              : ortho
+          }
+          fov={fov}
+          far={far}
+          near={near}
+        />
         <primitive object={model} />
         {directional && (
           <directionalLight
@@ -127,6 +153,70 @@ const Model = props => {
         )}
         {showBoundingBox && <boxHelper object={box} />}
       </Canvas>
+      {/* Testing Buttons */}
+      <button type="button" onClick={() => generateOrthoCamera("front")}>
+        Front
+      </button>
+      <button type="button" onClick={() => generateOrthoCamera("back")}>
+        Back
+      </button>
+      <button type="button" onClick={() => generateOrthoCamera("top")}>
+        Top
+      </button>
+      <button type="button" onClick={() => generateOrthoCamera("bottom")}>
+        Bottom
+      </button>
+      <button type="button" onClick={() => generateOrthoCamera("right")}>
+        Right
+      </button>
+      <button type="button" onClick={() => generateOrthoCamera("left")}>
+        Left
+      </button>
+      <button type="button" onClick={generatePerspectiveCamera}>
+        Perspective
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          setBgEnvironment(false);
+          setBgSolid(true);
+        }}
+      >
+        Set Solid Background
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          setBgSolid(false);
+          setBgEnvironment(true);
+        }}
+      >
+        Set Environment Background
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          setBgColor("f44336");
+        }}
+      >
+        Set Background Red
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          setShowAxis(!showAxis);
+        }}
+      >
+        Show Axis
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          setShowBoundingBox(!showBoundingBox);
+        }}
+      >
+        Toggle Bounding Box
+      </button>
     </Fragment>
   ) : null;
 

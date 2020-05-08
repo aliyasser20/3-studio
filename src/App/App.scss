@@ -1,0 +1,18 @@
+// .text-color-grad {
+//   background: -webkit-linear-gradient(#f45c43, #eb3349);
+//   -webkit-background-clip: text;
+//   -webkit-text-fill-color: transparent;
+// }
+
+.gradient-button .MuiButton-containedPrimary {
+  $color-top: #f45c43;
+  $color-bottom: #eb3349;
+
+  background: linear-gradient($color-top, $color-bottom);
+  &:hover {
+    background: linear-gradient(
+      darken($color-top, $amount: 10),
+      darken($color-bottom, $amount: 10)
+    );
+  }
+}
