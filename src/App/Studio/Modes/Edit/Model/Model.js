@@ -8,6 +8,7 @@ import Environment from "../Enivronment/Environment";
 import Bridge from "../Bridge/Bridge";
 
 import createModel from "../../../../../helpers/createModel";
+import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
 
 const Model = props => {
   // ! State ------------------------------------------------- //
@@ -21,8 +22,8 @@ const Model = props => {
 
   // ? Environment & background states //
   const [environment, setEnvironment] = useState(null);
-  const [bgSolid, setBgSolid] = useState(false);
-  const [bgEnvironment, setBgEnvironment] = useState(true);
+  const [bgSolid, setBgSolid] = useState(true);
+  const [bgEnvironment, setBgEnvironment] = useState(false);
   const [mapEnvironment, setMapEnvironment] = useState(true);
   const [bgColor, setBgColor] = useState("262326");
 
@@ -50,10 +51,14 @@ const Model = props => {
   ]);
 
   // ? Additional helpers and controls states //
-  const [showAxis, setShowAxis] = useState(false);
-  const [showBoundingBox, setShowBoundingBox] = useState(false);
+  const [showAxis, setShowAxis] = useState(true);
+  const [showBoundingBox, setShowBoundingBox] = useState(true);
   const [allowOrbitControls, setAllowOrbitControls] = useState(true);
   const [autoRotate, setAutoRotate] = useState(false);
+
+  // ? Cameras
+  const [perspective, setPerspective] = useState(true);
+  const [ortho, setOrtho] = useState(null);
 
   // ! ------------------------------------------------- //
   // ? Load model with materials
@@ -70,12 +75,26 @@ const Model = props => {
     </Dom>
   );
 
+  const generateOrthoCamera = side => {
+    setPerspective(false);
+    setOrtho(orthoViewPositions()[side]);
+    setFov(30);
+  };
+
+  const generatePerspectiveCamera = () => {
+    setPerspective(true);
+    setOrtho(null);
+    setFov(45);
+  };
+
   // ? Canvas output
   const canvasElement = model ? (
     <Fragment>
       <Canvas
         camera={{
-          position: [-sizeBounding.x, sizeBounding.y, sizeBounding.z],
+          position: perspective
+            ? [-sizeBounding.x, sizeBounding.y, sizeBounding.z]
+            : ortho,
           fov,
           far,
           near

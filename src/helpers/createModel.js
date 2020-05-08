@@ -62,6 +62,8 @@ const createModel = (
   const distance = 1.2 * Math.max(fitHeightDistance, fitWidthDistance);
   // ?
 
+  console.log(distance);
+
   // ? Set center of model to center of canvas
   theModel.position.x -= centerNew.x;
   theModel.position.y -= centerNew.y;
