@@ -1,1 +1,1 @@
-export { setBackgroundEnvironment } from "./environmentControls";
+export { toggleBackground, setBackgroundColor } from "./environmentControls";

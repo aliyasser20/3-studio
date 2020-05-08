@@ -2,7 +2,6 @@ import * as THREE from "three";
 import { useEffect, useState } from "react";
 import { useThree, useLoader } from "react-three-fiber";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
-import axios from "axios";
 
 const Environment = props => {
   const { gl, scene } = useThree();
