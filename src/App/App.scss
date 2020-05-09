@@ -14,6 +14,19 @@
   }
 }
 
+.cancel-button .MuiButton-containedPrimary {
+  $color1: #69d13a;
+  $color2: #5cb235;
+
+  background: linear-gradient($color1, $color2);
+  &:hover {
+    background: linear-gradient(
+      darken($color1, $amount: 5),
+      darken($color2, $amount: 5)
+    );
+  }
+}
+
 .center {
   display: flex;
   align-items: center;

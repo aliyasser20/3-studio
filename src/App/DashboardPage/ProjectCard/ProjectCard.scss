@@ -1,4 +1,5 @@
 .project-card {
+  position: relative;
   .single-card {
     border: 1px solid #212121;
     background-color: #212121;
@@ -69,6 +70,28 @@
       .open-in-studio {
         width: 100%;
       }
+    }
+  }
+
+  .confirm-delete-modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    border-radius: 5px;
+    display: grid;
+    align-content: center;
+    color: white;
+    text-align: center;
+    background-color: rgba($color: #000000, $alpha: 0.9);
+    padding: 1em;
+
+    .confirm-actions {
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: center;
+      grid-gap: 2em;
+      margin-top: 1em;
     }
   }
 }
