@@ -7,6 +7,8 @@ import { Button, MobileStepper, makeStyles, useTheme } from "@material-ui/core";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 
+import Stepper from "./Stepper/Stepper";
+
 // const useStyles = makeStyles(theme => ({
 //   root: {
 //     maxWidth: 400,
@@ -77,7 +79,7 @@ const SwipePictures = props => {
   };
 
   return (
-    <div>
+    <div className="swipe-pictures">
       <AutoPlaySwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={activeStep}
@@ -96,6 +98,7 @@ const SwipePictures = props => {
           </div>
         ))}
       </AutoPlaySwipeableViews>
+      <Stepper />
       {/* <MobileStepper
         steps={maxSteps}
         position="static"
