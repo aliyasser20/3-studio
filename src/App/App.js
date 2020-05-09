@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { useAuth0 } from "../react-auth0-spa";
 
 import Layout from "./HOC/Layout/Layout";
 import LandingPage from "./LandingPage/LandingPage";
@@ -13,6 +14,10 @@ import "./App.scss";
 
 const App = () => {
   const loggedIn = true;
+  const { loading } = useAuth0();
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const routes = (
     <Switch>

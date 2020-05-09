@@ -25,8 +25,9 @@ const NavBar = () => {
     <Box>
       <span className="gradient-button">
         <Button
-          color="primary"
-          variant="contained"
+          classes={{ label: "text-button" }}
+          color="inherit"
+          href="#text-buttons"
           onClick={() => loginWithRedirect({})}
         >
           <Box fontWeight="700">Get Started</Box>
