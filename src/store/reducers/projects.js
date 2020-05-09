@@ -11,19 +11,19 @@ const initialState = {
       screenshots: [
         {
           label: "screenshot-1-1",
-          path: "/assets/screenshot-1-1"
+          path: "/assets/screenshot-1-1.jpg"
         },
         {
           label: "screenshot-1-2",
-          path: "/assets/screenshot-1-2"
+          path: "/assets/screenshot-1-2.jpg"
         },
         {
           label: "screenshot-2-1",
-          path: "/assets/screenshot-2-1"
+          path: "/assets/screenshot-2-1.jpg"
         },
         {
           label: "screenshot-1-3",
-          path: "/assets/screenshot-1-3"
+          path: "/assets/screenshot-1-3.jpg"
         }
       ]
     }
