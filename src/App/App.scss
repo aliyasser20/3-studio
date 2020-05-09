@@ -1,18 +1,15 @@
 // .text-color-grad {
-//   background: -webkit-linear-gradient(#f45c43, #eb3349);
+//   background: linear-gradient(var(--gradient-top), var(--gradient-bottom));
 //   -webkit-background-clip: text;
 //   -webkit-text-fill-color: transparent;
 // }
 
 .gradient-button .MuiButton-containedPrimary {
-  $color-top: #f45c43;
-  $color-bottom: #eb3349;
-
-  background: linear-gradient($color-top, $color-bottom);
+  background: linear-gradient(var(--gradient-top), var(--gradient-bottom));
   &:hover {
     background: linear-gradient(
-      darken($color-top, $amount: 10),
-      darken($color-bottom, $amount: 10)
+      var(--gradient-top-darker),
+      var(--gradient-bottom-darker)
     );
   }
 }

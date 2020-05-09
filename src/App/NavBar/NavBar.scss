@@ -3,14 +3,19 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
   }
 
   .text-button {
     color: rgb(196, 196, 196);
-    margin-right: 1.5em;
 
     &:hover {
       color: white;
     }
+  }
+
+  a {
+    margin-left: 1.5em;
+    text-decoration: none;
   }
 }

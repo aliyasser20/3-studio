@@ -1,3 +1,33 @@
+:root {
+  --top-first: 8;
+  --top-second: 89%;
+  --top-third: 61%;
+
+  --bottom-first: 353;
+  --bottom-second: 82%;
+  --bottom-third: 56%;
+
+  --gradient-top: hsl(var(--top-first), var(--top-second), var(--top-third));
+  --gradient-bottom: hsl(
+    var(--bottom-first),
+    var(--bottom-second),
+    var(--bottom-third)
+  );
+
+  --darkness: 10%;
+
+  --gradient-top-darker: hsl(
+    var(--top-first),
+    var(--top-second),
+    calc(var(--top-third) - var(--darkness))
+  );
+  --gradient-bottom-darker: hsl(
+    var(--bottom-first),
+    var(--bottom-second),
+    calc(var(--bottom-third) - var(--darkness))
+  );
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
