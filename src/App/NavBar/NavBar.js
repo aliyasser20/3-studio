@@ -19,8 +19,18 @@ import "./NavBar.scss";
 const NavBar = () => {
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
+  let username;
+
+  if (user) {
+    if (user.sub.includes("google") || user.sub.includes("facebook")) {
+      username = user.name;
+    } else {
+      username = user.nickname;
+    }
+  }
+
   const content = isAuthenticated ? (
-    <AvatarPopover logout={logout} />
+    <AvatarPopover {...user} username={username} logout={logout} />
   ) : (
     <Box>
       <span className="gradient-button">
@@ -34,8 +44,8 @@ const NavBar = () => {
       </span>
     </Box>
   );
-
   console.log(user);
+
   return (
     <ThemeProvider theme={themeCreator(grey[900])}>
       <div className="navbar">

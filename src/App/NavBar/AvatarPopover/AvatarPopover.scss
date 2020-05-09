@@ -21,6 +21,10 @@
       height: 70px;
       box-shadow: 0 0 5px 0 rgba($color: #000000, $alpha: 0.3);
     }
+
+    .user-display-name {
+      text-transform: capitalize;
+    }
   }
 
   .link-to-profile {
