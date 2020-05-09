@@ -10,11 +10,12 @@ import DashboardPage from "./DashboardPage/DashboardPage";
 import ProfilePage from "./ProfilePage/ProfilePage";
 import StudioPage from "./StudioPage/StudioPage";
 import NavBar from "./NavBar/NavBar";
+import history from "../utils/history";
 
 import "./App.scss";
 
 const App = () => {
-  const loggedIn = false;
+  const loggedIn = true;
   const { loading } = useAuth0();
   if (loading) {
     return <div>Loading...</div>;
