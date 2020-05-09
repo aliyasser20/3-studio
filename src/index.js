@@ -3,10 +3,11 @@ import ReactDOM from "react-dom";
 import { createStore, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { Auth0Provider } from "./react-auth0-spa";
 import config from "./auth_config.json";
 import history from "./utils/history";
+import { Auth0Provider } from "./react-auth0-spa";
 
 import App from "./App/App";
 
@@ -29,8 +30,7 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer, composeEnhancers());
 
-// A function that routes the user to the right place
-// after login
+// A function that routes the user to the right place after login
 const onRedirectCallback = appState => {
   history.push(
     appState && appState.targetUrl

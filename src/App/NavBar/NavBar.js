@@ -8,10 +8,10 @@ import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import grey from "@material-ui/core/colors/grey";
-import { useAuth0 } from "../../react-auth0-spa";
 
 import AvatarPopover from "./AvatarPopover/AvatarPopover";
 
+import { useAuth0 } from "../../react-auth0-spa";
 import themeCreator from "../../helpers/themeCreator";
 
 import "./NavBar.scss";
