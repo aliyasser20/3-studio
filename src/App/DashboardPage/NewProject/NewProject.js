@@ -8,17 +8,45 @@ import {
   DialogActions,
 } from "@material-ui/core";
 import { DropzoneArea } from "material-ui-dropzone";
-import "./NewProject.scss";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import { CloudinaryContext } from "cloudinary-react";
+import axios from "axios";
+import "./NewProject.scss";
+
 const NewProject = () => {
   const [open, setOpen] = React.useState(false);
-
+  const [files, setFiles] = React.useState([]);
+  const uploadUrl = "https://api.cloudinary.com/v1_1/jaybur1/raw/upload/";
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+    console.log("state", files);
+  };
+
+  const handleChange = (file) => {
+    file.length > 0 && setFiles(file);
+  };
+
+  const handleCreate = () => {
+    if (files.length > 0) {
+      const formData = new FormData();
+      formData.append("file", files[0]);
+      formData.append("tags", "rocket");
+      formData.append("upload_preset", "modelUpload"); // Replace the preset name with your own
+      formData.append("api_key", "463438241363482"); // Replace API key with your own Cloudinary key
+      formData.append("timestamp", (Date.now() / 1000) | 0);
+      console.log(formData);
+      return axios
+        .post(uploadUrl, formData, {
+          headers: { "X-Requested-With": "XMLHttpRequest" },
+        })
+        .then((res) => {
+          console.log(res.data.secure_url);
+        });
+    }
   };
 
   return (
@@ -53,7 +81,13 @@ const NewProject = () => {
             fullWidth
           />
           <h3>Upload Model</h3>
-          <DropzoneArea dropzoneText="Drag and drop your gltf/glb model here or click to upload" />
+          <DropzoneArea
+            dropzoneText="Drag and drop your glb model here or click to upload"
+            acceptedFiles={[".glb"]}
+            maxFileSize={10000000}
+            filesLimit={1}
+            onChange={(e) => handleChange(e)}
+          />
         </DialogContent>
         <DialogActions>
           <Button
@@ -65,7 +99,7 @@ const NewProject = () => {
           </Button>
           <Button
             classes={{ label: "new-project-btn" }}
-            onClick={handleClose}
+            onClick={handleCreate}
             color="primary"
           >
             Create
