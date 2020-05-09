@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import Container from "@material-ui/core/Container";
 
 import ProjectCard from "./ProjectCard/ProjectCard";
+import NewProject from "./NewProject/NewProject";
 
 import "./Dashboard.scss";
 
@@ -18,6 +19,7 @@ const DashboardPage = props => {
       <Container maxWidth="xl">
         <h1>Dashboard Page</h1>
         <div className="projects">{projectCards}</div>
+        <NewProject />
       </Container>
     </div>
   );
