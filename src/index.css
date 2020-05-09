@@ -1,34 +1,30 @@
 :root {
-  --base-top-first: 8;
-  --base-top-second: 89%;
-  --base-top-third: 61%;
+  --top-first: 8;
+  --top-second: 89%;
+  --top-third: 61%;
 
-  --base-bottom-first: 353;
-  --base-bottom-second: 82%;
-  --base-bottom-third: 56%;
+  --bottom-first: 353;
+  --bottom-second: 82%;
+  --bottom-third: 56%;
 
-  --gradient-top: hsl(
-    var(--base-top-first),
-    var(--base-top-second),
-    var(--base-top-third)
-  );
+  --gradient-top: hsl(var(--top-first), var(--top-second), var(--top-third));
   --gradient-bottom: hsl(
-    var(--base-bottom-first),
-    var(--base-bottom-second),
-    var(--base-bottom-third)
+    var(--bottom-first),
+    var(--bottom-second),
+    var(--bottom-third)
   );
 
-  --darkness: 20%;
+  --darkness: 10%;
 
   --gradient-top-darker: hsl(
-    var(--base-top-first),
-    var(--base-top-second),
-    calc(var(--base-top-third) - var(--darkness))
+    var(--top-first),
+    var(--top-second),
+    calc(var(--top-third) - var(--darkness))
   );
   --gradient-bottom-darker: hsl(
-    var(--base-bottom-first),
-    var(--base-bottom-second),
-    calc(var(--base-bottom-third) - var(--darkness))
+    var(--bottom-first),
+    var(--bottom-second),
+    calc(var(--bottom-third) - var(--darkness))
   );
 }
 

@@ -9,9 +9,7 @@
     top: calc(50% - 15px);
 
     &:hover {
-      $color-top: #f45c43;
-      $color-bottom: #eb3349;
-      background: linear-gradient($color-top, $color-bottom);
+      background: linear-gradient(var(--gradient-top), var(--gradient-bottom));
       color: white;
     }
   }

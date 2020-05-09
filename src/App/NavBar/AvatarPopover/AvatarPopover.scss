@@ -1,7 +1,4 @@
 .avatar-popover-content {
-  $color-top: #f45c43;
-  $color-bottom: #eb3349;
-
   width: 230px;
   height: 260px;
   display: grid;
@@ -9,7 +6,7 @@
   justify-items: center;
   align-items: center;
 
-  background: linear-gradient($color-top, $color-bottom);
+  background: linear-gradient(var(--gradient-top), var(--gradient-bottom));
 
   .user-info {
     display: grid;

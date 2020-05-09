@@ -17,7 +17,7 @@ import themeCreator from "../../helpers/themeCreator";
 import "./NavBar.scss";
 
 const NavBar = () => {
-  const loggedIn = false;
+  const loggedIn = true;
 
   const content = loggedIn ? (
     <AvatarPopover />

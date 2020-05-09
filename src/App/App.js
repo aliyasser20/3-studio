@@ -12,7 +12,7 @@ import StudioPage from "./StudioPage/StudioPage";
 import "./App.scss";
 
 const App = () => {
-  const loggedIn = false;
+  const loggedIn = true;
 
   const routes = (
     <Switch>
