@@ -1,6 +1,33 @@
 .project-card {
   .single-card {
-    // max-width: 345px;
-    // min-height: 500px;
+    border: 2px solid #212121;
+    background-color: #212121;
+    color: white;
+
+    img {
+      border-radius: 2px 2px 0 0;
+    }
+
+    .content-area {
+      padding-top: 1em;
+      padding-bottom: 1.25em;
+
+      .project-description {
+        height: 50px;
+      }
+
+      .section {
+        padding: 1em 0;
+      }
+
+      .horizontal-divider {
+        background-color: #8a8a8a;
+        margin-bottom: 1.25em;
+      }
+
+      .open-in-studio {
+        width: 100%;
+      }
+    }
   }
 }

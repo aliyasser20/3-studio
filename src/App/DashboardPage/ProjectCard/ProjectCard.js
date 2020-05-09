@@ -18,24 +18,29 @@ const ProjectCard = props => (
   <div className="project-card">
     <Card classes={{ root: "single-card" }}>
       <SwipePictures pictures={props.screenshots.slice(0, 3)} />
-      <CardContent>
+      <CardContent classes={{ root: "content-area" }}>
         <Typography gutterBottom variant="h5" component="h2">
           {props.name}
         </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography
+          variant="body2"
+          component="p"
+          classes={{ root: "project-description" }}
+        >
           {props.description}
         </Typography>
         <div className="section">
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="caption" component="p">
             Created:
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="caption" component="p">
             Updated:
           </Typography>
         </div>
-        <Divider variant="middle" />
+        <Divider variant="fullWidth" classes={{ root: "horizontal-divider" }} />
         <span className="gradient-button">
           <Button
+            classes={{ root: "open-in-studio" }}
             variant="contained"
             color="primary"
             startIcon={<CameraIcon />}
