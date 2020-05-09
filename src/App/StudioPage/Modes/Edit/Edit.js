@@ -5,7 +5,7 @@ import UserControls from "./UserControls/UserControls";
 
 const Edit = () => (
   <div className="edit">
-    <Model url="https://res.cloudinary.com/aajfinal/raw/upload/v1589051277/models/mustard_mhxcwm.glb" />
+    <Model url="https://res.cloudinary.com/aajfinal/raw/upload/v1589055152/models/duck_sqoq6h.glb" />
     <UserControls />
   </div>
 );

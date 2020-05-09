@@ -1,34 +1,90 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Divider,
+  Button,
+  Box,
+  IconButton
+} from "@material-ui/core";
+import CameraIcon from "@material-ui/icons/Camera";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+
+import SwipePictures from "../../UI/SwipePictures/SwipePictures";
 
 import "./ProjectCard.scss";
 
-const ProjectCard = () => (
+const ProjectCard = props => (
   <div className="project-card">
     <Card classes={{ root: "single-card" }}>
-      <CardActionArea>
-        <CardMedia
-          classes={{ root: "card-image" }}
-          image="./assets/shaver-test.jpg"
-          title="Contemplative Reptile"
+      <SwipePictures pictures={props.screenshots.slice(0, 3)} />
+      <CardContent classes={{ root: "content-area" }}>
+        <Typography gutterBottom variant="h6" component="h2">
+          <Box fontWeight={700}>{props.name}</Box>
+        </Typography>
+        <Typography
+          variant="body2"
+          component="p"
+          classes={{ root: "project-description" }}
+        >
+          {props.description}
+        </Typography>
+        <Divider
+          variant="fullWidth"
+          classes={{ root: "horizontal-divider-upper" }}
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Project Name
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+        <span className="section">
+          <span className="dates">
+            <Box fontWeight={500}>
+              <Typography variant="caption" component="p">
+                Created: Jan 2, 2019
+              </Typography>
+            </Box>
+            <Typography variant="caption" component="p">
+              Updated: Mar 4, 2020
+            </Typography>
+          </span>
+          <span className="action-buttons">
+            <IconButton
+              aria-label="edit"
+              classes={{ root: "action-button" }}
+              size="small"
+            >
+              <EditIcon />
+            </IconButton>
+            <IconButton
+              aria-label="delete"
+              classes={{ root: "action-button" }}
+              size="small"
+            >
+              <DeleteIcon />
+            </IconButton>
+          </span>
+        </span>
+        <Divider variant="fullWidth" classes={{ root: "horizontal-divider" }} />
+        <span className="gradient-button">
+          <Button
+            classes={{ root: "open-in-studio" }}
+            variant="contained"
+            color="primary"
+            startIcon={<CameraIcon />}
+          >
+            Open in Studio
+          </Button>
+        </span>
+      </CardContent>
     </Card>
   </div>
 );
+
+ProjectCard.propTypes = {
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  screenshots: PropTypes.array.isRequired
+};
 
 export default ProjectCard;

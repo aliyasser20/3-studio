@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.8.1",
     "@material-ui/core": "^4.9.13",
     "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
@@ -10,6 +11,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "cloudinary-react": "^1.5.0",
+    "history": "^4.10.1",
     "lodash": "^4.17.15",
     "material-ui-dropzone": "^3.0.0",
     "node-sass": "^4.14.0",
@@ -20,6 +22,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "react-spring": "^8.0.27",
+    "react-swipeable-views": "^0.13.9",
+    "react-swipeable-views-utils": "^0.13.9",
     "react-three-fiber": "^4.1.1",
     "redux": "^4.0.5",
     "three": "^0.115.0"
