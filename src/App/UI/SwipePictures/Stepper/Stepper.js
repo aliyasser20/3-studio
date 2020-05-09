@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
 import { IconButton } from "@material-ui/core";
@@ -6,22 +6,26 @@ import ArrowForwardIosRoundedIcon from "@material-ui/icons/ArrowForwardIosRounde
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 
 const Stepper = props => (
-  <div className="stepper">
+  <Fragment>
     <IconButton
-      aria-label="next"
+      size="small"
+      classes={{ root: "previous-button" }}
+      aria-label="previous"
       onClick={props.previous}
       disabled={props.previousDisabled}
     >
       <ArrowBackIosRoundedIcon />
     </IconButton>
     <IconButton
+      size="small"
+      classes={{ root: "next-button" }}
       aria-label="next"
       disabled={props.nextDisabled}
       onClick={props.next}
     >
       <ArrowForwardIosRoundedIcon />
     </IconButton>
-  </div>
+  </Fragment>
 );
 
 Stepper.propTypes = {

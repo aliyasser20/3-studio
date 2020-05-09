@@ -1,34 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 
-import { Button, MobileStepper, makeStyles, useTheme } from "@material-ui/core";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import { useTheme } from "@material-ui/core";
 
 import Stepper from "./Stepper/Stepper";
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     maxWidth: 400,
-//     flexGrow: 1
-//   },
-//   header: {
-//     display: "flex",
-//     alignItems: "center",
-//     height: 50,
-//     paddingLeft: theme.spacing(4),
-//     backgroundColor: theme.palette.background.default
-//   },
-//   img: {
-//     height: 255,
-//     display: "block",
-//     maxWidth: 400,
-//     overflow: "hidden",
-//     width: "100%"
-//   }
-// }));
+import "./SwipePictures.scss";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -61,9 +40,8 @@ const tutorialSteps = [
 ];
 
 const SwipePictures = props => {
-  // const classes = useStyles();
   const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   const maxSteps = tutorialSteps.length;
 
   const handleNext = () => {
