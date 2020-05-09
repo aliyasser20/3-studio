@@ -19,7 +19,7 @@ import SwipePictures from "../../UI/SwipePictures/SwipePictures";
 import "./ProjectCard.scss";
 
 const ProjectCard = props => {
-  const [confirmDelete, setConfirmDelete] = useState(true);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const confirmDeleteModal = (
     <div className="confirm-delete-modal">
@@ -35,7 +35,11 @@ const ProjectCard = props => {
           </Button>
         </span>
         <span className="cancel-button">
-          <Button variant="contained" color="primary">
+          <Button
+            onClick={() => setConfirmDelete(false)}
+            variant="contained"
+            color="primary"
+          >
             Cancel
           </Button>
         </span>
@@ -85,6 +89,7 @@ const ProjectCard = props => {
                 aria-label="delete"
                 classes={{ root: "action-button" }}
                 size="small"
+                onClick={() => setConfirmDelete(true)}
               >
                 <DeleteIcon />
               </IconButton>
