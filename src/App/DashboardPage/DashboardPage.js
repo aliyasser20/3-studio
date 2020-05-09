@@ -6,6 +6,8 @@ import Container from "@material-ui/core/Container";
 
 import ProjectCard from "./ProjectCard/ProjectCard";
 
+import "./Dashboard.scss";
+
 const DashboardPage = props => {
   const projectCards = props.allProjects.map(project => (
     <ProjectCard key={project.id} {...project} />
@@ -15,7 +17,7 @@ const DashboardPage = props => {
     <div className="dashboard-page">
       <Container maxWidth="xl">
         <h1>Dashboard Page</h1>
-        {projectCards}
+        <div className="projects">{projectCards}</div>
       </Container>
     </div>
   );
