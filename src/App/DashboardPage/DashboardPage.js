@@ -1,12 +1,32 @@
 import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
+import Container from "@material-ui/core/Container";
 
 import ProjectCard from "./ProjectCard/ProjectCard";
 
-const DashboardPage = () => (
-  <div className="dashboard-page">
-    <h1>Dashboard Page</h1>
-    <ProjectCard />
-  </div>
-);
+const DashboardPage = props => {
+  const projectCards = props.allProjects.map(project => (
+    <ProjectCard key={project.id} {...project} />
+  ));
 
-export default DashboardPage;
+  return (
+    <div className="dashboard-page">
+      <Container maxWidth="xl">
+        <h1>Dashboard Page</h1>
+        {projectCards}
+      </Container>
+    </div>
+  );
+};
+
+DashboardPage.propTypes = {
+  allProjects: PropTypes.object
+};
+
+const mapStateToProps = state => ({
+  allProjects: state.projects.allProjects
+});
+
+export default connect(mapStateToProps, null)(DashboardPage);

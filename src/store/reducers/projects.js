@@ -1,8 +1,9 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  projects: [
+  allProjects: [
     {
+      id: 1,
       name: "Shaver",
       description: "A model of Phillips One shaver",
       createdAt: new Date(2019, 6, 15, 12, 35, 40, 10),
