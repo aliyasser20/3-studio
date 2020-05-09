@@ -9,6 +9,7 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 
 import grey from "@material-ui/core/colors/grey";
+import { useAuth0 } from "../../react-auth0-spa";
 
 import themeCreator from "../../helpers/themeCreator";
 
@@ -16,7 +17,8 @@ import "./NavBar.scss";
 
 const NavBar = () => {
   const theme = useTheme();
-
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  console.log(user);
   return (
     <ThemeProvider theme={themeCreator(grey[900])}>
       <div className="navbar">
@@ -30,18 +32,34 @@ const NavBar = () => {
                   </div>
                 </Typography>
                 <Box>
-                  <Button
-                    classes={{ label: "text-button" }}
-                    color="inherit"
-                    href="#text-buttons"
-                  >
-                    <Box fontWeight="700">Login</Box>
-                  </Button>
-                  <span className="gradient-button">
-                    <Button variant="contained" color="primary">
-                      <Box fontWeight="700">Signup</Box>
+                  {!isAuthenticated && (
+                    <span className="gradient-button">
+                      <Button
+                        classes={{ label: "text-button" }}
+                        color="inherit"
+                        href="#text-buttons"
+                        onClick={() => loginWithRedirect({})}
+                      >
+                        <Box fontWeight="700">Login</Box>
+                      </Button>
+                      <Button
+                        onClick={() => alert("Hello")}
+                        variant="contained"
+                        color="primary"
+                      >
+                        <Box fontWeight="700">Signup</Box>
+                      </Button>
+                    </span>
+                  )}
+                  {isAuthenticated && (
+                    <Button
+                      onClick={() => logout()}
+                      variant="contained"
+                      color="primary"
+                    >
+                      <Box fontWeight="700">Logout</Box>
                     </Button>
-                  </span>
+                  )}
                 </Box>
               </div>
             </Toolbar>
