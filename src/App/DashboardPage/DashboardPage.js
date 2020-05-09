@@ -24,7 +24,7 @@ const DashboardPage = props => {
 };
 
 DashboardPage.propTypes = {
-  allProjects: PropTypes.object
+  allProjects: PropTypes.array
 };
 
 const mapStateToProps = state => ({

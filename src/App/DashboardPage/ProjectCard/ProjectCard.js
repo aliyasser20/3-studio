@@ -37,16 +37,18 @@ const ProjectCard = props => (
           variant="fullWidth"
           classes={{ root: "horizontal-divider-upper" }}
         />
-        <div className="section">
-          <div className="dates">
+        <span className="section">
+          <span className="dates">
+            <Box fontWeight={500}>
+              <Typography variant="caption" component="p">
+                Created: Jan 2, 2019
+              </Typography>
+            </Box>
             <Typography variant="caption" component="p">
-              <Box fontWeight={500}>Created: Jan 2, 2019</Box>
+              Updated: Mar 4, 2020
             </Typography>
-            <Typography variant="caption" component="p">
-              <Box fontWeight={500}>Updated: Mar 4, 2020</Box>
-            </Typography>
-          </div>
-          <div className="action-buttons">
+          </span>
+          <span className="action-buttons">
             <IconButton
               aria-label="edit"
               classes={{ root: "action-button" }}
@@ -61,8 +63,8 @@ const ProjectCard = props => (
             >
               <DeleteIcon />
             </IconButton>
-          </div>
-        </div>
+          </span>
+        </span>
         <Divider variant="fullWidth" classes={{ root: "horizontal-divider" }} />
         <span className="gradient-button">
           <Button
