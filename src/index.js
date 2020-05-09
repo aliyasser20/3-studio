@@ -8,6 +8,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import App from "./App/App";
 
 import environmentControls from "./store/reducers/environmentControls";
+import projects from "./store/reducers/projects";
 
 import * as serviceWorker from "./serviceWorker";
 
@@ -19,7 +20,8 @@ const composeEnhancers =
     : null || compose;
 
 const rootReducer = combineReducers({
-  environmentControls
+  environmentControls,
+  projects
 });
 
 const store = createStore(rootReducer, composeEnhancers());
