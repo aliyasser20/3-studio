@@ -50,8 +50,8 @@ const AvatarPopover = props => {
           <div className="user-info">
             <Avatar
               className="large-avatar"
-              alt="Ali Sayed"
-              src="/assets/ali.jpg"
+              alt={props.username}
+              src={props.picture}
             />
             <Typography variant="h5" classes={{ root: "user-display-name" }}>
               <Box fontWeight="700">{props.username.slice(0, 18)}</Box>
