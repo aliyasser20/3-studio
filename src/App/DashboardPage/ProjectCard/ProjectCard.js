@@ -8,11 +8,13 @@ import {
   Divider,
   Button,
   Box,
-  IconButton
+  IconButton,
+  TextField
 } from "@material-ui/core";
 import CameraIcon from "@material-ui/icons/Camera";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 
 import SwipePictures from "../../UI/SwipePictures/SwipePictures";
 
@@ -20,6 +22,7 @@ import "./ProjectCard.scss";
 
 const ProjectCard = props => {
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [edit, setEdit] = useState(true);
 
   const confirmDeleteModal = (
     <div className="confirm-delete-modal">
@@ -41,6 +44,46 @@ const ProjectCard = props => {
             color="primary"
           >
             Cancel
+          </Button>
+        </span>
+      </div>
+    </div>
+  );
+
+  const editModal = (
+    <div className="edit-modal">
+      <Typography gutterBottom variant="h6" component="h2">
+        <Box fontWeight={700}>Project Details</Box>
+      </Typography>
+      <form>
+        <TextField
+          id="outlined-textarea"
+          label="Name"
+          rowsMax={2}
+          placeholder="Placeholder"
+          multiline
+          variant="outlined"
+        />
+        <TextField
+          id="outlined-multiline-flexible"
+          label="Description"
+          multiline
+          rowsMax={4}
+          value="Hi there"
+          // onChange={handleChange}
+          variant="outlined"
+        />
+      </form>
+      <div className="confirm-actions">
+        <span className="back-button">
+          <Button onClick={() => setEdit(false)} color="primary">
+            <ArrowBackRoundedIcon />
+            Back
+          </Button>
+        </span>
+        <span className="gradient-button">
+          <Button variant="contained" color="primary">
+            Save
           </Button>
         </span>
       </div>
@@ -82,6 +125,7 @@ const ProjectCard = props => {
                 aria-label="edit"
                 classes={{ root: "action-button" }}
                 size="small"
+                onClick={() => setEdit(true)}
               >
                 <EditIcon />
               </IconButton>
@@ -112,6 +156,7 @@ const ProjectCard = props => {
         </CardContent>
       </Card>
       {confirmDelete && confirmDeleteModal}
+      {edit && editModal}
     </div>
   );
 };
