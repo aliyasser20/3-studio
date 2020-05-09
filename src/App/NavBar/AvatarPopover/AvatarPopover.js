@@ -30,7 +30,7 @@ const AvatarPopover = props => {
   return (
     <div className="avatar-popover">
       <IconButton aria-describedby={id} onClick={handleClick}>
-        <Avatar alt="Ali Sayed" src="/assets/ali.jpg" />
+        <Avatar alt={props.username} src={props.picture} />
       </IconButton>
       <Popover
         id={id}
@@ -53,8 +53,8 @@ const AvatarPopover = props => {
               alt="Ali Sayed"
               src="/assets/ali.jpg"
             />
-            <Typography variant="h5">
-              <Box fontWeight="700">Ali Sayed</Box>
+            <Typography variant="h5" classes={{ root: "user-display-name" }}>
+              <Box fontWeight="700">{props.username.slice(0, 18)}</Box>
             </Typography>
           </div>
           <Link to="/profile">
@@ -63,7 +63,12 @@ const AvatarPopover = props => {
             </Button>
           </Link>
           <div>
-            <Button classes={{ root: "sign-out-button" }}>Sign out</Button>
+            <Button
+              classes={{ root: "sign-out-button" }}
+              onClick={props.logout}
+            >
+              Sign out
+            </Button>
           </div>
         </div>
       </Popover>
@@ -71,6 +76,10 @@ const AvatarPopover = props => {
   );
 };
 
-AvatarPopover.propTypes = {};
+AvatarPopover.propTypes = {
+  logout: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired
+};
 
 export default AvatarPopover;
