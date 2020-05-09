@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import {
   Button,
@@ -12,7 +13,7 @@ import {
 
 import "./AvatarPopover.scss";
 
-const AvatarPopover = () => {
+const AvatarPopover = props => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = event => {
@@ -56,9 +57,11 @@ const AvatarPopover = () => {
               <Box fontWeight="700">Ali Sayed</Box>
             </Typography>
           </div>
-          <Button classes={{ root: "link-to-profile" }}>
-            Profile Preferences
-          </Button>
+          <Link to="/profile">
+            <Button classes={{ root: "link-to-profile" }} onClick={handleClose}>
+              Profile Preferences
+            </Button>
+          </Link>
           <div>
             <Button classes={{ root: "sign-out-button" }}>Sign out</Button>
           </div>
