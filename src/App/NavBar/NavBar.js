@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -53,11 +54,13 @@ const NavBar = () => {
           <Container maxWidth="xl">
             <Toolbar>
               <div className="navbar-flex">
-                <Typography variant="h5">
-                  <div className="text-color-grad">
-                    <Box fontWeight="700">Final Project</Box>
-                  </div>
-                </Typography>
+                <Link to="/">
+                  <Typography variant="h5">
+                    <div className="text-color-grad">
+                      <Box fontWeight="700">Final Project</Box>
+                    </div>
+                  </Typography>
+                </Link>
                 {content}
               </div>
             </Toolbar>
