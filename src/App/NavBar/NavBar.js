@@ -8,22 +8,24 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
-
 import grey from "@material-ui/core/colors/grey";
+
+import AvatarPopover from "./AvatarPopover/AvatarPopover";
 
 import themeCreator from "../../helpers/themeCreator";
 
 import "./NavBar.scss";
 
 const NavBar = () => {
-  const loggedIn = false;
+  const loggedIn = true;
 
   const content = loggedIn ? (
-    <h1>Helo</h1>
+    <AvatarPopover />
   ) : (
     <Box>
       <Link to="/login">
         <Button
+          disableRipple
           classes={{ label: "text-button" }}
           color="inherit"
           href="#text-buttons"
