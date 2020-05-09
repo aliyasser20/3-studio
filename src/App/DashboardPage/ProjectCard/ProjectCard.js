@@ -22,7 +22,9 @@ import "./ProjectCard.scss";
 
 const ProjectCard = props => {
   const [confirmDelete, setConfirmDelete] = useState(false);
-  const [edit, setEdit] = useState(true);
+  const [edit, setEdit] = useState(false);
+  const [nameField, setNameField] = useState(props.name);
+  const [descriptionField, setDescriptionField] = useState(props.description);
 
   const confirmDeleteModal = (
     <div className="confirm-delete-modal">
@@ -57,20 +59,24 @@ const ProjectCard = props => {
       </Typography>
       <form>
         <TextField
+          required
           id="outlined-textarea"
           label="Name"
           rowsMax={2}
           placeholder="Placeholder"
           multiline
           variant="outlined"
+          value={nameField}
+          onChange={e => setNameField(e.target.value.slice(0, 40))}
         />
         <TextField
+          required
           id="outlined-multiline-flexible"
           label="Description"
           multiline
           rowsMax={4}
-          value="Hi there"
-          // onChange={handleChange}
+          value={descriptionField}
+          onChange={e => setDescriptionField(e.target.value)}
           variant="outlined"
         />
       </form>
