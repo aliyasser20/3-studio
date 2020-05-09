@@ -1,6 +1,6 @@
 .project-card {
   .single-card {
-    border: 2px solid #212121;
+    border: 1px solid #212121;
     background-color: #212121;
     color: white;
 
@@ -9,20 +9,61 @@
     }
 
     .content-area {
-      padding-top: 1em;
+      padding-top: 0.5em;
       padding-bottom: 1.25em;
 
       .project-description {
-        height: 50px;
+        height: 75px;
+        overflow: auto;
+        margin-bottom: 1.5em;
       }
 
       .section {
-        padding: 1em 0;
+        padding: 0.75em 0;
+        display: flex;
+        justify-content: space-between;
+
+        .dates {
+          display: grid;
+          grid-gap: 0.4em;
+        }
+
+        .action-buttons {
+          display: grid;
+          grid-auto-flow: column;
+          grid-gap: 0.75em;
+          align-items: center;
+          justify-content: center;
+          border-left: 1px solid #8a8a8a;
+          padding-left: 0.75em;
+          padding-right: 0.75em;
+
+          .action-button {
+            color: #cecece;
+            padding: 0.25em;
+
+            svg {
+              font-size: 1.2em;
+            }
+
+            &:hover {
+              color: white;
+              background: linear-gradient(
+                var(--gradient-top),
+                var(--gradient-bottom)
+              );
+            }
+          }
+        }
       }
 
       .horizontal-divider {
         background-color: #8a8a8a;
         margin-bottom: 1.25em;
+      }
+
+      .horizontal-divider-upper {
+        background-color: #8a8a8a;
       }
 
       .open-in-studio {
