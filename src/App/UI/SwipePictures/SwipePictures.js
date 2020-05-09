@@ -47,7 +47,9 @@ const SwipePictures = props => {
           </div>
         ))}
       </AutoPlaySwipeableViews>
-      <Stepper next={handleNext} previous={handleBack} />
+      {props.pictures.length > 1 && (
+        <Stepper next={handleNext} previous={handleBack} />
+      )}
     </div>
   );
 };

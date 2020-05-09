@@ -12,7 +12,7 @@ import "./ProjectCard.scss";
 const ProjectCard = props => (
   <div className="project-card">
     <Card classes={{ root: "single-card" }}>
-      <SwipePictures pictures={props.screenshots} />
+      <SwipePictures pictures={props.screenshots.slice(0, 3)} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           {props.name}
