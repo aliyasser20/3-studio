@@ -4,25 +4,18 @@ import { useAuth0 } from "../react-auth0-spa";
 
 import Layout from "./HOC/Layout/Layout";
 import LandingPage from "./LandingPage/LandingPage";
-import LoginPage from "./Login_Signup/LoginPage/LoginPage";
-import SignupPage from "./Login_Signup/SignupPage/SignupPage";
 import DashboardPage from "./DashboardPage/DashboardPage";
 import ProfilePage from "./ProfilePage/ProfilePage";
 import StudioPage from "./StudioPage/StudioPage";
+import Loader from "./UI/Loader/Loader";
 
 import "./App.scss";
 
 const App = () => {
-  const loggedIn = true;
-  const { loading } = useAuth0();
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const { isAuthenticated, loading } = useAuth0();
 
   const routes = (
     <Switch>
-      <Route path="/login" component={LoginPage}></Route>
-      <Route path="/signup" component={SignupPage}></Route>
       <Route path="/" exact component={LandingPage}></Route>
       <Redirect to="/" />
     </Switch>
@@ -37,10 +30,16 @@ const App = () => {
     </Switch>
   );
 
-  return (
+  const appContent = loading ? (
+    <div className="center">
+      <Loader />
+    </div>
+  ) : (
     <Layout>
-      <div className="App">{loggedIn ? guardedRoutes : routes}</div>
+      <div className="App">{isAuthenticated ? guardedRoutes : routes}</div>
     </Layout>
   );
+
+  return appContent;
 };
 export default App;
