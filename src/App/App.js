@@ -14,10 +14,6 @@ import "./App.scss";
 const App = () => {
   const { isAuthenticated, loading } = useAuth0();
 
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
-
   const routes = (
     <Switch>
       <Route path="/" exact component={LandingPage}></Route>
