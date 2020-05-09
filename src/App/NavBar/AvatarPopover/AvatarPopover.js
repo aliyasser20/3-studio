@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Button, Popover, Typography } from "@material-ui/core";
 
-const AvatarPopover = props => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+import {
+  Button,
+  Popover,
+  Typography,
+  Avatar,
+  IconButton,
+  Box
+} from "@material-ui/core";
+
+import "./AvatarPopover.scss";
+
+const AvatarPopover = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -18,14 +28,9 @@ const AvatarPopover = props => {
 
   return (
     <div className="avatar-popover">
-      <Button
-        aria-describedby={id}
-        variant="contained"
-        color="primary"
-        onClick={handleClick}
-      >
-        Open Popover
-      </Button>
+      <IconButton aria-describedby={id} onClick={handleClick}>
+        <Avatar alt="Ali Sayed" src="/assets/ali.jpg" />
+      </IconButton>
       <Popover
         id={id}
         open={open}
@@ -33,14 +38,31 @@ const AvatarPopover = props => {
         onClose={handleClose}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "center"
+          horizontal: "right"
         }}
         transformOrigin={{
           vertical: "top",
-          horizontal: "center"
+          horizontal: "right"
         }}
       >
-        <Typography>The content of the Popover.</Typography>
+        <div className="avatar-popover-content">
+          <div className="user-info">
+            <Avatar
+              className="large-avatar"
+              alt="Ali Sayed"
+              src="/assets/ali.jpg"
+            />
+            <Typography variant="h5">
+              <Box fontWeight="700">Ali Sayed</Box>
+            </Typography>
+          </div>
+          <Button classes={{ root: "link-to-profile" }}>
+            Profile Preferences
+          </Button>
+          <div>
+            <Button classes={{ root: "sign-out-button" }}>Sign out</Button>
+          </div>
+        </div>
       </Popover>
     </div>
   );
