@@ -42,18 +42,23 @@ const tutorialSteps = [
 const SwipePictures = props => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
-  const maxSteps = tutorialSteps.length;
 
   const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setActiveStep(prevActiveStep => {
+      if (prevActiveStep === tutorialSteps.length - 1) {
+        return 0;
+      }
+      return prevActiveStep + 1;
+    });
   };
 
   const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
-  };
-
-  const handleStepChange = step => {
-    setActiveStep(step);
+    setActiveStep(prevActiveStep => {
+      if (prevActiveStep === 0) {
+        return tutorialSteps.length - 1;
+      }
+      return prevActiveStep - 1;
+    });
   };
 
   return (
@@ -61,27 +66,16 @@ const SwipePictures = props => {
       <AutoPlaySwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
       >
         {tutorialSteps.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <img
-                // className={classes.img}
-                src={step.imgPath}
-                alt={step.label}
-              />
+              <img src={step.imgPath} alt={step.label} />
             ) : null}
           </div>
         ))}
       </AutoPlaySwipeableViews>
-      <Stepper
-        next={handleNext}
-        nextDisabled={activeStep === maxSteps - 1}
-        previousDisabled={activeStep === 0}
-        previous={handleBack}
-      />
+      <Stepper next={handleNext} previous={handleBack} />
     </div>
   );
 };

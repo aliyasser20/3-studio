@@ -12,7 +12,7 @@ const Stepper = props => (
       classes={{ root: "previous-button" }}
       aria-label="previous"
       onClick={props.previous}
-      disabled={props.previousDisabled}
+      // disabled={props.previousDisabled}
     >
       <ArrowBackIosRoundedIcon />
     </IconButton>
@@ -20,7 +20,7 @@ const Stepper = props => (
       size="small"
       classes={{ root: "next-button" }}
       aria-label="next"
-      disabled={props.nextDisabled}
+      // disabled={props.nextDisabled}
       onClick={props.next}
     >
       <ArrowForwardIosRoundedIcon />
@@ -30,9 +30,9 @@ const Stepper = props => (
 
 Stepper.propTypes = {
   previous: PropTypes.func.isRequired,
-  next: PropTypes.func.isRequired,
-  previousDisabled: PropTypes.bool.isRequired,
-  nextDisabled: PropTypes.bool.isRequired
+  next: PropTypes.func.isRequired
+  // previousDisabled: PropTypes.bool.isRequired,
+  // nextDisabled: PropTypes.bool.isRequired
 };
 
 export default Stepper;
