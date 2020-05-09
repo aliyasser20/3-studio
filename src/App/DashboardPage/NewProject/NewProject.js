@@ -6,11 +6,10 @@ import {
   DialogContent,
   TextField,
   DialogActions,
-  Icon,
 } from "@material-ui/core";
 import { DropzoneArea } from "material-ui-dropzone";
 import "./NewProject.scss";
-
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 const NewProject = () => {
   const [open, setOpen] = React.useState(false);
 
@@ -24,14 +23,12 @@ const NewProject = () => {
 
   return (
     <div className="new-project">
-      <Button
-        classes={{ root: "add-button" }}
+      <AddCircleIcon
+        classes={{ root: "add-btn" }}
         variant="outlined"
-        color="primary"
+        fontSize="large"
         onClick={handleClickOpen}
-      >
-        +
-      </Button>
+      />
       <Dialog
         classes={{ root: "new-project-modal" }}
         open={open}
@@ -56,7 +53,7 @@ const NewProject = () => {
             fullWidth
           />
           <h3>Upload Model</h3>
-          <DropzoneArea />
+          <DropzoneArea dropzoneText="Drag and drop your gltf/glb model here or click to upload" />
         </DialogContent>
         <DialogActions>
           <Button

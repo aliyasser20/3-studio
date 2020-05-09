@@ -21,6 +21,10 @@
     color: #f45c43;
   }
 
+  [class^='DropzoneArea']{
+    background-color: #171717;
+  }
+
   .new-project-btn {
     color: #fff;
     transition: 0.3s;
@@ -32,9 +36,15 @@
 }
 
 .new-project {
-  .add-button {
-    width: 30px;
-    height: 50px;
-    border-radius:50%;
+  .MuiSvgIcon-fontSizeLarge{
+    position:absolute;
+    right:0;
+    bottom: 0;
+    font-size: 7rem;
+    &:hover {
+      cursor: pointer;
+      fill: #eb3349
+    }
   }
+
 }
