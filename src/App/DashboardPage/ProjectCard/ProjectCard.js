@@ -1,9 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Divider,
+  Button
+} from "@material-ui/core";
+import CameraIcon from "@material-ui/icons/Camera";
 
 import SwipePictures from "../../UI/SwipePictures/SwipePictures";
 
@@ -20,6 +25,25 @@ const ProjectCard = props => (
         <Typography variant="body2" color="textSecondary" component="p">
           {props.description}
         </Typography>
+        <div className="section">
+          <Typography variant="body2" color="textSecondary" component="p">
+            Created:
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            Updated:
+          </Typography>
+        </div>
+        <Divider variant="middle" />
+        <span className="gradient-button">
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<CameraIcon />}
+            // onClick={fileExporter}
+          >
+            Open in Studio
+          </Button>
+        </span>
       </CardContent>
     </Card>
   </div>

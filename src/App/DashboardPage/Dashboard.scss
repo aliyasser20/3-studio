@@ -1,8 +1,8 @@
 .dashboard-page {
   .projects {
     display: grid;
-    grid-template-columns: max-content;
     grid-auto-flow: column;
+    grid-auto-columns: 0.25fr;
     grid-gap: 2em;
   }
 }
