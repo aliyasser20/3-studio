@@ -14,6 +14,7 @@ import App from "./App/App";
 
 import environmentControls from "./store/reducers/environmentControls";
 import projects from "./store/reducers/projects";
+import themes from "./store/reducers/themes";
 
 import * as serviceWorker from "./serviceWorker";
 
@@ -33,7 +34,8 @@ const composeEnhancers =
 
 const rootReducer = combineReducers({
   environmentControls,
-  projects
+  projects,
+  themes
 });
 
 const store = createStore(rootReducer, composeEnhancers());

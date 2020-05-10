@@ -7,3 +7,7 @@ export const SET_BACKGROUND_COLOR = "SET_BACKGROUND_COLOR";
 export const UPDATE_PROJECT_DETAILS = "UPDATE_PROJECT_DETAILS";
 export const DELETE_PROJECT = "DELETE_PROJECT";
 //
+
+// Themes
+export const SET_THEME = "SET_THEME";
+//
