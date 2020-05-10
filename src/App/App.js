@@ -16,7 +16,6 @@ const App = () => {
 
   const routes = (
     <Switch>
-      <Route path="/studio" component={StudioPage} />
       <Route path="/" exact component={LandingPage}></Route>
       <Redirect to="/" />
     </Switch>
