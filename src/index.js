@@ -21,13 +21,6 @@ import * as serviceWorker from "./serviceWorker";
 
 import "./index.css";
 
-// Set default url for axios in production mode from environment vars
-if (process.env.REACT_APP_API_BASE_URL) {
-  axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
-} else {
-  axios.defaults.baseURL = "http://localhost:8001";
-}
-
 const composeEnhancers =
   process.env.NODE_ENV === "development"
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

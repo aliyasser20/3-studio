@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import axios from "axios";
 
 import {
   Card,
@@ -18,6 +17,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 
+import backendAxios from "../../../axiosInstances/backendAxios";
 import Loader from "../../UI/Loader/Loader";
 import SwipePictures from "../../UI/SwipePictures/SwipePictures";
 
@@ -51,12 +51,12 @@ const ProjectCard = props => {
 
   const destroyProject = () => {
     setLoader(true);
-    axios
+    backendAxios
       .delete("/api/projects", {
         data: {
           projectId: props.id,
-          // userId: "google-soauth2|117948270148318970184"
-          userId: user.sub
+          userId: "google-oauth2|117948270148318970184"
+          // userId: user.sub
         }
       })
       .then(() => {
@@ -162,7 +162,7 @@ const ProjectCard = props => {
   return (
     <div className="project-card">
       <Card classes={{ root: "single-card" }}>
-        <SwipePictures pictures={props.screenshots.slice(0, 3)} />
+        <SwipePictures clickable pictures={props.screenshots.slice(0, 3)} />
         <CardContent classes={{ root: "content-area" }}>
           <Typography gutterBottom variant="h6" component="h2">
             <Box fontWeight={700}>{props.name}</Box>

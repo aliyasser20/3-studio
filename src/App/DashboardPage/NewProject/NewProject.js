@@ -5,12 +5,10 @@ import {
   DialogTitle,
   DialogContent,
   TextField,
-  DialogActions,
+  DialogActions
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { DropzoneArea } from "material-ui-dropzone";
-// import { CloudinaryContext } from "cloudinary-react";
-// import axios from "axios";
 import "./NewProject.scss";
 import { saveModelToCloude, createNewProject } from "./NewProjectHelper";
 import { useAuth0 } from "../../../react-auth0-spa";
@@ -20,6 +18,7 @@ const NewProject = () => {
   const { user } = useAuth0();
   const [open, setOpen] = useState(false);
   const [files, setFiles] = useState([]);
+  const uploadUrl = "/raw/upload/";
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [modelLink, setModelLink] = useState("");
@@ -32,29 +31,28 @@ const NewProject = () => {
     setOpen(false);
   };
 
-  const handleDrop = async (file) => {
+  const handleDrop = async file => {
     file.length > 0 && (await setFiles(file));
   };
 
   const handleCreate = () => {
     if (files.length > 0) {
       setLoading(true);
-      saveModelToCloude(files).then((modelLink) => {
+      saveModelToCloude(files).then(modelLink => {
         setModelLink(modelLink);
         setLoading(false);
         setOpen(false);
         // console.log(name, description, modelLink);
-        createNewProject({userId:user.sub,name,description,modelLink})
+        createNewProject({ userId: user.sub, name, description, modelLink });
       });
     }
   };
 
-
-  const handleName = (e) => {
+  const handleName = e => {
     e.preventDefault();
     setName(e.target.value);
   };
-  const handleDescription = (e) => {
+  const handleDescription = e => {
     e.preventDefault();
     setDescription(e.target.value);
   };
@@ -82,7 +80,7 @@ const NewProject = () => {
         <DialogContent>
           <TextField
             value={name}
-            onChange={(e) => handleName(e)}
+            onChange={e => handleName(e)}
             autoFocus
             margin="dense"
             id="project-name"
@@ -93,7 +91,7 @@ const NewProject = () => {
           />
           <TextField
             value={description}
-            onChange={(e) => handleDescription(e)}
+            onChange={e => handleDescription(e)}
             margin="dense"
             id="project-description"
             label="Description"
@@ -107,7 +105,7 @@ const NewProject = () => {
             acceptedFiles={[".glb"]}
             maxFileSize={10000000}
             filesLimit={1}
-            onDrop={(e) => handleDrop(e)}
+            onDrop={e => handleDrop(e)}
           />
         </DialogContent>
         <DialogActions>

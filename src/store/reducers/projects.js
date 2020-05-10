@@ -13,7 +13,7 @@ const initialState = {
       description: "A model of the Phillips One shaver.",
       createdAt: new Date(2019, 6, 15, 12, 35, 40, 10),
       updatedAt: new Date(2020, 5, 7, 12, 35, 40, 10),
-      model_path: "something",
+      modelLink: "something",
       screenshots: [
         {
           label: "screenshot-1-1",
@@ -40,7 +40,7 @@ const initialState = {
         "A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver.",
       createdAt: new Date(2019, 6, 15, 12, 35, 40, 10),
       updatedAt: new Date(2020, 5, 7, 12, 35, 40, 10),
-      model_path: "something",
+      modelLink: "something",
       screenshots: [
         {
           label: "screenshot-1-1",
