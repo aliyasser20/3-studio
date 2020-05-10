@@ -61,6 +61,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_PROJECT_DETAILS:
+      console.log(action.id, action.name, action.description);
       return {
         ...state,
         allProjects: updateProjectDetails(

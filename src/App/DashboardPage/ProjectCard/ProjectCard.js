@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import {
   Card,
@@ -17,6 +18,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 
 import SwipePictures from "../../UI/SwipePictures/SwipePictures";
+import * as actions from "../../../store/actions/index";
 
 import "./ProjectCard.scss";
 
@@ -25,6 +27,12 @@ const ProjectCard = props => {
   const [edit, setEdit] = useState(false);
   const [nameField, setNameField] = useState(props.name);
   const [descriptionField, setDescriptionField] = useState(props.description);
+
+  const saveChanges = () => {
+    props.onUpdateProjectDetails(props.id, nameField, descriptionField);
+
+    setEdit(false);
+  };
 
   const confirmDeleteModal = (
     <div className="confirm-delete-modal">
@@ -88,7 +96,7 @@ const ProjectCard = props => {
           </Button>
         </span>
         <span className="gradient-button">
-          <Button variant="contained" color="primary">
+          <Button onClick={saveChanges} variant="contained" color="primary">
             Save
           </Button>
         </span>
@@ -170,7 +178,13 @@ const ProjectCard = props => {
 ProjectCard.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  screenshots: PropTypes.array.isRequired
+  screenshots: PropTypes.array.isRequired,
+  onUpdateProjectDetails: PropTypes.func.isRequired
 };
 
-export default ProjectCard;
+const MapDispatchToProps = dispatch => ({
+  onUpdateProjectDetails: (id, name, description) =>
+    dispatch(actions.updateProjectDetails(id, name, description))
+});
+
+export default connect(null, MapDispatchToProps)(ProjectCard);
