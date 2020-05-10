@@ -16,6 +16,7 @@ import environmentControls from "./store/reducers/environmentControls";
 import projects from "./store/reducers/projects";
 import themes from "./store/reducers/themes";
 
+import modeControl from "./store/reducers/modeControl";
 import * as serviceWorker from "./serviceWorker";
 
 import "./index.css";
@@ -35,7 +36,8 @@ const composeEnhancers =
 const rootReducer = combineReducers({
   environmentControls,
   projects,
-  themes
+  themes,
+  modeControl
 });
 
 const store = createStore(rootReducer, composeEnhancers());
