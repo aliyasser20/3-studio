@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import axios from "axios";
 
 import {
   Card,
@@ -18,6 +17,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 
+import backendAxios from "../../../axiosInstances/backendAxios";
 import Loader from "../../UI/Loader/Loader";
 import SwipePictures from "../../UI/SwipePictures/SwipePictures";
 
@@ -51,7 +51,7 @@ const ProjectCard = props => {
 
   const destroyProject = () => {
     setLoader(true);
-    axios
+    backendAxios
       .delete("/api/projects", {
         data: {
           projectId: props.id,

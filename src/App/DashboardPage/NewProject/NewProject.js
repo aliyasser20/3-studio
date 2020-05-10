@@ -10,13 +10,13 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import { DropzoneArea } from "material-ui-dropzone";
 import { CloudinaryContext } from "cloudinary-react";
-import axios from "axios";
+import cloudinaryAxios from "../../../axiosInstances/cloudinaryAxios";
 import "./NewProject.scss";
 
 const NewProject = () => {
   const [open, setOpen] = useState(false);
   const [files, setFiles] = useState([]);
-  const uploadUrl = "https://api.cloudinary.com/v1_1/jaybur1/raw/upload/";
+  const uploadUrl = "/raw/upload/";
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -39,7 +39,7 @@ const NewProject = () => {
       formData.append("api_key", "463438241363482"); // Replace API key with your own Cloudinary key
       formData.append("timestamp", (Date.now() / 1000) | 0);
       console.log(formData);
-      return axios
+      return cloudinaryAxios
         .post(uploadUrl, formData, {
           headers: { "X-Requested-With": "XMLHttpRequest" }
         })
