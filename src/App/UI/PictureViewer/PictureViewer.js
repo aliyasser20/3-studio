@@ -10,29 +10,24 @@ import {
   DialogTitle
 } from "@material-ui/core";
 
+// eslint-disable-next-line
 import SwipePictures from "../SwipePictures/SwipePictures";
+
+import "./PictureViewer.scss";
 
 const PictureViewer = props => (
   <div className="picture-viewer">
     <Dialog
+      classes={{ root: "picture-viewer-dialog" }}
       fullWidth={false}
       maxWidth="lg"
       open={props.open}
       onClose={props.handleClose}
       aria-labelledby="max-width-dialog-title"
     >
-      <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
       <DialogContent>
-        {/* <DialogContentText>
-          You can set my maximum width and whether to adapt or not.
-        </DialogContentText> */}
         <SwipePictures pictures={props.pictures} />
       </DialogContent>
-      <DialogActions>
-        <Button onClick={props.handleClose} color="primary">
-          Close
-        </Button>
-      </DialogActions>
     </Dialog>
   </div>
 );
