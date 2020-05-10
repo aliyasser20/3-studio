@@ -31,12 +31,16 @@ const ProjectCard = props => {
   const saveChanges = () => {
     props.onUpdateProjectDetails(props.id, nameField, descriptionField);
 
+    props.handleSnackBarClose();
     setEdit(false);
+    props.handleSnackBarOpen("success", "Changes saved!");
   };
 
   const destroyProject = () => {
     props.onDeleteProject(props.id);
+
     setConfirmDelete(false);
+    props.handleSnackBarOpen("success", "Project deleted!");
   };
 
   const confirmDeleteModal = (
@@ -186,7 +190,9 @@ ProjectCard.propTypes = {
   screenshots: PropTypes.array.isRequired,
   onUpdateProjectDetails: PropTypes.func.isRequired,
   onDeleteProject: PropTypes.func.isRequired,
-  id: PropTypes.number
+  id: PropTypes.number,
+  handleSnackBarClose: PropTypes.func.isRequired,
+  handleSnackBarOpen: PropTypes.func.isRequired
 };
 
 const MapDispatchToProps = dispatch => ({

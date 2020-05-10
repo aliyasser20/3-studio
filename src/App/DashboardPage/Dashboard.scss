@@ -1,4 +1,6 @@
 .dashboard-page {
+  min-height: 92vh;
+
   .projects {
     display: grid;
     grid-auto-flow: column;
