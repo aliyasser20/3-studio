@@ -9,6 +9,9 @@ export const UPDATE_PROJECT_DETAILS = "UPDATE_PROJECT_DETAILS";
 export const DELETE_PROJECT = "DELETE_PROJECT";
 //
 
+// Themes
+export const SET_THEME = "SET_THEME";
+
 // Mode selector
 export const MODE_SELECT = "MODE_SELECT";
 //

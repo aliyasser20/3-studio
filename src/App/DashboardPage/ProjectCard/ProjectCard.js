@@ -21,11 +21,14 @@ import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 import Loader from "../../UI/Loader/Loader";
 import SwipePictures from "../../UI/SwipePictures/SwipePictures";
 
+import { useAuth0 } from "../../../react-auth0-spa";
 import * as actions from "../../../store/actions/index";
 
 import "./ProjectCard.scss";
 
 const ProjectCard = props => {
+  const { user } = useAuth0();
+
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [edit, setEdit] = useState(false);
   const [nameField, setNameField] = useState(props.name);
@@ -52,7 +55,8 @@ const ProjectCard = props => {
       .delete("/api/projects", {
         data: {
           projectId: props.id,
-          userId: "google-oauth2|117948270148318970184"
+          // userId: "google-soauth2|117948270148318970184"
+          userId: user.sub
         }
       })
       .then(() => {

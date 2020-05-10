@@ -14,6 +14,8 @@ import App from "./App/App";
 
 import environmentControls from "./store/reducers/environmentControls";
 import projects from "./store/reducers/projects";
+import themes from "./store/reducers/themes";
+
 import modeControl from "./store/reducers/modeControl";
 import * as serviceWorker from "./serviceWorker";
 
@@ -34,13 +36,14 @@ const composeEnhancers =
 const rootReducer = combineReducers({
   environmentControls,
   projects,
+  themes,
   modeControl
 });
 
 const store = createStore(rootReducer, composeEnhancers());
 
 // A function that routes the user to the right place after login
-const onRedirectCallback = (appState) => {
+const onRedirectCallback = appState => {
   history.push(
     appState && appState.targetUrl
       ? appState.targetUrl
