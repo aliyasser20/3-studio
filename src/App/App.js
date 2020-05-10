@@ -13,7 +13,7 @@ import "./App.scss";
 
 const App = () => {
   const { isAuthenticated, loading } = useAuth0();
-
+  console.log(isAuthenticated)
   const routes = (
     <Switch>
       <Route path="/studio" component={StudioPage} />
