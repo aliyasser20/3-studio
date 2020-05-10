@@ -35,20 +35,26 @@ const DashboardPage = props => {
 
   // const getProjects = () => {
   //   const formData = new FormData();
-  //   formData.append("file", files[0]);
-  //   formData.append("tags", "rocket");
-  //   formData.append("upload_preset", "modelUpload"); // Replace the preset name with your own
-  //   formData.append("api_key", "463438241363482"); // Replace API key with your own Cloudinary key
-  //   formData.append("timestamp", (Date.now() / 1000) | 0);
+  //   // formData.append("file", files[0]);
+  //   // formData.append("tags", "rocket");
+  //   // formData.append("upload_preset", "modelUpload"); // Replace the preset name with your own
+  //   // formData.append("api_key", "463438241363482"); // Replace API key with your own Cloudinary key
+  //   // formData.append("api_secert", "tq2iVv3TvB-O8JRKH0FRGjtkWrs"); // Replace API key with your own Cloudinary key
+  //   // formData.append("timestamp", (Date.now() / 1000) | 0);
   //   console.log(formData);
   //   return cloudinaryAxios
-  //     .post(uploadUrl, formData, {
-  //       headers: { "X-Requested-With": "XMLHttpRequest" }
+  //     .get("/resources/search", formData, {
+  //       // headers: { "X-Requested-With": "XMLHttpRequest" }
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       }
   //     })
   //     .then(res => {
-  //       console.log(res.data.secure_url);
+  //       console.log(res);
   //     });
   // };
+
+  // getProjects();
 
   const projectCards = props.allProjects.map(project => (
     <ProjectCard
