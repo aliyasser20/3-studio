@@ -52,7 +52,7 @@ const NavBar = () => {
       <div className="navbar">
         <AppBar position="fixed" color="primary">
           <Container maxWidth="xl">
-            <Toolbar>
+            <Toolbar classes={{ root: "nav-toolbar" }}>
               <div className="navbar-flex">
                 <Link to="/">
                   <Typography variant="h5">
