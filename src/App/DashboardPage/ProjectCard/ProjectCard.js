@@ -41,7 +41,6 @@ const ProjectCard = props => {
     setNameField(nameField.trim());
     setDescriptionField(descriptionField.trim());
 
-    props.handleSnackBarClose();
     setEdit(false);
     props.handleSnackBarOpen("success", "Changes saved!");
   };
