@@ -32,7 +32,14 @@ const ProjectCard = props => {
   const [loader, setLoader] = useState(false);
 
   const saveChanges = () => {
-    props.onUpdateProjectDetails(props.id, nameField, descriptionField);
+    props.onUpdateProjectDetails(
+      props.id,
+      nameField.trim(),
+      descriptionField.trim()
+    );
+
+    setNameField(nameField.trim());
+    setDescriptionField(descriptionField.trim());
 
     props.handleSnackBarClose();
     setEdit(false);
