@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 
-import { useTheme } from "@material-ui/core";
+import { useTheme, Typography, Box } from "@material-ui/core";
 
 import Stepper from "./Stepper/Stepper";
 import PictureViewer from "../PictureViewer/PictureViewer";
@@ -54,7 +54,23 @@ const SwipePictures = props => {
         {props.pictures.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <img src={step.path} alt={step.label} onClick={handleClickOpen} />
+              <Fragment>
+                <img
+                  src={step.path}
+                  alt={step.label}
+                  onClick={handleClickOpen}
+                />
+                {props.showLabel && (
+                  <Typography
+                    classes={{ root: "screenshot-label" }}
+                    variant="h6"
+                    align="center"
+                    component="h2"
+                  >
+                    <Box fontWeight={700}>{step.label}</Box>
+                  </Typography>
+                )}
+              </Fragment>
             ) : null}
           </div>
         ))}
@@ -73,7 +89,8 @@ const SwipePictures = props => {
 
 SwipePictures.propTypes = {
   pictures: PropTypes.array,
-  clickable: PropTypes.bool
+  clickable: PropTypes.bool,
+  showLabel: PropTypes.bool
 };
 
 export default SwipePictures;

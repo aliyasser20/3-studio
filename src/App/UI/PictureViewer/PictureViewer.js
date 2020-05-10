@@ -1,14 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle
-} from "@material-ui/core";
+import { Dialog, DialogContent } from "@material-ui/core";
 
 // eslint-disable-next-line
 import SwipePictures from "../SwipePictures/SwipePictures";
@@ -23,10 +16,10 @@ const PictureViewer = props => (
       maxWidth="lg"
       open={props.open}
       onClose={props.handleClose}
-      aria-labelledby="max-width-dialog-title"
+      aria-labelledby="picture"
     >
       <DialogContent>
-        <SwipePictures pictures={props.pictures} />
+        <SwipePictures showLabel pictures={props.pictures} />
       </DialogContent>
     </Dialog>
   </div>
