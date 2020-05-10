@@ -34,6 +34,11 @@ const ProjectCard = props => {
     setEdit(false);
   };
 
+  const destroyProject = () => {
+    props.onDeleteProject(props.id);
+    setConfirmDelete(false);
+  };
+
   const confirmDeleteModal = (
     <div className="confirm-delete-modal">
       <Typography gutterBottom variant="subtitle1">
@@ -43,7 +48,7 @@ const ProjectCard = props => {
       </Typography>
       <div className="confirm-actions">
         <span className="gradient-button">
-          <Button variant="contained" color="primary">
+          <Button onClick={destroyProject} variant="contained" color="primary">
             Delete
           </Button>
         </span>
@@ -179,12 +184,15 @@ ProjectCard.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   screenshots: PropTypes.array.isRequired,
-  onUpdateProjectDetails: PropTypes.func.isRequired
+  onUpdateProjectDetails: PropTypes.func.isRequired,
+  onDeleteProject: PropTypes.func.isRequired,
+  id: PropTypes.number
 };
 
 const MapDispatchToProps = dispatch => ({
   onUpdateProjectDetails: (id, name, description) =>
-    dispatch(actions.updateProjectDetails(id, name, description))
+    dispatch(actions.updateProjectDetails(id, name, description)),
+  onDeleteProject: id => dispatch(actions.deleteProject(id))
 });
 
 export default connect(null, MapDispatchToProps)(ProjectCard);

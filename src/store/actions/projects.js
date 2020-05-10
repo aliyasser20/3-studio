@@ -8,6 +8,6 @@ export const updateProjectDetails = (id, name, description) => ({
 });
 
 export const deleteProject = id => ({
-  type: actionTypes.UPDATE_PROJECT_DETAILS,
+  type: actionTypes.DELETE_PROJECT,
   id
 });
