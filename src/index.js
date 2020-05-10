@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { createStore, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import axios from "axios";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import config from "./auth_config.json";
@@ -17,6 +18,13 @@ import projects from "./store/reducers/projects";
 import * as serviceWorker from "./serviceWorker";
 
 import "./index.css";
+
+// Set default url for axios in production mode from environment vars
+if (process.env.REACT_APP_API_BASE_URL) {
+  axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
+} else {
+  axios.defaults.baseURL = "http://localhost:8001";
+}
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"

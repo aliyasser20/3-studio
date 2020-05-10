@@ -17,14 +17,18 @@ const DashboardPage = props => {
 
   const handleSnackBarClose = () => {
     setSnackBarOpen(false);
+
+    // Must come after setting to false
     setSnackBarMessage("");
     setSnackBarStatus("");
   };
 
   const handleSnackBarOpen = (status, message) => {
-    setSnackBarOpen(true);
     setSnackBarStatus(status);
     setSnackBarMessage(message);
+
+    // Must come after setting status and message
+    setSnackBarOpen(true);
   };
 
   const projectCards = props.allProjects.map(project => (

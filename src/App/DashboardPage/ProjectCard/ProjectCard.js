@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import axios from "axios";
 
 import {
   Card,
@@ -46,10 +47,26 @@ const ProjectCard = props => {
   };
 
   const destroyProject = () => {
-    props.onDeleteProject(props.id);
+    setLoader(true);
+    axios
+      .delete("/api/projects", {
+        data: {
+          projectId: props.id,
+          userId: "google-oauth2|117948270148318970184"
+        }
+      })
+      .then(() => {
+        props.handleSnackBarOpen("success", "Project deleted!");
+        props.onDeleteProject(props.id);
+      })
+      .catch(err => {
+        console.log(err);
 
-    setConfirmDelete(false);
-    props.handleSnackBarOpen("success", "Project deleted!");
+        props.handleSnackBarOpen("error", "Could not delete project!");
+
+        setLoader(false);
+        setConfirmDelete(false);
+      });
   };
 
   const confirmDeleteModal = (
