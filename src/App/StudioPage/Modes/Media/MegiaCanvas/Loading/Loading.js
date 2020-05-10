@@ -14,7 +14,7 @@ const Loading = ({ capturer }) => {
         <sphereGeometry attach="geometry" args={[2, 32, 32]} />
         <meshBasicMaterial
           attach="material"
-          color="#f56942"
+          color="hsl(170,100%,40%)"
           transparent
           wireframe
           opacity={0.6}
