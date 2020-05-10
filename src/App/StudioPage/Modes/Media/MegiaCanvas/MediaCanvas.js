@@ -6,7 +6,12 @@ import Loading from "./Loading/Loading";
 import "./MediaCanvas.scss";
 
 const MediaCanvas = (props) => {
-  // useFrame(() => {});
+  // useEffect(() => {
+  //   effect
+  //   return () => {
+  //     cleanup
+  //   }
+  // }, [input])
   return (
     <div className="media-canvas">
       <Canvas
