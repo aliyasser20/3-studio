@@ -1,4 +1,5 @@
 .project-card {
+  position: relative;
   .single-card {
     border: 1px solid #212121;
     background-color: #212121;
@@ -13,7 +14,7 @@
       padding-bottom: 1.25em;
 
       .project-description {
-        height: 75px;
+        height: 78px;
         overflow: auto;
         margin-bottom: 1.5em;
       }
@@ -68,6 +69,97 @@
 
       .open-in-studio {
         width: 100%;
+      }
+    }
+  }
+
+  .confirm-delete-modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    border-radius: 5px;
+    display: grid;
+    align-content: center;
+    color: white;
+    text-align: center;
+    background-color: rgba($color: #000000, $alpha: 0.9);
+    padding: 1em;
+
+    .confirm-actions {
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: center;
+      grid-gap: 1.75em;
+      margin-top: 1em;
+    }
+  }
+
+  .edit-modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    border-radius: 5px;
+    display: grid;
+    align-content: center;
+    color: white;
+    text-align: center;
+    background-color: #212121;
+    padding: 1.5em;
+
+    form {
+      display: grid;
+      grid-gap: 2em;
+      margin-top: 1em;
+
+      label.Mui-focused {
+        color: var(--gradient-top);
+      }
+
+      .MuiOutlinedInput-root {
+        color: white;
+        background-color: #2f2f2f;
+
+        & fieldset {
+          border-color: #cecece;
+        }
+
+        &:hover fieldset {
+          border-color: white;
+        }
+
+        &.Mui-focused fieldset {
+          border-color: var(--gradient-top);
+        }
+
+        &.Mui-focused {
+          background-color: #212121;
+        }
+      }
+
+      .MuiFormLabel-root {
+        color: white;
+      }
+    }
+
+    .confirm-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2em;
+
+      .back-button .MuiButtonBase-root {
+        color: #cecece;
+
+        svg {
+          font-size: 1.4em;
+          margin-right: 0.2em;
+        }
+
+        &:hover {
+          color: white;
+          background-color: #212121;
+        }
       }
     }
   }

@@ -14,10 +14,28 @@
   }
 }
 
+.cancel-button .MuiButton-containedPrimary {
+  $color1: #69d13a;
+  $color2: #54a22f;
+
+  background: linear-gradient($color1, $color2);
+  &:hover {
+    background: linear-gradient(
+      darken($color1, $amount: 5),
+      darken($color2, $amount: 5)
+    );
+  }
+}
+
 .center {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100vw;
   height: 100vh;
+}
+
+.container-padding {
+  padding-left: 42px !important;
+  padding-right: 42px !important;
 }
