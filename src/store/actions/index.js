@@ -1,3 +1,3 @@
 export { toggleBackground, setBackgroundColor } from "./environmentControls";
 
-export { updateProjectDetails } from "./projects";
+export { updateProjectDetails, deleteProject } from "./projects";

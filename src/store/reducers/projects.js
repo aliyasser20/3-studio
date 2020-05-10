@@ -1,6 +1,9 @@
 import lo from "lodash";
 import * as actionTypes from "../actions/actionTypes";
-import { updateProjectDetails } from "./reducersHelpers/projectsHelpers";
+import {
+  updateProjectDetails,
+  deleteProject
+} from "./reducersHelpers/projectsHelpers";
 
 const initialState = {
   allProjects: [
@@ -61,7 +64,6 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_PROJECT_DETAILS:
-      console.log(action.id, action.name, action.description);
       return {
         ...state,
         allProjects: updateProjectDetails(
@@ -70,6 +72,11 @@ const reducer = (state = initialState, action) => {
           action.name,
           action.description
         )
+      };
+    case actionTypes.DELETE_PROJECT:
+      return {
+        ...state,
+        allProjects: deleteProject(lo.cloneDeep(state.allProjects), action.id)
       };
     default:
       return state;
