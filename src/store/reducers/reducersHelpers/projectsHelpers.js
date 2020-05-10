@@ -17,7 +17,7 @@ export const updateProjectDetails = (
 export const deleteProject = (projects, projectId) => {
   const newProjects = [];
 
-  projects.forEach((project, index) => {
+  projects.forEach(project => {
     if (project.id !== projectId) {
       newProjects.push(project);
     }
