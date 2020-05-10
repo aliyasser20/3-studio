@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import {
   Dialog,
@@ -14,8 +14,8 @@ import axios from "axios";
 import "./NewProject.scss";
 
 const NewProject = () => {
-  const [open, setOpen] = React.useState(false);
-  const [files, setFiles] = React.useState([]);
+  const [open, setOpen] = useState(false);
+  const [files, setFiles] = useState([]);
   const uploadUrl = "https://api.cloudinary.com/v1_1/jaybur1/raw/upload/";
   const handleClickOpen = () => {
     setOpen(true);
