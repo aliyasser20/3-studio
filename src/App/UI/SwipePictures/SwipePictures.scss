@@ -8,9 +8,14 @@
     display: none;
     top: calc(50% - 15px);
 
+    svg {
+      padding: 2px;
+    }
+
     &:hover {
       background: linear-gradient(var(--gradient-top), var(--gradient-bottom));
       color: white;
+      box-shadow: 0 0 2px rgba($color: #000000, $alpha: 0.3);
     }
   }
 
