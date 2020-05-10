@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import { createStore, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import axios from "axios";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import config from "./auth_config.json";
