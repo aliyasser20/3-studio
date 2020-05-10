@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -17,7 +17,9 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 
+import Loader from "../../UI/Loader/Loader";
 import SwipePictures from "../../UI/SwipePictures/SwipePictures";
+
 import * as actions from "../../../store/actions/index";
 
 import "./ProjectCard.scss";
@@ -27,6 +29,7 @@ const ProjectCard = props => {
   const [edit, setEdit] = useState(false);
   const [nameField, setNameField] = useState(props.name);
   const [descriptionField, setDescriptionField] = useState(props.description);
+  const [loader, setLoader] = useState(false);
 
   const saveChanges = () => {
     props.onUpdateProjectDetails(props.id, nameField, descriptionField);
@@ -45,71 +48,87 @@ const ProjectCard = props => {
 
   const confirmDeleteModal = (
     <div className="confirm-delete-modal">
-      <Typography gutterBottom variant="subtitle1">
-        <Box fontWeight={700}>
-          Are you sure you want to permanently delete this project?
-        </Box>
-      </Typography>
-      <div className="confirm-actions">
-        <span className="gradient-button">
-          <Button onClick={destroyProject} variant="contained" color="primary">
-            Delete
-          </Button>
-        </span>
-        <span className="cancel-button">
-          <Button
-            onClick={() => setConfirmDelete(false)}
-            variant="contained"
-            color="primary"
-          >
-            Cancel
-          </Button>
-        </span>
-      </div>
+      {loader ? (
+        <Loader />
+      ) : (
+        <Fragment>
+          <Typography gutterBottom variant="subtitle1">
+            <Box fontWeight={700}>
+              Are you sure you want to permanently delete this project?
+            </Box>
+          </Typography>
+          <div className="confirm-actions">
+            <span className="gradient-button">
+              <Button
+                onClick={destroyProject}
+                variant="contained"
+                color="primary"
+              >
+                Delete
+              </Button>
+            </span>
+            <span className="cancel-button">
+              <Button
+                onClick={() => setConfirmDelete(false)}
+                variant="contained"
+                color="primary"
+              >
+                Cancel
+              </Button>
+            </span>
+          </div>
+        </Fragment>
+      )}
     </div>
   );
 
   const editModal = (
     <div className="edit-modal">
-      <Typography gutterBottom variant="h6" component="h2">
-        <Box fontWeight={700}>Project Details</Box>
-      </Typography>
-      <form>
-        <TextField
-          required
-          id="outlined-textarea"
-          label="Name"
-          rowsMax={2}
-          placeholder="Placeholder"
-          multiline
-          variant="outlined"
-          value={nameField}
-          onChange={e => setNameField(e.target.value.slice(0, 40))}
-        />
-        <TextField
-          required
-          id="outlined-multiline-flexible"
-          label="Description"
-          multiline
-          rowsMax={4}
-          value={descriptionField}
-          onChange={e => setDescriptionField(e.target.value)}
-          variant="outlined"
-        />
-      </form>
-      <div className="confirm-actions">
-        <span className="back-button">
-          <Button onClick={() => setEdit(false)} color="primary">
-            <ArrowBackRoundedIcon />
-            Back
-          </Button>
-        </span>
-        <span className="gradient-button">
-          <Button onClick={saveChanges} variant="contained" color="primary">
-            Save
-          </Button>
-        </span>
-      </div>
+      {loader ? (
+        <Loader />
+      ) : (
+        <Fragment>
+          <Typography gutterBottom variant="h6" component="h2">
+            <Box fontWeight={700}>Project Details</Box>
+          </Typography>
+          <form>
+            <TextField
+              required
+              id="outlined-textarea"
+              label="Name"
+              rowsMax={2}
+              placeholder="Placeholder"
+              multiline
+              variant="outlined"
+              value={nameField}
+              onChange={e => setNameField(e.target.value.slice(0, 40))}
+            />
+            <TextField
+              required
+              id="outlined-multiline-flexible"
+              label="Description"
+              multiline
+              rowsMax={4}
+              value={descriptionField}
+              onChange={e => setDescriptionField(e.target.value)}
+              variant="outlined"
+            />
+          </form>
+          <div className="confirm-actions">
+            <span className="back-button">
+              <Button onClick={() => setEdit(false)} color="primary">
+                <ArrowBackRoundedIcon />
+                Back
+              </Button>
+            </span>
+            <span className="gradient-button">
+              <Button onClick={saveChanges} variant="contained" color="primary">
+                Save
+              </Button>
+            </span>
+          </div>
+        </Fragment>
+      )}
     </div>
   );
 
