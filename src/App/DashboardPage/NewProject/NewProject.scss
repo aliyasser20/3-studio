@@ -1,0 +1,50 @@
+.new-project-modal {
+  .MuiPaper-root {
+    max-width: 50vw;
+    width: 60vw;
+    color: #fff;
+    background-color: #212121;
+  }
+  label,
+  input {
+    color: #fff;
+  }
+
+  .MuiInput-underline::before {
+    border-bottom: 2px solid #fff;
+  }
+
+  .MuiInput-underline::after {
+    border-bottom: 2px solid #f45c43;
+  }
+  .MuiFormLabel-root.Mui-focused {
+    color: #f45c43;
+  }
+
+  [class^='DropzoneArea']{
+    background-color: #171717;
+  }
+
+  .new-project-btn {
+    color: #fff;
+    transition: 0.3s;
+    &:hover {
+      color: #eb3349;
+      transform: scale(1.1);
+    }
+  }
+}
+
+.new-project {
+  .MuiSvgIcon-fontSizeLarge{
+    position:absolute;
+    right:0;
+    bottom: 0;
+    font-size: 7rem;
+    &:hover {
+      cursor: pointer;
+      fill: #eb3349
+    }
+  }
+
+}
