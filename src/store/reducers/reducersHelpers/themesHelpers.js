@@ -31,6 +31,94 @@ export const availableThemes = [
       bottomSecond: "98%",
       bottomThird: "35%"
     }
+  },
+  {
+    name: "harmonic energy",
+    hslColor: {
+      topFirst: "48",
+      topSecond: "89%",
+      topThird: "60%",
+      bottomFirst: "168",
+      bottomSecond: "76%",
+      bottomThird: "36%"
+    }
+  },
+  {
+    name: "witching hour",
+    hslColor: {
+      topFirst: "350",
+      topSecond: "81%",
+      topThird: "42%",
+      bottomFirst: "275",
+      bottomSecond: "66%",
+      bottomThird: "13%"
+    }
+  },
+  {
+    name: "lush",
+    hslColor: {
+      topFirst: "87",
+      topSecond: "67%",
+      topThird: "63%",
+      bottomFirst: "101",
+      bottomSecond: "57%",
+      bottomThird: "43%"
+    }
+  },
+  {
+    name: "dimigo",
+    hslColor: {
+      topFirst: "0",
+      topSecond: "96%",
+      topThird: "70%",
+      bottomFirst: "324",
+      bottomSecond: "100%",
+      bottomThird: "46%"
+    }
+  },
+  {
+    name: "cherry blossoms",
+    hslColor: {
+      topFirst: "327",
+      topSecond: "83%",
+      topThird: "91%",
+      bottomFirst: "328",
+      bottomSecond: "55%",
+      bottomThird: "47%"
+    }
+  },
+  {
+    name: "sublime vivid",
+    hslColor: {
+      topFirst: "348",
+      topSecond: "97%",
+      topThird: "63%",
+      bottomFirst: "230",
+      bottomSecond: "96%",
+      bottomThird: "62%"
+    }
+  },
+  {
+    name: "velvet sun",
+    hslColor: {
+      topFirst: "78",
+      topSecond: "56%",
+      topThird: "85%",
+      bottomFirst: "359",
+      bottomSecond: "84%",
+      bottomThird: "63%"
+    }
+  },
+  {
+    name: "ibiza sunset",
+    hslColor: {
+      topFirst: "25",
+      topSecond: "100%",
+      topThird: "50%",
+      bottomFirst: "331",
+      bottomSecond: "93%",
+      bottomThird: "48%"
+    }
   }
 ];
 
