@@ -10,6 +10,8 @@ import {
   DialogTitle
 } from "@material-ui/core";
 
+import SwipePictures from "../SwipePictures/SwipePictures";
+
 const PictureViewer = props => (
   <div className="picture-viewer">
     <Dialog
@@ -21,9 +23,10 @@ const PictureViewer = props => (
     >
       <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
       <DialogContent>
-        <DialogContentText>
+        {/* <DialogContentText>
           You can set my maximum width and whether to adapt or not.
-        </DialogContentText>
+        </DialogContentText> */}
+        <SwipePictures pictures={props.pictures} />
       </DialogContent>
       <DialogActions>
         <Button onClick={props.handleClose} color="primary">
@@ -36,7 +39,8 @@ const PictureViewer = props => (
 
 PictureViewer.propTypes = {
   open: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired
+  handleClose: PropTypes.func.isRequired,
+  pictures: PropTypes.array.isRequired
 };
 
 export default PictureViewer;

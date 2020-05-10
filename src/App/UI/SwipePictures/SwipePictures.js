@@ -36,7 +36,9 @@ const SwipePictures = props => {
   };
 
   const handleClickOpen = () => {
-    setPictureViewerOpen(true);
+    if (props.clickable) {
+      setPictureViewerOpen(true);
+    }
   };
 
   const handleClose = () => {
@@ -60,13 +62,18 @@ const SwipePictures = props => {
       {props.pictures.length > 1 && (
         <Stepper next={handleNext} previous={handleBack} />
       )}
-      <PictureViewer open={pictureViewerOpen} handleClose={handleClose} />
+      <PictureViewer
+        open={pictureViewerOpen}
+        pictures={props.pictures}
+        handleClose={handleClose}
+      />
     </div>
   );
 };
 
 SwipePictures.propTypes = {
-  pictures: PropTypes.array
+  pictures: PropTypes.array,
+  clickable: PropTypes.bool
 };
 
 export default SwipePictures;

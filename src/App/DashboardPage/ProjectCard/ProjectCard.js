@@ -162,7 +162,7 @@ const ProjectCard = props => {
   return (
     <div className="project-card">
       <Card classes={{ root: "single-card" }}>
-        <SwipePictures pictures={props.screenshots.slice(0, 3)} />
+        <SwipePictures clickable pictures={props.screenshots.slice(0, 3)} />
         <CardContent classes={{ root: "content-area" }}>
           <Typography gutterBottom variant="h6" component="h2">
             <Box fontWeight={700}>{props.name}</Box>
