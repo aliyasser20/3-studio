@@ -5,48 +5,58 @@ import {
   DialogTitle,
   DialogContent,
   TextField,
-  DialogActions
+  DialogActions,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { DropzoneArea } from "material-ui-dropzone";
-import { CloudinaryContext } from "cloudinary-react";
-import axios from "axios";
+// import { CloudinaryContext } from "cloudinary-react";
+// import axios from "axios";
 import "./NewProject.scss";
+import { saveModelToCloude, createNewProject } from "./NewProjectHelper";
+import { useAuth0 } from "../../../react-auth0-spa";
+import Loader from "../../UI/Loader/Loader";
 
 const NewProject = () => {
+  const { user } = useAuth0();
   const [open, setOpen] = useState(false);
   const [files, setFiles] = useState([]);
-  const uploadUrl = "https://api.cloudinary.com/v1_1/jaybur1/raw/upload/";
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [modelLink, setModelLink] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
-    console.log("state", files);
   };
 
-  const handleChange = file => {
-    file.length > 0 && setFiles(file);
+  const handleDrop = async (file) => {
+    file.length > 0 && (await setFiles(file));
   };
 
   const handleCreate = () => {
     if (files.length > 0) {
-      const formData = new FormData();
-      formData.append("file", files[0]);
-      formData.append("tags", "rocket");
-      formData.append("upload_preset", "modelUpload"); // Replace the preset name with your own
-      formData.append("api_key", "463438241363482"); // Replace API key with your own Cloudinary key
-      formData.append("timestamp", (Date.now() / 1000) | 0);
-      console.log(formData);
-      return axios
-        .post(uploadUrl, formData, {
-          headers: { "X-Requested-With": "XMLHttpRequest" }
-        })
-        .then(res => {
-          console.log(res.data.secure_url);
-        });
+      setLoading(true);
+      saveModelToCloude(files).then((modelLink) => {
+        setModelLink(modelLink);
+        setLoading(false);
+        setOpen(false);
+        // console.log(name, description, modelLink);
+        createNewProject({userId:user.sub,name,description,modelLink})
+      });
     }
+  };
+
+
+  const handleName = (e) => {
+    e.preventDefault();
+    setName(e.target.value);
+  };
+  const handleDescription = (e) => {
+    e.preventDefault();
+    setDescription(e.target.value);
   };
 
   return (
@@ -67,22 +77,29 @@ const NewProject = () => {
         onClose={handleClose}
         aria-labelledby="New Project"
       >
+        {loading && <Loader />}
         <DialogTitle id="form-dialog-title">New Project</DialogTitle>
         <DialogContent>
           <TextField
+            value={name}
+            onChange={(e) => handleName(e)}
             autoFocus
             margin="dense"
             id="project-name"
             label="Name"
             type="text"
             fullWidth
+            required
           />
           <TextField
+            value={description}
+            onChange={(e) => handleDescription(e)}
             margin="dense"
             id="project-description"
             label="Description"
             type="text"
             fullWidth
+            required
           />
           <h3>Upload Model</h3>
           <DropzoneArea
@@ -90,7 +107,7 @@ const NewProject = () => {
             acceptedFiles={[".glb"]}
             maxFileSize={10000000}
             filesLimit={1}
-            onChange={e => handleChange(e)}
+            onDrop={(e) => handleDrop(e)}
           />
         </DialogContent>
         <DialogActions>

@@ -4,10 +4,15 @@ export const updateProjectDetails = (id, name, description) => ({
   type: actionTypes.UPDATE_PROJECT_DETAILS,
   id,
   name,
-  description
+  description,
 });
 
-export const deleteProject = id => ({
+export const deleteProject = (id) => ({
   type: actionTypes.DELETE_PROJECT,
-  id
+  id,
+});
+
+export const newProject = data => ({
+  type: actionTypes.NEW_PROJECT,
+  data,
 });
