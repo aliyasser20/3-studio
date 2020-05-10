@@ -55,8 +55,8 @@ const ProjectCard = props => {
       .delete("/api/projects", {
         data: {
           projectId: props.id,
-          // userId: "google-soauth2|117948270148318970184"
-          userId: user.sub
+          userId: "google-oauth2|117948270148318970184"
+          // userId: user.sub
         }
       })
       .then(() => {

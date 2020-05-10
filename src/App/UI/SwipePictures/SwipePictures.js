@@ -6,6 +6,7 @@ import { autoPlay } from "react-swipeable-views-utils";
 import { useTheme } from "@material-ui/core";
 
 import Stepper from "./Stepper/Stepper";
+import PictureViewer from "../PictureViewer/PictureViewer";
 
 import "./SwipePictures.scss";
 
@@ -14,6 +15,7 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const SwipePictures = props => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
+  const [pictureViewerOpen, setPictureViewerOpen] = useState(false);
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => {
@@ -33,6 +35,14 @@ const SwipePictures = props => {
     });
   };
 
+  const handleClickOpen = () => {
+    setPictureViewerOpen(true);
+  };
+
+  const handleClose = () => {
+    setPictureViewerOpen(false);
+  };
+
   return (
     <div className="swipe-pictures">
       <AutoPlaySwipeableViews
@@ -42,7 +52,7 @@ const SwipePictures = props => {
         {props.pictures.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <img src={step.path} alt={step.label} />
+              <img src={step.path} alt={step.label} onClick={handleClickOpen} />
             ) : null}
           </div>
         ))}
@@ -50,6 +60,7 @@ const SwipePictures = props => {
       {props.pictures.length > 1 && (
         <Stepper next={handleNext} previous={handleBack} />
       )}
+      <PictureViewer open={pictureViewerOpen} handleClose={handleClose} />
     </div>
   );
 };
