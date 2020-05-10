@@ -5,10 +5,10 @@ import {
   DialogTitle,
   DialogContent,
   TextField,
-  DialogActions,
+  DialogActions
 } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import { DropzoneArea } from "material-ui-dropzone";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { CloudinaryContext } from "cloudinary-react";
 import axios from "axios";
 import "./NewProject.scss";
@@ -26,7 +26,7 @@ const NewProject = () => {
     console.log("state", files);
   };
 
-  const handleChange = (file) => {
+  const handleChange = file => {
     file.length > 0 && setFiles(file);
   };
 
@@ -41,9 +41,9 @@ const NewProject = () => {
       console.log(formData);
       return axios
         .post(uploadUrl, formData, {
-          headers: { "X-Requested-With": "XMLHttpRequest" },
+          headers: { "X-Requested-With": "XMLHttpRequest" }
         })
-        .then((res) => {
+        .then(res => {
           console.log(res.data.secure_url);
         });
     }
@@ -51,12 +51,16 @@ const NewProject = () => {
 
   return (
     <div className="new-project">
-      <AddCircleIcon
-        classes={{ root: "add-btn" }}
-        variant="outlined"
-        fontSize="large"
-        onClick={handleClickOpen}
-      />
+      <span className="gradient-button">
+        <Button
+          onClick={handleClickOpen}
+          variant="contained"
+          color="primary"
+          startIcon={<AddIcon />}
+        >
+          New Project
+        </Button>
+      </span>
       <Dialog
         classes={{ root: "new-project-modal" }}
         open={open}
@@ -86,7 +90,7 @@ const NewProject = () => {
             acceptedFiles={[".glb"]}
             maxFileSize={10000000}
             filesLimit={1}
-            onChange={(e) => handleChange(e)}
+            onChange={e => handleChange(e)}
           />
         </DialogContent>
         <DialogActions>

@@ -1,6 +1,14 @@
 .dashboard-page {
   min-height: 92vh;
 
+  .project-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #212121;
+    margin-bottom: 2em;
+  }
+
   .projects {
     display: grid;
     grid-auto-flow: column;

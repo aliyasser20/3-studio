@@ -51,10 +51,12 @@ const DashboardPage = props => {
   return (
     <div className="dashboard-page">
       <Container maxWidth="xl" classes={{ root: "container-padding" }}>
-        <h1>Dashboard Page</h1>
+        <div className="project-area">
+          <h1>Projects</h1>
+          <NewProject />
+        </div>
         <div className="projects">{projectCards}</div>
         {snackBarOpen && snackBar}
-        <NewProject />
       </Container>
     </div>
   );

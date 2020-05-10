@@ -15,13 +15,13 @@
   }
 
   .MuiInput-underline::after {
-    border-bottom: 2px solid #f45c43;
+    border-bottom: 2px solid var(--gradient-top);
   }
   .MuiFormLabel-root.Mui-focused {
-    color: #f45c43;
+    color: var(--gradient-top);
   }
 
-  [class^='DropzoneArea']{
+  [class^="DropzoneArea"] {
     background-color: #171717;
   }
 
@@ -29,22 +29,8 @@
     color: #fff;
     transition: 0.3s;
     &:hover {
-      color: #eb3349;
+      color: var(--gradient-top);
       transform: scale(1.1);
     }
   }
-}
-
-.new-project {
-  .MuiSvgIcon-fontSizeLarge{
-    position:absolute;
-    right:0;
-    bottom: 0;
-    font-size: 7rem;
-    &:hover {
-      cursor: pointer;
-      fill: #eb3349
-    }
-  }
-
 }
