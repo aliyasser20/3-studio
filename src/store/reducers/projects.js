@@ -82,7 +82,8 @@ const reducer = (state = initialState, action) => {
       };
     case actionTypes.NEW_PROJECT:
       return {
-        ...state
+        ...state,
+        allProjects: [...state.allProjects, action.data]
       };
     // case actionTypes.NEW_PROJECT:
     //   return {
