@@ -184,7 +184,9 @@ const ProjectCard = props => {
         <SwipePictures clickable pictures={props.screenshots.slice(0, 3)} />
         <CardContent classes={{ root: "content-area" }}>
           <Typography gutterBottom variant="h6" component="h2">
-            <Box fontWeight={700}>{props.name}</Box>
+            <Box classes={{ root: "project-name" }} fontWeight={700}>
+              {props.name}
+            </Box>
           </Typography>
           <Typography
             variant="body2"
