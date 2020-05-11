@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useFrame } from "react-three-fiber";
 
-const Loading = ({ capturer }) => {
+const Loading = ({ capturer,position }) => {
   const loading = useRef();
   useFrame(({ gl, scene, camera }) => {
     gl.render(scene, camera);
@@ -10,14 +10,18 @@ const Loading = ({ capturer }) => {
   });
   return (
     <group ref={loading}>
-      <mesh visible position={[0, 0, 0]} rotation={[0, 0, 0]}>
-        <sphereGeometry attach="geometry" args={[2, 32, 32]} />
+      <mesh
+        visible
+        userData={{ test: "loading" }}
+        position={position}
+        castShadow
+      >
+        <sphereGeometry attach="geometry" args={[1, 16, 16]} />
         <meshBasicMaterial
           attach="material"
           color="hsl(170,100%,40%)"
           transparent
           wireframe
-          opacity={0.6}
           roughness={1}
           metalness={0}
         />

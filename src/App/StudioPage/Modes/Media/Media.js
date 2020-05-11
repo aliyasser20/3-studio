@@ -7,7 +7,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import MediaCanvas from "./MegiaCanvas/MediaCanvas";
-
+import Testing from "./Testing";
 const Media = (props) => {
   const [open, setOpen] = React.useState(false);
 
@@ -22,7 +22,7 @@ const Media = (props) => {
   const capturer = new CCapture({
     format: "gif",
     workersPath: "workers/",
-    framerate: 30,
+    framerate: 20,
     verbose: true,
   });
 
@@ -66,15 +66,16 @@ const Media = (props) => {
         a.style = "display: none";
         const url = URL.createObjectURL(blob);
         window.open(url);
-        a.herf = url;
-        a.download = "newGif";
-        a.click();
+        // a.herf = url;
+        // a.download = "newGif";
+        // a.click();
       });
     }, 5000);
   };
 
   return (
     <>
+    {/* <Testing /> */}
       <MediaCanvas capturer={capturer} />
       <Button onClick={(e) => handleScreenshot()}>screenshot</Button>
       <Button onClick={(e) => handleGif()}>gif</Button>
