@@ -141,7 +141,7 @@ const NewProject = (props) => {
         onClose={handleClose}
         aria-labelledby="New Project"
       >
-        {loading && <Loader />}
+        {loading && <Loader className="new-project-loader" />}
         <DialogTitle id="form-dialog-title">New Project</DialogTitle>
         <DialogContent>
           <TextField
