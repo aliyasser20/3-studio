@@ -13,6 +13,7 @@ import {
 import { useAuth0 } from "../../react-auth0-spa";
 import { availableThemes } from "../../store/reducers/reducersHelpers/themesHelpers";
 import * as actions from "../../store/actions/index";
+import backendAxios from "../../axiosInstances/backendAxios";
 
 const ProfilePage = props => {
   const { user } = useAuth0();
@@ -22,6 +23,19 @@ const ProfilePage = props => {
       {theme.name}
     </MenuItem>
   ));
+
+  const changeTheme = theme => {
+    backendAxios
+      .put("/api/themes", {
+        theme
+      })
+      .then(() => {
+        props.onSetTheme(theme);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="profile-page">
@@ -39,7 +53,7 @@ const ProfilePage = props => {
             id="theme"
             value={props.currentTheme}
             onChange={e => {
-              props.onSetTheme(e.target.value);
+              changeTheme(e.target.value);
             }}
             label="Theme"
           >
