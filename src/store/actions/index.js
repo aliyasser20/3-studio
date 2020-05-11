@@ -7,5 +7,6 @@ export {
   getProjects
 } from "./projects";
 
-export { setTheme } from "./themes";
+export { setTheme, getTheme } from "./themes";
+
 export { modeSelect } from "./modeControl";
