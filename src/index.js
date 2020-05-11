@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore, compose, combineReducers } from "redux";
+import { createStore, compose, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import axios from "axios";
+import thunk from "redux-thunk";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import config from "./auth_config.json";
@@ -14,17 +14,12 @@ import App from "./App/App";
 
 import environmentControls from "./store/reducers/environmentControls";
 import projects from "./store/reducers/projects";
+import themes from "./store/reducers/themes";
+
 import modeControl from "./store/reducers/modeControl";
 import * as serviceWorker from "./serviceWorker";
 
 import "./index.css";
-
-// Set default url for axios in production mode from environment vars
-if (process.env.REACT_APP_API_BASE_URL) {
-  axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
-} else {
-  axios.defaults.baseURL = "http://localhost:8001";
-}
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
@@ -34,13 +29,17 @@ const composeEnhancers =
 const rootReducer = combineReducers({
   environmentControls,
   projects,
+  themes,
   modeControl
 });
 
-const store = createStore(rootReducer, composeEnhancers());
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
 
 // A function that routes the user to the right place after login
-const onRedirectCallback = (appState) => {
+const onRedirectCallback = appState => {
   history.push(
     appState && appState.targetUrl
       ? appState.targetUrl

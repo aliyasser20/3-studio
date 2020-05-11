@@ -1,5 +1,12 @@
 export { toggleBackground, setBackgroundColor } from "./environmentControls";
 
-export { updateProjectDetails, deleteProject } from "./projects";
+export {
+  updateProjectDetails,
+  deleteProject,
+  newProject,
+  getProjects
+} from "./projects";
+
+export { setTheme, getTheme } from "./themes";
 
 export { modeSelect } from "./modeControl";

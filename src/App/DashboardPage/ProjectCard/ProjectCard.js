@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import axios from "axios";
+import { format } from "date-fns";
 
 import {
   Card,
@@ -18,14 +18,18 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 
+import backendAxios from "../../../axiosInstances/backendAxios";
 import Loader from "../../UI/Loader/Loader";
 import SwipePictures from "../../UI/SwipePictures/SwipePictures";
 
+import { useAuth0 } from "../../../react-auth0-spa";
 import * as actions from "../../../store/actions/index";
 
 import "./ProjectCard.scss";
 
 const ProjectCard = props => {
+  const { user } = useAuth0();
+
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [edit, setEdit] = useState(false);
   const [nameField, setNameField] = useState(props.name);
@@ -33,26 +37,46 @@ const ProjectCard = props => {
   const [loader, setLoader] = useState(false);
 
   const saveChanges = () => {
-    props.onUpdateProjectDetails(
-      props.id,
-      nameField.trim(),
-      descriptionField.trim()
-    );
+    backendAxios
+      .put("/api/projects", {
+        project: {
+          id: props.id,
+          name: nameField.trim(),
+          description: descriptionField.trim()
+        },
+        userId: user.sub
+      })
+      .then(() => {
+        props.onUpdateProjectDetails(
+          props.id,
+          nameField.trim(),
+          descriptionField.trim()
+        );
 
-    setNameField(nameField.trim());
-    setDescriptionField(descriptionField.trim());
+        setNameField(nameField.trim());
+        setDescriptionField(descriptionField.trim());
 
-    setEdit(false);
-    props.handleSnackBarOpen("success", "Changes saved!");
+        setLoader(false);
+        setEdit(false);
+        props.handleSnackBarOpen("success", "Changes saved!");
+      })
+      .catch(err => {
+        console.log(err);
+
+        props.handleSnackBarOpen("error", "Could not update project!");
+
+        setLoader(false);
+        setEdit(false);
+      });
   };
 
   const destroyProject = () => {
     setLoader(true);
-    axios
+    backendAxios
       .delete("/api/projects", {
         data: {
           projectId: props.id,
-          userId: "google-oauth2|117948270148318970184"
+          userId: user.sub
         }
       })
       .then(() => {
@@ -155,13 +179,31 @@ const ProjectCard = props => {
     </div>
   );
 
+  const formattedCreatedAt = format(new Date(props.createdAt), "d MMMM yyyy");
+  const formattedUpdatedAt = format(new Date(props.updatedAt), "d MMMM yyyy");
+
   return (
     <div className="project-card">
       <Card classes={{ root: "single-card" }}>
-        <SwipePictures pictures={props.screenshots.slice(0, 3)} />
+        <SwipePictures
+          clickable
+          pictures={
+            props.screenshots.slice(0, 3).length > 0
+              ? props.screenshots.slice(0, 3)
+              : [
+                  {
+                    label: "default image",
+                    path:
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTpu7CL3YZ2G5jL3nyW2CdsedQ6QumMLlzUqk8jdCghfPCqRSQr&usqp=CAU"
+                  }
+                ]
+          }
+        />
         <CardContent classes={{ root: "content-area" }}>
           <Typography gutterBottom variant="h6" component="h2">
-            <Box fontWeight={700}>{props.name}</Box>
+            <Box classes={{ root: "project-name" }} fontWeight={700}>
+              {props.name}
+            </Box>
           </Typography>
           <Typography
             variant="body2"
@@ -178,11 +220,11 @@ const ProjectCard = props => {
             <span className="dates">
               <Box fontWeight={500}>
                 <Typography variant="caption" component="p">
-                  Created: Jan 2, 2019
+                  Created: {formattedCreatedAt}
                 </Typography>
               </Box>
               <Typography variant="caption" component="p">
-                Updated: Mar 4, 2020
+                Updated: {formattedUpdatedAt}
               </Typography>
             </span>
             <span className="action-buttons">
@@ -233,8 +275,9 @@ ProjectCard.propTypes = {
   onUpdateProjectDetails: PropTypes.func.isRequired,
   onDeleteProject: PropTypes.func.isRequired,
   id: PropTypes.number,
-  handleSnackBarClose: PropTypes.func.isRequired,
-  handleSnackBarOpen: PropTypes.func.isRequired
+  handleSnackBarOpen: PropTypes.func.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  updatedAt: PropTypes.string.isRequired
 };
 
 const MapDispatchToProps = dispatch => ({

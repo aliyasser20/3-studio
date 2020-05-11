@@ -7,59 +7,59 @@ import {
 
 const initialState = {
   allProjects: [
-    {
-      id: 1,
-      name: "Shaver",
-      description: "A model of the Phillips One shaver.",
-      createdAt: new Date(2019, 6, 15, 12, 35, 40, 10),
-      updatedAt: new Date(2020, 5, 7, 12, 35, 40, 10),
-      model_path: "something",
-      screenshots: [
-        {
-          label: "screenshot-1-1",
-          path: "/assets/screenshot-1-1.jpg"
-        },
-        {
-          label: "screenshot-1-2",
-          path: "/assets/screenshot-1-2.jpg"
-        },
-        {
-          label: "screenshot-2-1",
-          path: "/assets/screenshot-2-1.jpg"
-        },
-        {
-          label: "screenshot-1-3",
-          path: "/assets/screenshot-1-3.jpg"
-        }
-      ]
-    },
-    {
-      id: 2,
-      name: "Another Shaver",
-      description:
-        "A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver.",
-      createdAt: new Date(2019, 6, 15, 12, 35, 40, 10),
-      updatedAt: new Date(2020, 5, 7, 12, 35, 40, 10),
-      model_path: "something",
-      screenshots: [
-        {
-          label: "screenshot-1-1",
-          path: "/assets/screenshot-1-1.jpg"
-        }
-        // {
-        //   label: "screenshot-1-2",
-        //   path: "/assets/screenshot-1-2.jpg"
-        // },
-        // {
-        //   label: "screenshot-2-1",
-        //   path: "/assets/screenshot-2-1.jpg"
-        // },
-        // {
-        //   label: "screenshot-1-3",
-        //   path: "/assets/screenshot-1-3.jpg"
-        // }
-      ]
-    }
+    // {
+    //   id: 1,
+    //   name: "Shaver",
+    //   description: "A model of the Phillips One shaver.",
+    //   createdAt: new Date(2019, 6, 15, 12, 35, 40, 10),
+    //   updatedAt: new Date(2020, 5, 7, 12, 35, 40, 10),
+    //   modelLink: "something",
+    //   screenshots: [
+    //     {
+    //       label: "screenshot-1-1",
+    //       path: "/assets/screenshot-1-1.jpg"
+    //     },
+    //     {
+    //       label: "screenshot-1-2",
+    //       path: "/assets/screenshot-1-2.jpg"
+    //     },
+    //     {
+    //       label: "screenshot-2-1",
+    //       path: "/assets/screenshot-2-1.jpg"
+    //     },
+    //     {
+    //       label: "screenshot-1-3",
+    //       path: "/assets/screenshot-1-3.jpg"
+    //     }
+    //   ]
+    // },
+    // {
+    //   id: 2,
+    //   name: "Another Shaver",
+    //   description:
+    //     "A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver.",
+    //   createdAt: new Date(2019, 6, 15, 12, 35, 40, 10),
+    //   updatedAt: new Date(2020, 5, 7, 12, 35, 40, 10),
+    //   modelLink: "something",
+    //   screenshots: [
+    //     {
+    //       label: "screenshot-1-1",
+    //       path: "/assets/screenshot-1-1.jpg"
+    //     }
+    //     // {
+    //     //   label: "screenshot-1-2",
+    //     //   path: "/assets/screenshot-1-2.jpg"
+    //     // },
+    //     // {
+    //     //   label: "screenshot-2-1",
+    //     //   path: "/assets/screenshot-2-1.jpg"
+    //     // },
+    //     // {
+    //     //   label: "screenshot-1-3",
+    //     //   path: "/assets/screenshot-1-3.jpg"
+    //     // }
+    //   ]
+    // }
   ]
 };
 
@@ -79,6 +79,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allProjects: deleteProject(lo.cloneDeep(state.allProjects), action.id)
+      };
+    case actionTypes.NEW_PROJECT:
+      return {
+        ...state,
+        allProjects: [action.data, ...state.allProjects]
+      };
+    case actionTypes.POPULATE_PROJECTS:
+      return {
+        ...state,
+        allProjects: action.projects
       };
     default:
       return state;

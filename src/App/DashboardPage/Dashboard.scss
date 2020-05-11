@@ -17,8 +17,7 @@
 
   .projects {
     display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 0.25fr;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 2em;
   }
 }
