@@ -42,6 +42,8 @@ const createModel = (
       // o.material = materialLibrary().woodOne;
       // o.material = materialLibrary().woodFlooringOne;
       // o.material = materialLibrary().woodFlooringTwo;
+      // ? Stones
+      // o.material = materialLibrary().bricks;
     }
   });
   // ?

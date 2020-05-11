@@ -1,5 +1,9 @@
 .project-card {
   position: relative;
+  // min-width: 100%;
+  min-width: 400px;
+  max-width: 430px;
+
   .single-card {
     border: 1px solid #212121;
     background-color: #212121;
@@ -7,7 +11,7 @@
 
     img {
       border-radius: 2px 2px 0 0;
-      height: 190px;
+      height: 230px;
     }
 
     .content-area {
@@ -19,7 +23,7 @@
       }
 
       .project-description {
-        height: 78px;
+        height: 48px;
         overflow: auto;
         margin-bottom: 1.5em;
       }

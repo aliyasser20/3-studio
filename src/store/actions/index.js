@@ -10,3 +10,5 @@ export {
 export { setTheme, getTheme } from "./themes";
 
 export { modeSelect } from "./modeControl";
+
+export { setModel } from "./currentModel";

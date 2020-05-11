@@ -18,7 +18,7 @@ import * as actions from "../../../../../store/actions/index";
 const Model = props => {
   // ! State ------------------------------------------------- //
   // ? Model, bounding box, zoom, center states //
-  const [model, setModel] = useState(null);
+  // const [model, setModel] = useState(null);
   const [box, setBox] = useState();
   const [fov, setFov] = useState(45);
   const [far, setFar] = useState(0);
@@ -65,9 +65,16 @@ const Model = props => {
   // ? Load model with materials
   useEffect(() => {
     new GLTFLoader().load(props.url, gltf =>
-      createModel(gltf, setBox, setFar, setModel, setSizeBounding, setNear)
+      createModel(
+        gltf,
+        setBox,
+        setFar,
+        props.onSetModel,
+        setSizeBounding,
+        setNear
+      )
     );
-  }, [props.url]);
+  }, [props.onSetModel, props.url]);
 
   // ? Fallback case
   const fallbackElement = (
@@ -90,8 +97,12 @@ const Model = props => {
     setFov(45);
   };
 
+  console.log(sizeBounding, far, near);
+
+  console.log(props.model);
+
   // ? Canvas output
-  const canvasElement = model ? (
+  const canvasElement = props.model ? (
     <Fragment>
       <Canvas
         onCreated={({ gl }) => {
@@ -110,7 +121,7 @@ const Model = props => {
           far={far}
           near={near}
         />
-        <primitive object={model} />
+        <primitive object={props.model} dispose={null} />
         {directional && (
           <directionalLight
             intensity={directionalIntensity}
@@ -223,12 +234,14 @@ Model.propTypes = {
 const mapStateToProps = state => ({
   bgEnvironment: state.environmentControls.bgEnvironment,
   bgSolid: state.environmentControls.bgSolid,
-  bgColor: state.environmentControls.bgColor
+  bgColor: state.environmentControls.bgColor,
+  model: state.currentModel.model
 });
 
 const mapDispatchToProps = dispatch => ({
   onToggleBackground: () => dispatch(actions.toggleBackground()),
-  onBgSolidColor: color => dispatch(actions.setBackgroundColor(color))
+  onBgSolidColor: color => dispatch(actions.setBackgroundColor(color)),
+  onSetModel: model => dispatch(actions.setModel(model))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Model);

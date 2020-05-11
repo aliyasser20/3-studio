@@ -16,3 +16,7 @@ export const SET_THEME = "SET_THEME";
 // Mode selector
 export const MODE_SELECT = "MODE_SELECT";
 //
+
+// Current Model
+export const SET_MODEL = "SET_MODEL";
+//

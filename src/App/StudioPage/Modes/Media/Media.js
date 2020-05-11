@@ -1,26 +1,26 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
-import CCapture from "ccapture.js/src/CCapture";
+// import CCapture from "ccapture.js/src/CCapture";
 import { useThree } from "react-three-fiber";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import MediaCanvas from "./MegiaCanvas/MediaCanvas";
-import Testing from "./Testing";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
+import Testing from "./Testing";
+import MediaCanvas from "./MegiaCanvas/MediaCanvas";
 import cloudinaryAxios from "../../../../axiosInstances/cloudinaryAxios";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Media = (props) => {
+const Media = props => {
   const [open, setOpen] = React.useState(false);
   const [screenShot, setScreenshot] = React.useState();
 
@@ -32,12 +32,12 @@ const Media = (props) => {
     setOpen(false);
   };
 
-  const capturer = new CCapture({
-    format: "gif",
-    workersPath: "workers/",
-    framerate: 20,
-    verbose: true,
-  });
+  // const capturer = new CCapture({
+  //   format: "gif",
+  //   workersPath: "workers/",
+  //   framerate: 20,
+  //   verbose: true
+  // });
 
   const { gl, scene, camera } = useThree();
 
@@ -69,9 +69,9 @@ const Media = (props) => {
     //   .then((res) => console.log(res));
     // canvas.toBlob(function(blob) {
     //   console.log(blob);
-      setOpen(true);
-      const preview = document.querySelector("#preview-img");
-      const link = document.querySelector("#download-link");
+    setOpen(true);
+    const preview = document.querySelector("#preview-img");
+    const link = document.querySelector("#download-link");
 
     //   // const newImg = document.createElement("img");
     //   // const a = document.createElement("a");
@@ -79,9 +79,9 @@ const Media = (props) => {
     //   setScreenshot(blob);
     //   const url = URL.createObjectURL(blob);
     //   // window.open(url);
-      preview.src = pre;
-      link.href = pre
-            console.log(link.href)
+    preview.src = pre;
+    link.href = pre;
+    console.log(link.href);
     //   // a.download = "newGif";
     //   // a.id = "download";
     //   // document.body.appendChild(newImg);
@@ -89,30 +89,30 @@ const Media = (props) => {
     // });
   };
 
-  const handleGif = () => {
-    // console.log("ok")
-    capturer.start();
-    setTimeout(() => {
-      capturer.stop();
-      capturer.save((blob) => {
-        const a = document.createElement("a");
-        document.body.appendChild(a);
-        a.style = "display: none";
-        const url = URL.createObjectURL(blob);
-        window.open(url);
-        a.herf = url;
-        a.download = "newGif";
-        a.click();
-      });
-    }, 5000);
-  };
+  // const handleGif = () => {
+  //   // console.log("ok")
+  //   capturer.start();
+  //   setTimeout(() => {
+  //     capturer.stop();
+  //     capturer.save(blob => {
+  //       const a = document.createElement("a");
+  //       document.body.appendChild(a);
+  //       a.style = "display: none";
+  //       const url = URL.createObjectURL(blob);
+  //       window.open(url);
+  //       a.herf = url;
+  //       a.download = "newGif";
+  //       a.click();
+  //     });
+  //   }, 5000);
+  // };
 
   return (
     <>
       {/* <Testing /> */}
-      <MediaCanvas capturer={capturer} />
-      <Button onClick={(e) => handleScreenshot()}>screenshot</Button>
-      <Button onClick={(e) => handleGif()}>gif</Button>
+      <MediaCanvas />
+      <Button onClick={e => handleScreenshot()}>screenshot</Button>
+      {/* <Button onClick={e => handleGif()}>gif</Button> */}
       <Dialog
         open={open}
         TransitionComponent={Transition}
