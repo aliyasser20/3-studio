@@ -185,7 +185,20 @@ const ProjectCard = props => {
   return (
     <div className="project-card">
       <Card classes={{ root: "single-card" }}>
-        <SwipePictures clickable pictures={props.screenshots.slice(0, 3)} />
+        <SwipePictures
+          clickable
+          pictures={
+            props.screenshots.slice(0, 3).length > 0
+              ? props.screenshots.slice(0, 3)
+              : [
+                  {
+                    label: "default image",
+                    path:
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTpu7CL3YZ2G5jL3nyW2CdsedQ6QumMLlzUqk8jdCghfPCqRSQr&usqp=CAU"
+                  }
+                ]
+          }
+        />
         <CardContent classes={{ root: "content-area" }}>
           <Typography gutterBottom variant="h6" component="h2">
             <Box classes={{ root: "project-name" }} fontWeight={700}>
