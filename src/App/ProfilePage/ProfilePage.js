@@ -27,7 +27,8 @@ const ProfilePage = props => {
   const changeTheme = theme => {
     backendAxios
       .put("/api/themes", {
-        theme
+        theme,
+        userId: user.sub
       })
       .then(() => {
         props.onSetTheme(theme);
