@@ -2,7 +2,7 @@ import lo from "lodash";
 import * as actionTypes from "../actions/actionTypes";
 import {
   updateProjectDetails,
-  deleteProject,
+  deleteProject
 } from "./reducersHelpers/projectsHelpers";
 
 const initialState = {
@@ -17,21 +17,21 @@ const initialState = {
       screenshots: [
         {
           label: "screenshot-1-1",
-          path: "/assets/screenshot-1-1.jpg",
+          path: "/assets/screenshot-1-1.jpg"
         },
         {
           label: "screenshot-1-2",
-          path: "/assets/screenshot-1-2.jpg",
+          path: "/assets/screenshot-1-2.jpg"
         },
         {
           label: "screenshot-2-1",
-          path: "/assets/screenshot-2-1.jpg",
+          path: "/assets/screenshot-2-1.jpg"
         },
         {
           label: "screenshot-1-3",
-          path: "/assets/screenshot-1-3.jpg",
-        },
-      ],
+          path: "/assets/screenshot-1-3.jpg"
+        }
+      ]
     },
     {
       id: 2,
@@ -44,8 +44,8 @@ const initialState = {
       screenshots: [
         {
           label: "screenshot-1-1",
-          path: "/assets/screenshot-1-1.jpg",
-        },
+          path: "/assets/screenshot-1-1.jpg"
+        }
         // {
         //   label: "screenshot-1-2",
         //   path: "/assets/screenshot-1-2.jpg"
@@ -58,9 +58,9 @@ const initialState = {
         //   label: "screenshot-1-3",
         //   path: "/assets/screenshot-1-3.jpg"
         // }
-      ],
-    },
-  ],
+      ]
+    }
+  ]
 };
 
 const reducer = (state = initialState, action) => {
@@ -73,17 +73,21 @@ const reducer = (state = initialState, action) => {
           action.id,
           action.name,
           action.description
-        ),
+        )
       };
     case actionTypes.DELETE_PROJECT:
       return {
         ...state,
-        allProjects: deleteProject(lo.cloneDeep(state.allProjects), action.id),
+        allProjects: deleteProject(lo.cloneDeep(state.allProjects), action.id)
       };
     case actionTypes.NEW_PROJECT:
       return {
         ...state
       };
+    // case actionTypes.NEW_PROJECT:
+    //   return {
+    //     ...state
+    //   };
     default:
       return state;
   }

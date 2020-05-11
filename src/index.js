@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore, compose, combineReducers } from "redux";
+import { createStore, compose, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import thunk from "redux-thunk";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import config from "./auth_config.json";
@@ -32,7 +33,10 @@ const rootReducer = combineReducers({
   modeControl
 });
 
-const store = createStore(rootReducer, composeEnhancers());
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
 
 // A function that routes the user to the right place after login
 const onRedirectCallback = appState => {

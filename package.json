@@ -28,6 +28,7 @@
     "react-swipeable-views-utils": "^0.13.9",
     "react-three-fiber": "^4.1.1",
     "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "three": "^0.115.0"
   },
   "scripts": {
