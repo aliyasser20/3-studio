@@ -1,15 +1,15 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  currentMode: "EDIT"
+  model: null
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.MODE_SELECT:
+    case actionTypes.SET_MODEL:
       return {
         ...state,
-        currentMode: action.mode
+        model: action.model
       };
     default:
       return state;
