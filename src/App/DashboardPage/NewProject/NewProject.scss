@@ -1,7 +1,8 @@
 .new-project-modal {
   .MuiPaper-root {
-    max-width: 50vw;
-    width: 60vw;
+    max-width: 90vw;
+    width: 90vw;
+    height: 85vh;
     color: #fff;
     background-color: #212121;
   }
@@ -31,6 +32,35 @@
     &:hover {
       color: var(--gradient-top);
       transform: scale(1.1);
+    }
+  }
+
+  .default-model-area {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 0.75em;
+    align-items: center;
+    .default-model-pic {
+      transition: 0.3s;
+      width: 300px;
+      height: 200px;
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        -webkit-box-shadow: 0px 1px 20px 0px var(--gradient-top);
+        -moz-box-shadow: 0px 1px 20px 0px var(--gradient-top);
+        box-shadow: 0px 1px 20px 0px var(--gradient-top);
+      }
+    }
+    .default-model-pic-selected {
+      transition: 0.3s;
+      width: 300px;
+      height: 200px;
+      -webkit-box-shadow: 0px 1px 20px 0px var(--gradient-top);
+      -moz-box-shadow: 0px 1px 20px 0px var(--gradient-top);
+      box-shadow: 0px 1px 20px 0px var(--gradient-top);
     }
   }
 }
