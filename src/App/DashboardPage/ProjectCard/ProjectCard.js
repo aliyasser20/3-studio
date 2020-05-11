@@ -36,17 +36,37 @@ const ProjectCard = props => {
   const [loader, setLoader] = useState(false);
 
   const saveChanges = () => {
-    props.onUpdateProjectDetails(
-      props.id,
-      nameField.trim(),
-      descriptionField.trim()
-    );
+    backendAxios
+      .put("/api/projects", {
+        project: {
+          id: props.id,
+          name: nameField.trim(),
+          description: descriptionField.trim()
+        },
+        userId: user.sub
+      })
+      .then(() => {
+        props.onUpdateProjectDetails(
+          props.id,
+          nameField.trim(),
+          descriptionField.trim()
+        );
 
-    setNameField(nameField.trim());
-    setDescriptionField(descriptionField.trim());
+        setNameField(nameField.trim());
+        setDescriptionField(descriptionField.trim());
 
-    setEdit(false);
-    props.handleSnackBarOpen("success", "Changes saved!");
+        setLoader(false);
+        setEdit(false);
+        props.handleSnackBarOpen("success", "Changes saved!");
+      })
+      .catch(err => {
+        console.log(err);
+
+        props.handleSnackBarOpen("error", "Could not update project!");
+
+        setLoader(false);
+        setEdit(false);
+      });
   };
 
   const destroyProject = () => {
@@ -55,8 +75,7 @@ const ProjectCard = props => {
       .delete("/api/projects", {
         data: {
           projectId: props.id,
-          userId: "google-oauth2|117948270148318970184"
-          // userId: user.sub
+          userId: user.sub
         }
       })
       .then(() => {
