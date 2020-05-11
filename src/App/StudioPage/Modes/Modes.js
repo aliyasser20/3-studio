@@ -42,7 +42,7 @@ Modes.propTypes = {
   onModeSelect: PropTypes.func.isRequired,
 };
 
-const mapStatetoProps = (state) => ({
+const mapStateToProps = (state) => ({
   currentMode: state.modeControl.currentMode,
 });
 
@@ -50,4 +50,4 @@ const mapDispatchToProps = (dispatch) => ({
   onModeSelect: (mode) => dispatch(actions.modeSelect(mode)),
 });
 
-export default connect(mapStatetoProps, mapDispatchToProps)(Modes);
+export default connect(mapStateToProps, mapDispatchToProps)(Modes);

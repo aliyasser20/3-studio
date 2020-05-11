@@ -17,12 +17,7 @@ export const saveModelToCloude = files => {
     .then(res => res.data.secure_url);
 };
 
-<<<<<<< HEAD
-export const createNewProject = (projectData) => {
-  return axios.post("/api/projects", projectData).then((data) => {
-=======
 export const createNewProject = projectData =>
   backendAxios.post("/api/projects", projectData).then(data => {
->>>>>>> 1827b2b5d5b8fee4c19af098bebbaac147409e7f
     console.log(data.data.rows[0]);
   });
