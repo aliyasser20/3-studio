@@ -31,14 +31,16 @@ const DashboardPage = props => {
     setSnackBarOpen(true);
   };
 
-  const projectCards = props.allProjects.map(project => (
-    <ProjectCard
-      handleSnackBarClose={handleSnackBarClose}
-      handleSnackBarOpen={handleSnackBarOpen}
-      key={project.id}
-      {...project}
-    />
-  ));
+  const projectCards = props.allProjects
+    .reverse()
+    .map(project => (
+      <ProjectCard
+        handleSnackBarClose={handleSnackBarClose}
+        handleSnackBarOpen={handleSnackBarOpen}
+        key={project.id}
+        {...project}
+      />
+    ));
 
   const snackBar = (
     <Snackbar

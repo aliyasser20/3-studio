@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "cloudinary-react": "^1.5.0",
+    "date-fns": "^2.13.0",
     "history": "^4.10.1",
     "lodash": "^4.17.15",
     "material-ui-dropzone": "^3.0.0",

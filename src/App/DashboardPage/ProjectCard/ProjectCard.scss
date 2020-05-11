@@ -7,11 +7,16 @@
 
     img {
       border-radius: 2px 2px 0 0;
+      height: 190px;
     }
 
     .content-area {
       padding-top: 0.5em;
       padding-bottom: 1.25em;
+
+      .project-name {
+        text-transform: capitalize;
+      }
 
       .project-description {
         height: 78px;

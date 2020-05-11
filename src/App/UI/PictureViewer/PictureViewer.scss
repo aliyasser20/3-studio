@@ -1,6 +1,10 @@
 .picture-viewer-dialog {
   .swipe-pictures {
     margin-bottom: 0.6em;
+
+    img {
+      max-height: 70vh;
+    }
   }
 
   .screenshot-label {
