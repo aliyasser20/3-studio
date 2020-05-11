@@ -38,7 +38,7 @@ export const getProjects = userId => dispatch => {
     });
 };
 
-export const setCurrentProject = project => ({
+export const setCurrentProject = projectId => ({
   type: actionTypes.SET_CURRENT_PROJECT,
-  project
+  projectId
 });

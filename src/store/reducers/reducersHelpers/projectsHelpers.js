@@ -25,3 +25,11 @@ export const deleteProject = (projects, projectId) => {
 
   return newProjects;
 };
+
+export const findProject = (projects, id) => {
+  for (const project of projects) {
+    if (project.id === id) {
+      return project;
+    }
+  }
+};

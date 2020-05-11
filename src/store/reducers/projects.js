@@ -2,7 +2,8 @@ import lo from "lodash";
 import * as actionTypes from "../actions/actionTypes";
 import {
   updateProjectDetails,
-  deleteProject
+  deleteProject,
+  findProject
 } from "./reducersHelpers/projectsHelpers";
 
 const initialState = {
@@ -40,7 +41,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_CURRENT_PROJECT:
       return {
         ...state,
-        currentProject: { ...action.project }
+        currentProject: { ...findProject(state.allProjects, action.projectId) }
       };
     default:
       return state;

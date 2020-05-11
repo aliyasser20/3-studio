@@ -4,7 +4,8 @@ export {
   updateProjectDetails,
   deleteProject,
   newProject,
-  getProjects
+  getProjects,
+  setCurrentProject
 } from "./projects";
 
 export { setTheme, getTheme } from "./themes";
