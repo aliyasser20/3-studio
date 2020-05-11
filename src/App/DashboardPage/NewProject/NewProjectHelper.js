@@ -18,6 +18,4 @@ export const saveModelToCloude = files => {
 };
 
 export const createNewProject = projectData =>
-  backendAxios.post("/api/projects", projectData).then(data => {
-    console.log(data.data.rows[0]);
-  });
+  backendAxios.post("/api/projects", projectData).then(data => data.data);
