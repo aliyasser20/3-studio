@@ -6,27 +6,27 @@ import Edit from "./Edit/Edit";
 import View from "./View/View";
 import Media from "./Media/Media";
 
-const Modes = (props) => (
+const Modes = props => (
   <>
     <div className="mode-btn-group">
       <button
         type="button"
         className="mode-selector view"
-        onClick={(e) => props.onModeSelect("VIEW")}
+        onClick={e => props.onModeSelect("VIEW")}
       >
         view mode
       </button>
       <button
         type="button"
         className="mode-selector edit"
-        onClick={(e) => props.onModeSelect("EDIT")}
+        onClick={e => props.onModeSelect("EDIT")}
       >
         edit mode
       </button>
       <button
         type="button"
         className="mode-selector media"
-        onClick={(e) => props.onModeSelect("MEDIA")}
+        onClick={e => props.onModeSelect("MEDIA")}
       >
         media mode
       </button>
@@ -41,15 +41,15 @@ const Modes = (props) => (
 
 Modes.propTypes = {
   currentMode: PropTypes.string.isRequired,
-  onModeSelect: PropTypes.func.isRequired,
+  onModeSelect: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  currentMode: state.modeControl.currentMode,
+const mapStateToProps = state => ({
+  currentMode: state.modeControl.currentMode
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onModeSelect: (mode) => dispatch(actions.modeSelect(mode)),
+const mapDispatchToProps = dispatch => ({
+  onModeSelect: mode => dispatch(actions.modeSelect(mode))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modes);
