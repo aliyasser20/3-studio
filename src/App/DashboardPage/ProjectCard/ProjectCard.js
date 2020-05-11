@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { format } from "date-fns";
 
 import {
   Card,
@@ -178,6 +179,9 @@ const ProjectCard = props => {
     </div>
   );
 
+  const formattedCreatedAt = format(new Date(props.createdAt), "d MMMM yyyy");
+  const formattedUpdatedAt = format(new Date(props.updatedAt), "d MMMM yyyy");
+
   return (
     <div className="project-card">
       <Card classes={{ root: "single-card" }}>
@@ -203,11 +207,11 @@ const ProjectCard = props => {
             <span className="dates">
               <Box fontWeight={500}>
                 <Typography variant="caption" component="p">
-                  Created: Jan 2, 2019
+                  Created: {formattedCreatedAt}
                 </Typography>
               </Box>
               <Typography variant="caption" component="p">
-                Updated: Mar 4, 2020
+                Updated: {formattedUpdatedAt}
               </Typography>
             </span>
             <span className="action-buttons">
@@ -258,8 +262,9 @@ ProjectCard.propTypes = {
   onUpdateProjectDetails: PropTypes.func.isRequired,
   onDeleteProject: PropTypes.func.isRequired,
   id: PropTypes.number,
-  handleSnackBarClose: PropTypes.func.isRequired,
-  handleSnackBarOpen: PropTypes.func.isRequired
+  handleSnackBarOpen: PropTypes.func.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  updatedAt: PropTypes.string.isRequired
 };
 
 const MapDispatchToProps = dispatch => ({
