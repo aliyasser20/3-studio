@@ -8,8 +8,6 @@ import ProjectCard from "./ProjectCard/ProjectCard";
 import NewProject from "./NewProject/NewProject";
 import Alert from "../UI/Alert/Alert";
 
-import cloudinaryAxios from "../../axiosInstances/cloudinaryAxios";
-
 import "./Dashboard.scss";
 
 const DashboardPage = props => {
@@ -32,32 +30,6 @@ const DashboardPage = props => {
     // Must come after setting status and message
     setSnackBarOpen(true);
   };
-
-  const getProjects = () => {
-    const formData = new FormData();
-    // formData.append("file", files[0]);
-    // formData.append("tags", "rocket");
-    // formData.append("upload_preset", "modelUpload"); // Replace the preset name with your own
-    formData.append("api_key", "463438241363482"); // Replace API key with your own Cloudinary key
-    formData.append("api_secert", "tq2iVv3TvB-O8JRKH0FRGjtkWrs"); // Replace API key with your own Cloudinary key
-    // formData.append("timestamp", (Date.now() / 1000) | 0);
-    console.log(formData);
-    return cloudinaryAxios
-      .get("/resources", formData, {
-        headers: {
-          "X-Requested-With": "XMLHttpRequest",
-          "Content-Type": "application/json"
-        }
-        // headers: {
-        //   "Content-Type": "application/json"
-        // }
-      })
-      .then(res => {
-        console.log(res);
-      });
-  };
-
-  getProjects();
 
   const projectCards = props.allProjects.map(project => (
     <ProjectCard
