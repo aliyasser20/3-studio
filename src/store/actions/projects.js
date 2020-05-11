@@ -37,3 +37,8 @@ export const getProjects = userId => dispatch => {
       console.log(error);
     });
 };
+
+export const setCurrentProject = project => ({
+  type: actionTypes.SET_CURRENT_PROJECT,
+  project
+});

@@ -6,61 +6,8 @@ import {
 } from "./reducersHelpers/projectsHelpers";
 
 const initialState = {
-  allProjects: [
-    // {
-    //   id: 1,
-    //   name: "Shaver",
-    //   description: "A model of the Phillips One shaver.",
-    //   createdAt: new Date(2019, 6, 15, 12, 35, 40, 10),
-    //   updatedAt: new Date(2020, 5, 7, 12, 35, 40, 10),
-    //   modelLink: "something",
-    //   screenshots: [
-    //     {
-    //       label: "screenshot-1-1",
-    //       path: "/assets/screenshot-1-1.jpg"
-    //     },
-    //     {
-    //       label: "screenshot-1-2",
-    //       path: "/assets/screenshot-1-2.jpg"
-    //     },
-    //     {
-    //       label: "screenshot-2-1",
-    //       path: "/assets/screenshot-2-1.jpg"
-    //     },
-    //     {
-    //       label: "screenshot-1-3",
-    //       path: "/assets/screenshot-1-3.jpg"
-    //     }
-    //   ]
-    // },
-    // {
-    //   id: 2,
-    //   name: "Another Shaver",
-    //   description:
-    //     "A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver. A model of the Phillips One shaver.",
-    //   createdAt: new Date(2019, 6, 15, 12, 35, 40, 10),
-    //   updatedAt: new Date(2020, 5, 7, 12, 35, 40, 10),
-    //   modelLink: "something",
-    //   screenshots: [
-    //     {
-    //       label: "screenshot-1-1",
-    //       path: "/assets/screenshot-1-1.jpg"
-    //     }
-    //     // {
-    //     //   label: "screenshot-1-2",
-    //     //   path: "/assets/screenshot-1-2.jpg"
-    //     // },
-    //     // {
-    //     //   label: "screenshot-2-1",
-    //     //   path: "/assets/screenshot-2-1.jpg"
-    //     // },
-    //     // {
-    //     //   label: "screenshot-1-3",
-    //     //   path: "/assets/screenshot-1-3.jpg"
-    //     // }
-    //   ]
-    // }
-  ]
+  allProjects: [],
+  currentProject: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -89,6 +36,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allProjects: action.projects
+      };
+    case actionTypes.SET_CURRENT_PROJECT:
+      return {
+        ...state,
+        currentProject: { ...action.project }
       };
     default:
       return state;
