@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, forwardRef, Suspense } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Canvas, useFrame, extend, useThree } from "react-three-fiber";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -20,21 +21,29 @@ const CameraControls = () => {
   return <orbitControls ref={controls} args={[camera, domElement]} />;
 };
 
-const MediaCanvas = props => (
+const MediaCanvas = props => {
   // console.log(exportModel);
-  <div className="media-canvas">
-    <Canvas gl={{ preserveDrawingBuffer: true }}>
-      {/* <Suspense>
+  console.log(props.model);
+
+  return (
+    <div className="media-canvas">
+      <Canvas gl={{ preserveDrawingBuffer: true }}>
+        {/* <Suspense>
           <primitive object={exportModel} />
         </Suspense> */}
-      <CameraControls />
-      <KeyLight brightness={10} color="white" />
-      {/* <Loading capturer={props.capturer} /> */}
-      <BackWall />
-      <GroundPlane />
-    </Canvas>
-  </div>
-);
+        <CameraControls />
+        <KeyLight brightness={10} color="white" />
+        {/* <Loading capturer={props.capturer} /> */}
+        <BackWall />
+        <GroundPlane />
+      </Canvas>
+    </div>
+  );
+};
 Canvas.propTypes = {};
 
-export default MediaCanvas;
+const mapStateToProps = state => ({
+  model: state.currentModel.model
+});
+
+export default connect(mapStateToProps, null)(MediaCanvas);
