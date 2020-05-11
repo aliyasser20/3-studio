@@ -24,7 +24,7 @@ const NewProject = (props) => {
   const uploadUrl = "/raw/upload/";
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [modelLink, setModelLink] = useState("");
+  const [defaultLink, setDefaultLink] = useState("");
   const [loading, setLoading] = useState(false);
   const [defaultModelClass1, setModelClass1] = useState("default-model-pic");
   const [defaultModelClass2, setModelClass2] = useState("default-model-pic");
@@ -37,34 +37,54 @@ const NewProject = (props) => {
     setOpen(false);
   };
 
-  const handleDrop = async (file) => {
-    file.length > 0 && (await setFiles(file));
+  const handleDrop = (file) => {
+    setFiles(file);
+  };
+  const handleRemove = () => {
+    setFiles([]);
+  };
+  const resetForm = () => {
+    setName("");
+    setDescription("");
+    setDefaultLink("");
+    setFiles([]);
+    setModelClass1("default-model-pic");
+    setModelClass2("default-model-pic");
+    setModelClass3("default-model-pic");
   };
 
   const handleCreate = () => {
     if (files.length > 0) {
+      console.log(files);
       setLoading(true);
-      saveModelToCloude(files).then((modelUrl) => {
-        setModelLink(modelUrl);
-        setLoading(false);
-        setOpen(false);
-        // console.log(name, description, modelLink);
+      saveModelToCloude(files).then((modelLink) => {
+        console.log(name, description, modelLink);
         createNewProject({
           userId: user.sub,
           name,
           description,
           modelLink,
-        }).then((data) => props.onNewProject(data));
+        }).then((data) => {
+          props.onNewProject(data);
+          setLoading(false);
+          setOpen(false);
+          resetForm();
+        });
       });
-    } else {
-      console.log(name, description, modelLink);
-
+    } else if (files.length === 0) {
+      console.log("default");
+      setLoading(true);
       createNewProject({
         userId: user.sub,
         name,
         description,
-        modelLink,
-      }).then((data) => props.onNewProject(data));
+        modelLink: defaultLink,
+      }).then((data) => {
+        props.onNewProject(data);
+        setLoading(false);
+        setOpen(false);
+        resetForm();
+      });
     }
   };
 
@@ -83,13 +103,13 @@ const NewProject = (props) => {
         setModelClass1("default-model-pic-selected");
         setModelClass2("default-model-pic");
         setModelClass3("default-model-pic");
-        setModelLink("models/car.glb");
+        setDefaultLink("models/car.glb");
         break;
       case 2:
         setModelClass1("default-model-pic");
         setModelClass2("default-model-pic-selected");
         setModelClass3("default-model-pic");
-        setModelLink(
+        setDefaultLink(
           "https://res.cloudinary.com/aajfinal/raw/upload/v1589122332/models/WOLF_okocpw.glb"
         );
         break;
@@ -97,7 +117,7 @@ const NewProject = (props) => {
         setModelClass1("default-model-pic");
         setModelClass2("default-model-pic");
         setModelClass3("default-model-pic-selected");
-        setModelLink(
+        setDefaultLink(
           "https://res.cloudinary.com/aajfinal/raw/upload/v1589160418/models/controller_yt5zl6.glb"
         );
         break;
@@ -152,6 +172,7 @@ const NewProject = (props) => {
             maxFileSize={10000000}
             filesLimit={1}
             onDrop={(e) => handleDrop(e)}
+            onDelete={(e) => handleRemove()}
           />
           <h3>Or choose one of our default models</h3>
           <div className="default-model-area">
