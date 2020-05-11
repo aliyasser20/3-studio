@@ -5,7 +5,7 @@ const Loading = ({ capturer,position }) => {
   const loading = useRef();
   useFrame(({ gl, scene, camera }) => {
     gl.render(scene, camera);
-    loading.current.rotation.y += 0.02;
+    // loading.current.rotation.y += 0.02;
     capturer.capture(document.querySelector("canvas"));
   });
   return (
