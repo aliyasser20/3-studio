@@ -12,6 +12,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "ccapture.js": "github:aceslowman/ccapture.js#npm-fix",
     "cloudinary-react": "^1.5.0",
     "date-fns": "^2.13.0",
     "history": "^4.10.1",
