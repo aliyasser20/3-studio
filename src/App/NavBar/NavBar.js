@@ -45,7 +45,6 @@ const NavBar = () => {
       </span>
     </Box>
   );
-  console.log(user);
 
   return (
     <ThemeProvider theme={themeCreator(grey[900])}>

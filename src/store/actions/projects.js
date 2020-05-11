@@ -23,16 +23,15 @@ export const populateProjects = projects => ({
   projects
 });
 
-export const getProjects = projectId => dispatch => {
+export const getProjects = userId => dispatch => {
   backendAxios
     .get("/api/projects", {
       params: {
-        projectId
+        userId
       }
     })
     .then(response => {
       dispatch(populateProjects(response.data.projects));
-      console.log(response);
     })
     .catch(error => {
       console.log(error);
