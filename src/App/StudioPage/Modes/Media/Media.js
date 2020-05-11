@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
-import CCapture from "ccapture.js/src/CCapture";
+// import CCapture from "ccapture.js/src/CCapture";
 import { useThree } from "react-three-fiber";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -32,12 +32,12 @@ const Media = props => {
     setOpen(false);
   };
 
-  const capturer = new CCapture({
-    format: "gif",
-    workersPath: "workers/",
-    framerate: 20,
-    verbose: true
-  });
+  // const capturer = new CCapture({
+  //   format: "gif",
+  //   workersPath: "workers/",
+  //   framerate: 20,
+  //   verbose: true
+  // });
 
   const { gl, scene, camera } = useThree();
 
@@ -89,31 +89,30 @@ const Media = props => {
     // });
   };
 
-  const handleGif = () => {
-    // console.log("ok")
-    capturer.start();
-    setTimeout(() => {
-      capturer.stop();
-      capturer.save(blob => {
-        const a = document.createElement("a");
-        document.body.appendChild(a);
-        a.style = "display: none";
-        const url = URL.createObjectURL(blob);
-        window.open(url);
-        a.herf = url;
-        a.download = "newGif";
-        a.click();
-      });
-    }, 5000);
-  };
+  // const handleGif = () => {
+  //   // console.log("ok")
+  //   capturer.start();
+  //   setTimeout(() => {
+  //     capturer.stop();
+  //     capturer.save(blob => {
+  //       const a = document.createElement("a");
+  //       document.body.appendChild(a);
+  //       a.style = "display: none";
+  //       const url = URL.createObjectURL(blob);
+  //       window.open(url);
+  //       a.herf = url;
+  //       a.download = "newGif";
+  //       a.click();
+  //     });
+  //   }, 5000);
+  // };
 
   return (
     <>
       {/* <Testing /> */}
-      <MediaCanvas capturer={capturer} />
-
+      <MediaCanvas />
       <Button onClick={e => handleScreenshot()}>screenshot</Button>
-      <Button onClick={e => handleGif()}>gif</Button>
+      {/* <Button onClick={e => handleGif()}>gif</Button> */}
       <Dialog
         open={open}
         TransitionComponent={Transition}

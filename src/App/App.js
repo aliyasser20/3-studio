@@ -47,8 +47,7 @@ const App = props => {
     </div>
   ) : (
     <Layout>
-      {/* <div className="App">{isAuthenticated ? guardedRoutes : routes}</div> */}
-      <div>Heelo</div>
+      <div className="App">{isAuthenticated ? guardedRoutes : routes}</div>
     </Layout>
   );
 

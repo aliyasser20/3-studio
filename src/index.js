@@ -31,8 +31,8 @@ const rootReducer = combineReducers({
   environmentControls,
   projects,
   themes,
-  modeControl
-  // currentModel
+  modeControl,
+  currentModel
 });
 
 const store = createStore(
