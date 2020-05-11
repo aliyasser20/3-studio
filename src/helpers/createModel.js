@@ -25,7 +25,7 @@ const createModel = (
       // ? Default
       // o.material = materialLibrary().blackDefault;
       // ? Metals
-      o.material = materialLibrary().goldPolished;
+      // o.material = materialLibrary().goldPolished;
       // o.material = materialLibrary().cherryPolished;
       // o.material = materialLibrary().alien;
       // o.material = materialLibrary().scuffedAluminumPBR;
@@ -42,6 +42,8 @@ const createModel = (
       // o.material = materialLibrary().woodOne;
       // o.material = materialLibrary().woodFlooringOne;
       // o.material = materialLibrary().woodFlooringTwo;
+      // ? Stones
+      // o.material = materialLibrary().bricks;
     }
   });
   // ?

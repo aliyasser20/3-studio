@@ -1,10 +1,11 @@
 .media-canvas {
-  position: absolute;
+  // position: absolute;
   // right: 300px;
   // height: 50vh;
+  // width: 50vh;
 
   canvas {
-    width: 100vw;
-    // height: 500px;
+    width: 100vh;
+    height: 900px;
   }
 }

@@ -193,6 +193,20 @@ const materialLibrary = () => {
   });
   // ?
 
+  // ? Stones
+  materials.bricks = createMaterial({
+    name: "bricks",
+    group: "stones",
+    colorMap: true,
+    color: "#212121",
+    ambientOcclusionMap: true,
+    normalMap: true,
+    roughnessMetalnessMap: true,
+    displacementMap: true,
+    displacementScale: 0.2
+  });
+  // ?
+
   return materials;
 };
 

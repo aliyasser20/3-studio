@@ -99,6 +99,8 @@ const Model = props => {
 
   console.log(sizeBounding, far, near);
 
+  console.log(props.model);
+
   // ? Canvas output
   const canvasElement = props.model ? (
     <Fragment>
@@ -119,7 +121,7 @@ const Model = props => {
           far={far}
           near={near}
         />
-        <primitive object={props.model} />
+        <primitive object={props.model} dispose={null} />
         {directional && (
           <directionalLight
             intensity={directionalIntensity}

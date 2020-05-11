@@ -52,7 +52,7 @@ const MediaCanvas = props => {
   const result = props.model ? (
     <Fragment>
       <Canvas
-        // gl={{ preserveDrawingBuffer: true }}
+        gl={{ preserveDrawingBuffer: true }}
         onCreated={({ gl, scene }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
           gl.outputEncoding = THREE.sRGBEncoding;
@@ -61,29 +61,29 @@ const MediaCanvas = props => {
           // scene.background = new THREE.Color("#ff0000");
         }}
       >
-        {/* <Camera
+        <Camera
           position={[-0.459, 0.512, 0.824]}
           fov={45}
           far={132}
           near={0.013}
-        /> */}
+        />
         <ambientLight intensity={0.3} />
         <hemisphereLight intensity={1} />
         )}
         <directionalLight intensity={0.8 * Math.PI} position={[0.5, 0, 0.86]} />
-        {/* <CameraControls /> */}
+        <CameraControls />
         <axesHelper scale={[1, 1, 1]} />
         <Environment
-          bgEnvironment={false}
-          bgSolid={false}
-          // bgColor={props.bgColor}
+          // bgEnvironment
+          bgSolid
+          bgColor="000000"
           mapEnvironment
         />
         {/* <KeyLight brightness={10} color="white" /> */}
         {/* <Loading capturer={props.capturer} /> */}
-        {/* <BackWall />
-        <GroundPlane /> */}
-        <primitive object={props.model} ref={reeef} castSahdow />
+        {/* <BackWall /> */}
+        <GroundPlane />
+        <primitive object={props.model} ref={reeef} dispose={null} castshadow />
       </Canvas>
       <button
         onClick={() => {
@@ -95,6 +95,11 @@ const MediaCanvas = props => {
     </Fragment>
   ) : null;
 
+  // return (
+  //   <div className="media-canvas">
+  //     <Model url="./models/duck.glb" />
+  //   </div>
+  // );
   return <div className="media-canvas">{result}</div>;
 };
 
