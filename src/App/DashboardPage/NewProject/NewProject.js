@@ -10,11 +10,14 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import { DropzoneArea } from "material-ui-dropzone";
 import "./NewProject.scss";
+import { connect } from "react-redux";
+import { object } from "prop-types";
 import { saveModelToCloude, createNewProject } from "./NewProjectHelper";
 import { useAuth0 } from "../../../react-auth0-spa";
 import Loader from "../../UI/Loader/Loader";
+import * as actions from "../../../store/actions/index";
 
-const NewProject = () => {
+const NewProject = props => {
   const { user } = useAuth0();
   const [open, setOpen] = useState(false);
   const [files, setFiles] = useState([]);
@@ -43,7 +46,12 @@ const NewProject = () => {
         setLoading(false);
         setOpen(false);
         // console.log(name, description, modelLink);
-        createNewProject({ userId: user.sub, name, description, modelLink });
+        createNewProject({
+          userId: user.sub,
+          name,
+          description,
+          modelLink
+        }).then(data => props.onNewProject(data));
       });
     }
   };
@@ -128,4 +136,11 @@ const NewProject = () => {
     </div>
   );
 };
-export default NewProject;
+
+NewProject.prototype = {};
+
+const mapDispatchToProps = dispatch => ({
+  onNewProject: data => dispatch(actions.newProject(data))
+});
+
+export default connect(null, mapDispatchToProps)(NewProject);
