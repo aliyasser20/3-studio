@@ -97,10 +97,6 @@ const Model = props => {
     setFov(45);
   };
 
-  console.log(sizeBounding, far, near);
-
-  console.log(props.model);
-
   // ? Canvas output
   const canvasElement = props.model ? (
     <Fragment>
