@@ -15,11 +15,6 @@ import * as actions from "../store/actions/index";
 
 import "./App.scss";
 
-<<<<<<< HEAD
-const App = () => {
-  const { isAuthenticated, loading } = useAuth0();
-  console.log(isAuthenticated)
-=======
 const App = props => {
   const { isAuthenticated, loading, user } = useAuth0();
 
@@ -30,7 +25,6 @@ const App = props => {
     }
   }, [props, user]);
 
->>>>>>> 057b7902ae3d8f1358e732b155a8aff6a10d3ec3
   const routes = (
     <Switch>
       <Route path="/" exact component={LandingPage}></Route>
