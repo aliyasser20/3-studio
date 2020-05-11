@@ -6,7 +6,7 @@ const GroundPlane = () => {
   useEffect(() => {
     console.log(mesh.current);
     if (mesh.current) {
-      mesh.current.material = materialLibrary().bricks;
+      mesh.current.material = materialLibrary().alien;
     }
   });
 
