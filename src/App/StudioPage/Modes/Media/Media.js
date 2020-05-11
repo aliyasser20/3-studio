@@ -55,22 +55,23 @@ const Media = (props) => {
     //
 
     const pre = canvas.toDataURL("image/png", 1.0);
-    const formData = new FormData();
-    formData.append("file", pre);
-    formData.append("public_id", "90/newScreenShot2");
-    formData.append("upload_preset", "screenshotUpload"); // Replace the preset name with your own
-    formData.append("api_key", "463438241363482"); // Replace API key with your own Cloudinary key
-    formData.append("timestamp", (Date.now() / 1000) | 0);
-    console.log(pre);
-    return cloudinaryAxios
-      .post("/image/upload", formData, {
-        headers: { "X-Requested-With": "XMLHttpRequest" },
-      })
-      .then((res) => console.log(res));
+    // const formData = new FormData();
+    // formData.append("file", pre);
+    // formData.append("public_id", "90/newScreenShot2");
+    // formData.append("upload_preset", "screenshotUpload"); // Replace the preset name with your own
+    // formData.append("api_key", "463438241363482"); // Replace API key with your own Cloudinary key
+    // formData.append("timestamp", (Date.now() / 1000) | 0);
+    // console.log(pre);
+    // return cloudinaryAxios
+    //   .post("/image/upload", formData, {
+    //     headers: { "X-Requested-With": "XMLHttpRequest" },
+    //   })
+    //   .then((res) => console.log(res));
     // canvas.toBlob(function(blob) {
     //   console.log(blob);
-    //   setOpen(true);
-    //   const preview = document.querySelector("#preview-img");
+      setOpen(true);
+      const preview = document.querySelector("#preview-img");
+      const link = document.querySelector("#download-link");
 
     //   // const newImg = document.createElement("img");
     //   // const a = document.createElement("a");
@@ -78,7 +79,9 @@ const Media = (props) => {
     //   setScreenshot(blob);
     //   const url = URL.createObjectURL(blob);
     //   // window.open(url);
-    //   preview.src = url;
+      preview.src = pre;
+      link.href = pre
+            console.log(link.href)
     //   // a.download = "newGif";
     //   // a.id = "download";
     //   // document.body.appendChild(newImg);
