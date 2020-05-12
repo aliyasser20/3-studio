@@ -31,7 +31,6 @@ export const saveProjectIdToLocalStorage = projectId => {
 };
 
 export const findProject = (projects, id) => {
-  console.log(projects, id);
   for (const project of projects) {
     if (project.id === id) {
       saveProjectIdToLocalStorage(project.id);
