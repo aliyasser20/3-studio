@@ -12,6 +12,7 @@ import SideBar from "./SideBar/SideBar";
 import GroupsBar from "./GroupsBar/GroupsBar";
 import AppearancesBar from "./AppearancesBar/AppearancesBar";
 import EditCanvas from "./Modes/Edit/EditCanvas/EditCanvas";
+import MediaCanvas from "./Modes/Media/MegiaCanvas/MediaCanvas";
 
 import createModel from "../../helpers/createModel";
 import * as actions from "../../store/actions/index";
@@ -57,6 +58,7 @@ const StudioPage = props => {
               <div className="sub-working-area">
                 <div className="canvas-and-controls-area">
                   {props.currentMode === "EDIT" && <EditCanvas />}
+                  {props.currentMode === "MEDIA" && <MediaCanvas />}
                 </div>
                 <GroupsBar />
                 <AppearancesBar />

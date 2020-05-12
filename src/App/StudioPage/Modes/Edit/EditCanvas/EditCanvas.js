@@ -45,8 +45,8 @@ const EditCanvas = props => {
   ]);
 
   // ? Additional helpers and controls states //
-  const [showAxis, setShowAxis] = useState(true);
-  const [showBoundingBox, setShowBoundingBox] = useState(true);
+  const [showAxis, setShowAxis] = useState(false);
+  const [showBoundingBox, setShowBoundingBox] = useState(false);
   const [allowOrbitControls, setAllowOrbitControls] = useState(true);
   const [autoRotate, setAutoRotate] = useState(false);
 
