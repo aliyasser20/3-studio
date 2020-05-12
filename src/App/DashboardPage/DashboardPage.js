@@ -9,8 +9,6 @@ import NewProject from "./NewProject/NewProject";
 import Alert from "../UI/Alert/Alert";
 import Loader from "../UI/Loader/Loader";
 
-import * as actions from "../../store/actions/index";
-
 import "./Dashboard.scss";
 
 const DashboardPage = props => {
