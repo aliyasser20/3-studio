@@ -9,6 +9,7 @@ import { Container } from "@material-ui/core";
 import Modes from "./Modes/Modes";
 import StudioTopBar from "./StudioTopBar/StudioTopBar";
 import SideBar from "./SideBar/SideBar";
+import GroupsBar from "./GroupsBar/GroupsBar";
 
 import createModel from "../../helpers/createModel";
 import * as actions from "../../store/actions/index";
@@ -51,6 +52,10 @@ const StudioPage = props => {
             <StudioTopBar />
             <div className="working-area">
               <SideBar />
+              <div className="sub-working-area">
+                <div className="canvas-and-controls-area"></div>
+                <GroupsBar />
+              </div>
             </div>
           </div>
         </Container>
