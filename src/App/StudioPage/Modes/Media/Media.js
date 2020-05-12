@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Button } from "@material-ui/core";
+import { Button, Snackbar } from "@material-ui/core";
 // import CCapture from "ccapture.js/src/CCapture";
 import { useThree } from "react-three-fiber";
 import Modal from "@material-ui/core/Modal";
@@ -20,23 +20,30 @@ import {
   screeshotDownload,
   saveToCloud,
 } from "./screenshotsHelpers/screenshotsHandler";
+import Alert from "../../../UI/Alert/Alert";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const Media = (props) => {
-  const [open, setOpen] = React.useState(false);
-  const [screenshot, setScreenshot] = React.useState();
+  const [open, setOpen] = useState(false);
+  const [snackbar, setSnackbar] = useState(false);
+  const [snackMessage, setSnackMessage] = useState(false);
+  const [severity, setSeverity] = useState("");
+  const [screenshot, setScreenshot] = useState();
 
-  const handleOpen = () => {
-    setOpen(true);
+  const closeSnackbar = () => {
+    setSnackbar(false);
+    setSeverity("");
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
+  const snackbarSet = (severity, message) => {
+    setSeverity(severity);
+    setSnackMessage(message);
+  };
   // const capturer = new CCapture({
   //   format: "gif",
   //   workersPath: "workers/",
@@ -57,12 +64,16 @@ const Media = (props) => {
   };
 
   const handleSave = () => {
-    saveToCloud(screenshot,{name: "testProject", id:777}, 19).then(res=>{
-      res.status === 200 ? 
-    })
-    setOpen(false);
+    saveToCloud(screenshot, { name: "testProject", id: 777 }, 19).then(
+      (res) => {
+        res.status === 200
+          ? snackbarSet("success", "Screenshot saved.")
+          : snackbarSet("error", "Error, screenshot not saved.");
+        setSnackbar(true);
+        setOpen(false);
+      }
+    );
   };
-
 
   // const handleGif = () => {
   //   // console.log("ok")
@@ -120,6 +131,11 @@ const Media = (props) => {
           </Button>
         </DialogActions>
       </Dialog>
+      <Snackbar open={snackbar} autoHideDuration={6000} onClose={closeSnackbar}>
+        <Alert onClose={closeSnackbar} severity={severity}>
+          {snackMessage}
+        </Alert>
+      </Snackbar>
     </>
   );
 };
