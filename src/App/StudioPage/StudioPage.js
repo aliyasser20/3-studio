@@ -7,6 +7,7 @@ import { Redirect } from "react-router-dom";
 import { Container } from "@material-ui/core";
 
 import Modes from "./Modes/Modes";
+import StudioTopBar from "./StudioTopBar/StudioTopBar";
 
 import createModel from "../../helpers/createModel";
 import * as actions from "../../store/actions/index";
@@ -41,7 +42,10 @@ const StudioPage = props => {
     props.currentProject && props.currentProject.modelLink ? (
       <div className="studio-page">
         <Container maxWidth="xl" classes={{ root: "container-padding" }}>
-          <Modes />
+          {/* <Modes /> */}
+          <div className="custom-grid">
+            <StudioTopBar />
+          </div>
         </Container>
       </div>
     ) : (
