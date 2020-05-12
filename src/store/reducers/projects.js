@@ -34,6 +34,8 @@ const reducer = (state = initialState, action) => {
         allProjects: [action.data, ...state.allProjects]
       };
     case actionTypes.POPULATE_PROJECTS:
+      // eslint-disable-next-line
+
       return {
         ...state,
         allProjects: action.projects
@@ -41,7 +43,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_CURRENT_PROJECT:
       return {
         ...state,
-        currentProject: { ...findProject(state.allProjects, action.projectId) }
+        currentProject: findProject(state.allProjects, action.projectId)
       };
     default:
       return state;

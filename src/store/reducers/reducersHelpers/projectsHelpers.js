@@ -26,10 +26,18 @@ export const deleteProject = (projects, projectId) => {
   return newProjects;
 };
 
+export const saveProjectIdToLocalStorage = projectId => {
+  localStorage.setItem("currentProjectId", projectId);
+};
+
 export const findProject = (projects, id) => {
+  console.log(projects, id);
   for (const project of projects) {
     if (project.id === id) {
+      saveProjectIdToLocalStorage(project.id);
       return project;
     }
   }
+
+  return null;
 };

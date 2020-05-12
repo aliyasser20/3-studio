@@ -49,7 +49,8 @@ const StudioPage = props => {
         </Container>
       </div>
     ) : (
-      <Redirect to="/dashboard" />
+      // <Redirect to="/dashboard" />
+      <div>Loading</div>
     );
 
   return page;

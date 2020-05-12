@@ -18,6 +18,11 @@ export const newProject = data => ({
   data
 });
 
+export const setCurrentProject = projectId => ({
+  type: actionTypes.SET_CURRENT_PROJECT,
+  projectId
+});
+
 export const populateProjects = projects => ({
   type: actionTypes.POPULATE_PROJECTS,
   projects
@@ -32,13 +37,11 @@ export const getProjects = userId => dispatch => {
     })
     .then(response => {
       dispatch(populateProjects(response.data.projects));
+      const projectId = Number(localStorage.getItem("currentProjectId"));
+
+      dispatch(setCurrentProject(projectId));
     })
     .catch(error => {
       console.log(error);
     });
 };
-
-export const setCurrentProject = projectId => ({
-  type: actionTypes.SET_CURRENT_PROJECT,
-  projectId
-});
