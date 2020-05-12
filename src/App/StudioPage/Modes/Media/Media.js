@@ -13,16 +13,17 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import Testing from "./Testing";
-import MediaCanvas from "./MegiaCanvas/MediaCanvas";
+import MediaCanvas from "./MediaCanvas/MediaCanvas";
 import cloudinaryAxios from "../../../../axiosInstances/cloudinaryAxios";
+import { createImage } from "./screenshotsHelpers/screenshotsHandler";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Media = props => {
+const Media = (props) => {
   const [open, setOpen] = React.useState(false);
-  const [screenShot, setScreenshot] = React.useState();
+  const [screenshot, setScreenshot] = React.useState();
 
   const handleOpen = () => {
     setOpen(true);
@@ -42,53 +43,12 @@ const Media = props => {
   const { gl, scene, camera } = useThree();
 
   const handleScreenshot = () => {
-    const canvas = document.querySelector("canvas");
-    // const newWindow = window.open("", "");
-    // newWindow.document.title = "Screenshot";
-    // // w.document.body.style.backgroundColor = "red";
-    // const img = new Image();
-    // // Without 'preserveDrawingBuffer' set to true, we must render now
-    // gl.render(scene, camera);
-    // // renderer.render(scene, camera);
-    // img.src = canvas.toDataURL();
-    // newWindow.document.body.appendChild(img);
-    //
-
-    const pre = canvas.toDataURL("image/png", 1.0);
-    // const formData = new FormData();
-    // formData.append("file", pre);
-    // formData.append("public_id", "90/newScreenShot2");
-    // formData.append("upload_preset", "screenshotUpload"); // Replace the preset name with your own
-    // formData.append("api_key", "463438241363482"); // Replace API key with your own Cloudinary key
-    // formData.append("timestamp", (Date.now() / 1000) | 0);
-    // console.log(pre);
-    // return cloudinaryAxios
-    //   .post("/image/upload", formData, {
-    //     headers: { "X-Requested-With": "XMLHttpRequest" },
-    //   })
-    //   .then((res) => console.log(res));
-    // canvas.toBlob(function(blob) {
-    //   console.log(blob);
     setOpen(true);
-    const preview = document.querySelector("#preview-img");
-    const link = document.querySelector("#download-link");
-
-    //   // const newImg = document.createElement("img");
-    //   // const a = document.createElement("a");
-    //   blob.name = "TestScreenShot.png"
-    //   setScreenshot(blob);
-    //   const url = URL.createObjectURL(blob);
-    //   // window.open(url);
-    preview.src = pre;
-    link.href = pre;
-    console.log(link.href);
-    //   // a.download = "newGif";
-    //   // a.id = "download";
-    //   // document.body.appendChild(newImg);
-    //   // document.body.appendChild(a);
-    // });
+    const preview = createImage();
+    setScreenshot(preview)
+    // console.log("link", document.querySelector("#download-link").href);
+    // console.log(screenshot);
   };
-
   // const handleGif = () => {
   //   // console.log("ok")
   //   capturer.start();
@@ -111,9 +71,10 @@ const Media = props => {
     <>
       {/* <Testing /> */}
       <MediaCanvas />
-      <Button onClick={e => handleScreenshot()}>screenshot</Button>
+      <Button onClick={(e) => handleScreenshot()}>screenshot</Button>
       {/* <Button onClick={e => handleGif()}>gif</Button> */}
       <Dialog
+        classes={{ root: "screenshot-preview" }}
         open={open}
         TransitionComponent={Transition}
         keepMounted
@@ -121,22 +82,19 @@ const Media = props => {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle id="alert-dialog-slide-title">
-          Use Google's location service?
-        </DialogTitle>
         <DialogContent>
           <img id="preview-img" src="" alt="preview-img" />
-          <a id="download-link" type="button" href="" download="test">
+          {/* <a class=""id="download-link" type="button" href="" download="test">
             Download
-          </a>
+          </a> */}
           <Button>Cancel</Button>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Disagree
           </Button>
-          <Button onClick={handleClose} color="primary">
-            Agree
+          <Button color="primary" variant="contained" onClick={e => handleDownload()}>
+            Download
           </Button>
         </DialogActions>
       </Dialog>

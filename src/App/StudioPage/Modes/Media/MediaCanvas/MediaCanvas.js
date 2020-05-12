@@ -45,10 +45,6 @@ const MediaCanvas = props => {
   const reeef = useRef();
   console.log(reeef.current);
 
-  // new GLTFLoader().load("/models/duck.glb", gltf =>
-  //   )
-  // );
-
   const result = props.model ? (
     <Fragment>
       <Canvas
@@ -73,16 +69,16 @@ const MediaCanvas = props => {
         <directionalLight intensity={0.8 * Math.PI} position={[0.5, 0, 0.86]} />
         <CameraControls />
         <axesHelper scale={[1, 1, 1]} />
-        {/* <Environment
+        <Environment
           // bgEnvironment
           bgSolid
           bgColor="000000"
           mapEnvironment
-        /> */}
+        />
         {/* <KeyLight brightness={10} color="white" /> */}
         {/* <Loading capturer={props.capturer} /> */}
         {/* <BackWall /> */}
-        {/* <GroundPlane /> */}
+        <GroundPlane />
         <primitive object={props.model} ref={reeef} dispose={null} castshadow />
       </Canvas>
       <button
