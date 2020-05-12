@@ -75,14 +75,14 @@ const Media = (props) => {
       }
     );
   };
-
   const handleRecord = () => {
+    setScreenshot("");
     const exportVid = (blob) => {
       const preview = document.querySelector("#preview-video");
-
       const vid = document.createElement("video");
       vid.style.width = "100%";
       vid.style.height = "70%";
+      blob.name = "test";
       vid.src = URL.createObjectURL(blob);
       vid.controls = true;
       preview.appendChild(vid);
@@ -92,24 +92,21 @@ const Media = (props) => {
       // a.textContent = "download the video";
       // document.body.appendChild(a);
     };
-
-    const startRecording = (canvas) => {
+    const startRecording = (canvas, timer) => {
       const chunks = []; // here we will store our recorded media chunks (Blobs);
       const stream = canvas.captureStream(); // grab our canvas MediaStream;
       const rec = new MediaRecorder(stream); // every time the recorder has new data, we will store it in our array
-
       rec.ondataavailable = (e) => chunks.push(e.data);
       rec.onstop = (e) => {
-        exportVid(new Blob(chunks, { type: "video/mp4" }));
         setOpen(true);
+        exportVid(new Blob(chunks, { type: "video/mp4" }));
       };
 
       rec.start();
-      setTimeout(() => rec.stop(), 10000);
+      setTimeout(() => rec.stop(), timer * 1000);
     };
     const canvas = document.querySelector("canvas");
-    startRecording(canvas);
-    // console.log("ok")
+    startRecording(canvas, 10);
     // capturer.start();
     // setTimeout(() => {
     //   capturer.stop();
