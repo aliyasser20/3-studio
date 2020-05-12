@@ -6,7 +6,7 @@ import Row from "./Row/Row";
 
 import { useAuth0 } from "../../../react-auth0-spa";
 
-export default function CustomizedTables() {
+export default function UserInfoTable() {
   const { user } = useAuth0();
   const [editName, setEditName] = useState(false);
   const [editNickname, setEditNickname] = useState(false);
