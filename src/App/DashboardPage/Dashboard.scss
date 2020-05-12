@@ -15,6 +15,14 @@
     }
   }
 
+  .loader-container {
+    width: 100%;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    height: calc(100vh - 195px);
+  }
+
   .projects {
     display: grid;
     grid-auto-flow: dense;

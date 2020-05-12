@@ -7,10 +7,19 @@ import { Container, Snackbar } from "@material-ui/core";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import NewProject from "./NewProject/NewProject";
 import Alert from "../UI/Alert/Alert";
+import Loader from "../UI/Loader/Loader";
+
+import { useAuth0 } from "../../react-auth0-spa";
+import * as actions from "../../store/actions/index";
 
 import "./Dashboard.scss";
 
 const DashboardPage = props => {
+  const { user } = useAuth0();
+
+  // Get projects from backend
+  props.onGetProjects(user.sub);
+
   const [snackBarOpen, setSnackBarOpen] = useState(false);
   const [snackBarStatus, setSnackBarStatus] = useState("");
   const [snackBarMessage, setSnackBarMessage] = useState("");
@@ -61,7 +70,13 @@ const DashboardPage = props => {
           <h1>Dashboard</h1>
           <NewProject />
         </div>
-        <div className="projects">{projectCards}</div>
+        {props.allProjects.length > 0 ? (
+          <div className="projects">{projectCards}</div>
+        ) : (
+          <div className="loader-container">
+            <Loader />
+          </div>
+        )}
         {snackBarOpen && snackBar}
       </Container>
     </div>
@@ -69,11 +84,16 @@ const DashboardPage = props => {
 };
 
 DashboardPage.propTypes = {
-  allProjects: PropTypes.array
+  allProjects: PropTypes.array,
+  onGetProjects: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   allProjects: state.projects.allProjects
 });
 
-export default connect(mapStateToProps, null)(DashboardPage);
+const mapDispatchToProps = dispatch => ({
+  onGetProjects: userId => dispatch(actions.getProjects(userId))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);
