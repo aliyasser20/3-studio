@@ -1,4 +1,4 @@
-import React, { useState, Suspense, Fragment } from "react";
+import React, { useState, Suspense, Fragment, useEffect } from "react";
 import { Canvas, Dom } from "react-three-fiber";
 import * as THREE from "three";
 import { connect } from "react-redux";
@@ -63,19 +63,27 @@ const EditCanvas = props => {
     </Dom>
   );
 
-  // ? Update camera to ortho with selected side handler
-  const generateOrthoCamera = side => {
-    setPerspective(false);
-    setOrtho(orthoViewPositions(props.sizeBounding)[side]);
-    props.onSetFov(30);
-  };
+  useEffect(() => {
+    // ? Update camera to ortho with selected side handler
+    const generateOrthoCamera = side => {
+      setPerspective(false);
+      setOrtho(orthoViewPositions(props.sizeBounding)[side]);
+      props.onSetFov(30);
+    };
 
-  // ? Update camera to perspective handler
-  const generatePerspectiveCamera = () => {
-    setPerspective(true);
-    setOrtho(null);
-    props.onSetFov(45);
-  };
+    // ? Update camera to perspective handler
+    const generatePerspectiveCamera = () => {
+      setPerspective(true);
+      setOrtho(null);
+      props.onSetFov(45);
+    };
+
+    if (props.cameraMode === "PERSPECTIVE") {
+      generatePerspectiveCamera();
+    } else {
+      generateOrthoCamera(props.cameraMode.toLowerCase());
+    }
+  }, [props, props.cameraMode]);
 
   // ? Canvas output
   const canvasElement = props.model ? (
@@ -214,7 +222,8 @@ EditCanvas.propTypes = {
   sizeBounding: PropTypes.object.isRequired,
   onSetFov: PropTypes.func.isRequired,
   box: PropTypes.object,
-  model: PropTypes.object
+  model: PropTypes.object,
+  cameraMode: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -226,7 +235,8 @@ const mapStateToProps = state => ({
   far: state.currentModel.far,
   near: state.currentModel.near,
   sizeBounding: state.currentModel.sizeBounding,
-  box: state.currentModel.box
+  box: state.currentModel.box,
+  cameraMode: state.cameraControls.cameraMode
 });
 
 const mapDispatchToProps = dispatch => ({
