@@ -24,7 +24,6 @@ const StudioPage = props => {
   // ? Load model with materials
   useEffect(() => {
     if (props.currentProject && props.currentProject.modelLink) {
-      console.log("here");
       new GLTFLoader().load(props.currentProject.modelLink, gltf =>
         // Order of inputs is important
         createModel(
