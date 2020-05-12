@@ -2,7 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { Paper, Box, Typography, ThemeProvider } from "@material-ui/core";
+import {
+  Paper,
+  Box,
+  Typography,
+  ThemeProvider,
+  Button
+} from "@material-ui/core";
+// import DeleteIcon from "@material-ui/icons/Delete";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import ModeSelector from "./ModeSelector/ModeSelector";
 
@@ -24,6 +32,11 @@ const StudioTopBar = props => {
                   {props.currentProject.name}
                 </Typography>
               </Box>
+              <span className="gradient-button">
+                <Button variant="contained" endIcon={<ExpandMoreIcon />}>
+                  Configuration 3
+                </Button>
+              </span>
             </div>
             <div className="top-bar-center">
               <ModeSelector />

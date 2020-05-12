@@ -12,10 +12,20 @@
     .top-bar-grid {
       display: grid;
       grid-auto-flow: column;
+      grid-template-columns: 1fr 1fr 1fr;
 
       .top-bar-left {
         display: grid;
         align-items: center;
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        grid-gap: 1.5em;
+
+        .gradient-button {
+          .MuiButton-label {
+            color: white;
+          }
+        }
       }
 
       .top-bar-center {
