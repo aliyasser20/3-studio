@@ -1,26 +1,36 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-import { Dialog, DialogContent } from "@material-ui/core";
+import { Dialog, DialogContent, Box, Typography } from "@material-ui/core";
 
 import Loader from "../../UI/Loader/Loader";
 
+import "./LoaderModal.scss";
+
 const LoaderModel = props => (
-  <div>
+  <div className="loader-modal">
     <Dialog
-      classes={{ root: "picture-viewer-dialog" }}
+      classes={{ root: "loader-dialog" }}
       fullWidth={false}
       maxWidth="lg"
       open
-      aria-labelledby="picture"
+      aria-labelledby="loader modal"
     >
-      <DialogContent>
+      <DialogContent classes={{ root: "content-area" }}>
         <Loader />
+        <Box fontWeight={500}>
+          <Typography variant="h6" component="p">
+            Taking too long?
+          </Typography>
+          <Link to="/dashboard">
+            <Typography variant="subtitle1" component="p">
+              Return to Dashboard
+            </Typography>
+          </Link>
+        </Box>
       </DialogContent>
     </Dialog>
   </div>
 );
-
-LoaderModel.propTypes = {};
 
 export default LoaderModel;

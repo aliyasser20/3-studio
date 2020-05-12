@@ -1,0 +1,25 @@
+.loader-dialog {
+  .content-area {
+    height: 250px;
+    width: 250px;
+    display: grid;
+    align-content: center;
+    grid-gap: 2.5em;
+    justify-items: center;
+
+    a {
+      text-decoration: none;
+      color: var(--gradient-top);
+      text-align: center;
+
+      p {
+        padding-top: 0.75em;
+        font-weight: 500;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

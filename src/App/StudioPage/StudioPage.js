@@ -53,8 +53,7 @@ const StudioPage = props => {
       <LoaderModel />
     );
 
-  return <LoaderModel />;
-  // return page;
+  return page;
 };
 
 StudioPage.propTypes = {
