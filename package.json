@@ -32,7 +32,6 @@
     "react-three-fiber": "^4.1.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "request": "^2.88.2",
     "three": "^0.115.0"
   },
   "scripts": {
