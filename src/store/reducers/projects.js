@@ -8,7 +8,8 @@ import {
 
 const initialState = {
   allProjects: [],
-  currentProject: null
+  currentProject: null,
+  projectsLoading: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -34,8 +35,6 @@ const reducer = (state = initialState, action) => {
         allProjects: [action.data, ...state.allProjects]
       };
     case actionTypes.POPULATE_PROJECTS:
-      // eslint-disable-next-line
-
       return {
         ...state,
         allProjects: action.projects
@@ -44,6 +43,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentProject: findProject(state.allProjects, action.projectId)
+      };
+    case actionTypes.SET_PROJECT_START:
+      return {
+        ...state,
+        projectsLoading: true
+      };
+    case actionTypes.SET_PROJECT_END:
+      return {
+        ...state,
+        projectsLoading: false
       };
     default:
       return state;
