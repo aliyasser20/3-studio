@@ -20,3 +20,5 @@ export {
   setNear,
   setSizeBounding
 } from "./currentModel";
+
+export { setCameraMode } from "./cameraControls";

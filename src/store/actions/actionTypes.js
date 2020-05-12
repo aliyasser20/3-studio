@@ -28,3 +28,7 @@ export const SET_NEAR = "SET_NEAR";
 export const SET_SIZE_BOUNDING = "SET_SIZE_BOUNDING";
 export const SET_BOX = "SET_BOX";
 //
+
+// Camera Controls
+export const SET_CAMERA_MODE = "SET_CAMERA_MODE";
+//

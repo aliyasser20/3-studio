@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import { ButtonGroup, Button, ThemeProvider } from "@material-ui/core/";
 
@@ -12,6 +13,7 @@ import LeftIcon from "../../UI/SVGIcons/LeftIcon";
 import BottomIcon from "../../UI/SVGIcons/BottomIcon";
 
 import themeCreator from "../../../helpers/themeCreator";
+import * as actions from "../../../store/actions/index";
 
 import "./ViewControls.scss";
 
@@ -28,32 +30,51 @@ const ViewControls = props => {
           aria-label="view controls"
         >
           <Button
-            classes={{ root: props.viewMode === "PERSPECTIVE" && "selected" }}
+            onClick={() => props.onSetCameraMode("PERSPECTIVE")}
+            classes={{ root: props.cameraMode === "PERSPECTIVE" && "selected" }}
           >
             <PerspectiveIcon />
             Perspec
           </Button>
-          <Button classes={{ root: props.viewMode === "TOP" && "selected" }}>
+          <Button
+            onClick={() => props.onSetCameraMode("TOP")}
+            classes={{ root: props.cameraMode === "TOP" && "selected" }}
+          >
             <TopIcon />
             Top
           </Button>
-          <Button classes={{ root: props.viewMode === "FRONT" && "selected" }}>
+          <Button
+            onClick={() => props.onSetCameraMode("FRONT")}
+            classes={{ root: props.cameraMode === "FRONT" && "selected" }}
+          >
             <FrontIcon />
             Front
           </Button>
-          <Button classes={{ root: props.viewMode === "RIGHT" && "selected" }}>
+          <Button
+            onClick={() => props.onSetCameraMode("RIGHT")}
+            classes={{ root: props.cameraMode === "RIGHT" && "selected" }}
+          >
             <RightIcon />
             Right
           </Button>
-          <Button classes={{ root: props.viewMode === "BOTTOM" && "selected" }}>
+          <Button
+            onClick={() => props.onSetCameraMode("BOTTOM")}
+            classes={{ root: props.cameraMode === "BOTTOM" && "selected" }}
+          >
             <BottomIcon />
             Bottom
           </Button>
-          <Button classes={{ root: props.viewMode === "BACK" && "selected" }}>
+          <Button
+            onClick={() => props.onSetCameraMode("BACK")}
+            classes={{ root: props.cameraMode === "BACK" && "selected" }}
+          >
             <BackIcon />
             Back
           </Button>
-          <Button classes={{ root: props.viewMode === "LEFT" && "selected" }}>
+          <Button
+            onClick={() => props.onSetCameraMode("LEFT")}
+            classes={{ root: props.cameraMode === "LEFT" && "selected" }}
+          >
             <LeftIcon />
             Left
           </Button>
@@ -63,6 +84,17 @@ const ViewControls = props => {
   );
 };
 
-ViewControls.propTypes = {};
+ViewControls.propTypes = {
+  cameraMode: PropTypes.string.isRequired,
+  onSetCameraMode: PropTypes.func.isRequired
+};
 
-export default ViewControls;
+const mapStateToProps = state => ({
+  cameraMode: state.cameraControls.cameraMode
+});
+
+const mapDispatchToProps = dispatch => ({
+  onSetCameraMode: mode => dispatch(actions.setCameraMode(mode))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewControls);
