@@ -23,7 +23,6 @@ import Loading from "./Loading/Loading";
 import "./MediaCanvas.scss";
 import KeyLight from "./Light/KeyLight";
 import Camera from "../../Edit/Camera/Camera";
-import Model from "../../Edit/Model/Model";
 import Environment from "../../Edit/Enivronment/Environment";
 
 extend({ OrbitControls });
