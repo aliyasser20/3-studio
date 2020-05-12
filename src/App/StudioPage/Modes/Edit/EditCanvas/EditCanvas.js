@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, Fragment } from "react";
+import React, { useState, Suspense, Fragment } from "react";
 import { Canvas, Dom } from "react-three-fiber";
 import * as THREE from "three";
 import { connect } from "react-redux";
@@ -13,14 +13,8 @@ import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
 
 import * as actions from "../../../../../store/actions/index";
 
-const Model = props => {
+const EditCanvas = props => {
   // ! State ------------------------------------------------- //
-  // // ? Model, bounding box, zoom, center states //
-  // const [box, setBox] = useState();
-  // const [fov, setFov] = useState(45);
-  // const [far, setFar] = useState(0);
-  // const [near, setNear] = useState(0);
-  // const [sizeBounding, setSizeBounding] = useState({ x: 0, y: 0, z: 0 });
 
   // ? Environment & background states //
   const [mapEnvironment, setMapEnvironment] = useState(true);
@@ -206,7 +200,7 @@ const Model = props => {
   return <div>{canvasElement}</div>;
 };
 
-Model.propTypes = {
+EditCanvas.propTypes = {
   bgEnvironment: PropTypes.bool.isRequired,
   bgSolid: PropTypes.bool.isRequired,
   bgColor: PropTypes.string.isRequired,
@@ -239,4 +233,4 @@ const mapDispatchToProps = dispatch => ({
   onSetFov: fov => dispatch(actions.setFov(fov))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Model);
+export default connect(mapStateToProps, mapDispatchToProps)(EditCanvas);
