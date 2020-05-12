@@ -20,6 +20,7 @@ const App = props => {
 
   useEffect(() => {
     if (user) {
+      props.onGetProjects(user.sub);
       props.onGetTheme(user.sub);
     }
   }, [props, user]);
@@ -58,7 +59,8 @@ App.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  onGetTheme: userId => dispatch(actions.getTheme(userId))
+  onGetTheme: userId => dispatch(actions.getTheme(userId)),
+  onGetProjects: userId => dispatch(actions.getProjects(userId))
 });
 
 export default connect(null, mapDispatchToProps)(App);

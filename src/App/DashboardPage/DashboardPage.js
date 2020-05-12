@@ -9,20 +9,11 @@ import NewProject from "./NewProject/NewProject";
 import Alert from "../UI/Alert/Alert";
 import Loader from "../UI/Loader/Loader";
 
-import { useAuth0 } from "../../react-auth0-spa";
 import * as actions from "../../store/actions/index";
 
 import "./Dashboard.scss";
 
 const DashboardPage = props => {
-  const { user } = useAuth0();
-
-  // Get projects from backend
-  useEffect(() => {
-    props.onGetProjects(user.sub);
-    // eslint-disable-next-line
-  }, []);
-
   const [snackBarOpen, setSnackBarOpen] = useState(false);
   const [snackBarStatus, setSnackBarStatus] = useState("");
   const [snackBarMessage, setSnackBarMessage] = useState("");
@@ -95,8 +86,4 @@ const mapStateToProps = state => ({
   allProjects: state.projects.allProjects
 });
 
-const mapDispatchToProps = dispatch => ({
-  onGetProjects: userId => dispatch(actions.getProjects(userId))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);
+export default connect(mapStateToProps, null)(DashboardPage);

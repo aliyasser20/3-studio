@@ -59,8 +59,8 @@ const StudioPage = props => {
                   {props.currentMode === "EDIT" && <EditCanvas />}
                   {props.currentMode === "MEDIA" && <MediaCanvas />}
                 </div>
-                <GroupsBar />
-                <AppearancesBar />
+                {props.currentMode === "EDIT" && <GroupsBar />}
+                {props.currentMode === "EDIT" && <AppearancesBar />}
               </div>
             </div>
           </div>
