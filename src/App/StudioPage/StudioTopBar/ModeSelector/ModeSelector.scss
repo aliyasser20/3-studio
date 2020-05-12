@@ -1,0 +1,61 @@
+.modes-selector {
+  .mode-buttons {
+    height: 60px;
+    background-color: #212121;
+    border-radius: 40px;
+
+    .mode-button {
+      border: none;
+      display: grid;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+      justify-items: center;
+      width: 100px;
+
+      .MuiButton-label {
+        display: grid;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        justify-items: center;
+        grid-gap: 0.3em;
+        margin-top: 0.3em;
+
+        font-size: 13px;
+      }
+
+      svg {
+        fill: white;
+        width: 19px;
+        height: 19px;
+      }
+
+      &:hover {
+        svg {
+          fill: url(#gradient-vertical);
+        }
+
+        color: var(--gradient-bottom);
+        background: none;
+      }
+    }
+
+    .mode-button.selected {
+      svg {
+        fill: white;
+        width: 20px;
+        height: 20px;
+      }
+
+      &:hover {
+        svg {
+          fill: url(#gradient-vertical);
+        }
+
+        color: var(--gradient-bottom);
+        background: none;
+      }
+    }
+  }
+}
