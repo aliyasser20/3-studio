@@ -13,6 +13,8 @@ import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
 
 import * as actions from "../../../../../store/actions/index";
 
+import "./EditCanvas.scss";
+
 const EditCanvas = props => {
   // ! State ------------------------------------------------- //
 
@@ -141,7 +143,7 @@ const EditCanvas = props => {
         {showBoundingBox && <boxHelper object={props.box} />}
       </Canvas>
       {/* Testing Buttons */}
-      <button type="button" onClick={() => generateOrthoCamera("front")}>
+      {/* <button type="button" onClick={() => generateOrthoCamera("front")}>
         Front
       </button>
       <button type="button" onClick={() => generateOrthoCamera("back")}>
@@ -193,11 +195,11 @@ const EditCanvas = props => {
         }}
       >
         Toggle Bounding Box
-      </button>
+      </button> */}
     </Fragment>
   ) : null;
 
-  return <div>{canvasElement}</div>;
+  return <div className="edit-canvas">{canvasElement}</div>;
 };
 
 EditCanvas.propTypes = {

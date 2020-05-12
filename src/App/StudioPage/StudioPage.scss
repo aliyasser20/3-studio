@@ -2,7 +2,7 @@
   .custom-grid {
     display: grid;
     grid-gap: 1em;
-    padding-bottom: 1em;
+    padding-bottom: 2em;
 
     .working-area {
       display: grid;
@@ -16,7 +16,8 @@
         grid-template-rows: 1fr auto;
 
         .canvas-and-controls-area {
-          border: 1px solid red;
+          display: grid;
+          grid-template-columns: 1fr 100px;
         }
       }
     }

@@ -11,6 +11,7 @@ import StudioTopBar from "./StudioTopBar/StudioTopBar";
 import SideBar from "./SideBar/SideBar";
 import GroupsBar from "./GroupsBar/GroupsBar";
 import AppearancesBar from "./AppearancesBar/AppearancesBar";
+import EditCanvas from "./Modes/Edit/EditCanvas/EditCanvas";
 
 import createModel from "../../helpers/createModel";
 import * as actions from "../../store/actions/index";
@@ -54,7 +55,9 @@ const StudioPage = props => {
             <div className="working-area">
               <SideBar />
               <div className="sub-working-area">
-                <div className="canvas-and-controls-area"></div>
+                <div className="canvas-and-controls-area">
+                  {props.currentMode === "EDIT" && <EditCanvas />}
+                </div>
                 <GroupsBar />
                 <AppearancesBar />
               </div>
@@ -75,11 +78,13 @@ StudioPage.propTypes = {
   onSetFar: PropTypes.func.isRequired,
   onSetNear: PropTypes.func.isRequired,
   onSetSizeBounding: PropTypes.func.isRequired,
-  onSetBox: PropTypes.func.isRequired
+  onSetBox: PropTypes.func.isRequired,
+  currentMode: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
-  currentProject: state.projects.currentProject
+  currentProject: state.projects.currentProject,
+  currentMode: state.modeControl.currentMode
 });
 
 const mapDispatchToProps = dispatch => ({
