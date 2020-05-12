@@ -27,8 +27,8 @@ const ExtraControls = props => {
           aria-label="view controls"
         >
           <Button
-          // onClick={() => props.onSetCameraMode("PERSPECTIVE")}
-          // classes={{ root: props.cameraMode === "PERSPECTIVE" && "selected" }}
+            onClick={() => props.onToggleLock()}
+            classes={{ root: props.lock && "selected" }}
           >
             <span className="lock-icon">
               <LockIcon />
@@ -36,8 +36,8 @@ const ExtraControls = props => {
             Lock
           </Button>
           <Button
-          // onClick={() => props.onSetCameraMode("TOP")}
-          // classes={{ root: props.cameraMode === "TOP" && "selected" }}
+            onClick={() => props.onToggleBoundingBox()}
+            classes={{ root: props.boundingBox && "selected" }}
           >
             <span className="bounding-box-icon">
               <BoundingBoxIcon />
@@ -45,8 +45,8 @@ const ExtraControls = props => {
             Bound
           </Button>
           <Button
-          // onClick={() => props.onSetCameraMode("FRONT")}
-          // classes={{ root: props.cameraMode === "FRONT" && "selected" }}
+            onClick={() => props.onToggleAxis()}
+            classes={{ root: props.axis && "selected" }}
           >
             <span className="axis-icon">
               <AxisIcon />
@@ -54,8 +54,8 @@ const ExtraControls = props => {
             Axis
           </Button>
           <Button
-          // onClick={() => props.onSetCameraMode("FRONT")}
-          // classes={{ root: props.cameraMode === "FRONT" && "selected" }}
+            onClick={() => props.onToggleAutorotate()}
+            classes={{ root: props.autorotate && "selected" }}
           >
             <span className="autorotate-icon">
               <AutorotateIcon />
@@ -69,16 +69,28 @@ const ExtraControls = props => {
 };
 
 ExtraControls.propTypes = {
-  cameraMode: PropTypes.string.isRequired,
-  onSetCameraMode: PropTypes.func.isRequired
+  lock: PropTypes.bool.isRequired,
+  boundingBox: PropTypes.bool.isRequired,
+  axis: PropTypes.bool.isRequired,
+  autorotate: PropTypes.bool.isRequired,
+  onToggleAutorotate: PropTypes.func.isRequired,
+  onToggleLock: PropTypes.func.isRequired,
+  onToggleAxis: PropTypes.func.isRequired,
+  onToggleBoundingBox: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  cameraMode: state.cameraControls.cameraMode
+  lock: state.extraControls.lock,
+  boundingBox: state.extraControls.boundingBox,
+  axis: state.extraControls.axis,
+  autorotate: state.extraControls.autorotate
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSetCameraMode: mode => dispatch(actions.setCameraMode(mode))
+  onToggleLock: () => dispatch(actions.toggleLock()),
+  onToggleBoundingBox: () => dispatch(actions.toggleBoundingBox()),
+  onToggleAxis: () => dispatch(actions.toggleAxis()),
+  onToggleAutorotate: () => dispatch(actions.toggleAutorotate())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExtraControls);
