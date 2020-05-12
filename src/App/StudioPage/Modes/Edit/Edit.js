@@ -1,11 +1,11 @@
 import React from "react";
 
-import Model from "./Model/Model";
+import EditCanvas from "./EditCanvas/EditCanvas";
 import UserControls from "./UserControls/UserControls";
 
 const Edit = () => (
   <div className="edit">
-    <Model url="models/controller.glb" />
+    <EditCanvas />
     <UserControls />
   </div>
 );
