@@ -32,6 +32,7 @@ const Media = (props) => {
   const [snackMessage, setSnackMessage] = useState(false);
   const [severity, setSeverity] = useState("");
   const [screenshot, setScreenshot] = useState();
+  const [previewElement, setPreviewElement] = useState();
 
   const closeSnackbar = () => {
     setSnackbar(false);
@@ -75,30 +76,62 @@ const Media = (props) => {
     );
   };
 
-  // const handleGif = () => {
-  //   // console.log("ok")
-  //   capturer.start();
-  //   setTimeout(() => {
-  //     capturer.stop();
-  //     capturer.save(blob => {
-  //       const a = document.createElement("a");
-  //       document.body.appendChild(a);
-  //       a.style = "display: none";
-  //       const url = URL.createObjectURL(blob);
-  //       window.open(url);
-  //       a.herf = url;
-  //       a.download = "newGif";
-  //       a.click();
-  //     });
-  //   }, 5000);
-  // };
+  const handleRecord = () => {
+    const exportVid = (blob) => {
+      const preview = document.querySelector("#preview-video");
+
+      const vid = document.createElement("video");
+      vid.style.width = "100%";
+      vid.style.height = "70%";
+      vid.src = URL.createObjectURL(blob);
+      vid.controls = true;
+      preview.appendChild(vid);
+      // const a = document.createElement("a");
+      // a.download = "myvid.webm";
+      // a.href = vid.src;
+      // a.textContent = "download the video";
+      // document.body.appendChild(a);
+    };
+
+    const startRecording = (canvas) => {
+      const chunks = []; // here we will store our recorded media chunks (Blobs);
+      const stream = canvas.captureStream(); // grab our canvas MediaStream;
+      const rec = new MediaRecorder(stream); // every time the recorder has new data, we will store it in our array
+
+      rec.ondataavailable = (e) => chunks.push(e.data);
+      rec.onstop = (e) => {
+        exportVid(new Blob(chunks, { type: "video/mp4" }));
+        setOpen(true);
+      };
+
+      rec.start();
+      setTimeout(() => rec.stop(), 10000);
+    };
+    const canvas = document.querySelector("canvas");
+    startRecording(canvas);
+    // console.log("ok")
+    // capturer.start();
+    // setTimeout(() => {
+    //   capturer.stop();
+    //   capturer.save(blob => {
+    //     const a = document.createElement("a");
+    //     document.body.appendChild(a);
+    //     a.style = "display: none";
+    //     const url = URL.createObjectURL(blob);
+    //     window.open(url);
+    //     a.herf = url;
+    //     a.download = "newGif";
+    //     a.click();
+    //   });
+    // }, 5000);
+  };
 
   return (
     <>
       {/* <Testing /> */}
       <MediaCanvas />
-      <Button onClick={(e) => handleScreenshot()}>screenshot</Button>
-      {/* <Button onClick={e => handleGif()}>gif</Button> */}
+      <Button onClick={(e) => handleScreenshot()}>Screenshot</Button>
+      <Button onClick={(e) => handleRecord()}>Record</Button>
       <Dialog
         classes={{ root: "screenshot-preview" }}
         open={open}
@@ -109,26 +142,36 @@ const Media = (props) => {
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogContent>
-          <img id="preview-img" src="" alt="preview-img" />
+          <img
+            id="preview-img"
+            src=""
+            alt="preview-img"
+            style={{ display: "none" }}
+          />
+          <div id="preview-video"></div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary" variant="contained">
-            Cancel
-          </Button>
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={(e) => handleDownload()}
-          >
-            Download
-          </Button>
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={(e) => handleSave()}
-          >
-            Save
-          </Button>
+          {screenshot && (
+            <>
+              <Button onClick={handleClose} color="primary" variant="contained">
+                Cancel
+              </Button>
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={(e) => handleDownload()}
+              >
+                Download
+              </Button>
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={(e) => handleSave()}
+              >
+                Save
+              </Button>
+            </>
+          )}
         </DialogActions>
       </Dialog>
       <Snackbar open={snackbar} autoHideDuration={6000} onClose={closeSnackbar}>

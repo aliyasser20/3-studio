@@ -19,6 +19,7 @@ export const createImage = () => {
   const canvas = document.querySelector("canvas");
   const dataUrl = canvas.toDataURL("image/png", 1.0);
   const preview = document.querySelector("#preview-img");
+  preview.style = "display: unset";
   preview.src = dataUrl;
 
   return dataUrl;
