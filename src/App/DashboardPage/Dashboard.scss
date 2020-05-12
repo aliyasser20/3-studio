@@ -15,10 +15,18 @@
     }
   }
 
+  .loader-container {
+    width: 100%;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    height: calc(100vh - 195px);
+  }
+
   .projects {
     display: grid;
     grid-auto-flow: dense;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-gap: 2em;
     justify-items: center;
   }

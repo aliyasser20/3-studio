@@ -2,6 +2,7 @@ import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { format } from "date-fns";
+import { Link } from "react-router-dom";
 
 import {
   Card,
@@ -251,14 +252,19 @@ const ProjectCard = props => {
             classes={{ root: "horizontal-divider" }}
           />
           <span className="gradient-button">
-            <Button
-              classes={{ root: "open-in-studio" }}
-              variant="contained"
-              color="primary"
-              startIcon={<CameraIcon />}
-            >
-              Open in Studio
-            </Button>
+            <Link to="/studio">
+              <Button
+                classes={{ root: "open-in-studio" }}
+                variant="contained"
+                color="primary"
+                startIcon={<CameraIcon />}
+                onClick={() => {
+                  props.onSetCurrentProject(props.id);
+                }}
+              >
+                Open in Studio
+              </Button>
+            </Link>
           </span>
         </CardContent>
       </Card>
@@ -277,13 +283,16 @@ ProjectCard.propTypes = {
   id: PropTypes.number,
   handleSnackBarOpen: PropTypes.func.isRequired,
   createdAt: PropTypes.string.isRequired,
-  updatedAt: PropTypes.string.isRequired
+  updatedAt: PropTypes.string.isRequired,
+  onSetCurrentProject: PropTypes.func.isRequired
 };
 
 const MapDispatchToProps = dispatch => ({
   onUpdateProjectDetails: (id, name, description) =>
     dispatch(actions.updateProjectDetails(id, name, description)),
-  onDeleteProject: id => dispatch(actions.deleteProject(id))
+  onDeleteProject: id => dispatch(actions.deleteProject(id)),
+  onSetCurrentProject: projectId =>
+    dispatch(actions.setCurrentProject(projectId))
 });
 
 export default connect(null, MapDispatchToProps)(ProjectCard);

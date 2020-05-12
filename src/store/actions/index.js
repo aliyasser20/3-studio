@@ -4,11 +4,19 @@ export {
   updateProjectDetails,
   deleteProject,
   newProject,
-  getProjects
+  getProjects,
+  setCurrentProject
 } from "./projects";
 
 export { setTheme, getTheme } from "./themes";
 
 export { modeSelect } from "./modeControl";
 
-export { setModel } from "./currentModel";
+export {
+  setModel,
+  setBox,
+  setFar,
+  setFov,
+  setNear,
+  setSizeBounding
+} from "./currentModel";

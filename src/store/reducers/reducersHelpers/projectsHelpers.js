@@ -25,3 +25,18 @@ export const deleteProject = (projects, projectId) => {
 
   return newProjects;
 };
+
+export const saveProjectIdToSessionStorage = projectId => {
+  sessionStorage.setItem("currentProjectId", projectId);
+};
+
+export const findProject = (projects, id) => {
+  for (const project of projects) {
+    if (project.id === id) {
+      saveProjectIdToSessionStorage(project.id);
+      return project;
+    }
+  }
+
+  return null;
+};

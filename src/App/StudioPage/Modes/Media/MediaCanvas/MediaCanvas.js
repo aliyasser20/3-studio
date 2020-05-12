@@ -3,7 +3,7 @@ import React, {
   useRef,
   forwardRef,
   Suspense,
-  Fragment,
+  Fragment
 } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -12,7 +12,7 @@ import {
   useFrame,
   extend,
   useThree,
-  useLoader,
+  useLoader
 } from "react-three-fiber";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as THREE from "three";
@@ -23,7 +23,6 @@ import Loading from "./Loading/Loading";
 import "./MediaCanvas.scss";
 import KeyLight from "./Light/KeyLight";
 import Camera from "../../Edit/Camera/Camera";
-import Model from "../../Edit/Model/Model";
 import Environment from "../../Edit/Enivronment/Environment";
 
 extend({ OrbitControls });
@@ -31,14 +30,14 @@ extend({ OrbitControls });
 const CameraControls = () => {
   const {
     camera,
-    gl: { domElement },
+    gl: { domElement }
   } = useThree();
   const controls = useRef();
-  useFrame((state) => controls.current.update());
+  useFrame(state => controls.current.update());
   return <orbitControls ref={controls} args={[camera, domElement]} />;
 };
 
-const Test = (props) => {
+const Test = props => {
   const reeef = useRef();
   useFrame(({ gl, scene, camera }) => {
     gl.render(scene, camera);
@@ -56,7 +55,7 @@ const Test = (props) => {
   );
 };
 
-const MediaCanvas = (props) => {
+const MediaCanvas = props => {
   // console.log(exportModel);
   // console.log(props.model);
 
@@ -110,8 +109,8 @@ const MediaCanvas = (props) => {
 
 Canvas.propTypes = {};
 
-const mapStateToProps = (state) => ({
-  model: state.currentModel.model,
+const mapStateToProps = state => ({
+  model: state.currentModel.model
 });
 
 export default connect(mapStateToProps, null)(MediaCanvas);

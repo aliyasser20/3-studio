@@ -1,0 +1,25 @@
+.studio-page {
+  .custom-grid {
+    display: grid;
+    grid-gap: 1em;
+    padding-bottom: 2em;
+
+    .working-area {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      height: calc(100vh - 3em - 60px - 64px);
+      grid-gap: 1em;
+
+      .sub-working-area {
+        display: grid;
+        grid-gap: 1em;
+        grid-template-rows: 1fr;
+
+        .canvas-and-controls-area {
+          display: grid;
+          grid-template-columns: 1fr 100px;
+        }
+      }
+    }
+  }
+}

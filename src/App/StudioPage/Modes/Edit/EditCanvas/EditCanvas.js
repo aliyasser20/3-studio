@@ -1,6 +1,5 @@
-import React, { useState, useEffect, Suspense, Fragment } from "react";
+import React, { useState, Suspense, Fragment } from "react";
 import { Canvas, Dom } from "react-three-fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -10,20 +9,14 @@ import Environment from "../Enivronment/Environment";
 import Bridge from "../Bridge/Bridge";
 import Camera from "../Camera/Camera";
 
-import createModel from "../../../../../helpers/createModel";
 import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
 
 import * as actions from "../../../../../store/actions/index";
 
-const Model = props => {
+import "./EditCanvas.scss";
+
+const EditCanvas = props => {
   // ! State ------------------------------------------------- //
-  // ? Model, bounding box, zoom, center states //
-  // const [model, setModel] = useState(null);
-  const [box, setBox] = useState();
-  const [fov, setFov] = useState(45);
-  const [far, setFar] = useState(0);
-  const [near, setNear] = useState(0);
-  const [sizeBounding, setSizeBounding] = useState({ x: 0, y: 0, z: 0 });
 
   // ? Environment & background states //
   const [mapEnvironment, setMapEnvironment] = useState(true);
@@ -52,8 +45,8 @@ const Model = props => {
   ]);
 
   // ? Additional helpers and controls states //
-  const [showAxis, setShowAxis] = useState(true);
-  const [showBoundingBox, setShowBoundingBox] = useState(true);
+  const [showAxis, setShowAxis] = useState(false);
+  const [showBoundingBox, setShowBoundingBox] = useState(false);
   const [allowOrbitControls, setAllowOrbitControls] = useState(true);
   const [autoRotate, setAutoRotate] = useState(false);
 
@@ -62,19 +55,6 @@ const Model = props => {
   const [ortho, setOrtho] = useState(null);
 
   // ! ------------------------------------------------- //
-  // ? Load model with materials
-  useEffect(() => {
-    new GLTFLoader().load(props.url, gltf =>
-      createModel(
-        gltf,
-        setBox,
-        setFar,
-        props.onSetModel,
-        setSizeBounding,
-        setNear
-      )
-    );
-  }, [props.onSetModel, props.url]);
 
   // ? Fallback case
   const fallbackElement = (
@@ -86,20 +66,16 @@ const Model = props => {
   // ? Update camera to ortho with selected side handler
   const generateOrthoCamera = side => {
     setPerspective(false);
-    setOrtho(orthoViewPositions(sizeBounding)[side]);
-    setFov(30);
+    setOrtho(orthoViewPositions(props.sizeBounding)[side]);
+    props.onSetFov(30);
   };
 
   // ? Update camera to perspective handler
   const generatePerspectiveCamera = () => {
     setPerspective(true);
     setOrtho(null);
-    setFov(45);
+    props.onSetFov(45);
   };
-
-  console.log(sizeBounding, far, near);
-
-  console.log(props.model);
 
   // ? Canvas output
   const canvasElement = props.model ? (
@@ -114,12 +90,16 @@ const Model = props => {
         <Camera
           position={
             perspective
-              ? [-sizeBounding.x, sizeBounding.y, sizeBounding.z]
+              ? [
+                  -props.sizeBounding.x,
+                  props.sizeBounding.y,
+                  props.sizeBounding.z
+                ]
               : ortho
           }
-          fov={fov}
-          far={far}
-          near={near}
+          fov={props.fov}
+          far={props.far}
+          near={props.near}
         />
         <primitive object={props.model} dispose={null} />
         {directional && (
@@ -154,16 +134,16 @@ const Model = props => {
         {showAxis && (
           <axesHelper
             scale={[
-              0.75 * sizeBounding.x,
-              0.75 * sizeBounding.y,
-              0.75 * sizeBounding.z
+              0.75 * props.sizeBounding.x,
+              0.75 * props.sizeBounding.y,
+              0.75 * props.sizeBounding.z
             ]}
           />
         )}
-        {showBoundingBox && <boxHelper object={box} />}
+        {showBoundingBox && <boxHelper object={props.box} />}
       </Canvas>
       {/* Testing Buttons */}
-      <button type="button" onClick={() => generateOrthoCamera("front")}>
+      {/* <button type="button" onClick={() => generateOrthoCamera("front")}>
         Front
       </button>
       <button type="button" onClick={() => generateOrthoCamera("back")}>
@@ -215,33 +195,44 @@ const Model = props => {
         }}
       >
         Toggle Bounding Box
-      </button>
+      </button> */}
     </Fragment>
   ) : null;
 
-  return <div>{canvasElement}</div>;
+  return <div className="edit-canvas">{canvasElement}</div>;
 };
 
-Model.propTypes = {
+EditCanvas.propTypes = {
   bgEnvironment: PropTypes.bool.isRequired,
   bgSolid: PropTypes.bool.isRequired,
   bgColor: PropTypes.string.isRequired,
   onToggleBackground: PropTypes.func.isRequired,
   onBgSolidColor: PropTypes.func.isRequired,
-  url: PropTypes.string.isRequired
+  fov: PropTypes.number.isRequired,
+  far: PropTypes.number.isRequired,
+  near: PropTypes.number.isRequired,
+  sizeBounding: PropTypes.object.isRequired,
+  onSetFov: PropTypes.func.isRequired,
+  box: PropTypes.object,
+  model: PropTypes.object
 };
 
 const mapStateToProps = state => ({
   bgEnvironment: state.environmentControls.bgEnvironment,
   bgSolid: state.environmentControls.bgSolid,
   bgColor: state.environmentControls.bgColor,
-  model: state.currentModel.model
+  model: state.currentModel.model,
+  fov: state.currentModel.fov,
+  far: state.currentModel.far,
+  near: state.currentModel.near,
+  sizeBounding: state.currentModel.sizeBounding,
+  box: state.currentModel.box
 });
 
 const mapDispatchToProps = dispatch => ({
   onToggleBackground: () => dispatch(actions.toggleBackground()),
   onBgSolidColor: color => dispatch(actions.setBackgroundColor(color)),
-  onSetModel: model => dispatch(actions.setModel(model))
+  onSetFov: fov => dispatch(actions.setFov(fov))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Model);
+export default connect(mapStateToProps, mapDispatchToProps)(EditCanvas);

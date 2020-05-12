@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -14,10 +16,11 @@ import AvatarPopover from "./AvatarPopover/AvatarPopover";
 
 import { useAuth0 } from "../../react-auth0-spa";
 import themeCreator from "../../helpers/themeCreator";
+import * as actions from "../../store/actions/index";
 
 import "./NavBar.scss";
 
-const NavBar = () => {
+const NavBar = props => {
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   let username;
@@ -56,7 +59,12 @@ const NavBar = () => {
                 <Link to="/">
                   <Typography variant="h5">
                     <div className="text-color-grad">
-                      <Box fontWeight="700">Final Project</Box>
+                      <Box
+                        onClick={() => props.onModeSelect("EDIT")}
+                        fontWeight="700"
+                      >
+                        Final Project
+                      </Box>
                     </div>
                   </Typography>
                 </Link>
@@ -70,4 +78,12 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+NavBar.propTypes = {
+  onModeSelect: PropTypes.func.isRequired
+};
+
+const mapDispatchToProps = dispatch => ({
+  onModeSelect: mode => dispatch(actions.modeSelect(mode))
+});
+
+export default connect(null, mapDispatchToProps)(NavBar);

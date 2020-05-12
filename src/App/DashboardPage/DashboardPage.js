@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -7,6 +7,7 @@ import { Container, Snackbar } from "@material-ui/core";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import NewProject from "./NewProject/NewProject";
 import Alert from "../UI/Alert/Alert";
+import Loader from "../UI/Loader/Loader";
 
 import "./Dashboard.scss";
 
@@ -61,7 +62,13 @@ const DashboardPage = props => {
           <h1>Dashboard</h1>
           <NewProject />
         </div>
-        <div className="projects">{projectCards}</div>
+        {props.allProjects.length > 0 ? (
+          <div className="projects">{projectCards}</div>
+        ) : (
+          <div className="loader-container">
+            <Loader />
+          </div>
+        )}
         {snackBarOpen && snackBar}
       </Container>
     </div>
