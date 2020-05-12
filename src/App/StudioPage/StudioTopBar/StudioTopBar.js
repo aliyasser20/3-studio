@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -7,10 +7,12 @@ import {
   Box,
   Typography,
   ThemeProvider,
-  Button
+  Button,
+  IconButton
 } from "@material-ui/core";
-// import DeleteIcon from "@material-ui/icons/Delete";
+import GetAppIcon from "@material-ui/icons/GetApp";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import SaveIcon from "@material-ui/icons/Save";
 
 import ModeSelector from "./ModeSelector/ModeSelector";
 
@@ -41,7 +43,26 @@ const StudioTopBar = props => {
             <div className="top-bar-center">
               <ModeSelector />
             </div>
-            <div className="top-bar-right"></div>
+            <div className="top-bar-right">
+              {props.currentMode === "EDIT" && (
+                <Fragment>
+                  <IconButton
+                    aria-label="edit"
+                    classes={{ root: "action-button" }}
+                    size="small"
+                  >
+                    <SaveIcon />
+                  </IconButton>
+                  <IconButton
+                    aria-label="edit"
+                    classes={{ root: "action-button" }}
+                    size="small"
+                  >
+                    <GetAppIcon />
+                  </IconButton>
+                </Fragment>
+              )}
+            </div>
           </div>
         </Paper>
       </div>
@@ -50,11 +71,13 @@ const StudioTopBar = props => {
 };
 
 StudioTopBar.propTypes = {
-  currentProject: PropTypes.object.isRequired
+  currentProject: PropTypes.object.isRequired,
+  currentMode: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
-  currentProject: state.projects.currentProject
+  currentProject: state.projects.currentProject,
+  currentMode: state.modeControl.currentMode
 });
 
 export default connect(mapStateToProps)(StudioTopBar);
