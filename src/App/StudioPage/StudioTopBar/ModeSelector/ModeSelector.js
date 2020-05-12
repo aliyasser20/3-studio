@@ -7,7 +7,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import VideocamIcon from "@material-ui/icons/Videocam";
 import BuildRoundedIcon from "@material-ui/icons/BuildRounded";
 
-import Edit from "../../../UI/SVGIcons/Edit";
+import EditIcon from "../../../UI/SVGIcons/EditIcon";
 
 import * as actions from "../../../../store/actions/index";
 
@@ -41,7 +41,7 @@ const ModeSelector = props => {
           onClick={() => props.onModeSelect("EDIT")}
           classes={{ root: editClasses }}
         >
-          <Edit />
+          <EditIcon />
           Edit
         </Button>
         <Button
