@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -18,7 +18,10 @@ const DashboardPage = props => {
   const { user } = useAuth0();
 
   // Get projects from backend
-  props.onGetProjects(user.sub);
+  useEffect(() => {
+    props.onGetProjects(user.sub);
+    // eslint-disable-next-line
+  }, []);
 
   const [snackBarOpen, setSnackBarOpen] = useState(false);
   const [snackBarStatus, setSnackBarStatus] = useState("");
