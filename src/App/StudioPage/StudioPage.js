@@ -17,7 +17,6 @@ import * as actions from "../../store/actions/index";
 import LoaderModel from "./LoaderModal/LoaderModel";
 
 import "./StudioPage.scss";
-import Media from "./Modes/Media/Media";
 
 const StudioPage = (props) => {
   // ? Load model with materials
@@ -55,7 +54,7 @@ const StudioPage = (props) => {
               <div className="sub-working-area">
                 <div className="canvas-and-controls-area">
                   {props.currentMode === "EDIT" && <EditCanvas />}
-                  {props.currentMode === "MEDIA" && <Media />}
+                  {props.currentMode === "MEDIA" && <MediaCanvas />}
                 </div>
                 {props.currentMode === "EDIT" && <GroupsBar />}
                 {props.currentMode === "EDIT" && <AppearancesBar />}

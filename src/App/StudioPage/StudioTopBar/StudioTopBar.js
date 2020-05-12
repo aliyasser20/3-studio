@@ -9,8 +9,9 @@ import ModeSelector from "./ModeSelector/ModeSelector";
 import themeCreator from "../../../helpers/themeCreator";
 
 import "./StudioTopBar.scss";
+import MediaTopNav from "../Modes/Media/MediaTopNav/MediaTopNav";
 
-const StudioTopBar = props => {
+const StudioTopBar = (props) => {
   const theme = themeCreator("#ffffff", "#212121");
 
   return (
@@ -28,7 +29,9 @@ const StudioTopBar = props => {
             <div className="top-bar-center">
               <ModeSelector />
             </div>
-            <div className="top-bar-right"></div>
+            <div className="top-bar-right">
+              {props.mode === "MEDIA" && <MediaTopNav />}
+            </div>
           </div>
         </Paper>
       </div>
@@ -37,11 +40,13 @@ const StudioTopBar = props => {
 };
 
 StudioTopBar.propTypes = {
-  currentProject: PropTypes.object.isRequired
+  currentProject: PropTypes.object.isRequired,
+  mode: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = state => ({
-  currentProject: state.projects.currentProject
+const mapStateToProps = (state) => ({
+  currentProject: state.projects.currentProject,
+  mode: state.modeControl.currentMode,
 });
 
 export default connect(mapStateToProps)(StudioTopBar);
