@@ -8,5 +8,15 @@
     padding: 0 1.5em;
     align-items: center;
     text-transform: capitalize;
+
+    .top-bar-grid {
+      display: grid;
+      grid-auto-flow: column;
+
+      .top-bar-center {
+        display: grid;
+        justify-content: center;
+      }
+    }
   }
 }
