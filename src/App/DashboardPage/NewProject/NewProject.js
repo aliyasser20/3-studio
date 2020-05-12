@@ -19,7 +19,6 @@ import * as actions from "../../../store/actions/index";
 
 const NewProject = (props) => {
   const { user } = useAuth0();
-  console.log(user)
   const [open, setOpen] = useState(false);
   const [files, setFiles] = useState([]);
   const uploadUrl = "/raw/upload/";

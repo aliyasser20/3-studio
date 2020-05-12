@@ -15,7 +15,11 @@ import Slide from "@material-ui/core/Slide";
 import Testing from "./Testing";
 import MediaCanvas from "./MediaCanvas/MediaCanvas";
 import cloudinaryAxios from "../../../../axiosInstances/cloudinaryAxios";
-import { createImage } from "./screenshotsHelpers/screenshotsHandler";
+import {
+  createImage,
+  screeshotDownload,
+  saveToCloud,
+} from "./screenshotsHelpers/screenshotsHandler";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -44,11 +48,22 @@ const Media = (props) => {
 
   const handleScreenshot = () => {
     setOpen(true);
+    // handleCounter()
     const preview = createImage();
-    setScreenshot(preview)
-    // console.log("link", document.querySelector("#download-link").href);
-    // console.log(screenshot);
+    setScreenshot(preview);
   };
+  const handleDownload = () => {
+    screeshotDownload(screenshot, { name: "testProject", id: 85 }, 19);
+  };
+
+  const handleSave = () => {
+    saveToCloud(screenshot,{name: "testProject", id:777}, 19).then(res=>{
+      res.status === 200 ? 
+    })
+    setOpen(false);
+  };
+
+
   // const handleGif = () => {
   //   // console.log("ok")
   //   capturer.start();
@@ -84,17 +99,24 @@ const Media = (props) => {
       >
         <DialogContent>
           <img id="preview-img" src="" alt="preview-img" />
-          {/* <a class=""id="download-link" type="button" href="" download="test">
-            Download
-          </a> */}
-          <Button>Cancel</Button>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Disagree
+          <Button onClick={handleClose} color="primary" variant="contained">
+            Cancel
           </Button>
-          <Button color="primary" variant="contained" onClick={e => handleDownload()}>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={(e) => handleDownload()}
+          >
             Download
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={(e) => handleSave()}
+          >
+            Save
           </Button>
         </DialogActions>
       </Dialog>
