@@ -3,6 +3,7 @@
     height: 60px;
     background-color: #212121;
     border-radius: 40px;
+    overflow: hidden;
 
     .mode-button {
       border: none;
@@ -12,6 +13,7 @@
       justify-content: center;
       justify-items: center;
       width: 100px;
+      overflow: hidden;
 
       .MuiButton-label {
         display: grid;
@@ -43,19 +45,9 @@
 
     .mode-button.selected {
       svg {
-        fill: white;
-        width: 20px;
-        height: 20px;
+        fill: url(#gradient-vertical);
       }
-
-      &:hover {
-        svg {
-          fill: url(#gradient-vertical);
-        }
-
-        color: var(--gradient-bottom);
-        background: none;
-      }
+      color: var(--gradient-bottom);
     }
   }
 }

@@ -15,6 +15,14 @@ import "./ModeSelector.scss";
 
 const ModeSelector = props => {
   let modes;
+
+  const viewClasses =
+    props.currentMode === "VIEW" ? "mode-button selected" : "mode-button";
+  const editClasses =
+    props.currentMode === "EDIT" ? "mode-button selected" : "mode-button";
+  const mediaClasses =
+    props.currentMode === "MEDIA" ? "mode-button selected" : "mode-button";
+
   return (
     <div className="modes-selector">
       <ButtonGroup
@@ -22,15 +30,24 @@ const ModeSelector = props => {
         color="primary"
         aria-label="outlined primary button group"
       >
-        <Button classes={{ root: "mode-button" }}>
+        <Button
+          onClick={() => props.onModeSelect("VIEW")}
+          classes={{ root: viewClasses }}
+        >
           <VisibilityIcon fontSize="small" />
           View
         </Button>
-        <Button classes={{ root: "mode-button" }}>
+        <Button
+          onClick={() => props.onModeSelect("EDIT")}
+          classes={{ root: editClasses }}
+        >
           <Edit />
           Edit
         </Button>
-        <Button classes={{ root: "mode-button" }}>
+        <Button
+          onClick={() => props.onModeSelect("MEDIA")}
+          classes={{ root: mediaClasses }}
+        >
           <VideocamIcon fontSize="small" />
           Media
         </Button>
