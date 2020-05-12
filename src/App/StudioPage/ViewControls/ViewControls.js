@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { ButtonGroup, Button, ThemeProvider } from "@material-ui/core/";
 
 import PerspectiveIcon from "../../UI/SVGIcons/PerspectiveIcon";
+import TopIcon from "../../UI/SVGIcons/TopIcon";
+import FrontIcon from "../../UI/SVGIcons/FrontIcon";
 
 import themeCreator from "../../../helpers/themeCreator";
 
@@ -28,9 +30,11 @@ const ViewControls = props => {
             Perspec
           </Button>
           <Button classes={{ root: props.viewMode === "TOP" && "selected" }}>
+            <TopIcon />
             Top
           </Button>
           <Button classes={{ root: props.viewMode === "FRONT" && "selected" }}>
+            <FrontIcon />
             Front
           </Button>
           <Button classes={{ root: props.viewMode === "RIGHT" && "selected" }}>
