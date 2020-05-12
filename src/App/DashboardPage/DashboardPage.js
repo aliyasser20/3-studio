@@ -76,8 +76,7 @@ const DashboardPage = props => {
 };
 
 DashboardPage.propTypes = {
-  allProjects: PropTypes.array,
-  onGetProjects: PropTypes.func.isRequired
+  allProjects: PropTypes.array
 };
 
 const mapStateToProps = state => ({

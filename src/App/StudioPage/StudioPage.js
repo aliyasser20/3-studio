@@ -2,11 +2,9 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 
 import { Container } from "@material-ui/core";
 
-import Modes from "./Modes/Modes";
 import StudioTopBar from "./StudioTopBar/StudioTopBar";
 import SideBar from "./SideBar/SideBar";
 import GroupsBar from "./GroupsBar/GroupsBar";
@@ -49,7 +47,6 @@ const StudioPage = props => {
     props.currentProject && props.currentProject.modelLink ? (
       <div className="studio-page">
         <Container maxWidth="xl" classes={{ root: "container-padding" }}>
-          {/* <Modes /> */}
           <div className="custom-grid">
             <StudioTopBar />
             <div className="working-area">
