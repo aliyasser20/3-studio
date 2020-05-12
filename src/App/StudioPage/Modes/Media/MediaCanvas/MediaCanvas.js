@@ -3,7 +3,7 @@ import React, {
   useRef,
   forwardRef,
   Suspense,
-  Fragment
+  Fragment,
 } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -12,7 +12,7 @@ import {
   useFrame,
   extend,
   useThree,
-  useLoader
+  useLoader,
 } from "react-three-fiber";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as THREE from "three";
@@ -31,23 +31,34 @@ extend({ OrbitControls });
 const CameraControls = () => {
   const {
     camera,
-    gl: { domElement }
+    gl: { domElement },
   } = useThree();
   const controls = useRef();
-  useFrame(state => controls.current.update());
+  useFrame((state) => controls.current.update());
   return <orbitControls ref={controls} args={[camera, domElement]} />;
 };
 
-const MediaCanvas = props => {
-  // console.log(exportModel);
-  console.log(props.model);
-
+const Test = (props) => {
   const reeef = useRef();
-  console.log(reeef.current);
+  useFrame(({ gl, scene, camera }) => {
+    gl.render(scene, camera);
+    reeef.current.rotation.y += 0.2;
+  });
+  console.log("model", props.model);
+  return (
+    <primitive
+      object={props.model}
+      ref={reeef}
+      dispose={null}
+      castshadow
+      rotation={[0, 0, 0]}
+    />
+  );
+};
 
-  // new GLTFLoader().load("/models/duck.glb", gltf =>
-  //   )
-  // );
+const MediaCanvas = (props) => {
+  // console.log(exportModel);
+  // console.log(props.model);
 
   const result = props.model ? (
     <Fragment>
@@ -66,13 +77,14 @@ const MediaCanvas = props => {
           fov={45}
           far={132}
           near={0.013}
+          rotation
         />
         <ambientLight intensity={0.3} />
         <hemisphereLight intensity={1} />
         )}
         <directionalLight intensity={0.8 * Math.PI} position={[0.5, 0, 0.86]} />
         <CameraControls />
-        <axesHelper scale={[1, 1, 1]} />
+        {/* <axesHelper scale={[1, 1, 1]} /> */}
         <Environment
           // bgEnvironment
           bgSolid
@@ -82,16 +94,9 @@ const MediaCanvas = props => {
         {/* <KeyLight brightness={10} color="white" /> */}
         {/* <Loading capturer={props.capturer} /> */}
         {/* <BackWall /> */}
-        <GroundPlane />
-        <primitive object={props.model} ref={reeef} dispose={null} castshadow />
+        {/* <GroundPlane /> */}
+        <Test model={props.model} />
       </Canvas>
-      <button
-        onClick={() => {
-          console.log(reeef);
-        }}
-      >
-        Read
-      </button>
     </Fragment>
   ) : null;
 
@@ -105,8 +110,8 @@ const MediaCanvas = props => {
 
 Canvas.propTypes = {};
 
-const mapStateToProps = state => ({
-  model: state.currentModel.model
+const mapStateToProps = (state) => ({
+  model: state.currentModel.model,
 });
 
 export default connect(mapStateToProps, null)(MediaCanvas);

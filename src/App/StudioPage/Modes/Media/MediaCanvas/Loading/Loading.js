@@ -3,6 +3,7 @@ import { useFrame } from "react-three-fiber";
 
 const Loading = props => {
   const loading = useRef();
+  
   // useFrame(({ gl, scene, camera }) => {
   //   gl.render(scene, camera);
   //   loading.current.rotation.y += 0.02;
