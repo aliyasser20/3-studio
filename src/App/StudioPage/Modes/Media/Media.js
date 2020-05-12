@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Button } from "@material-ui/core";
+import { Button, Snackbar } from "@material-ui/core";
 // import CCapture from "ccapture.js/src/CCapture";
 import { useThree } from "react-three-fiber";
 import Modal from "@material-ui/core/Modal";
@@ -13,25 +13,38 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import Testing from "./Testing";
-import MediaCanvas from "./MegiaCanvas/MediaCanvas";
+import MediaCanvas from "./MediaCanvas/MediaCanvas";
 import cloudinaryAxios from "../../../../axiosInstances/cloudinaryAxios";
+import {
+  createImage,
+  screeshotDownload,
+  saveToCloud,
+} from "./screenshotsHelpers/screenshotsHandler";
+import Alert from "../../../UI/Alert/Alert";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Media = props => {
-  const [open, setOpen] = React.useState(false);
-  const [screenShot, setScreenshot] = React.useState();
+const Media = (props) => {
+  const [open, setOpen] = useState(false);
+  const [snackbar, setSnackbar] = useState(false);
+  const [snackMessage, setSnackMessage] = useState(false);
+  const [severity, setSeverity] = useState("");
+  const [screenshot, setScreenshot] = useState();
+  const [previewElement, setPreviewElement] = useState();
 
-  const handleOpen = () => {
-    setOpen(true);
+  const closeSnackbar = () => {
+    setSnackbar(false);
+    setSeverity("");
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
+  const snackbarSet = (severity, message) => {
+    setSeverity(severity);
+    setSnackMessage(message);
+  };
   // const capturer = new CCapture({
   //   format: "gif",
   //   workersPath: "workers/",
@@ -42,78 +55,82 @@ const Media = props => {
   const { gl, scene, camera } = useThree();
 
   const handleScreenshot = () => {
-    const canvas = document.querySelector("canvas");
-    // const newWindow = window.open("", "");
-    // newWindow.document.title = "Screenshot";
-    // // w.document.body.style.backgroundColor = "red";
-    // const img = new Image();
-    // // Without 'preserveDrawingBuffer' set to true, we must render now
-    // gl.render(scene, camera);
-    // // renderer.render(scene, camera);
-    // img.src = canvas.toDataURL();
-    // newWindow.document.body.appendChild(img);
-    //
-
-    const pre = canvas.toDataURL("image/png", 1.0);
-    // const formData = new FormData();
-    // formData.append("file", pre);
-    // formData.append("public_id", "90/newScreenShot2");
-    // formData.append("upload_preset", "screenshotUpload"); // Replace the preset name with your own
-    // formData.append("api_key", "463438241363482"); // Replace API key with your own Cloudinary key
-    // formData.append("timestamp", (Date.now() / 1000) | 0);
-    // console.log(pre);
-    // return cloudinaryAxios
-    //   .post("/image/upload", formData, {
-    //     headers: { "X-Requested-With": "XMLHttpRequest" },
-    //   })
-    //   .then((res) => console.log(res));
-    // canvas.toBlob(function(blob) {
-    //   console.log(blob);
     setOpen(true);
-    const preview = document.querySelector("#preview-img");
-    const link = document.querySelector("#download-link");
-
-    //   // const newImg = document.createElement("img");
-    //   // const a = document.createElement("a");
-    //   blob.name = "TestScreenShot.png"
-    //   setScreenshot(blob);
-    //   const url = URL.createObjectURL(blob);
-    //   // window.open(url);
-    preview.src = pre;
-    link.href = pre;
-    console.log(link.href);
-    //   // a.download = "newGif";
-    //   // a.id = "download";
-    //   // document.body.appendChild(newImg);
-    //   // document.body.appendChild(a);
-    // });
+    // handleCounter()
+    const preview = createImage();
+    setScreenshot(preview);
+  };
+  const handleDownload = () => {
+    screeshotDownload(screenshot, { name: "testProject", id: 85 }, 19);
   };
 
-  // const handleGif = () => {
-  //   // console.log("ok")
-  //   capturer.start();
-  //   setTimeout(() => {
-  //     capturer.stop();
-  //     capturer.save(blob => {
-  //       const a = document.createElement("a");
-  //       document.body.appendChild(a);
-  //       a.style = "display: none";
-  //       const url = URL.createObjectURL(blob);
-  //       window.open(url);
-  //       a.herf = url;
-  //       a.download = "newGif";
-  //       a.click();
-  //     });
-  //   }, 5000);
-  // };
+  const handleSave = () => {
+    saveToCloud(screenshot, { name: "testProject", id: 777 }, 19).then(
+      (res) => {
+        res.status === 200
+          ? snackbarSet("success", "Screenshot saved.")
+          : snackbarSet("error", "Error, screenshot not saved.");
+        setSnackbar(true);
+        setOpen(false);
+      }
+    );
+  };
+  const handleRecord = () => {
+    setScreenshot("");
+    const exportVid = (blob) => {
+      const preview = document.querySelector("#preview-video");
+      const vid = document.createElement("video");
+      vid.style.width = "100%";
+      vid.style.height = "70%";
+      blob.name = "test";
+      vid.src = URL.createObjectURL(blob);
+      vid.controls = true;
+      preview.appendChild(vid);
+      // const a = document.createElement("a");
+      // a.download = "myvid.webm";
+      // a.href = vid.src;
+      // a.textContent = "download the video";
+      // document.body.appendChild(a);
+    };
+    const startRecording = (canvas, timer) => {
+      const chunks = []; // here we will store our recorded media chunks (Blobs);
+      const stream = canvas.captureStream(); // grab our canvas MediaStream;
+      const rec = new MediaRecorder(stream); // every time the recorder has new data, we will store it in our array
+      rec.ondataavailable = (e) => chunks.push(e.data);
+      rec.onstop = (e) => {
+        setOpen(true);
+        exportVid(new Blob(chunks, { type: "video/mp4" }));
+      };
+
+      rec.start();
+      setTimeout(() => rec.stop(), timer * 1000);
+    };
+    const canvas = document.querySelector("canvas");
+    startRecording(canvas, 10);
+    // capturer.start();
+    // setTimeout(() => {
+    //   capturer.stop();
+    //   capturer.save(blob => {
+    //     const a = document.createElement("a");
+    //     document.body.appendChild(a);
+    //     a.style = "display: none";
+    //     const url = URL.createObjectURL(blob);
+    //     window.open(url);
+    //     a.herf = url;
+    //     a.download = "newGif";
+    //     a.click();
+    //   });
+    // }, 5000);
+  };
 
   return (
     <>
       {/* <Testing /> */}
       <MediaCanvas />
-      <Button onClick={e => handleScreenshot()}>screenshot</Button>
-      {/* <Button onClick={e => handleGif()}>gif</Button> */}
+      <Button onClick={(e) => handleScreenshot()}>Screenshot</Button>
+      <Button onClick={(e) => handleRecord()}>Record</Button>
       <Dialog
+        classes={{ root: "screenshot-preview" }}
         open={open}
         TransitionComponent={Transition}
         keepMounted
@@ -121,25 +138,44 @@ const Media = props => {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle id="alert-dialog-slide-title">
-          Use Google's location service?
-        </DialogTitle>
         <DialogContent>
-          <img id="preview-img" src="" alt="preview-img" />
-          <a id="download-link" type="button" href="" download="test">
-            Download
-          </a>
-          <Button>Cancel</Button>
+          <img
+            id="preview-img"
+            src=""
+            alt="preview-img"
+            style={{ display: "none" }}
+          />
+          <div id="preview-video"></div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Disagree
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Agree
-          </Button>
+          {screenshot && (
+            <>
+              <Button onClick={handleClose} color="primary" variant="contained">
+                Cancel
+              </Button>
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={(e) => handleDownload()}
+              >
+                Download
+              </Button>
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={(e) => handleSave()}
+              >
+                Save
+              </Button>
+            </>
+          )}
         </DialogActions>
       </Dialog>
+      <Snackbar open={snackbar} autoHideDuration={6000} onClose={closeSnackbar}>
+        <Alert onClose={closeSnackbar} severity={severity}>
+          {snackMessage}
+        </Alert>
+      </Snackbar>
     </>
   );
 };

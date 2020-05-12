@@ -13,7 +13,7 @@
       .sub-working-area {
         display: grid;
         grid-gap: 1em;
-        grid-template-rows: 1fr auto;
+        grid-template-rows: 1fr;
 
         .canvas-and-controls-area {
           display: grid;

@@ -12,7 +12,7 @@ import SideBar from "./SideBar/SideBar";
 import GroupsBar from "./GroupsBar/GroupsBar";
 import AppearancesBar from "./AppearancesBar/AppearancesBar";
 import EditCanvas from "./Modes/Edit/EditCanvas/EditCanvas";
-import MediaCanvas from "./Modes/Media/MegiaCanvas/MediaCanvas";
+import MediaCanvas from "./Modes/Media/MediaCanvas/MediaCanvas";
 
 import createModel from "../../helpers/createModel";
 import * as actions from "../../store/actions/index";
