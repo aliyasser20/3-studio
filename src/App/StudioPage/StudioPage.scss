@@ -11,10 +11,13 @@
       grid-gap: 1em;
 
       .sub-working-area {
-        border: 1px solid red;
         display: grid;
-
+        grid-gap: 1em;
         grid-template-rows: 1fr auto auto;
+
+        .canvas-and-controls-area {
+          border: 1px solid red;
+        }
       }
     }
   }
