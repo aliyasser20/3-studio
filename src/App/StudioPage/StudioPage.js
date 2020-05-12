@@ -1,11 +1,68 @@
-import React from "react";
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { connect } from "react-redux";
+
+import { Container } from "@material-ui/core";
 
 import Modes from "./Modes/Modes";
 
-const StudioPage = () => (
-  <div className="studio-page">
-    <Modes />
-  </div>
-);
+import createModel from "../../helpers/createModel";
+import * as actions from "../../store/actions/index";
 
-export default StudioPage;
+const StudioPage = props => {
+  // ? Load model with materials
+  useEffect(() => {
+    new GLTFLoader().load(props.currentProject.modelLink, gltf =>
+      // Order of inputs is important
+      createModel(
+        gltf,
+        props.onSetBox,
+        props.onSetFar,
+        props.onSetModel,
+        props.onSetSizeBounding,
+        props.onSetNear
+      )
+    );
+  }, [
+    props.onSetModel,
+    props.currentProject.modelLink,
+    props.onSetBox,
+    props.onSetFar,
+    props.onSetSizeBounding,
+    props.onSetNear
+  ]);
+
+  return (
+    <div className="studio-page">
+      <Container maxWidth="xl" classes={{ root: "container-padding" }}>
+        <Modes />
+      </Container>
+    </div>
+  );
+};
+
+StudioPage.propTypes = {
+  currentProject: PropTypes.object.isRequired,
+  onSetModel: PropTypes.func.isRequired,
+  onSetFar: PropTypes.func.isRequired,
+  onSetNear: PropTypes.func.isRequired,
+  onSetSizeBounding: PropTypes.func.isRequired,
+  onSetBox: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  currentProject: state.projects.currentProject
+});
+
+const mapDispatchToProps = dispatch => ({
+  onSetModel: model => dispatch(actions.setModel(model)),
+  onSetFov: fov => dispatch(actions.setFov(fov)),
+  onSetFar: far => dispatch(actions.setFar(far)),
+  onSetNear: near => dispatch(actions.setNear(near)),
+  onSetSizeBounding: sizeBounding =>
+    dispatch(actions.setSizeBounding(sizeBounding)),
+  onSetBox: box => dispatch(actions.setBox(box))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudioPage);

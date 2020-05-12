@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Suspense, Fragment } from "react";
 import { Canvas, Dom } from "react-three-fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -10,7 +9,6 @@ import Environment from "../Enivronment/Environment";
 import Bridge from "../Bridge/Bridge";
 import Camera from "../Camera/Camera";
 
-import createModel from "../../../../../helpers/createModel";
 import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
 
 import * as actions from "../../../../../store/actions/index";
@@ -18,7 +16,6 @@ import * as actions from "../../../../../store/actions/index";
 const Model = props => {
   // ! State ------------------------------------------------- //
   // ? Model, bounding box, zoom, center states //
-  // const [model, setModel] = useState(null);
   const [box, setBox] = useState();
   const [fov, setFov] = useState(45);
   const [far, setFar] = useState(0);
@@ -62,19 +59,6 @@ const Model = props => {
   const [ortho, setOrtho] = useState(null);
 
   // ! ------------------------------------------------- //
-  // ? Load model with materials
-  useEffect(() => {
-    new GLTFLoader().load(props.url, gltf =>
-      createModel(
-        gltf,
-        setBox,
-        setFar,
-        props.onSetModel,
-        setSizeBounding,
-        setNear
-      )
-    );
-  }, [props.onSetModel, props.url]);
 
   // ? Fallback case
   const fallbackElement = (
