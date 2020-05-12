@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { connect } from "react-redux";
@@ -12,6 +12,7 @@ import AppearancesBar from "./AppearancesBar/AppearancesBar";
 import EditCanvas from "./Modes/Edit/EditCanvas/EditCanvas";
 import MediaCanvas from "./Modes/Media/MediaCanvas/MediaCanvas";
 import ViewControls from "./ViewControls/ViewControls";
+import ExtraControls from "./ExtraControls/ExtraControls";
 
 import createModel from "../../helpers/createModel";
 import * as actions from "../../store/actions/index";
@@ -57,7 +58,12 @@ const StudioPage = props => {
                   {props.currentMode === "EDIT" && <EditCanvas />}
                   {props.currentMode === "MEDIA" && <MediaCanvas />}
                   <div className="controls-area">
-                    <ViewControls />
+                    {props.currentMode === "EDIT" && (
+                      <Fragment>
+                        <ViewControls />
+                        <ExtraControls />
+                      </Fragment>
+                    )}
                   </div>
                 </div>
                 {props.currentMode === "EDIT" && <GroupsBar />}

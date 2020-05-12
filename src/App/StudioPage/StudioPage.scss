@@ -22,7 +22,8 @@
 
           .controls-area {
             display: grid;
-            align-items: center;
+            grid-gap: 1em;
+            align-content: center;
           }
         }
       }

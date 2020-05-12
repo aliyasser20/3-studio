@@ -1,4 +1,4 @@
-.view-controls {
+.extra-controls {
   .button-group-custom {
     width: 100%;
     background-color: #212121;
@@ -13,17 +13,37 @@
         align-content: center;
         justify-content: center;
         justify-items: center;
-        grid-gap: 0.75em;
+        grid-gap: 0.25em;
         font-size: 9px;
         font-weight: 600;
         padding-top: 0.45em;
 
         svg {
           stroke: white;
-          fill: #adadad;
+          fill: white;
           stroke-linecap: butt;
           width: 20px;
           height: 20px;
+        }
+
+        .bounding-box-icon {
+          svg {
+            stroke-dasharray: 2;
+            stroke-width: 2;
+          }
+        }
+
+        .axis-icon {
+          svg {
+            stroke-width: 2;
+          }
+        }
+
+        .autorotate-icon {
+          svg {
+            stroke-width: 1.5;
+            fill: none;
+          }
         }
       }
 
