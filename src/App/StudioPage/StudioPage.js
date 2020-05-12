@@ -8,10 +8,13 @@ import { Container } from "@material-ui/core";
 
 import Modes from "./Modes/Modes";
 import StudioTopBar from "./StudioTopBar/StudioTopBar";
+import SideBar from "./SideBar/SideBar";
 
 import createModel from "../../helpers/createModel";
 import * as actions from "../../store/actions/index";
 import LoaderModel from "./LoaderModal/LoaderModel";
+
+import "./StudioPage.scss";
 
 const StudioPage = props => {
   // ? Load model with materials
@@ -46,6 +49,9 @@ const StudioPage = props => {
           {/* <Modes /> */}
           <div className="custom-grid">
             <StudioTopBar />
+            <div className="working-area">
+              <SideBar />
+            </div>
           </div>
         </Container>
       </div>
