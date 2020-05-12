@@ -6,6 +6,10 @@ import { ButtonGroup, Button, ThemeProvider } from "@material-ui/core/";
 import PerspectiveIcon from "../../UI/SVGIcons/PerspectiveIcon";
 import TopIcon from "../../UI/SVGIcons/TopIcon";
 import FrontIcon from "../../UI/SVGIcons/FrontIcon";
+import BackIcon from "../../UI/SVGIcons/BackIcon";
+import RightIcon from "../../UI/SVGIcons/RightIcon";
+import LeftIcon from "../../UI/SVGIcons/LeftIcon";
+import BottomIcon from "../../UI/SVGIcons/BottomIcon";
 
 import themeCreator from "../../../helpers/themeCreator";
 
@@ -38,15 +42,19 @@ const ViewControls = props => {
             Front
           </Button>
           <Button classes={{ root: props.viewMode === "RIGHT" && "selected" }}>
+            <RightIcon />
             Right
           </Button>
           <Button classes={{ root: props.viewMode === "BOTTOM" && "selected" }}>
+            <BottomIcon />
             Bottom
           </Button>
           <Button classes={{ root: props.viewMode === "BACK" && "selected" }}>
+            <BackIcon />
             Back
           </Button>
           <Button classes={{ root: props.viewMode === "LEFT" && "selected" }}>
+            <LeftIcon />
             Left
           </Button>
         </ButtonGroup>
