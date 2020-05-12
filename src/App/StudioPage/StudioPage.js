@@ -11,6 +11,7 @@ import StudioTopBar from "./StudioTopBar/StudioTopBar";
 
 import createModel from "../../helpers/createModel";
 import * as actions from "../../store/actions/index";
+import LoaderModel from "./LoaderModal/LoaderModel";
 
 const StudioPage = props => {
   // ? Load model with materials
@@ -49,11 +50,11 @@ const StudioPage = props => {
         </Container>
       </div>
     ) : (
-      // <Redirect to="/dashboard" />
-      <div>Loading</div>
+      <LoaderModel />
     );
 
-  return page;
+  return <LoaderModel />;
+  // return page;
 };
 
 StudioPage.propTypes = {
