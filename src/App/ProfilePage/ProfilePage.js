@@ -9,11 +9,15 @@ import {
   InputLabel,
   Select
 } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import UserInfoTable from "./UserInfoTable/UserInfoTable";
 
 import { useAuth0 } from "../../react-auth0-spa";
 import { availableThemes } from "../../store/reducers/reducersHelpers/themesHelpers";
 import * as actions from "../../store/actions/index";
 import backendAxios from "../../axiosInstances/backendAxios";
+
+import "./ProfilePage.scss";
 
 const ProfilePage = props => {
   const { user } = useAuth0();
@@ -62,6 +66,7 @@ const ProfilePage = props => {
           </Select>
         </FormControl>
       </Container>
+      <UserInfoTable />
     </div>
   );
 };
