@@ -17,7 +17,7 @@
 
         .canvas-and-controls-area {
           display: grid;
-          grid-template-columns: 1fr 80px;
+          grid-template-columns: 1fr auto;
           grid-gap: 1em;
 
           .controls-area {
