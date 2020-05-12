@@ -1,4 +1,4 @@
-import React, { useState, Suspense, Fragment, useEffect } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import { Canvas, Dom } from "react-three-fiber";
 import * as THREE from "three";
 import { connect } from "react-redux";
@@ -17,7 +17,6 @@ import "./EditCanvas.scss";
 
 const EditCanvas = props => {
   // ! State ------------------------------------------------- //
-
   // ? Environment & background states //
   const [mapEnvironment, setMapEnvironment] = useState(true);
 
@@ -43,12 +42,6 @@ const EditCanvas = props => {
     0,
     0.86
   ]);
-
-  // ? Additional helpers and controls states //
-  const [showAxis, setShowAxis] = useState(false);
-  const [showBoundingBox, setShowBoundingBox] = useState(false);
-  const [allowOrbitControls, setAllowOrbitControls] = useState(true);
-  const [autoRotate, setAutoRotate] = useState(false);
 
   // ? Cameras
   const [perspective, setPerspective] = useState(true);
@@ -87,124 +80,65 @@ const EditCanvas = props => {
 
   // ? Canvas output
   const canvasElement = props.model ? (
-    <Fragment>
-      <Canvas
-        onCreated={({ gl }) => {
-          gl.toneMapping = THREE.ACESFilmicToneMapping;
-          gl.outputEncoding = THREE.sRGBEncoding;
-          gl.gammaFactor = 2.2;
-        }}
-      >
-        <Camera
-          position={
-            perspective
-              ? [
-                  -props.sizeBounding.x,
-                  props.sizeBounding.y,
-                  props.sizeBounding.z
-                ]
-              : ortho
-          }
-          fov={props.fov}
-          far={props.far}
-          near={props.near}
+    <Canvas
+      onCreated={({ gl }) => {
+        gl.toneMapping = THREE.ACESFilmicToneMapping;
+        gl.outputEncoding = THREE.sRGBEncoding;
+        gl.gammaFactor = 2.2;
+      }}
+    >
+      <Camera
+        position={
+          perspective
+            ? [
+                -props.sizeBounding.x,
+                props.sizeBounding.y,
+                props.sizeBounding.z
+              ]
+            : ortho
+        }
+        fov={props.fov}
+        far={props.far}
+        near={props.near}
+      />
+      <primitive object={props.model} dispose={null} />
+      {directional && (
+        <directionalLight
+          intensity={directionalIntensity}
+          color={`#${directionalColor}`}
+          position={directionalPosition}
         />
-        <primitive object={props.model} dispose={null} />
-        {directional && (
-          <directionalLight
-            intensity={directionalIntensity}
-            color={`#${directionalColor}`}
-            position={directionalPosition}
-          />
-        )}
-        {hemisphere && (
-          <hemisphereLight
-            intensity={hemisphereIntensity}
-            color={`#${hemisphereColor}`}
-          />
-        )}
-        {ambient && (
-          <ambientLight
-            intensity={ambientIntensity}
-            color={`#${ambientColor}`}
-          />
-        )}
-        <Suspense fallback={fallbackElement}>
-          <Environment
-            bgEnvironment={props.bgEnvironment}
-            bgSolid={props.bgSolid}
-            bgColor={props.bgColor}
-            mapEnvironment={mapEnvironment}
-          />
-          <Bridge />
-        </Suspense>
-        {allowOrbitControls && <Controls autoRotate={autoRotate} />}
-        {showAxis && (
-          <axesHelper
-            scale={[
-              0.75 * props.sizeBounding.x,
-              0.75 * props.sizeBounding.y,
-              0.75 * props.sizeBounding.z
-            ]}
-          />
-        )}
-        {showBoundingBox && <boxHelper object={props.box} />}
-      </Canvas>
-      {/* Testing Buttons */}
-      {/* <button type="button" onClick={() => generateOrthoCamera("front")}>
-        Front
-      </button>
-      <button type="button" onClick={() => generateOrthoCamera("back")}>
-        Back
-      </button>
-      <button type="button" onClick={() => generateOrthoCamera("top")}>
-        Top
-      </button>
-      <button type="button" onClick={() => generateOrthoCamera("bottom")}>
-        Bottom
-      </button>
-      <button type="button" onClick={() => generateOrthoCamera("right")}>
-        Right
-      </button>
-      <button type="button" onClick={() => generateOrthoCamera("left")}>
-        Left
-      </button>
-      <button type="button" onClick={generatePerspectiveCamera}>
-        Perspective
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          props.onToggleBackground();
-        }}
-      >
-        Toggle Background
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          props.onBgSolidColor("0000ff");
-        }}
-      >
-        Set Background Blue
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          setShowAxis(!showAxis);
-        }}
-      >
-        Show Axis
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          setShowBoundingBox(!showBoundingBox);
-        }}
-      >
-        Toggle Bounding Box
-      </button> */}
-    </Fragment>
+      )}
+      {hemisphere && (
+        <hemisphereLight
+          intensity={hemisphereIntensity}
+          color={`#${hemisphereColor}`}
+        />
+      )}
+      {ambient && (
+        <ambientLight intensity={ambientIntensity} color={`#${ambientColor}`} />
+      )}
+      <Suspense fallback={fallbackElement}>
+        <Environment
+          bgEnvironment={props.bgEnvironment}
+          bgSolid={props.bgSolid}
+          bgColor={props.bgColor}
+          mapEnvironment={mapEnvironment}
+        />
+        <Bridge />
+      </Suspense>
+      {!props.lock && <Controls autoRotate={props.autorotate} />}
+      {props.axis && (
+        <axesHelper
+          scale={[
+            0.75 * props.sizeBounding.x,
+            0.75 * props.sizeBounding.y,
+            0.75 * props.sizeBounding.z
+          ]}
+        />
+      )}
+      {props.boundingBox && <boxHelper object={props.box} />}
+    </Canvas>
   ) : null;
 
   return <div className="edit-canvas">{canvasElement}</div>;
@@ -223,7 +157,11 @@ EditCanvas.propTypes = {
   onSetFov: PropTypes.func.isRequired,
   box: PropTypes.object,
   model: PropTypes.object,
-  cameraMode: PropTypes.string.isRequired
+  cameraMode: PropTypes.string.isRequired,
+  lock: PropTypes.bool.isRequired,
+  autorotate: PropTypes.bool.isRequired,
+  axis: PropTypes.bool.isRequired,
+  boundingBox: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -236,7 +174,11 @@ const mapStateToProps = state => ({
   near: state.currentModel.near,
   sizeBounding: state.currentModel.sizeBounding,
   box: state.currentModel.box,
-  cameraMode: state.cameraControls.cameraMode
+  cameraMode: state.cameraControls.cameraMode,
+  lock: state.extraControls.lock,
+  boundingBox: state.extraControls.boundingBox,
+  axis: state.extraControls.axis,
+  autorotate: state.extraControls.autorotate
 });
 
 const mapDispatchToProps = dispatch => ({
