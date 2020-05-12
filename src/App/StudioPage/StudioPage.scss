@@ -6,7 +6,7 @@
 
     .working-area {
       display: grid;
-      grid-template-columns: 300px 1fr;
+      grid-template-columns: auto 1fr;
       height: calc(100vh - 3em - 60px - 64px);
     }
   }

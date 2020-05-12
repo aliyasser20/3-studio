@@ -12,9 +12,7 @@ const SideBar = props => {
   return (
     <ThemeProvider theme={theme}>
       <div className="side-bar">
-        <Paper classes={{ root: "custom-paper" }} elevation={3}>
-          helloe
-        </Paper>
+        <Paper classes={{ root: "custom-paper" }} elevation={3}></Paper>
       </div>
     </ThemeProvider>
   );
