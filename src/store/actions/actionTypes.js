@@ -32,3 +32,10 @@ export const SET_BOX = "SET_BOX";
 // Camera Controls
 export const SET_CAMERA_MODE = "SET_CAMERA_MODE";
 //
+
+// Extra Controls
+export const TOGGLE_LOCK = "TOGGLE_LOCK";
+export const TOGGLE_BOUNDING_BOX = "TOGGLE_BOUNDING_BOX";
+export const TOGGLE_AXIS = "TOGGLE_AXIS";
+export const TOGGLE_AUTOROTATE = "TOGGLE_AUTOROTATE";
+//
