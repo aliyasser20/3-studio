@@ -17,12 +17,13 @@ import * as actions from "../../store/actions/index";
 import LoaderModel from "./LoaderModal/LoaderModel";
 
 import "./StudioPage.scss";
+import Media from "./Modes/Media/Media";
 
-const StudioPage = props => {
+const StudioPage = (props) => {
   // ? Load model with materials
   useEffect(() => {
     if (props.currentProject && props.currentProject.modelLink) {
-      new GLTFLoader().load(props.currentProject.modelLink, gltf =>
+      new GLTFLoader().load(props.currentProject.modelLink, (gltf) =>
         // Order of inputs is important
         createModel(
           gltf,
@@ -40,7 +41,7 @@ const StudioPage = props => {
     props.onSetBox,
     props.onSetFar,
     props.onSetSizeBounding,
-    props.onSetNear
+    props.onSetNear,
   ]);
 
   const page =
@@ -54,7 +55,7 @@ const StudioPage = props => {
               <div className="sub-working-area">
                 <div className="canvas-and-controls-area">
                   {props.currentMode === "EDIT" && <EditCanvas />}
-                  {props.currentMode === "MEDIA" && <MediaCanvas />}
+                  {props.currentMode === "MEDIA" && <Media />}
                 </div>
                 {props.currentMode === "EDIT" && <GroupsBar />}
                 {props.currentMode === "EDIT" && <AppearancesBar />}
@@ -77,22 +78,22 @@ StudioPage.propTypes = {
   onSetNear: PropTypes.func.isRequired,
   onSetSizeBounding: PropTypes.func.isRequired,
   onSetBox: PropTypes.func.isRequired,
-  currentMode: PropTypes.string.isRequired
+  currentMode: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   currentProject: state.projects.currentProject,
-  currentMode: state.modeControl.currentMode
+  currentMode: state.modeControl.currentMode,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onSetModel: model => dispatch(actions.setModel(model)),
-  onSetFov: fov => dispatch(actions.setFov(fov)),
-  onSetFar: far => dispatch(actions.setFar(far)),
-  onSetNear: near => dispatch(actions.setNear(near)),
-  onSetSizeBounding: sizeBounding =>
+const mapDispatchToProps = (dispatch) => ({
+  onSetModel: (model) => dispatch(actions.setModel(model)),
+  onSetFov: (fov) => dispatch(actions.setFov(fov)),
+  onSetFar: (far) => dispatch(actions.setFar(far)),
+  onSetNear: (near) => dispatch(actions.setNear(near)),
+  onSetSizeBounding: (sizeBounding) =>
     dispatch(actions.setSizeBounding(sizeBounding)),
-  onSetBox: box => dispatch(actions.setBox(box))
+  onSetBox: (box) => dispatch(actions.setBox(box)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudioPage);

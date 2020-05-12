@@ -19,8 +19,11 @@ import {
   createImage,
   screeshotDownload,
   saveToCloud,
+  handleCounter,
 } from "./screenshotsHelpers/screenshotsHandler";
 import Alert from "../../../UI/Alert/Alert";
+import { connect } from "react-redux";
+import { useAuth0 } from "../../../../react-auth0-spa";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -33,46 +36,44 @@ const Media = (props) => {
   const [severity, setSeverity] = useState("");
   const [screenshot, setScreenshot] = useState();
   const [previewElement, setPreviewElement] = useState();
+  const [counter, setCounter] = useState(props.currentProject.counter);
+
+  const { user } = useAuth0();
 
   const closeSnackbar = () => {
-    setSnackbar(false);
     setSeverity("");
+    setSnackbar(false);
   };
   const handleClose = () => {
     setOpen(false);
   };
-  const snackbarSet = (severity, message) => {
-    setSeverity(severity);
+  const snackbarSet = (type, message) => {
+    setSeverity(type);
     setSnackMessage(message);
   };
-  // const capturer = new CCapture({
-  //   format: "gif",
-  //   workersPath: "workers/",
-  //   framerate: 20,
-  //   verbose: true
-  // });
-
-  const { gl, scene, camera } = useThree();
 
   const handleScreenshot = () => {
+    setCounter((prev) => prev + 1);
+    console.log(counter);
     setOpen(true);
     // handleCounter()
     const preview = createImage();
     setScreenshot(preview);
   };
   const handleDownload = () => {
-    screeshotDownload(screenshot, { name: "testProject", id: 85 }, 19);
+    screeshotDownload(screenshot, props.currentProject, counter);
   };
 
   const handleSave = () => {
-    saveToCloud(screenshot, { name: "testProject", id: 777 }, 19).then(
-      (res) => {
-        res.status === 200
-          ? snackbarSet("success", "Screenshot saved.")
-          : snackbarSet("error", "Error, screenshot not saved.");
-        setSnackbar(true);
-        setOpen(false);
-      }
+    saveToCloud(screenshot, props.currentProject, counter).then((res) => {
+      res.status === 200
+        ? snackbarSet("success", "Screenshot saved.")
+        : snackbarSet("error", "Error, screenshot not saved.");
+      setSnackbar(true);
+      setOpen(false);
+    });
+    handleCounter(user.sub, counter, props.currentProject.id).then((res) =>
+      console.log(res)
     );
   };
   const handleRecord = () => {
@@ -86,16 +87,11 @@ const Media = (props) => {
       vid.src = URL.createObjectURL(blob);
       vid.controls = true;
       preview.appendChild(vid);
-      // const a = document.createElement("a");
-      // a.download = "myvid.webm";
-      // a.href = vid.src;
-      // a.textContent = "download the video";
-      // document.body.appendChild(a);
     };
     const startRecording = (canvas, timer) => {
-      const chunks = []; // here we will store our recorded media chunks (Blobs);
-      const stream = canvas.captureStream(); // grab our canvas MediaStream;
-      const rec = new MediaRecorder(stream); // every time the recorder has new data, we will store it in our array
+      const chunks = [];
+      const stream = canvas.captureStream();
+      const rec = new MediaRecorder(stream);
       rec.ondataavailable = (e) => chunks.push(e.data);
       rec.onstop = (e) => {
         setOpen(true);
@@ -107,20 +103,6 @@ const Media = (props) => {
     };
     const canvas = document.querySelector("canvas");
     startRecording(canvas, 10);
-    // capturer.start();
-    // setTimeout(() => {
-    //   capturer.stop();
-    //   capturer.save(blob => {
-    //     const a = document.createElement("a");
-    //     document.body.appendChild(a);
-    //     a.style = "display: none";
-    //     const url = URL.createObjectURL(blob);
-    //     window.open(url);
-    //     a.herf = url;
-    //     a.download = "newGif";
-    //     a.click();
-    //   });
-    // }, 5000);
   };
 
   return (
@@ -182,4 +164,8 @@ const Media = (props) => {
 
 Media.propTypes = {};
 
-export default Media;
+const mapStateToProps = (state) => ({
+  currentProject: state.projects.currentProject,
+});
+
+export default connect(mapStateToProps, null)(Media);

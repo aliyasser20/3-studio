@@ -39,10 +39,10 @@ const CameraControls = () => {
 
 const Test = props => {
   const reeef = useRef();
-  useFrame(({ gl, scene, camera }) => {
-    gl.render(scene, camera);
-    reeef.current.rotation.y += 0.2;
-  });
+  // useFrame(({ gl, scene, camera }) => {
+  //   gl.render(scene, camera);
+  //   reeef.current.rotation.y += 0.2;
+  // });
   console.log("model", props.model);
   return (
     <primitive
@@ -71,13 +71,13 @@ const MediaCanvas = props => {
           // scene.background = new THREE.Color("#ff0000");
         }}
       >
-        <Camera
+        {/* <Camera
           position={[-0.459, 0.512, 0.824]}
           fov={45}
           far={132}
           near={0.013}
           rotation
-        />
+        /> */}
         <ambientLight intensity={0.3} />
         <hemisphereLight intensity={1} />
         )}
