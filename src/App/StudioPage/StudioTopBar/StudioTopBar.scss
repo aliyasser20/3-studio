@@ -22,6 +22,8 @@
         grid-gap: 1.5em;
 
         .gradient-button {
+          border-radius: 20px;
+          overflow: hidden;
           .MuiButton-label {
             color: white;
           }
