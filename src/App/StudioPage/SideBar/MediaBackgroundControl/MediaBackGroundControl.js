@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import * as actions from "../../../../store/actions/index";
 import {
   ExpansionPanel,
   ExpansionPanelDetails,
@@ -8,14 +7,38 @@ import {
   Typography,
   FormControlLabel,
   Checkbox,
-  FormGroup,
+  Button
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { connect } from "react-redux";
+import ColorPicker from "material-ui-color-picker";
 
-// import "./MediaBackGroundControl.scss";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import { SketchPicker } from "react-color";
+import * as actions from "../../../../store/actions/index";
 
-const MediaBackGroundControl = (props) => {
+import "./MediaBackGroundControl.scss";
+
+// import "../EnvironmentControls/EnvironmentControls"
+const MediaBackGroundControl = props => {
+  const [open, setOpen] = useState(false);
+  const [color, setColor] = useState("#000");
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    props.onSetMediaSolidBackground(color);
+    setOpen(false);
+  };
+
+  const handleColorPick = hex => {
+    setColor(hex.hex.slice(1));
+  };
   return (
     <div className="environment-controls">
       <ExpansionPanel
@@ -57,19 +80,39 @@ const MediaBackGroundControl = (props) => {
             }
             label="Environment Background"
           />
-          {/* <FormControlLabel
-            className="custom-label"
-            control={
-              <Checkbox
-                className="custom-checkbox"
-                checked={props.noBackground}
-                onChange={props.onToggleMediaNoB}
-                name="noBackground"
-              />
-            }
-            label="No Background"
-          /> */}
-          
+          <div className="custom-color-picker">
+            <Button
+              classes={{ label: "color-picker-btn" }}
+              onClick={handleOpen}
+              style={{ color: "#FFF" }}
+              color="primary"
+            >
+              Background Color
+            </Button>
+            <Dialog
+              classes={{ root: "color-picker" }}
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">Color Picker</DialogTitle>
+              <DialogContent>
+                <SketchPicker
+                  color={color}
+                  onChangeComplete={hex => handleColorPick(hex)}
+                />
+              </DialogContent>
+              <Button
+                classes={{ label: "picker" }}
+                onClick={handleClose}
+                color="error"
+                autoFocus
+              >
+                Confirm
+              </Button>
+            </Dialog>
+          </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
@@ -85,17 +128,20 @@ MediaBackGroundControl.propTypes = {
   onToggleMediaEnvB: PropTypes.func.isRequired,
   onToggleMediaSolidB: PropTypes.func.isRequired,
   // onToggleMediaNoB: PropTypes.func.isRequired,
+  onSetMediaSolidBackground: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   envBackground: state.mediaControls.mediaEnvBackground,
   solidBackground: state.mediaControls.mediaSolidBackground,
-  noBackground: state.mediaControls.mediaNoBackground,
+  noBackground: state.mediaControls.mediaNoBackground
 });
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   onToggleMediaEnvB: () => dispatch(actions.toggleMediaEnvB()),
   onToggleMediaSolidB: () => dispatch(actions.toggleMediaSolidB()),
   onToggleMediaNoB: () => dispatch(actions.toggleMediaNoB()),
+  onSetMediaSolidBackground: hexColor =>
+    dispatch(actions.setMediaSolidBackground(hexColor))
 });
 
 export default connect(
