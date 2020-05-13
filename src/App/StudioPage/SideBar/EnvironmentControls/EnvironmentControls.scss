@@ -22,6 +22,24 @@
       box-shadow: none;
       max-height: 200px;
       overflow: auto;
+
+      .custom-form-group {
+        .custom-label {
+          .custom-checkbox {
+            color: white;
+
+            svg {
+              height: 17px;
+              color: white;
+              fill: white;
+            }
+          }
+
+          .MuiTypography-root {
+            font-size: 0.9em;
+          }
+        }
+      }
     }
   }
 }

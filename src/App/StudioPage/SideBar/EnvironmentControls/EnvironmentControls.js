@@ -5,7 +5,10 @@ import {
   ExpansionPanel,
   ExpansionPanelDetails,
   ExpansionPanelSummary,
-  Typography
+  Typography,
+  FormControlLabel,
+  Checkbox,
+  FormGroup
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
@@ -29,15 +32,32 @@ const EnvironmentControls = props => {
           <Typography>Environment</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className="details-section">
-          <Typography>
-            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
-            Aliquam eget maximus est, id dignissim quam. Nulla facilisi.
-            Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
-            maximus est, id dignissim quam. Nulla facilisi. Phasellus
-            sollicitudin nulla et quam mattis feugiat. Aliquam eget maximus est,
-            id dignissim quam. Nulla facilisi. Phasellus sollicitudin nulla et
-            quam mattis feugiat. Aliquam eget maximus est, id dignissim quam.
-          </Typography>
+          <FormGroup className="custom-form-group" row>
+            <FormControlLabel
+              className="custom-label"
+              control={
+                <Checkbox
+                  className="custom-checkbox"
+                  checked={false}
+                  // onChange={}
+                  name="environmentMap"
+                />
+              }
+              label="Environment Map"
+            />
+            <FormControlLabel
+              className="custom-label"
+              control={
+                <Checkbox
+                  className="custom-checkbox"
+                  checked
+                  // onChange={}
+                  name="solidBackground"
+                />
+              }
+              label="Solid Background"
+            />
+          </FormGroup>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>

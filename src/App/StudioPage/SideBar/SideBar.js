@@ -14,7 +14,10 @@ import "./SideBar.scss";
 const SideBar = props => {
   const theme = themeCreator("#ffffff", "#212121");
 
-  const [expandedPanels, setExpandedPanels] = useState([]);
+  const [expandedPanels, setExpandedPanels] = useState([
+    "ENVIRONMENT-CONTROLS"
+    // "MATERIAL-DETAILS"
+  ]);
 
   // Handle panels expanded
   const handleChange = panel => {
