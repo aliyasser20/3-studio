@@ -116,19 +116,33 @@ const materialLibrary = () => {
     name: "rust",
     group: "metals",
     colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400959/appearances/metals/Rust/color_jm6qg5.jpg",
     roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589403097/appearances/metals/Rust/roughness-metalness_kvdoqi.jpg",
     metalness: 1,
-    normalMap: true
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400966/appearances/metals/Rust/normal_fjxo9i.jpg"
   });
 
   materials.brushedMetal = createMaterial({
     name: "brushed-metal",
     group: "metals",
     colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400962/appearances/metals/brushed-metal/color_ayvvpl.png",
     roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400966/appearances/metals/brushed-metal/roughness-metalness_ge2vpf.png",
     metalness: 1,
     normalMap: true,
-    ambientOcclusionMap: true
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400966/appearances/metals/brushed-metal/normal_tlobwx.png",
+    ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400959/appearances/metals/brushed-metal/ao_wgtuqd.png"
   });
 
   // ?
