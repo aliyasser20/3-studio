@@ -29,6 +29,8 @@ const AppearancesBar = props => {
           <div
             draggable
             onDragStart={e => props.onSetSelectedMaterial("goldPolished")}
+            onDragEnd={e => console.log(e.screenX, e.screenY)}
+            // onDrag
             className="material gold"
           >
             Polished Gold

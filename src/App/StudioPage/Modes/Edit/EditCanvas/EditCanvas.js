@@ -79,17 +79,14 @@ const EditCanvas = props => {
     }
   }, [props, props.cameraMode]);
 
-  const handleClick = e => {
-    e.stopPropagation();
-    console.log(e);
-    console.log(e.object);
-    e.object.material = materialLibrary().goldPolished;
-  };
-
   const handleDrop = e => {
-    console.log(e);
-    console.log(e.object);
-    e.object.material = materialLibrary()[props.selectedMaterial];
+    // console.log(e);
+    // console.log(e.object);
+
+    if (props.selectedMaterial) {
+      e.object.material = materialLibrary()[props.selectedMaterial];
+      props.onSetSelectedMaterial("");
+    }
   };
 
   // ? Canvas output
@@ -118,9 +115,7 @@ const EditCanvas = props => {
       <primitive
         object={props.model}
         dispose={null}
-        onPointerDown={e => handleDrop(e)}
-        // onPointerUp={e => handleDrop(e)}
-        // onClick={e => handleClick(e)}
+        onPointerMove={e => handleDrop(e)}
       />
       {directional && (
         <directionalLight
@@ -183,7 +178,8 @@ EditCanvas.propTypes = {
   autorotate: PropTypes.bool.isRequired,
   axis: PropTypes.bool.isRequired,
   boundingBox: PropTypes.bool.isRequired,
-  currentEnvironmentOption: PropTypes.object.isRequired
+  currentEnvironmentOption: PropTypes.object.isRequired,
+  onSetSelectedMaterial: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -208,7 +204,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onToggleBackground: () => dispatch(actions.toggleBackground()),
   onBgSolidColor: color => dispatch(actions.setBackgroundColor(color)),
-  onSetFov: fov => dispatch(actions.setFov(fov))
+  onSetFov: fov => dispatch(actions.setFov(fov)),
+  onSetSelectedMaterial: material =>
+    dispatch(actions.setSelectedMaterial(material))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditCanvas);
