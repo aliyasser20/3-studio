@@ -17,6 +17,7 @@ import SaveIcon from "@material-ui/icons/Save";
 import ModeSelector from "./ModeSelector/ModeSelector";
 
 import themeCreator from "../../../helpers/themeCreator";
+import fileExporter from "../../../helpers/fileExporter";
 
 import "./StudioTopBar.scss";
 
@@ -46,6 +47,7 @@ const StudioTopBar = props => {
             <div className="top-bar-right">
               {props.currentMode === "EDIT" && (
                 <Fragment>
+                  <div className="save-status unsaved">Changes unsaved</div>
                   <IconButton
                     aria-label="edit"
                     classes={{ root: "action-button" }}
@@ -57,6 +59,7 @@ const StudioTopBar = props => {
                     aria-label="edit"
                     classes={{ root: "action-button" }}
                     size="small"
+                    onClick={() => fileExporter()}
                   >
                     <GetAppIcon />
                   </IconButton>

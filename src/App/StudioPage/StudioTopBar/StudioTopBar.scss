@@ -38,7 +38,21 @@
         grid-auto-flow: column;
         justify-content: right;
         align-content: center;
+        align-items: center;
         grid-gap: 1.5em;
+
+        .save-status {
+          border: 1px solid #cecece;
+          height: 36px;
+          color: #cecece;
+          padding: 0.5em 1em;
+          border-radius: 20px;
+        }
+
+        .save-status.unsaved {
+          color: var(--gradient-top);
+          border-color: var(--gradient-top);
+        }
 
         .action-button {
           color: #cecece;
