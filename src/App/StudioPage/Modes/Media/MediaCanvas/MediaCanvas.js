@@ -38,9 +38,8 @@ const MediaCanvas = (props) => {
           mapEnvironment
         /> */}
         <Controls />
+        <UserModel model={props.modelSetings.model} />
       </Canvas>
-      <UserModel model={props.modelSetings.model} />
-
     </>
   );
 };
