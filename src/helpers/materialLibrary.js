@@ -310,8 +310,8 @@ const materialLibrary = () => {
   // ?
 
   // ? Tiles
-  materials.tiles05 = createMaterial({
-    name: "tiles-05",
+  materials.tilesOne = createMaterial({
+    name: "tiles-one",
     group: "tiles",
     colorMap: true,
     colorMapPath:
@@ -327,8 +327,8 @@ const materialLibrary = () => {
       "https://res.cloudinary.com/aajfinal/image/upload/v1589406246/appearances/tiles/tiles05/displacement_fnlfre.jpg"
   });
 
-  materials.tilesOnyxOpaloBlack = createMaterial({
-    name: "tiles-onyx-opalo-black",
+  materials.tilesTwo = createMaterial({
+    name: "tiles-two",
     group: "tiles",
     colorMap: true,
     colorMapPath:
@@ -344,8 +344,8 @@ const materialLibrary = () => {
       "https://res.cloudinary.com/aajfinal/image/upload/v1589406534/appearances/tiles/tilesOnyxOpaloBlack/displacement_r3awbt.jpg"
   });
 
-  materials.tilesRectangularMirrorGray = createMaterial({
-    name: "tiles-rectangular-mirror-gray",
+  materials.tilesThree = createMaterial({
+    name: "tiles-three",
     group: "tiles",
     colorMap: true,
     colorMapPath:
