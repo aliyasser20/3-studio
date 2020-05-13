@@ -48,6 +48,7 @@ export const SET_MEDIA_FAR = "SET_MEDIA_FAR";
 export const SET_MEDIA_NEAR = "SET_MEDIA_NEAR";
 export const SET_MEDIA_SIZE_BOUNDING = "SET_MEDIA_SIZE_BOUNDING";
 export const SET_MEDIA_BOX = "SET_MEDIA_SET_BOX";
+export const RESET_MEDIA_STATE = "RESET_MEDIA_STATE";
 //
 
 // Media Controls

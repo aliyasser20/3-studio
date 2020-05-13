@@ -2,10 +2,10 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   mediaModel: null,
-  mediaFov: 45,
-  mediaFar: 0,
-  mediaNear: 0,
-  mediaSizeBounding: { x: 0, y: 0, z: 0 },
+  mediaFov: null,
+  mediaFar: null,
+  mediaNear: null,
+  mediaSizeBounding: null,
   mediaBox: null,
 };
 
@@ -40,6 +40,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         mediaBox: action.mediaBox,
+      };
+    case actionTypes.RESET_MEDIA_STATE:
+      return {
+        ...state,
+        mediaModel: null,
+        mediaFov: null,
+        mediaFar: null,
+        mediaNear: null,
+        mediaSizeBounding: null,
+        mediaBox: null,
       };
     default:
       return state;

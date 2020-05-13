@@ -52,4 +52,5 @@ export {
   setMediaNear,
   setMediaSizeBounding,
   setMediaBox,
+  resetMediaState
 } from "./mediaState";

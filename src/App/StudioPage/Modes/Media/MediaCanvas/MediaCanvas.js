@@ -15,14 +15,30 @@ import "./MediaCanvas.scss";
 import Loading from "../OldCanvas/Loading/Loading";
 
 const MediaCanvas = (props) => {
-  const { fov, far, near, box, sizeBounding } = props.modelSettings;
+  const { mediaFov, mediaFar, mediaNear, mediaBox, mediaSizeBounding } = props;
   console.log(props.modelSettings);
 
   useEffect(() => {
-    if (!props.mediaModel) {
-      props.onSetMediaModel(props.modelSettings.model);
-    }
+    !props.mediaModel && props.onSetMediaModel(props.modelSettings.model);
+    !props.mediaFov && props.onSetMediaFov(props.modelSettings.fov);
+    !props.mediaFar && props.onSetMediaFar(props.modelSettings.far);
+    !props.mediaNear && props.onSetMediaNear(props.modelSettings.near);
+    !props.mediaSizeBounding &&
+      props.onSetMediaSizeBounding(props.modelSettings.sizeBounding);
   }, []);
+
+  const camere = props.mediaSizeBounding ? (
+    <Camera
+      position={[
+        -mediaSizeBounding.x,
+        mediaSizeBounding.y,
+        mediaSizeBounding.z,
+      ]}
+      fov={mediaFov}
+      far={mediaFar}
+      near={mediaNear}
+    />
+  ) : null;
 
   return (
     <>
@@ -35,12 +51,7 @@ const MediaCanvas = (props) => {
           gl.gammaFactor = 2.2;
         }}
       >
-        <Camera
-          position={[-sizeBounding.x, sizeBounding.y, sizeBounding.z]}
-          fov={fov}
-          far={far}
-          near={near}
-        />
+        {camere}
         <ambientLight intensity={0.3} />
         <hemisphereLight intensity={1} />
         <directionalLight intensity={0.8 * Math.PI} position={[0.5, 0, 0.86]} />
@@ -62,17 +73,33 @@ MediaCanvas.propTypes = {
   modelSettings: PropTypes.object,
   currentProject: PropTypes.object,
   onSetMediaModel: PropTypes.func.isRequired,
-  mediaModle: PropTypes.object,
+  onSetMediaFov: PropTypes.func.isRequired,
+  onSetMediaFar: PropTypes.func.isRequired,
+  onSetMediaNear: PropTypes.func.isRequired,
+  mediaModel: PropTypes.object.isRequired,
+  mediaFov: PropTypes.number.isRequired,
+  mediaFar: PropTypes.number.isRequired,
+  mediaNear: PropTypes.number.isRequired,
+  mediaSizeBounding: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   modelSettings: state.currentModel,
   currentProject: state.projects.currentProject,
   mediaModel: state.mediaState.mediaModel,
+  mediaFov: state.mediaState.mediaFov,
+  mediaFar: state.mediaState.mediaFar,
+  mediaNear: state.mediaState.mediaNear,
+  mediaSizeBounding: state.mediaState.mediaSizeBounding,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSetMediaModel: (model) => dispatch(actions.setMediaModel(model)),
+  onSetMediaFov: (fov) => dispatch(actions.setMediaFov(fov)),
+  onSetMediaFar: (far) => dispatch(actions.setMediaFar(far)),
+  onSetMediaNear: (near) => dispatch(actions.setMediaNear(near)),
+  onSetMediaSizeBounding: (sizeBounding) =>
+    dispatch(actions.setMediaSizeBounding(sizeBounding)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MediaCanvas);

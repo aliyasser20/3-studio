@@ -29,3 +29,7 @@ export const setMediaBox = (mediaBox) => ({
   type: actionTypes.SET_MEDIA_BOX,
   mediaBox,
 });
+
+export const resetMediaState = () => ({
+  type: actionTypes.RESET_MEDIA_STATE,
+});
