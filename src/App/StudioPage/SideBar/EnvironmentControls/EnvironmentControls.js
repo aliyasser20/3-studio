@@ -32,32 +32,46 @@ const EnvironmentControls = props => {
           <Typography>Environment</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className="details-section">
-          <FormGroup className="custom-form-group" row>
-            <FormControlLabel
-              className="custom-label"
-              control={
-                <Checkbox
-                  className="custom-checkbox"
-                  checked={false}
-                  // onChange={}
-                  name="environmentMap"
-                />
-              }
-              label="Environment Map"
-            />
-            <FormControlLabel
-              className="custom-label"
-              control={
-                <Checkbox
-                  className="custom-checkbox"
-                  checked
-                  // onChange={}
-                  name="solidBackground"
-                />
-              }
-              label="Solid Background"
-            />
-          </FormGroup>
+          <FormControlLabel
+            className="custom-label"
+            control={
+              <Checkbox
+                className="custom-checkbox"
+                checked={false}
+                // onChange={}
+                name="environmentMap"
+              />
+            }
+            label="Environment Map"
+          />
+          <div className="environment-buttons">
+            <button type="button"></button>
+          </div>
+          <h5 className="section-title">Background</h5>
+          <FormControlLabel
+            className="custom-label"
+            control={
+              <Checkbox
+                className="custom-checkbox"
+                checked
+                // onChange={}
+                name="solidBackground"
+              />
+            }
+            label="Solid"
+          />
+          <FormControlLabel
+            className="custom-label"
+            control={
+              <Checkbox
+                className="custom-checkbox"
+                checked={false}
+                // onChange={}
+                name="environmentBackground"
+              />
+            }
+            label="Environment"
+          />
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>

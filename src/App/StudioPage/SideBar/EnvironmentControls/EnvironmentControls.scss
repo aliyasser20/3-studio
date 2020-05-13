@@ -22,23 +22,29 @@
       box-shadow: none;
       max-height: 200px;
       overflow: auto;
+      display: grid;
 
-      .custom-form-group {
-        .custom-label {
-          .custom-checkbox {
-            color: white;
-
-            svg {
-              height: 17px;
-              color: white;
-              fill: white;
-            }
-          }
-
-          .MuiTypography-root {
-            font-size: 0.9em;
+      .custom-label {
+        .custom-checkbox {
+          svg {
+            height: 17px;
+            fill: url(#gradient-vertical);
           }
         }
+
+        .MuiTypography-root {
+          font-size: 0.9em;
+        }
+      }
+
+      .section-title {
+        margin-block-start: 0.7em;
+        margin-block-end: 0.7em;
+        border-bottom: 1px solid #9f9f9f;
+        color: #cecece;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        font-size: 0.95em;
       }
     }
   }
