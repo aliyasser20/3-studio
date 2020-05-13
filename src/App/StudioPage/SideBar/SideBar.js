@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import { Paper, ThemeProvider } from "@material-ui/core";
 
@@ -38,20 +39,30 @@ const SideBar = props => {
     <ThemeProvider theme={theme}>
       <div className="side-bar">
         <Paper classes={{ root: "custom-paper" }} elevation={3}>
-          <EnvironmentControls
-            expanded={expandedPanels}
-            handleChange={handleChange}
-          />
-          <MaterialDetails
-            expanded={expandedPanels}
-            handleChange={handleChange}
-          />
+          {props.currentMode === "EDIT" && (
+            <Fragment>
+              <EnvironmentControls
+                expanded={expandedPanels}
+                handleChange={handleChange}
+              />
+              <MaterialDetails
+                expanded={expandedPanels}
+                handleChange={handleChange}
+              />
+            </Fragment>
+          )}
         </Paper>
       </div>
     </ThemeProvider>
   );
 };
 
-SideBar.propTypes = {};
+SideBar.propTypes = {
+  currentMode: PropTypes.string.isRequired
+};
 
-export default SideBar;
+const mapStateToProps = state => ({
+  currentMode: state.modeControl.currentMode
+});
+
+export default connect(mapStateToProps, null)(SideBar);
