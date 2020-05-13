@@ -92,7 +92,7 @@ const MediaTopNav = (props) => {
       rec.onstop = (e) => {
         setOpen(true);
         setRecording("");
-        exportVid(new Blob(chunks, { type: "video/mp4" }));
+        exportVid(new Blob(chunks, { type: "video/webm" }));
       };
 
       rec.start();

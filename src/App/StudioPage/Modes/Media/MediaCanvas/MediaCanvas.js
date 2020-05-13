@@ -11,6 +11,7 @@ import Camera from "../../Edit/Camera/Camera";
 import Controls from "../../Edit/Controls/Controls";
 
 import "./MediaCanvas.scss";
+import Loading from "../OldCanvas/Loading/Loading";
 
 const MediaCanvas = (props) => {
   const { fov , far, near, box, sizeBounding } = props.modelSettings;
@@ -18,6 +19,7 @@ const MediaCanvas = (props) => {
   return (
     <>
       <Canvas
+        className="media-canvas"
         gl={{ preserveDrawingBuffer: true }}
         onCreated={({ gl, scene }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
@@ -27,10 +29,9 @@ const MediaCanvas = (props) => {
       >
         <Camera
           position={[-sizeBounding.x, sizeBounding.y, sizeBounding.z]}
-          fov={45}
-          far={26296.280234718044}
-          near={2.6296280234718044}
-          rotation
+          fov={fov}
+          far={far}
+          near={near}
         />
         <ambientLight intensity={0.3} />
         <hemisphereLight intensity={1} />
@@ -41,8 +42,9 @@ const MediaCanvas = (props) => {
           bgColor="000000"
           mapEnvironment
         />
-        <Controls />
+        <Controls autoRotate/>
         <UserModel model={props.modelSettings.model} />
+        <Loading />
       </Canvas>
     </>
   );
