@@ -41,6 +41,8 @@ export const TOGGLE_AXIS = "TOGGLE_AXIS";
 export const TOGGLE_AUTOROTATE = "TOGGLE_AUTOROTATE";
 //
 
+// Material Controls
+export const SET_SELECTED_MATERIAL = "SET_SELECTED_MATERIAL";
 // Media State
 export const SET_MEDIA_MODEL = "SET_MEDIA_MODEL";
 export const SET_MEDIA_FOV = "SET_MEDIA_FOV";
