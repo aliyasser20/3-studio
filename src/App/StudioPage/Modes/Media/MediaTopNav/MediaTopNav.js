@@ -1,42 +1,37 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Button, Snackbar } from "@material-ui/core";
-// import CCapture from "ccapture.js/src/CCapture";
-import { useThree } from "react-three-fiber";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Slide from "@material-ui/core/Slide";
-import Testing from "./Testing";
-import MediaCanvas from "./MediaCanvas/MediaCanvas";
-import cloudinaryAxios from "../../../../axiosInstances/cloudinaryAxios";
 import {
   createImage,
   screeshotDownload,
   saveToCloud,
   handleCounter,
-} from "./screenshotsHelpers/screenshotsHandler";
-import Alert from "../../../UI/Alert/Alert";
-import { connect } from "react-redux";
-import { useAuth0 } from "../../../../react-auth0-spa";
+} from "../screenshotsHelpers/screenshotsHandler";
+import { useAuth0 } from "../../../../../react-auth0-spa";
+
+import Slide from "@material-ui/core/Slide";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import CameraAltIcon from "@material-ui/icons/CameraAlt";
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+import Alert from "../../../../UI/Alert/Alert";
+
+import "./MediaTopNav.scss";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Media = (props) => {
+const MediaTopNav = (props) => {
   const [open, setOpen] = useState(false);
   const [snackbar, setSnackbar] = useState(false);
   const [snackMessage, setSnackMessage] = useState(false);
   const [severity, setSeverity] = useState("");
   const [screenshot, setScreenshot] = useState();
-  const [previewElement, setPreviewElement] = useState();
   const [counter, setCounter] = useState(props.currentProject.counter);
+  const [recording, setRecording] = useState("");
 
   const { user } = useAuth0();
 
@@ -89,13 +84,15 @@ const Media = (props) => {
       preview.appendChild(vid);
     };
     const startRecording = (canvas, timer) => {
+      setRecording("recording");
       const chunks = [];
       const stream = canvas.captureStream();
       const rec = new MediaRecorder(stream);
       rec.ondataavailable = (e) => chunks.push(e.data);
       rec.onstop = (e) => {
         setOpen(true);
-        exportVid(new Blob(chunks, { type: "video/mp4" }));
+        setRecording("");
+        exportVid(new Blob(chunks, { type: "video/webm" }));
       };
 
       rec.start();
@@ -106,11 +103,19 @@ const Media = (props) => {
   };
 
   return (
-    <>
-      {/* <Testing /> */}
-      <MediaCanvas />
-      <Button onClick={(e) => handleScreenshot()}>Screenshot</Button>
-      <Button onClick={(e) => handleRecord()}>Record</Button>
+    <div className="media-top-nav">
+      <span className="media-top-nav-item">Recording: 00:10:00 </span>
+      <FiberManualRecordIcon
+        onClick={(e) => handleRecord()}
+        fontSize="large"
+        color="error"
+        classes={{ root: `media-top-nav-item ${recording}` }}
+      />
+      <CameraAltIcon
+        onClick={(e) => handleScreenshot()}
+        fontSize="large"
+        classes={{ root: "media-top-nav-item" }}
+      />
       <Dialog
         classes={{ root: "screenshot-preview" }}
         open={open}
@@ -158,14 +163,16 @@ const Media = (props) => {
           {snackMessage}
         </Alert>
       </Snackbar>
-    </>
+    </div>
   );
 };
 
-Media.propTypes = {};
+MediaTopNav.propTypes = {
+  currentProject: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   currentProject: state.projects.currentProject,
 });
 
-export default connect(mapStateToProps, null)(Media);
+export default connect(mapStateToProps, null)(MediaTopNav);
