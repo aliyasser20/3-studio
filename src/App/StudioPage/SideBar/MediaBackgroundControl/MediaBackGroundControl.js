@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import * as actions from "../../../../store/actions/index";
 import {
@@ -14,19 +14,32 @@ import {
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { connect } from "react-redux";
 import ColorPicker from "material-ui-color-picker";
-import Modal from "@material-ui/core/Modal";
+
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import { SketchPicker } from "react-color";
+
 import "./MediaBackGroundControl.scss";
 
 // import "../EnvironmentControls/EnvironmentControls"
 const MediaBackGroundControl = (props) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [color, setColor] = useState("#000");
 
   const handleOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
+    props.onSetMediaSolidBackground(color);
     setOpen(false);
+  };
+
+  const handleColorPick = (hex) => {
+    setColor(hex.hex.slice(1));
   };
   return (
     <div className="environment-controls">
@@ -70,15 +83,37 @@ const MediaBackGroundControl = (props) => {
             label="Environment Background"
           />
           <div className="custom-color-picker">
-            <Button onClick={handleOpen}>Background Color</Button>
-            <Modal
+            <Button
+              classes={{ label: "color-picker-btn" }}
+              onClick={handleOpen}
+              style={{ color: "#FFF" }}
+              color="primary"
+            >
+              Background Color
+            </Button>
+            <Dialog
+              classes={{ root: "color-picker" }}
               open={open}
               onClose={handleClose}
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
             >
-              
-            </Modal>
+              <DialogTitle id="alert-dialog-title">Color Picker</DialogTitle>
+              <DialogContent>
+                <SketchPicker
+                  color={color}
+                  onChangeComplete={(hex) => handleColorPick(hex)}
+                />
+              </DialogContent>
+              <Button
+                classes={{ label: "picker" }}
+                onClick={handleClose}
+                color="error"
+                autoFocus
+              >
+                Confirm
+              </Button>
+            </Dialog>
           </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -95,6 +130,7 @@ MediaBackGroundControl.propTypes = {
   onToggleMediaEnvB: PropTypes.func.isRequired,
   onToggleMediaSolidB: PropTypes.func.isRequired,
   // onToggleMediaNoB: PropTypes.func.isRequired,
+  onSetMediaSolidBackground: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -106,6 +142,8 @@ const mapDispatchToProps = (dispatch) => ({
   onToggleMediaEnvB: () => dispatch(actions.toggleMediaEnvB()),
   onToggleMediaSolidB: () => dispatch(actions.toggleMediaSolidB()),
   onToggleMediaNoB: () => dispatch(actions.toggleMediaNoB()),
+  onSetMediaSolidBackground: (hexColor) =>
+    dispatch(actions.setMediaSolidBackground(hexColor)),
 });
 
 export default connect(
