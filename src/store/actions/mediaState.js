@@ -30,6 +30,16 @@ export const setMediaBox = (mediaBox) => ({
   mediaBox,
 });
 
+export const setMediaEnvBackGround = (envBackground) => ({
+  type: actionTypes.SET_MEDIA_ENV_BACKGROUND,
+  envBackground,
+});
+
+export const setMediaSolidBackground = (solidBackground) => ({
+  type: actionTypes.SET_MEDIA_SOLID_BACKGROUND,
+  solidBackground,
+});
+
 export const resetMediaState = () => ({
   type: actionTypes.RESET_MEDIA_STATE,
 });
