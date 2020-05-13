@@ -59,7 +59,12 @@ const MediaCanvas = (props) => {
         <ambientLight intensity={0.3} />
         <hemisphereLight intensity={1} />
         <directionalLight intensity={0.8 * Math.PI} position={[0.5, 0, 0.86]} />
-        <Environment bgEnvironment={props.mediaControls.mediaEnvBackground} />
+        <Environment
+          bgEnvironment={props.mediaControls.mediaEnvBackground}
+          bgSolid={props.mediaControls.mediaSolidBackground}
+          bgColor="000000"
+          environmentPath={props.currentEnvOption.hdrPath}
+        />
         <Controls autoRotate />
         <UserModel model={props.mediaModel} />
         <Loading />
@@ -83,6 +88,7 @@ MediaCanvas.propTypes = {
   mediaNear: PropTypes.number,
   mediaSizeBounding: PropTypes.object,
   mediaControls: PropTypes.object.isRequired,
+  currentEnvOption: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -94,6 +100,7 @@ const mapStateToProps = (state) => ({
   mediaNear: state.mediaState.mediaNear,
   mediaSizeBounding: state.mediaState.mediaSizeBounding,
   mediaControls: state.mediaControls,
+  currentEnvOption: state.environmentControls.currentEnvironmentOption,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -40,7 +40,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         mediaEnvBackground: !state.mediaEnvBackground,
-        mediaNoBackground: !state.mediaSolidBackground,
+        mediaNoBackground: false,
         mediaSolidBackground: false,
       };
 
@@ -48,14 +48,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         mediaSolidBackground: !state.mediaSolidBackground,
-        mediaNoBackground: !state.mediaSolidBackground,
+        mediaNoBackground: false,
         mediaEnvBackground: false,
       };
     case actionTypes.TOGGLE_MEDIA_NO_B:
       return {
         ...state,
-        mediaNoBackground: !state.mediaSolidBackground,
-        mediaSolidBackground: !state.mediaNoBakground,
+        mediaNoBackground: !state.mediaNoBackground,
+        mediaSolidBackground: false,
         mediaEnvBackground: false,
       };
 

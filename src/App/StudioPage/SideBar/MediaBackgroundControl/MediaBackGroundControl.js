@@ -39,7 +39,7 @@ const MediaBackGroundControl = (props) => {
               <Checkbox
                 className="custom-checkbox"
                 checked={props.solidBackground}
-                // onChange={}
+                onChange={props.onToggleMediaSolidB}
                 name="solidBackground"
               />
             }
@@ -57,18 +57,19 @@ const MediaBackGroundControl = (props) => {
             }
             label="Environment Background"
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             className="custom-label"
             control={
               <Checkbox
                 className="custom-checkbox"
                 checked={props.noBackground}
-                // onChange={}
+                onChange={props.onToggleMediaNoB}
                 name="noBackground"
               />
             }
             label="No Background"
-          />
+          /> */}
+          
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
@@ -80,7 +81,10 @@ MediaBackGroundControl.propTypes = {
   handleChange: PropTypes.func.isRequired,
   solidBackground: PropTypes.bool.isRequired,
   envBackground: PropTypes.bool.isRequired,
-  noBackground: PropTypes.bool.isRequired,
+  // noBackground: PropTypes.bool.isRequired,
+  onToggleMediaEnvB: PropTypes.func.isRequired,
+  onToggleMediaSolidB: PropTypes.func.isRequired,
+  // onToggleMediaNoB: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -90,6 +94,8 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   onToggleMediaEnvB: () => dispatch(actions.toggleMediaEnvB()),
+  onToggleMediaSolidB: () => dispatch(actions.toggleMediaSolidB()),
+  onToggleMediaNoB: () => dispatch(actions.toggleMediaNoB()),
 });
 
 export default connect(
