@@ -228,10 +228,18 @@ const materialLibrary = () => {
     name: "wood-one",
     group: "woods",
     colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401356/appearances/woods/wood-one/color_ln7tbv.jpg",
     bumpMap: true,
+    bumpMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401357/appearances/woods/wood-one/normal_ca9qka.jpg",
     bumpScale: 200,
     roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401354/appearances/woods/wood-one/roughness-metalness_lpzitz.jpg",
     displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401351/appearances/woods/wood-one/displacement_qvzm6k.jpg",
     displacementScale: 200
   });
 
@@ -239,10 +247,18 @@ const materialLibrary = () => {
     name: "wood-flooring-one",
     group: "woods",
     colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401355/appearances/woods/wood-flooring-one/color_dybvyw.jpg",
     bumpMap: true,
+    bumpMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401350/appearances/woods/wood-flooring-one/normal_lxzs0x.jpg",
     bumpScale: 50,
     roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401350/appearances/woods/wood-flooring-one/roughness-metalness_zunnxy.jpg",
     displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401346/appearances/woods/wood-flooring-one/displacement_afnlwj.jpg",
     displacementScale: 200
   });
 
@@ -250,11 +266,21 @@ const materialLibrary = () => {
     name: "wood-flooring-two",
     group: "woods",
     colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401356/appearances/woods/wood-flooring-two/color_wnurig.jpg",
     bumpMap: true,
+    bumpMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401351/appearances/woods/wood-flooring-two/normal_ff2oec.jpg",
     bumpScale: 100,
     roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401355/appearances/woods/wood-flooring-two/roughness-metalness_jqqxmw.jpg",
     ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401348/appearances/woods/wood-flooring-two/ao_e2u4xj.jpg",
     displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401350/appearances/woods/wood-flooring-two/displacement_fmcylk.jpg",
     displacementScale: 1
   });
   // ?
@@ -264,11 +290,21 @@ const materialLibrary = () => {
     name: "bricks",
     group: "stones",
     colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401341/appearances/stones/Bricks/color_tjdqof.jpg",
     color: "#212121",
     ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401338/appearances/stones/Bricks/ao_vcvpdi.jpg",
     normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401343/appearances/stones/Bricks/normal_lacyy1.jpg",
     roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401340/appearances/stones/Bricks/roughness-metalness_xafj0w.jpg",
     displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401337/appearances/stones/Bricks/displacement_orxwde.jpg",
     displacementScale: 0.2
   });
   // ?
