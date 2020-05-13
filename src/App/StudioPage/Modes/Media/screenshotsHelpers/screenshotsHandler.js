@@ -1,10 +1,14 @@
 import cloudinaryAxios from "../../../../../axiosInstances/cloudinaryAxios";
 import backendAxios from "../../../../../axiosInstances/backendAxios";
 
-export const saveToCloud = (file, project, counter) => {
+const formatName = (name) => {
+  return name.split(" ").join("-");
+};
+
+export const saveToCloud = (file, project,counter) => {
   const formData = new FormData();
   formData.append("file", file);
-  formData.append("public_id", `${project.id}/${project.name}_${counter}`);
+  formData.append("public_id", `${project.id}/${formatName(project.name)}-${counter}`);
   formData.append("upload_preset", "screenshotUpload"); // Replace the preset name with your own
   formData.append("api_key", "463438241363482"); // Replace API key with your own Cloudinary key
   formData.append("timestamp", (Date.now() / 1000) | 0);
@@ -25,17 +29,17 @@ export const createImage = () => {
   return dataUrl;
 };
 
-export const screeshotDownload = (file, project, counter) => {
+export const screeshotDownload = (file, project,counter) => {
   const a = document.createElement("a");
   document.body.append(a);
   a.style = "display: none";
   a.href = file;
-  a.download = `${project.name}_${counter}`;
+  a.download = `${formatName(project.name)}-${counter}`;
   a.click();
 };
 
-export const handleCounter = () => {
+export const handleCounter = (userId, counter, projectId) => {
   return backendAxios
-    .put("/api/projects", { action: "ADD" })
+    .put("/api/projects/counter", { userId, counter, projectId })
     .then((res) => res.data);
 };
