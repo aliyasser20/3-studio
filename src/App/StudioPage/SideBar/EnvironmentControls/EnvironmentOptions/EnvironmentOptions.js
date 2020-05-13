@@ -15,6 +15,9 @@ const EnvironmentOptions = props => {
       src={option.imgPath}
       key={option.name}
       alt={option.name}
+      className={
+        props.currentEnvironmentOption.name === option.name ? "selected" : ""
+      }
       onClick={() => props.onSetEnvironmentOption(option)}
     />
   ));
@@ -24,11 +27,13 @@ const EnvironmentOptions = props => {
 
 EnvironmentOptions.propTypes = {
   environmentOptions: PropTypes.array.isRequired,
-  onSetEnvironmentOption: PropTypes.func.isRequired
+  onSetEnvironmentOption: PropTypes.func.isRequired,
+  currentEnvironmentOption: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  environmentOptions: state.environmentControls.environmentOptions
+  environmentOptions: state.environmentControls.environmentOptions,
+  currentEnvironmentOption: state.environmentControls.currentEnvironmentOption
 });
 
 const mapDispatchToProps = dispatch => ({
