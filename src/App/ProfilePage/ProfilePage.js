@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -23,7 +24,8 @@ import backendAxios from "../../axiosInstances/backendAxios";
 import "./ProfilePage.scss";
 
 const ProfilePage = props => {
-  const { user } = useAuth0();
+  const { user, logout } = useAuth0();
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const themes = availableThemes.map(theme => (
     <MenuItem key={theme.name} value={theme.name}>
@@ -52,24 +54,29 @@ const ProfilePage = props => {
           userId: user.sub
         }
       })
-      .then(resp => console.log(resp))
+      .then(() => {
+        logout();
+      })
       .catch(error => console.log(error));
   };
 
+  // Only for auth0-authenticated users (not fb and gmail)
   const resetPassword = () => {
     backendAxios
       .post("/api/users", {
         email: user.email
       })
-      .then(resp => console.log(resp))
+      .then(() =>
+        alert("Check email for instructions on how to reset your password")
+      )
       .catch(error => console.log(error));
   };
 
-  return (
+  const page = (
     <div className="profile-page">
       <Container maxWidth="xl" classes={{ root: "container-padding" }}>
         <h1>Profile Page</h1>
-        <img src={user.picture} alt="Profile" />
+        <img className="profile-picture" src={user.picture} alt="Profile" />
         <h2>Testing id (sub): {user.sub}</h2>
         <h2>Name of user: {user.name}</h2>
         <p>Email of user: {user.email}</p>
@@ -90,10 +97,28 @@ const ProfilePage = props => {
         </FormControl>
       </Container>
       <UserInfoTable />
-      <DeleteAccountButton onClick={deleteAccount} />
-      <ResetPasswordButton onClick={resetPassword} />
+      <DeleteAccountButton
+        onClick={() => {
+          setConfirmDelete(true);
+        }}
+      />
+      {user.sub.includes("auth0") && (
+        <ResetPasswordButton onClick={resetPassword} />
+      )}
+      {confirmDelete && (
+        <button
+          onClick={() => {
+            console.log("here");
+            deleteAccount();
+          }}
+        >
+          Confirm
+        </button>
+      )}
     </div>
   );
+
+  return page;
 };
 
 ProfilePage.propTypes = {
