@@ -9,24 +9,24 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import "./EnvironmentControls.scss";
+import "./MaterialDetails.scss";
 
-const EnvironmentControls = props => {
+const MaterialDetails = props => {
   let classes;
   return (
-    <div className="environment-controls">
+    <div className="material-details">
       <ExpansionPanel
         className="custom-panel"
-        expanded={props.expanded.includes("ENVIRONMENT-CONTROLS")}
-        onChange={() => props.handleChange("ENVIRONMENT-CONTROLS")}
+        expanded={props.expanded.includes("MATERIAL-DETAILS")}
+        onChange={() => props.handleChange("MATERIAL-DETAILS")}
       >
         <ExpansionPanelSummary
           className="summary-section"
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="environment-controls-summary"
-          id="environment-controls-summary"
+          aria-controls="material-details-summary"
+          id="material-details-summary"
         >
-          <Typography>Environment</Typography>
+          <Typography>Material Details</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className="details-section">
           <Typography>
@@ -44,9 +44,9 @@ const EnvironmentControls = props => {
   );
 };
 
-EnvironmentControls.propTypes = {
+MaterialDetails.propTypes = {
   expanded: PropTypes.array.isRequired,
   handleChange: PropTypes.func.isRequired
 };
 
-export default EnvironmentControls;
+export default MaterialDetails;
