@@ -64,30 +64,52 @@ const materialLibrary = () => {
     name: "alien",
     group: "metals",
     colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400958/appearances/metals/Alien/color_wplgtz.png",
     roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400956/appearances/metals/Alien/roughness-metalness_qkpcax.png",
     ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400955/appearances/metals/Alien/ao_gtjygo.png",
     metalness: 1,
-    normalMap: true
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400967/appearances/metals/Alien/normal_uxydlu.png"
   });
 
   materials.scuffedAluminumPBR = createMaterial({
     name: "scuffed-aluminum-pbr",
     group: "metals",
     colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400957/appearances/metals/Scuffed-Aluminum-PBR/color_lbgnuj.png",
     color: "#222222",
     roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400967/appearances/metals/Scuffed-Aluminum-PBR/roughness-metalness_w9oi2h.png",
     metalness: 1,
-    normalMap: true
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400958/appearances/metals/Scuffed-Aluminum-PBR/normal_rbp9y9.png"
   });
 
   materials.metalGrid = createMaterial({
     name: "metal-grid",
     group: "metals",
     colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400972/appearances/metals/metal-grid/color_cg9us4.png",
     roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400970/appearances/metals/metal-grid/roughness-metalness_jywzgo.png",
     metalness: 1,
     normalMap: true,
-    ambientOcclusionMap: true
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400972/appearances/metals/metal-grid/normal_buvgpn.png",
+    ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400966/appearances/metals/metal-grid/ao_ivhsda.png"
   });
 
   materials.rust = createMaterial({
