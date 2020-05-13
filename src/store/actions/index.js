@@ -43,6 +43,8 @@ export {
   setMediaKeyLight,
   setMediaBackWall,
   setMediaGroundPole,
+  toggleMediaEnvB,
+  toggleMediaSolidB
 } from "./mediaControls";
 
 export {
@@ -52,5 +54,7 @@ export {
   setMediaNear,
   setMediaSizeBounding,
   setMediaBox,
-  resetMediaState
+  resetMediaState,
+  setMediaEnvBackground,
+  setMediaSolidBackground
 } from "./mediaState";

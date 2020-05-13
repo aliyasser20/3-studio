@@ -7,6 +7,7 @@ const initialState = {
   mediaNear: null,
   mediaSizeBounding: null,
   mediaBox: null,
+  mediaSolidBackground: "#000",
 };
 
 const reducer = (state = initialState, action) => {
@@ -41,6 +42,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         mediaBox: action.mediaBox,
       };
+    case actionTypes.SET_MEDIA_SOLID_BACKGROUND:
+      return {
+        ...state,
+        mediaSolidBackground: action.solidBackground,
+      };
     case actionTypes.RESET_MEDIA_STATE:
       return {
         ...state,
@@ -50,6 +56,7 @@ const reducer = (state = initialState, action) => {
         mediaNear: null,
         mediaSizeBounding: null,
         mediaBox: null,
+        mediaSolidBackground: "#000",
       };
     default:
       return state;

@@ -30,7 +30,7 @@ export const setMediaBox = (mediaBox) => ({
   mediaBox,
 });
 
-export const setMediaEnvBackGround = (envBackground) => ({
+export const setMediaEnvBackground = (envBackground) => ({
   type: actionTypes.SET_MEDIA_ENV_BACKGROUND,
   envBackground,
 });
