@@ -12,9 +12,9 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { connect } from "react-redux";
-
-// import "./MediaBackGroundControl.scss";
-
+import ColorPicker from "material-ui-color-picker";
+import "./MediaBackGroundControl.scss";
+// import "../EnvironmentControls/EnvironmentControls"
 const MediaBackGroundControl = (props) => {
   return (
     <div className="environment-controls">
@@ -69,7 +69,18 @@ const MediaBackGroundControl = (props) => {
             }
             label="No Background"
           /> */}
-          
+          <FormControlLabel
+            className="custom-label costom-color-picker"
+            control={
+              <ColorPicker
+                name="color"
+                defaultValue="#000"
+                // value={this.state.color} - for controlled component
+                onChange={(color) => console.log(color)}
+              />
+            }
+            label="Environment Background"
+          />
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
