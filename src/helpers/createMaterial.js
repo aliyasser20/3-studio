@@ -4,29 +4,26 @@ import * as THREE from "three";
 const createMaterial = config => {
   const textureConfiguration = {};
 
-  // Path to group folder inside appearances
-  const initialPath = `/appearances/${config.group}/`;
-
   if (config.color) {
     textureConfiguration.color = config.color;
   }
 
   if (config.colorMap) {
     textureConfiguration.map = new THREE.TextureLoader().load(
-      `${initialPath}${config.name}/color.png`
+      config.colorMapPath
     );
     textureConfiguration.map.encoding = THREE.sRGBEncoding;
   }
 
   if (config.alphaMap) {
     textureConfiguration.map = new THREE.TextureLoader().load(
-      `${initialPath}${config.name}/alpha.png`
+      config.alphaMapPath
     );
   }
 
   if (config.roughnessMetalnessMap) {
     textureConfiguration.roughnessMap = new THREE.TextureLoader().load(
-      `${initialPath}${config.name}/roughness-metalness.png`
+      config.roughnessMetalnessMapPath
     );
 
     textureConfiguration.metalnessMap = textureConfiguration.roughnessMap;
@@ -38,33 +35,33 @@ const createMaterial = config => {
 
   if (config.displacementMap) {
     textureConfiguration.displacementMap = new THREE.TextureLoader().load(
-      `${initialPath}${config.name}/displacement.png`
+      config.displacementMapPath
     );
     textureConfiguration.displacementScale = config.displacementScale;
   }
 
   if (config.bumpMap) {
     textureConfiguration.bumpMap = new THREE.TextureLoader().load(
-      `${initialPath}${config.name}/normal.png`
+      config.bumpMapPath
     );
     textureConfiguration.bumpScale = config.bumpScale;
   }
 
   if (config.normalMap) {
     textureConfiguration.normalMap = new THREE.TextureLoader().load(
-      `${initialPath}${config.name}/normal.png`
+      config.normalMapPath
     );
   }
 
   if (config.ambientOcclusionMap) {
     textureConfiguration.aoMap = new THREE.TextureLoader().load(
-      `${initialPath}${config.name}/ao.png`
+      config.ambientOcclusionMapPath
     );
   }
 
   if (config.specularMap) {
     textureConfiguration.specularMap = new THREE.TextureLoader().load(
-      `${initialPath}${config.name}/specular.png`
+      config.specularMapPath
     );
   }
 
