@@ -1,7 +1,7 @@
 export {
   toggleBackground,
   setBackgroundColor,
-  setEnvironmentOption
+  setEnvironmentOption,
 } from "./environmentControls";
 
 export {
@@ -9,7 +9,7 @@ export {
   deleteProject,
   newProject,
   getProjects,
-  setCurrentProject
+  setCurrentProject,
 } from "./projects";
 
 export { setTheme, getTheme } from "./themes";
@@ -22,7 +22,7 @@ export {
   setFar,
   setFov,
   setNear,
-  setSizeBounding
+  setSizeBounding,
 } from "./currentModel";
 
 export { setCameraMode } from "./cameraControls";
@@ -31,5 +31,31 @@ export {
   toggleAutorotate,
   toggleAxis,
   toggleBoundingBox,
-  toggleLock
+  toggleLock,
 } from "./extraControls";
+
+export {
+  toggleMediaLock,
+  toggleMediaBoundingBox,
+  toggleMediaAxis,
+  toggleMediaAutoRotate,
+  setMediaSphere,
+  setMediaKeyLight,
+  setMediaBackWall,
+  setMediaGroundPole,
+  toggleMediaEnvB,
+  toggleMediaSolidB,
+  toggleMediaNoB
+} from "./mediaControls";
+
+export {
+  setMediaModel,
+  setMediaFov,
+  setMediaFar,
+  setMediaNear,
+  setMediaSizeBounding,
+  setMediaBox,
+  resetMediaState,
+  setMediaEnvBackground,
+  setMediaSolidBackground
+} from "./mediaState";
