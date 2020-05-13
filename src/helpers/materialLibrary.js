@@ -309,6 +309,58 @@ const materialLibrary = () => {
   });
   // ?
 
+  // ? Tiles
+  materials.tiles05 = createMaterial({
+    name: "tiles-05",
+    group: "tiles",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589406263/appearances/tiles/tiles05/color_d5utzo.jpg",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589406267/appearances/tiles/tiles05/normal_espuvy.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589406245/appearances/tiles/tiles05/roughness-metalness_igqzdd.jpg",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589406246/appearances/tiles/tiles05/displacement_fnlfre.jpg"
+  });
+
+  materials.tilesOnyxOpaloBlack = createMaterial({
+    name: "tiles-onyx-opalo-black",
+    group: "tiles",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589406540/appearances/tiles/tilesOnyxOpaloBlack/color_kt6ehw.jpg",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589406544/appearances/tiles/tilesOnyxOpaloBlack/normal_pa49g9.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589406537/appearances/tiles/tilesOnyxOpaloBlack/roughness-metalness_nn3uue.jpg",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589406534/appearances/tiles/tilesOnyxOpaloBlack/displacement_r3awbt.jpg"
+  });
+
+  materials.tilesRectangularMirrorGray = createMaterial({
+    name: "tiles-rectangular-mirror-gray",
+    group: "tiles",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589406834/appearances/tiles/tilesRectangularMirrorGray/color_b8arfd.jpg",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589406835/appearances/tiles/tilesRectangularMirrorGray/normal_tv6frd.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589406835/appearances/tiles/tilesRectangularMirrorGray/roughness-metalness_fwxyxx.jpg",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589407074/appearances/tiles/tilesRectangularMirrorGray/displacement_qe1uj6.jpg"
+  });
+
   return materials;
 };
 
