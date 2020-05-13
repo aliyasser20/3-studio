@@ -86,6 +86,12 @@ const EditCanvas = props => {
     e.object.material = materialLibrary().goldPolished;
   };
 
+  const handleDrop = e => {
+    console.log(e);
+    console.log(e.object);
+    e.object.material = materialLibrary()[props.selectedMaterial];
+  };
+
   // ? Canvas output
   const canvasElement = props.model ? (
     <Canvas
@@ -112,7 +118,9 @@ const EditCanvas = props => {
       <primitive
         object={props.model}
         dispose={null}
-        onClick={e => handleClick(e)}
+        onPointerDown={e => handleDrop(e)}
+        // onPointerUp={e => handleDrop(e)}
+        // onClick={e => handleClick(e)}
       />
       {directional && (
         <directionalLight
@@ -193,7 +201,8 @@ const mapStateToProps = state => ({
   boundingBox: state.extraControls.boundingBox,
   axis: state.extraControls.axis,
   autorotate: state.extraControls.autorotate,
-  currentEnvironmentOption: state.environmentControls.currentEnvironmentOption
+  currentEnvironmentOption: state.environmentControls.currentEnvironmentOption,
+  selectedMaterial: state.appearanceControls.selectedMaterial
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -19,6 +19,7 @@ import modeControl from "./store/reducers/modeControl";
 import currentModel from "./store/reducers/currentModel";
 import cameraControls from "./store/reducers/cameraControls";
 import extraControls from "./store/reducers/extraControls";
+import appearanceControls from "./store/reducers/appearanceControls";
 
 import * as serviceWorker from "./serviceWorker";
 
@@ -36,7 +37,8 @@ const rootReducer = combineReducers({
   modeControl,
   currentModel,
   cameraControls,
-  extraControls
+  extraControls,
+  appearanceControls
 });
 
 const store = createStore(

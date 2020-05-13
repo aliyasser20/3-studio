@@ -33,3 +33,5 @@ export {
   toggleBoundingBox,
   toggleLock
 } from "./extraControls";
+
+export { setSelectedMaterial } from "./appearanceControls";

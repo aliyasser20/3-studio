@@ -40,3 +40,7 @@ export const TOGGLE_BOUNDING_BOX = "TOGGLE_BOUNDING_BOX";
 export const TOGGLE_AXIS = "TOGGLE_AXIS";
 export const TOGGLE_AUTOROTATE = "TOGGLE_AUTOROTATE";
 //
+
+// Material Controls
+export const SET_SELECTED_MATERIAL = "SET_SELECTED_MATERIAL";
+//
