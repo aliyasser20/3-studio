@@ -8,7 +8,8 @@ const initialState = {
   environmentOptions,
   currentEnvironmentOption: {
     name: "studio-1",
-    path: "./environments/studio-1.hdr"
+    hdrPath: "./environments/studio-1.hdr",
+    imgPath: "./environments/studio-1.png"
   }
 };
 
