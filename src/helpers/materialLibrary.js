@@ -152,25 +152,43 @@ const materialLibrary = () => {
     name: "marble-one",
     group: "ceramics",
     colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401296/appearances/ceramics/marble-one/color_kojoxo.jpg",
     normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401291/appearances/ceramics/marble-one/normal_hq5kbl.jpg",
     clearcoat: 0.1,
-    roughnessMetalnessMap: true
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401298/appearances/ceramics/marble-one/roughness-metalness_f4rao1.jpg"
   });
 
   materials.fleshyGranite = createMaterial({
     name: "fleshy-granite",
     group: "ceramics",
     colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401305/appearances/ceramics/fleshy-granite/color_kxcqva.png",
     normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401294/appearances/ceramics/fleshy-granite/normal_c2z4da.png",
     roughnessMetalnessMap: true,
-    ambientOcclusionMap: true
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401298/appearances/ceramics/fleshy-granite/roughness-metalness_ruuhyd.png",
+    ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401292/appearances/ceramics/fleshy-granite/ao_ubxcj0.png"
   });
 
   materials.polishedGranite = createMaterial({
     name: "polished-granite",
     group: "ceramics",
     colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401308/appearances/ceramics/polished-granite/color_ugrucm.png",
     normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401299/appearances/ceramics/polished-granite/normal_vm3myb.png",
     clearcoat: 0.1
   });
 
@@ -178,18 +196,30 @@ const materialLibrary = () => {
     name: "marble-two",
     group: "ceramics",
     colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401307/appearances/ceramics/marble-two/color_h14ieg.jpg",
     normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401299/appearances/ceramics/marble-two/normal_atdoik.jpg",
     clearcoat: 0.2,
-    roughnessMetalnessMap: true
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401302/appearances/ceramics/marble-two/roughness-metalness_p3oeim.jpg"
   });
 
   materials.marbleThree = createMaterial({
     name: "marble-three",
     group: "ceramics",
     colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401298/appearances/ceramics/marble-three/color_jsaudp.jpg",
     normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401297/appearances/ceramics/marble-three/normal_iwrbjw.jpg",
     clearcoat: 0.2,
-    roughnessMetalnessMap: true
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401298/appearances/ceramics/marble-three/roughness-metalness_jhtwlt.jpg"
   });
   // ?
 
