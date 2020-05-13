@@ -164,8 +164,6 @@ EditCanvas.propTypes = {
   bgEnvironment: PropTypes.bool.isRequired,
   bgSolid: PropTypes.bool.isRequired,
   bgColor: PropTypes.string.isRequired,
-  onToggleBackground: PropTypes.func.isRequired,
-  onBgSolidColor: PropTypes.func.isRequired,
   fov: PropTypes.number.isRequired,
   far: PropTypes.number.isRequired,
   near: PropTypes.number.isRequired,
@@ -202,8 +200,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onToggleBackground: () => dispatch(actions.toggleBackground()),
-  onBgSolidColor: color => dispatch(actions.setBackgroundColor(color)),
   onSetFov: fov => dispatch(actions.setFov(fov)),
   onSetSelectedMaterial: material =>
     dispatch(actions.setSelectedMaterial(material))
