@@ -5,6 +5,8 @@ const initialState = {
   mediaBoundingBox: false,
   mediaAxis: false,
   mediaAutorotate: false,
+  mediaEnvBackground: true,
+  mediaSolidBackground: false,
   sphere: null,
   keyLight: null,
   backWall: null,
@@ -33,6 +35,18 @@ const reducer = (state = initialState, action) => {
         ...state,
         mediaAutorotate: !state.mediaAutorotate,
       };
+    case actionTypes.TOGGLE_MEDIA_ENV_B:
+      return {
+        ...state,
+        mediaEnvBackground: !state.mediaEnvBackground,
+      };
+
+    case actionTypes.TOGGLE_MEDIA_SOLID_B:
+      return {
+        ...state,
+        mediaSolidBackground: !state.mediaSolidBackground,
+      };
+
     case actionTypes.SET_MEDIA_SPHERE:
       return {
         ...state,
