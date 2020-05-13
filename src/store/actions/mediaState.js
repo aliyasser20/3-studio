@@ -1,6 +1,6 @@
 import * as actionTypes from "./actionTypes";
 
-export const setMediaModle = (mediaModel) => ({
+export const setMediaModel = (mediaModel) => ({
   action: actionTypes.SET_MEDIA_MODEL,
   mediaModel,
 });

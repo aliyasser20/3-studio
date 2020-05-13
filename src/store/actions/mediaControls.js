@@ -4,12 +4,12 @@ export const toggleMediaLock = () => ({
   type: actionTypes.TOGGLE_MEDIA_LOCK,
 });
 
-export const toggleBoundingBox = () => ({
+export const toggleMediaBoundingBox = () => ({
   type: actionTypes.TOGGLE_MEDIA_BOUNDING_BOX,
 });
 
 export const toggleMediaAxis = () => ({
-  type: actionTypes.TOGLLE_MEDIA_AXIS,
+  type: actionTypes.TOGGLE_MEDIA_AXIS,
 });
 
 export const toggleMediaAutoRotate = () => ({
