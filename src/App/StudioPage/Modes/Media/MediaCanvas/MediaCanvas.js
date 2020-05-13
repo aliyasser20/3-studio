@@ -2,15 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Canvas } from "react-three-fiber";
+
 import * as THREE from "three";
 import UserModel from "../Models/UserModel";
-
 import Environment from "../../Edit/Enivronment/Environment";
+import Camera from "../../Edit/Camera/Camera";
+
 import Controls from "../../Edit/Controls/Controls";
 
 import "./MediaCanvas.scss";
 
 const MediaCanvas = (props) => {
+  const { fov , far, near, box, sizeBounding } = props.modelSettings;
+  console.log(props.modelSettings)
   return (
     <>
       <Canvas
@@ -21,14 +25,14 @@ const MediaCanvas = (props) => {
           gl.gammaFactor = 2.2;
         }}
       >
-        {/* control <Camera
-          position={[-0.459, 0.512, 0.824]}
+        <Camera
+          position={[-sizeBounding.x, sizeBounding.y, sizeBounding.z]}
           fov={45}
-          far={132}
-          near={0.013}
+          far={26296.280234718044}
+          near={2.6296280234718044}
           rotation
-        /> */}
-        {/* <ambientLight intensity={0.3} />
+        />
+        <ambientLight intensity={0.3} />
         <hemisphereLight intensity={1} />
         <directionalLight intensity={0.8 * Math.PI} position={[0.5, 0, 0.86]} />
         <Environment
@@ -36,21 +40,21 @@ const MediaCanvas = (props) => {
           bgSolid
           bgColor="000000"
           mapEnvironment
-        /> */}
+        />
         <Controls />
-        <UserModel model={props.modelSetings.model} />
+        <UserModel model={props.modelSettings.model} />
       </Canvas>
     </>
   );
 };
 
 MediaCanvas.propTypes = {
-  modelSetings: PropTypes.object,
+  modelSettings: PropTypes.object,
   currentProject: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
-  modelSetings: state.currentModel,
+  modelSettings: state.currentModel,
   currentProject: state.projects.currentProject,
 });
 

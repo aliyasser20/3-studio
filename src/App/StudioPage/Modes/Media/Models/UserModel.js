@@ -9,7 +9,7 @@ const UserModel = (props) => {
   //   gl.render(scene, camera);
   //   reeef.current.rotation.y += 0.2;
   // });
-  console.log("model", userModel);
+  // console.log("model", userModel);
   return (
     <primitive
       object={userModel}
