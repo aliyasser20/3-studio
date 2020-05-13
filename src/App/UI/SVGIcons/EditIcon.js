@@ -1,6 +1,6 @@
 import React from "react";
 
-const Eye = () => (
+const EditIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="33.75"
@@ -24,4 +24,4 @@ const Eye = () => (
   </svg>
 );
 
-export default Eye;
+export default EditIcon;

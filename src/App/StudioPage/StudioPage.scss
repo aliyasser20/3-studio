@@ -17,7 +17,14 @@
 
         .canvas-and-controls-area {
           display: grid;
-          grid-template-columns: 1fr 100px;
+          grid-template-columns: 1fr auto;
+          grid-gap: 1em;
+
+          .controls-area {
+            display: grid;
+            grid-gap: 1em;
+            align-content: center;
+          }
         }
       }
     }
