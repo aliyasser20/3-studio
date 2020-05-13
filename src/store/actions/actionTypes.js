@@ -1,6 +1,7 @@
 // Environment Controls
 export const TOGGLE_BACKGROUND = "TOGGLE_BACKGROUND";
 export const SET_BACKGROUND_COLOR = "SET_BACKGROUND_COLOR";
+export const SET_ENVIRONMENT_OPTION = "SET_ENVIRONMENT_OPTION";
 //
 
 // Projects

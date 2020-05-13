@@ -1,9 +1,18 @@
 import * as actionTypes from "../actions/actionTypes";
+import { environmentOptions } from "./reducersHelpers/environmentControlsHelpers";
 
 const initialState = {
-  bgEnvironment: false,
-  bgSolid: true,
-  bgColor: "262326"
+  bgEnvironment: true,
+  bgSolid: false,
+  bgColor: "262326",
+  environmentOptions,
+  currentEnvironmentOption: {
+    name: "studio-1",
+    hdrPath:
+      "https://res.cloudinary.com/aajfinal/raw/upload/v1589352709/environments/studio-1_ugueaj.hdr",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589352866/environments/studio-1_sl7xag.jpg"
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -18,6 +27,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         bgColor: action.color
+      };
+    case actionTypes.SET_ENVIRONMENT_OPTION:
+      return {
+        ...state,
+        currentEnvironmentOption: { ...action.option }
       };
     default:
       return state;

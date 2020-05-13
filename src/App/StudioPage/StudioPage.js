@@ -19,6 +19,7 @@ import * as actions from "../../store/actions/index";
 import LoaderModel from "./LoaderModal/LoaderModel";
 
 import "./StudioPage.scss";
+import ObjectsBar from "./ObjectsBar/ObjectsBar";
 
 const StudioPage = props => {
   // ? Load model with materials
@@ -57,17 +58,16 @@ const StudioPage = props => {
                 <div className="canvas-and-controls-area">
                   {props.currentMode === "EDIT" && <EditCanvas />}
                   {props.currentMode === "MEDIA" && <MediaCanvas />}
-                  <div className="controls-area">
-                    {props.currentMode === "EDIT" && (
-                      <Fragment>
-                        <ViewControls />
-                        <ExtraControls />
-                      </Fragment>
-                    )}
-                  </div>
+                  {props.currentMode === "EDIT" && (
+                    <Fragment>
+                      <ViewControls />
+                      <ExtraControls />
+                    </Fragment>
+                  )}
                 </div>
                 {props.currentMode === "EDIT" && <GroupsBar />}
                 {props.currentMode === "EDIT" && <AppearancesBar />}
+                {props.currentMode === "MEDIA" && <ObjectsBar />}
               </div>
             </div>
           </div>
@@ -76,7 +76,6 @@ const StudioPage = props => {
     ) : (
       <LoaderModel />
     );
-
   return page;
 };
 

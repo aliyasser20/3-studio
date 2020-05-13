@@ -20,8 +20,9 @@ import themeCreator from "../../../helpers/themeCreator";
 import fileExporter from "../../../helpers/fileExporter";
 
 import "./StudioTopBar.scss";
+import MediaTopNav from "../Modes/Media/MediaTopNav/MediaTopNav";
 
-const StudioTopBar = props => {
+const StudioTopBar = (props) => {
   const theme = themeCreator("#ffffff", "#212121");
 
   return (
@@ -45,6 +46,7 @@ const StudioTopBar = props => {
               <ModeSelector />
             </div>
             <div className="top-bar-right">
+              {props.currentMode === "MEDIA" && <MediaTopNav />}
               {props.currentMode === "EDIT" && (
                 <Fragment>
                   <div className="save-status unsaved">Changes unsaved</div>
