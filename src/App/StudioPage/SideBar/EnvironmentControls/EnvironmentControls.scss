@@ -1,0 +1,26 @@
+.environment-controls {
+  .custom-panel {
+    border-radius: 0px;
+    border: none;
+    box-shadow: none;
+
+    .summary-section {
+      background-color: #2f2f2f;
+      color: white;
+
+      svg {
+        color: white;
+      }
+    }
+
+    .details-section {
+      background-color: #212121;
+      color: white;
+      border-radius: 0px;
+      border: none;
+      box-shadow: none;
+      max-height: 200px;
+      overflow: auto;
+    }
+  }
+}
