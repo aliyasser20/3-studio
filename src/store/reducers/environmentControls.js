@@ -5,7 +5,11 @@ const initialState = {
   bgEnvironment: false,
   bgSolid: true,
   bgColor: "262326",
-  environmentOptions
+  environmentOptions,
+  currentEnvironmentOption: {
+    name: "studio-1",
+    path: "./environments/studio-1.hdr"
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,6 +24,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         bgColor: action.color
+      };
+    case actionTypes.SET_ENVIRONMENT_OPTION:
+      return {
+        ...state,
+        currentEnvironmentOption: { ...action.option }
       };
     default:
       return state;

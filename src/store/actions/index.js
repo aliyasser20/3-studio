@@ -1,4 +1,8 @@
-export { toggleBackground, setBackgroundColor } from "./environmentControls";
+export {
+  toggleBackground,
+  setBackgroundColor,
+  setEnvironmentOption
+} from "./environmentControls";
 
 export {
   updateProjectDetails,
