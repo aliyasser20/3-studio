@@ -11,6 +11,7 @@ import Camera from "../Camera/Camera";
 
 import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
 
+import materialLibrary from "../../../../../helpers/materialLibrary";
 import * as actions from "../../../../../store/actions/index";
 
 import "./EditCanvas.scss";
@@ -78,6 +79,13 @@ const EditCanvas = props => {
     }
   }, [props, props.cameraMode]);
 
+  const handleClick = e => {
+    e.stopPropagation();
+    console.log(e);
+    console.log(e.object);
+    e.object.material = materialLibrary().goldPolished;
+  };
+
   // ? Canvas output
   const canvasElement = props.model ? (
     <Canvas
@@ -101,7 +109,11 @@ const EditCanvas = props => {
         far={props.far}
         near={props.near}
       />
-      <primitive object={props.model} dispose={null} />
+      <primitive
+        object={props.model}
+        dispose={null}
+        onClick={e => handleClick(e)}
+      />
       {directional && (
         <directionalLight
           intensity={directionalIntensity}
