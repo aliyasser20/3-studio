@@ -124,6 +124,7 @@ const EditCanvas = props => {
           bgSolid={props.bgSolid}
           bgColor={props.bgColor}
           mapEnvironment={mapEnvironment}
+          environmentPath={props.currentEnvironmentOption.hdrPath}
         />
         <Bridge />
       </Suspense>
@@ -161,7 +162,8 @@ EditCanvas.propTypes = {
   lock: PropTypes.bool.isRequired,
   autorotate: PropTypes.bool.isRequired,
   axis: PropTypes.bool.isRequired,
-  boundingBox: PropTypes.bool.isRequired
+  boundingBox: PropTypes.bool.isRequired,
+  currentEnvironmentOption: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -178,7 +180,8 @@ const mapStateToProps = state => ({
   lock: state.extraControls.lock,
   boundingBox: state.extraControls.boundingBox,
   axis: state.extraControls.axis,
-  autorotate: state.extraControls.autorotate
+  autorotate: state.extraControls.autorotate,
+  currentEnvironmentOption: state.environmentControls.currentEnvironmentOption
 });
 
 const mapDispatchToProps = dispatch => ({

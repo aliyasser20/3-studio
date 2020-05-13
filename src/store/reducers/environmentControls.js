@@ -2,8 +2,8 @@ import * as actionTypes from "../actions/actionTypes";
 import { environmentOptions } from "./reducersHelpers/environmentControlsHelpers";
 
 const initialState = {
-  bgEnvironment: false,
-  bgSolid: true,
+  bgEnvironment: true,
+  bgSolid: false,
   bgColor: "262326",
   environmentOptions,
   currentEnvironmentOption: {
