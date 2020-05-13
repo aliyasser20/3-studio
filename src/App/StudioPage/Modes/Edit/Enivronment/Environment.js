@@ -9,9 +9,14 @@ const Environment = props => {
   const { gl, scene } = useThree();
 
   // ? Load HDR file
-  const texture = useLoader(RGBELoader, props.environmentPath, loader => {
-    loader.setDataType(THREE.UnsignedByteType);
-  });
+  const texture = useLoader(
+    RGBELoader,
+    props.environmentPath ||
+      "https://res.cloudinary.com/aajfinal/raw/upload/v1589352709/environments/studio-1_ugueaj.hdr",
+    loader => {
+      loader.setDataType(THREE.UnsignedByteType);
+    }
+  );
 
   // ? Set HDR to canvas
   useEffect(() => {
