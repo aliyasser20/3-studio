@@ -42,14 +42,16 @@ const Row = props => {
           {props.edit ? editMode : props.value}
         </TableCell>
         <TableCell align="center">
-          <IconButton
-            aria-label="edit"
-            classes={{ root: "action-button" }}
-            size="small"
-            onClick={() => props.setEdit(true)}
-          >
-            <EditIcon />
-          </IconButton>
+          {user.sub.includes("auth0") && (
+            <IconButton
+              aria-label="edit"
+              classes={{ root: "action-button" }}
+              size="small"
+              onClick={() => props.setEdit(true)}
+            >
+              <EditIcon />
+            </IconButton>
+          )}
         </TableCell>
       </TableRow>
     </div>

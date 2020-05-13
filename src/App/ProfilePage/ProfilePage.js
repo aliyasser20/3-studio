@@ -56,6 +56,7 @@ const ProfilePage = props => {
       .catch(error => console.log(error));
   };
 
+  // Only for auth0-authenticated users (not fb and gmail)
   const resetPassword = () => {
     backendAxios
       .post("/api/users", {
@@ -90,8 +91,16 @@ const ProfilePage = props => {
         </FormControl>
       </Container>
       <UserInfoTable />
-      <DeleteAccountButton onClick={deleteAccount} />
-      <ResetPasswordButton onClick={resetPassword} />
+      <DeleteAccountButton
+        onClick={e => {
+          if (window.confirm("Delete Account?")) {
+            deleteAccount();
+          }
+        }}
+      />
+      {user.sub.includes("auth0") && (
+        <ResetPasswordButton onClick={resetPassword} />
+      )}
     </div>
   );
 };
