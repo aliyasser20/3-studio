@@ -8,3 +8,13 @@ tfoot {
   background-color: #333;
   color: #fff;
 }
+
+.profile-picture {
+  height: 200px;
+  width: 200px;
+  border-radius: 50px;
+  &:hover {
+    height: 400px;
+    width: 400px;
+  }
+}
