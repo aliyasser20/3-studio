@@ -9,13 +9,25 @@ import {
   FormControlLabel,
   Checkbox,
   FormGroup,
+  Button,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { connect } from "react-redux";
 import ColorPicker from "material-ui-color-picker";
+import Modal from "@material-ui/core/Modal";
 import "./MediaBackGroundControl.scss";
+
 // import "../EnvironmentControls/EnvironmentControls"
 const MediaBackGroundControl = (props) => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <div className="environment-controls">
       <ExpansionPanel
@@ -57,30 +69,17 @@ const MediaBackGroundControl = (props) => {
             }
             label="Environment Background"
           />
-          {/* <FormControlLabel
-            className="custom-label"
-            control={
-              <Checkbox
-                className="custom-checkbox"
-                checked={props.noBackground}
-                onChange={props.onToggleMediaNoB}
-                name="noBackground"
-              />
-            }
-            label="No Background"
-          /> */}
-          <FormControlLabel
-            className="custom-label costom-color-picker"
-            control={
-              <ColorPicker
-                name="color"
-                defaultValue="#000"
-                // value={this.state.color} - for controlled component
-                onChange={(color) => console.log(color)}
-              />
-            }
-            label="Environment Background"
-          />
+          <div className="custom-color-picker">
+            <Button onClick={handleOpen}>Background Color</Button>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+            >
+              
+            </Modal>
+          </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
