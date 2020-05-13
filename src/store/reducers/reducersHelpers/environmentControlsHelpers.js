@@ -26,5 +26,19 @@ export const environmentOptions = [
       "https://res.cloudinary.com/aajfinal/raw/upload/v1589353565/environments/autoshop_vz8rnh.hdr",
     imgPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589353643/environments/autoshop_eycjn3.jpg"
+  },
+  {
+    name: "beach",
+    hdrPath:
+      "https://res.cloudinary.com/aajfinal/raw/upload/v1589400757/environments/spiaggia_di_mondello_beach_2k_yvrjeq.hdr",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400752/environments/spiaggia_di_mondello_beach_2k_ki67ny.jpg"
+  },
+  {
+    name: "lounge",
+    hdrPath:
+      "https://res.cloudinary.com/aajfinal/raw/upload/v1589402343/environments/aft_lounge_2k_kffqfy.hdr",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589402325/environments/aft_lounge_2k_njbwuo.jpg"
   }
 ];
