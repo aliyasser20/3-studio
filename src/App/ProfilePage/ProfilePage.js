@@ -9,8 +9,11 @@ import {
   InputLabel,
   Select
 } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
 import UserInfoTable from "./UserInfoTable/UserInfoTable";
+
+import DeleteAccountButton from "./DeleteAccountButton/DeleteAccountButton";
+
+import ResetPasswordButton from "./ResetPasswordButton/ResetPasswordButton";
 
 import { useAuth0 } from "../../react-auth0-spa";
 import { availableThemes } from "../../store/reducers/reducersHelpers/themesHelpers";
@@ -42,6 +45,26 @@ const ProfilePage = props => {
       });
   };
 
+  const deleteAccount = () => {
+    backendAxios
+      .delete("/api/users", {
+        data: {
+          userId: user.sub
+        }
+      })
+      .then(resp => console.log(resp))
+      .catch(error => console.log(error));
+  };
+
+  const resetPassword = () => {
+    backendAxios
+      .post("/api/users", {
+        email: user.email
+      })
+      .then(resp => console.log(resp))
+      .catch(error => console.log(error));
+  };
+
   return (
     <div className="profile-page">
       <Container maxWidth="xl" classes={{ root: "container-padding" }}>
@@ -67,6 +90,8 @@ const ProfilePage = props => {
         </FormControl>
       </Container>
       <UserInfoTable />
+      <DeleteAccountButton onClick={deleteAccount} />
+      <ResetPasswordButton onClick={resetPassword} />
     </div>
   );
 };
