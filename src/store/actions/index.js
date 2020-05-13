@@ -35,3 +35,28 @@ export {
 } from "./extraControls";
 
 export { setSelectedMaterial } from "./appearanceControls";
+export {
+  toggleMediaLock,
+  toggleMediaBoundingBox,
+  toggleMediaAxis,
+  toggleMediaAutoRotate,
+  setMediaSphere,
+  setMediaKeyLight,
+  setMediaBackWall,
+  setMediaGroundPole,
+  toggleMediaEnvB,
+  toggleMediaSolidB,
+  toggleMediaNoB
+} from "./mediaControls";
+
+export {
+  setMediaModel,
+  setMediaFov,
+  setMediaFar,
+  setMediaNear,
+  setMediaSizeBounding,
+  setMediaBox,
+  resetMediaState,
+  setMediaEnvBackground,
+  setMediaSolidBackground
+} from "./mediaState";

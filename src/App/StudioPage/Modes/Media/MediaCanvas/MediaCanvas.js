@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Canvas } from "react-three-fiber";
 
+import * as actions from "../../../../../store/actions/index";
 import * as THREE from "three";
 import UserModel from "../Models/UserModel";
 import Environment from "../../Edit/Enivronment/Environment";
@@ -12,11 +13,38 @@ import Controls from "../../Edit/Controls/Controls";
 
 import "./MediaCanvas.scss";
 import Loading from "../OldCanvas/Loading/Loading";
+import LoaderModel from "../../../LoaderModal/LoaderModel";
 
 const MediaCanvas = (props) => {
-  const { fov , far, near, box, sizeBounding } = props.modelSettings;
-  console.log(props.modelSettings)
-  return (
+  const [loading, setLoading] = useState(true);
+  const { mediaFov, mediaFar, mediaNear, mediaBox, mediaSizeBounding } = props;
+  console.log(props.modelSettings);
+
+  useEffect(() => {
+    !props.mediaFov && props.onSetMediaFov(props.modelSettings.fov);
+    !props.mediaFar && props.onSetMediaFar(props.modelSettings.far);
+    !props.mediaNear && props.onSetMediaNear(props.modelSettings.near);
+    !props.mediaSizeBounding &&
+      props.onSetMediaSizeBounding(props.modelSettings.sizeBounding);
+    !props.mediaModel && props.onSetMediaModel(props.modelSettings.model);
+  }, []);
+
+  setTimeout(() => setLoading(false), 1500);
+
+  const camere = props.mediaSizeBounding ? (
+    <Camera
+      position={[
+        -mediaSizeBounding.x,
+        mediaSizeBounding.y,
+        mediaSizeBounding.z,
+      ]}
+      fov={mediaFov}
+      far={mediaFar}
+      near={mediaNear}
+    />
+  ) : null;
+
+  return !loading || !props.modelSettings.model || !props.mediaModel ? (
     <>
       <Canvas
         className="media-canvas"
@@ -27,37 +55,61 @@ const MediaCanvas = (props) => {
           gl.gammaFactor = 2.2;
         }}
       >
-        <Camera
-          position={[-sizeBounding.x, sizeBounding.y, sizeBounding.z]}
-          fov={fov}
-          far={far}
-          near={near}
-        />
+        {camere}
         <ambientLight intensity={0.3} />
         <hemisphereLight intensity={1} />
         <directionalLight intensity={0.8 * Math.PI} position={[0.5, 0, 0.86]} />
         <Environment
-          // bgEnvironment
-          bgSolid
+          bgEnvironment={props.mediaControls.mediaEnvBackground}
+          bgSolid={props.mediaControls.mediaSolidBackground}
           bgColor="000000"
-          mapEnvironment
+          environmentPath={props.currentEnvOption.hdrPath}
         />
-        <Controls autoRotate/>
-        <UserModel model={props.modelSettings.model} />
+        <Controls autoRotate />
+        <UserModel model={props.mediaModel} />
         <Loading />
       </Canvas>
     </>
+  ) : (
+    <LoaderModel />
   );
 };
 
 MediaCanvas.propTypes = {
   modelSettings: PropTypes.object,
   currentProject: PropTypes.object,
+  onSetMediaModel: PropTypes.func.isRequired,
+  onSetMediaFov: PropTypes.func.isRequired,
+  onSetMediaFar: PropTypes.func.isRequired,
+  onSetMediaNear: PropTypes.func.isRequired,
+  mediaModel: PropTypes.object,
+  mediaFov: PropTypes.number,
+  mediaFar: PropTypes.number,
+  mediaNear: PropTypes.number,
+  mediaSizeBounding: PropTypes.object,
+  mediaControls: PropTypes.object.isRequired,
+  currentEnvOption: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   modelSettings: state.currentModel,
   currentProject: state.projects.currentProject,
+  mediaModel: state.mediaState.mediaModel,
+  mediaFov: state.mediaState.mediaFov,
+  mediaFar: state.mediaState.mediaFar,
+  mediaNear: state.mediaState.mediaNear,
+  mediaSizeBounding: state.mediaState.mediaSizeBounding,
+  mediaControls: state.mediaControls,
+  currentEnvOption: state.environmentControls.currentEnvironmentOption,
 });
 
-export default connect(mapStateToProps, null)(MediaCanvas);
+const mapDispatchToProps = (dispatch) => ({
+  onSetMediaModel: (model) => dispatch(actions.setMediaModel(model)),
+  onSetMediaFov: (fov) => dispatch(actions.setMediaFov(fov)),
+  onSetMediaFar: (far) => dispatch(actions.setMediaFar(far)),
+  onSetMediaNear: (near) => dispatch(actions.setMediaNear(near)),
+  onSetMediaSizeBounding: (sizeBounding) =>
+    dispatch(actions.setMediaSizeBounding(sizeBounding)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MediaCanvas);
