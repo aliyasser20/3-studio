@@ -1,9 +1,11 @@
 import * as actionTypes from "../actions/actionTypes";
+import { environmentOptions } from "./reducersHelpers/environmentControlsHelpers";
 
 const initialState = {
   bgEnvironment: false,
   bgSolid: true,
-  bgColor: "262326"
+  bgColor: "262326",
+  environmentOptions
 };
 
 const reducer = (state = initialState, action) => {

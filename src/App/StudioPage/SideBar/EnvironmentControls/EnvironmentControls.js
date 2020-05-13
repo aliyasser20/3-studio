@@ -12,6 +12,8 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
+import EnvironmentOptions from "./EnvironmentOptions/EnvironmentOptions";
+
 import "./EnvironmentControls.scss";
 
 const EnvironmentControls = props => {
@@ -44,9 +46,7 @@ const EnvironmentControls = props => {
             }
             label="Environment Map"
           />
-          <div className="environment-buttons">
-            <button type="button"></button>
-          </div>
+          <EnvironmentOptions />
           <h5 className="section-title">Background</h5>
           <FormControlLabel
             className="custom-label"
