@@ -1,17 +1,23 @@
 export const environmentOptions = [
   {
     name: "studio-1",
-    hdrPath: "./environments/studio-1.hdr",
-    imgPath: "./environments/studio-1.png"
+    hdrPath:
+      "https://res.cloudinary.com/aajfinal/raw/upload/v1589352709/environments/studio-1_ugueaj.hdr",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589352866/environments/studio-1_sl7xag.jpg"
   },
   {
     name: "studio-2",
-    path: "./environments/studio-2.hdr",
-    imgPath: "./environments/studio-2.png"
+    path:
+      "https://res.cloudinary.com/aajfinal/raw/upload/v1589352709/environments/studio-2_kwkvf3.hdr",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589352866/environments/studio-2_wldnl7.jpg"
   },
   {
     name: "venice",
-    path: "./environments/venice.hdr",
-    imgPath: "./environments/venice.png"
+    path:
+      "https://res.cloudinary.com/aajfinal/raw/upload/v1589352707/environments/venice_dnfkg2.hdr",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589352866/environments/venice_l717tn.jpg"
   }
 ];
