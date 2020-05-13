@@ -10,7 +10,8 @@
     border-radius: 3px;
     cursor: pointer;
 
-    &.selected {
+    &.selected,
+    &:hover {
       border: 1px solid var(--gradient-top);
     }
   }
