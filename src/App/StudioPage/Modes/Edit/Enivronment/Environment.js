@@ -1,23 +1,15 @@
 import * as THREE from "three";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useThree, useLoader } from "react-three-fiber";
+import PropTypes from "prop-types";
+
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 
 const Environment = props => {
   const { gl, scene } = useThree();
 
-  // const [image, setImage] = useState(
-  //   "https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?id=1Nvg2o_QLf1kw_BmzN_rpZByJrtZO6sFj"
-  // );
-
-  // const [image, setImage] = useState(
-  //   "https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?id=1uBOBR40ovXh-Nu2V33SxqUzKX2YRrEez"
-  // );
-
-  const [image, setImage] = useState("/environments/venice.hdr");
-
   // ? Load HDR file
-  const texture = useLoader(RGBELoader, image, loader => {
+  const texture = useLoader(RGBELoader, props.environmentPath, loader => {
     loader.setDataType(THREE.UnsignedByteType);
   });
 
@@ -54,6 +46,10 @@ const Environment = props => {
   ]);
 
   return null;
+};
+
+Environment.propTypes = {
+  environmentPath: PropTypes.string.isRequired
 };
 
 export default Environment;
