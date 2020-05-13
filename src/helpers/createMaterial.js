@@ -94,6 +94,8 @@ const createMaterial = config => {
       return new THREE.MeshStandardMaterial(textureConfiguration);
     case "stones":
       return new THREE.MeshStandardMaterial(textureConfiguration);
+    case "tiles":
+      return new THREE.MeshStandardMaterial(textureConfiguration);
     default:
       return new THREE.MeshStandardMaterial(textureConfiguration);
   }

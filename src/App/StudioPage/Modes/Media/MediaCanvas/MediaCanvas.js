@@ -62,7 +62,7 @@ const MediaCanvas = (props) => {
         <Environment
           bgEnvironment={props.mediaControls.mediaEnvBackground}
           bgSolid={props.mediaControls.mediaSolidBackground}
-          bgColor="000000"
+          bgColor={props.solidBgColor}
           environmentPath={props.currentEnvOption.hdrPath}
         />
         <Controls autoRotate />
@@ -101,6 +101,7 @@ const mapStateToProps = (state) => ({
   mediaSizeBounding: state.mediaState.mediaSizeBounding,
   mediaControls: state.mediaControls,
   currentEnvOption: state.environmentControls.currentEnvironmentOption,
+  solidBgColor: state.mediaState.mediaSolidBackground
 });
 
 const mapDispatchToProps = (dispatch) => ({
