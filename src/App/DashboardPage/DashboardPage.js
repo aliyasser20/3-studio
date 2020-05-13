@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -32,16 +32,14 @@ const DashboardPage = props => {
     setSnackBarOpen(true);
   };
 
-  const projectCards = props.allProjects
-    .reverse()
-    .map(project => (
-      <ProjectCard
-        handleSnackBarClose={handleSnackBarClose}
-        handleSnackBarOpen={handleSnackBarOpen}
-        key={project.id}
-        {...project}
-      />
-    ));
+  const projectCards = props.allProjects.map(project => (
+    <ProjectCard
+      handleSnackBarClose={handleSnackBarClose}
+      handleSnackBarOpen={handleSnackBarOpen}
+      key={project.id}
+      {...project}
+    />
+  ));
 
   const snackBar = (
     <Snackbar
@@ -65,9 +63,15 @@ const DashboardPage = props => {
         {props.allProjects.length > 0 ? (
           <div className="projects">{projectCards}</div>
         ) : (
-          <div className="loader-container">
-            <Loader />
-          </div>
+          <Fragment>
+            {props.projectsLoading ? (
+              <div className="loader-container">
+                <Loader />
+              </div>
+            ) : (
+              <h2>No projects yet ...</h2>
+            )}
+          </Fragment>
         )}
         {snackBarOpen && snackBar}
       </Container>
@@ -76,11 +80,13 @@ const DashboardPage = props => {
 };
 
 DashboardPage.propTypes = {
-  allProjects: PropTypes.array
+  allProjects: PropTypes.array,
+  projectsLoading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  allProjects: state.projects.allProjects
+  allProjects: state.projects.allProjects,
+  projectsLoading: state.projects.projectsLoading
 });
 
 export default connect(mapStateToProps, null)(DashboardPage);

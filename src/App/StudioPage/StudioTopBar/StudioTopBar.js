@@ -1,12 +1,23 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { Paper, Box, Typography, ThemeProvider } from "@material-ui/core";
+import {
+  Paper,
+  Box,
+  Typography,
+  ThemeProvider,
+  Button,
+  IconButton
+} from "@material-ui/core";
+import GetAppIcon from "@material-ui/icons/GetApp";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import SaveIcon from "@material-ui/icons/Save";
 
 import ModeSelector from "./ModeSelector/ModeSelector";
 
 import themeCreator from "../../../helpers/themeCreator";
+import fileExporter from "../../../helpers/fileExporter";
 
 import "./StudioTopBar.scss";
 import MediaTopNav from "../Modes/Media/MediaTopNav/MediaTopNav";
@@ -25,12 +36,37 @@ const StudioTopBar = (props) => {
                   {props.currentProject.name}
                 </Typography>
               </Box>
+              <span className="gradient-button">
+                <Button variant="contained" endIcon={<ExpandMoreIcon />}>
+                  Configuration 3
+                </Button>
+              </span>
             </div>
             <div className="top-bar-center">
               <ModeSelector />
             </div>
             <div className="top-bar-right">
-              {props.mode === "MEDIA" && <MediaTopNav />}
+              {props.currentMode === "MEDIA" && <MediaTopNav />}
+              {props.currentMode === "EDIT" && (
+                <Fragment>
+                  <div className="save-status unsaved">Changes unsaved</div>
+                  <IconButton
+                    aria-label="edit"
+                    classes={{ root: "action-button" }}
+                    size="small"
+                  >
+                    <SaveIcon />
+                  </IconButton>
+                  <IconButton
+                    aria-label="edit"
+                    classes={{ root: "action-button" }}
+                    size="small"
+                    onClick={() => fileExporter()}
+                  >
+                    <GetAppIcon />
+                  </IconButton>
+                </Fragment>
+              )}
             </div>
           </div>
         </Paper>
@@ -41,12 +77,12 @@ const StudioTopBar = (props) => {
 
 StudioTopBar.propTypes = {
   currentProject: PropTypes.object.isRequired,
-  mode: PropTypes.string.isRequired,
+  currentMode: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentProject: state.projects.currentProject,
-  mode: state.modeControl.currentMode,
+  currentMode: state.modeControl.currentMode
 });
 
 export default connect(mapStateToProps)(StudioTopBar);

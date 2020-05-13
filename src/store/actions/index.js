@@ -20,3 +20,12 @@ export {
   setNear,
   setSizeBounding
 } from "./currentModel";
+
+export { setCameraMode } from "./cameraControls";
+
+export {
+  toggleAutorotate,
+  toggleAxis,
+  toggleBoundingBox,
+  toggleLock
+} from "./extraControls";

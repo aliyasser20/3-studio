@@ -17,6 +17,8 @@ import projects from "./store/reducers/projects";
 import themes from "./store/reducers/themes";
 import modeControl from "./store/reducers/modeControl";
 import currentModel from "./store/reducers/currentModel";
+import cameraControls from "./store/reducers/cameraControls";
+import extraControls from "./store/reducers/extraControls";
 
 import * as serviceWorker from "./serviceWorker";
 
@@ -32,7 +34,9 @@ const rootReducer = combineReducers({
   projects,
   themes,
   modeControl,
-  currentModel
+  currentModel,
+  cameraControls,
+  extraControls
 });
 
 const store = createStore(

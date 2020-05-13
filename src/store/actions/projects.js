@@ -28,7 +28,16 @@ export const populateProjects = projects => ({
   projects
 });
 
+const getProjectsStart = () => ({
+  type: actionTypes.SET_PROJECT_START
+});
+
+const getProjectsEnd = () => ({
+  type: actionTypes.SET_PROJECT_END
+});
+
 export const getProjects = userId => dispatch => {
+  dispatch(getProjectsStart());
   backendAxios
     .get("/api/projects", {
       params: {
@@ -40,6 +49,7 @@ export const getProjects = userId => dispatch => {
       const projectId = Number(sessionStorage.getItem("currentProjectId"));
 
       dispatch(setCurrentProject(projectId));
+      dispatch(getProjectsEnd());
     })
     .catch(error => {
       console.log(error);

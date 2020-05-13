@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { connect } from "react-redux";
@@ -11,12 +11,15 @@ import GroupsBar from "./GroupsBar/GroupsBar";
 import AppearancesBar from "./AppearancesBar/AppearancesBar";
 import EditCanvas from "./Modes/Edit/EditCanvas/EditCanvas";
 import MediaCanvas from "./Modes/Media/MediaCanvas/MediaCanvas";
+import ViewControls from "./ViewControls/ViewControls";
+import ExtraControls from "./ExtraControls/ExtraControls";
 
 import createModel from "../../helpers/createModel";
 import * as actions from "../../store/actions/index";
 import LoaderModel from "./LoaderModal/LoaderModel";
 
 import "./StudioPage.scss";
+import ObjectsBar from "./ObjectsBar/ObjectsBar";
 
 const StudioPage = (props) => {
   // ? Load model with materials
@@ -55,9 +58,18 @@ const StudioPage = (props) => {
                 <div className="canvas-and-controls-area">
                   {props.currentMode === "EDIT" && <EditCanvas />}
                   {props.currentMode === "MEDIA" && <MediaCanvas />}
+                  <div className="controls-area">
+                    {props.currentMode === "EDIT" && (
+                      <Fragment>
+                        <ViewControls />
+                        <ExtraControls />
+                      </Fragment>
+                    )}
+                  </div>
                 </div>
                 {props.currentMode === "EDIT" && <GroupsBar />}
                 {props.currentMode === "EDIT" && <AppearancesBar />}
+                {props.currentMode === "MEDIA" && <ObjectsBar />}
               </div>
             </div>
           </div>
@@ -66,7 +78,6 @@ const StudioPage = (props) => {
     ) : (
       <LoaderModel />
     );
-
   return page;
 };
 

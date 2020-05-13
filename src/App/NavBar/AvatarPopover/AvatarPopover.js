@@ -8,12 +8,17 @@ import {
   Typography,
   Avatar,
   IconButton,
-  Box
+  Box,
+  ThemeProvider
 } from "@material-ui/core";
+
+import themeCreator from "../../../helpers/themeCreator";
 
 import "./AvatarPopover.scss";
 
 const AvatarPopover = props => {
+  const theme = themeCreator("#ffffff", "#212121");
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = event => {
@@ -28,51 +33,56 @@ const AvatarPopover = props => {
   const id = open ? "simple-popover" : undefined;
 
   return (
-    <div className="avatar-popover">
-      <IconButton aria-describedby={id} onClick={handleClick}>
-        <Avatar alt={props.username} src={props.picture} />
-      </IconButton>
-      <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right"
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right"
-        }}
-      >
-        <div className="avatar-popover-content">
-          <div className="user-info">
-            <Avatar
-              className="large-avatar"
-              alt={props.username}
-              src={props.picture}
-            />
-            <Typography variant="h5" classes={{ root: "user-display-name" }}>
-              <Box fontWeight="700">{props.username.slice(0, 18)}</Box>
-            </Typography>
+    <ThemeProvider theme={theme}>
+      <div className="avatar-popover">
+        <IconButton aria-describedby={id} onClick={handleClick}>
+          <Avatar alt={props.username} src={props.picture} />
+        </IconButton>
+        <Popover
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right"
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right"
+          }}
+        >
+          <div className="avatar-popover-content">
+            <div className="user-info">
+              <Avatar
+                className="large-avatar"
+                alt={props.username}
+                src={props.picture}
+              />
+              <Typography variant="h5" classes={{ root: "user-display-name" }}>
+                <Box fontWeight="700">{props.username.slice(0, 18)}</Box>
+              </Typography>
+            </div>
+            <Link to="/profile">
+              <Button
+                classes={{ root: "link-to-profile" }}
+                onClick={handleClose}
+              >
+                Profile Preferences
+              </Button>
+            </Link>
+            <div>
+              <Button
+                classes={{ root: "sign-out-button" }}
+                onClick={props.logout}
+              >
+                Sign out
+              </Button>
+            </div>
           </div>
-          <Link to="/profile">
-            <Button classes={{ root: "link-to-profile" }} onClick={handleClose}>
-              Profile Preferences
-            </Button>
-          </Link>
-          <div>
-            <Button
-              classes={{ root: "sign-out-button" }}
-              onClick={props.logout}
-            >
-              Sign out
-            </Button>
-          </div>
-        </div>
-      </Popover>
-    </div>
+        </Popover>
+      </div>
+    </ThemeProvider>
   );
 };
 
