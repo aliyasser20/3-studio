@@ -11,6 +11,7 @@ import Camera from "../Camera/Camera";
 
 import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
 
+import materialLibrary from "../../../../../helpers/materialLibrary";
 import * as actions from "../../../../../store/actions/index";
 
 import "./EditCanvas.scss";
@@ -78,6 +79,16 @@ const EditCanvas = props => {
     }
   }, [props, props.cameraMode]);
 
+  const handleDrop = e => {
+    // console.log(e);
+    // console.log(e.object);
+
+    if (props.selectedMaterial) {
+      e.object.material = materialLibrary()[props.selectedMaterial];
+      props.onSetSelectedMaterial("");
+    }
+  };
+
   // ? Canvas output
   const canvasElement = props.model ? (
     <Canvas
@@ -101,7 +112,11 @@ const EditCanvas = props => {
         far={props.far}
         near={props.near}
       />
-      <primitive object={props.model} dispose={null} />
+      <primitive
+        object={props.model}
+        dispose={null}
+        onPointerMove={e => handleDrop(e)}
+      />
       {directional && (
         <directionalLight
           intensity={directionalIntensity}
@@ -163,7 +178,8 @@ EditCanvas.propTypes = {
   autorotate: PropTypes.bool.isRequired,
   axis: PropTypes.bool.isRequired,
   boundingBox: PropTypes.bool.isRequired,
-  currentEnvironmentOption: PropTypes.object.isRequired
+  currentEnvironmentOption: PropTypes.object.isRequired,
+  onSetSelectedMaterial: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -181,13 +197,16 @@ const mapStateToProps = state => ({
   boundingBox: state.extraControls.boundingBox,
   axis: state.extraControls.axis,
   autorotate: state.extraControls.autorotate,
-  currentEnvironmentOption: state.environmentControls.currentEnvironmentOption
+  currentEnvironmentOption: state.environmentControls.currentEnvironmentOption,
+  selectedMaterial: state.appearanceControls.selectedMaterial
 });
 
 const mapDispatchToProps = dispatch => ({
   onToggleBackground: () => dispatch(actions.toggleBackground()),
   onBgSolidColor: color => dispatch(actions.setBackgroundColor(color)),
-  onSetFov: fov => dispatch(actions.setFov(fov))
+  onSetFov: fov => dispatch(actions.setFov(fov)),
+  onSetSelectedMaterial: material =>
+    dispatch(actions.setSelectedMaterial(material))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditCanvas);
