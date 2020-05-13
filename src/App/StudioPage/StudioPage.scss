@@ -2,7 +2,7 @@
   .custom-grid {
     display: grid;
     grid-gap: 1em;
-    padding-bottom: 2em;
+    padding-bottom: 8em;
 
     .working-area {
       display: grid;
@@ -18,13 +18,22 @@
         .canvas-and-controls-area {
           display: grid;
           grid-auto-flow: column;
-          grid-template-columns: 1fr;
+          grid-template-columns: auto 1fr auto;
           grid-gap: 1em;
+          grid-template-areas: "extra-controls canvas-area view-controls";
+          align-items: center;
 
-          .controls-area {
-            display: grid;
-            grid-gap: 1em;
-            align-content: center;
+          .view-controls {
+            grid-area: view-controls;
+          }
+
+          .extra-controls {
+            grid-area: extra-controls;
+          }
+
+          .edit-canvas,
+          .media-canvas {
+            grid-area: canvas-area;
           }
         }
       }
