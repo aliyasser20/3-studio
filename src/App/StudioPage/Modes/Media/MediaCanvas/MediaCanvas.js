@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Canvas } from "react-three-fiber";
 import * as THREE from "three";
+import UserModel from "../Models/UserModel";
 
 import Environment from "../../Edit/Enivronment/Environment";
 import Controls from "../../Edit/Controls/Controls";
@@ -38,6 +39,8 @@ const MediaCanvas = (props) => {
         /> */}
         <Controls />
       </Canvas>
+      <UserModel model={props.modelSetings.model} />
+
     </>
   );
 };
