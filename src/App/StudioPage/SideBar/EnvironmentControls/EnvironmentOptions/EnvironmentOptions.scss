@@ -1,23 +1,26 @@
 .environment-options {
   width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 0.75em;
   padding: 0.75em;
+  padding-bottom: 1.5em;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   background-color: #2f2f2f;
-  max-height: 173.5px;
+  max-height: 210px;
   overflow: auto;
   border-radius: 4px;
+  grid-auto-rows: 75px;
+  grid-column-gap: 0.75em;
 
   .single-option {
     position: relative;
     width: 100%;
-    height: 70px;
     cursor: pointer;
     border-radius: 3px;
     overflow: hidden;
+    margin-bottom: 0.75em;
 
     .option-name-container {
       visibility: hidden;
