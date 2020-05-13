@@ -1,0 +1,16 @@
+.color-picker {
+  display: grid;
+  .MuiPaper-root.MuiDialog-paper.MuiDialog-paperScrollPaper {
+    color:#fff;
+    max-width: 50vw;
+    max-height: 80vh;
+    text-align: center;
+    width: 265px;
+    height: 420px;
+    background: rgba(18,18,18,0.6);
+
+    .picker {
+      color:#FFF;
+    }
+    }
+}

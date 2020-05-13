@@ -7,7 +7,7 @@ const initialState = {
   mediaNear: null,
   mediaSizeBounding: null,
   mediaBox: null,
-  mediaSolidBackground: "#000",
+  mediaSolidBackground: "000",
 };
 
 const reducer = (state = initialState, action) => {
