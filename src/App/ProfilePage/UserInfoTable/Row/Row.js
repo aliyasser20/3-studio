@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes, { string } from "prop-types";
+import PropTypes from "prop-types";
 
 import { IconButton, TableRow, TableCell } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
@@ -12,18 +12,34 @@ import backendAxios from "../../../../axiosInstances/backendAxios";
 const Row = props => {
   const { user } = useAuth0();
   const handleCheck = () => {
-    backendAxios.put("/api/users", {
-      userId: user.sub
-    });
+    backendAxios
+      .put("/api/users", {
+        userId: user.sub,
+        [props.field]: props.value
+      })
+      .then(() => alert("Edit successful for now"))
+      .catch(error => console.log(error));
   };
 
   const handleCancel = () => {
     props.setEdit(false);
   };
 
+  const handleChange = value => {
+    if (props.field === "name") {
+      props.setValue(value.slice(0, 15));
+    }
+    if (props.field === "nickname") {
+      props.setValue(value.slice(0, 25));
+    }
+  };
+
   const editMode = (
     <form>
-      <input value={props.value}></input>
+      <input
+        onChange={e => handleChange(e.target.value)}
+        value={props.value}
+      ></input>
       <IconButton onClick={handleCancel}>
         <CloseIcon />
       </IconButton>
@@ -62,7 +78,8 @@ Row.propTypes = {
   value: PropTypes.string.isRequired,
   field: PropTypes.string.isRequired,
   edit: PropTypes.bool.isRequired,
-  setEdit: PropTypes.func.isRequired
+  setEdit: PropTypes.func.isRequired,
+  setValue: PropTypes.func.isRequired
 };
 
 export default Row;
