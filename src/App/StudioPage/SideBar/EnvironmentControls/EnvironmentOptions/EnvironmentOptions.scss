@@ -3,6 +3,16 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 0.75em;
+  // border-top: 1px solid #9f9f9f;
+  // border-bottom: 1px solid #9f9f9f;
+  padding: 0.75em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  // background-color: #9f9f9f;
+  background-color: #2f2f2f;
+  max-height: 173.5px;
+  overflow: auto;
+  border-radius: 4px;
 
   img {
     width: 100%;
