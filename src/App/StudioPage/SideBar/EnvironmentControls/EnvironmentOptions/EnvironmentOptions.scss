@@ -32,6 +32,10 @@
 
       .option-name {
         background-color: var(--gradient-top);
+        background: linear-gradient(
+          var(--gradient-top),
+          var(--gradient-bottom)
+        );
         border-radius: 4px;
         padding: 0.4em 0.6em;
         font-size: 12px;
