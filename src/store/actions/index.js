@@ -44,7 +44,8 @@ export {
   setMediaBackWall,
   setMediaGroundPole,
   toggleMediaEnvB,
-  toggleMediaSolidB
+  toggleMediaSolidB,
+  toggleMediaNoB
 } from "./mediaControls";
 
 export {

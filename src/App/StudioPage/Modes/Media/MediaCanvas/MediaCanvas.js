@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Canvas } from "react-three-fiber";
@@ -13,19 +13,23 @@ import Controls from "../../Edit/Controls/Controls";
 
 import "./MediaCanvas.scss";
 import Loading from "../OldCanvas/Loading/Loading";
+import LoaderModel from "../../../LoaderModal/LoaderModel";
 
 const MediaCanvas = (props) => {
+  const [loading, setLoading] = useState(true);
   const { mediaFov, mediaFar, mediaNear, mediaBox, mediaSizeBounding } = props;
   console.log(props.modelSettings);
 
   useEffect(() => {
-    !props.mediaModel && props.onSetMediaModel(props.modelSettings.model);
     !props.mediaFov && props.onSetMediaFov(props.modelSettings.fov);
     !props.mediaFar && props.onSetMediaFar(props.modelSettings.far);
     !props.mediaNear && props.onSetMediaNear(props.modelSettings.near);
     !props.mediaSizeBounding &&
       props.onSetMediaSizeBounding(props.modelSettings.sizeBounding);
+    !props.mediaModel && props.onSetMediaModel(props.modelSettings.model);
   }, []);
+
+  setTimeout(() => setLoading(false), 1500);
 
   const camere = props.mediaSizeBounding ? (
     <Camera
@@ -40,7 +44,7 @@ const MediaCanvas = (props) => {
     />
   ) : null;
 
-  return (
+  return !loading || !props.modelSettings.model || !props.mediaModel ? (
     <>
       <Canvas
         className="media-canvas"
@@ -66,6 +70,8 @@ const MediaCanvas = (props) => {
         <Loading />
       </Canvas>
     </>
+  ) : (
+    <LoaderModel />
   );
 };
 
@@ -76,11 +82,11 @@ MediaCanvas.propTypes = {
   onSetMediaFov: PropTypes.func.isRequired,
   onSetMediaFar: PropTypes.func.isRequired,
   onSetMediaNear: PropTypes.func.isRequired,
-  mediaModel: PropTypes.object.isRequired,
-  mediaFov: PropTypes.number.isRequired,
-  mediaFar: PropTypes.number.isRequired,
-  mediaNear: PropTypes.number.isRequired,
-  mediaSizeBounding: PropTypes.object.isRequired,
+  mediaModel: PropTypes.object,
+  mediaFov: PropTypes.number,
+  mediaFar: PropTypes.number,
+  mediaNear: PropTypes.number,
+  mediaSizeBounding: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({

@@ -1,11 +1,15 @@
 import * as actionTypes from "./actionTypes";
 
 export const toggleMediaEnvB = () => ({
-  type: actionTypes.TOGGLE_MEDIA_ENV_B
+  type: actionTypes.TOGGLE_MEDIA_ENV_B,
 });
 
 export const toggleMediaSolidB = () => ({
-  type: actionTypes.TOGGLE_MEDIA_SOLID_B
+  type: actionTypes.TOGGLE_MEDIA_SOLID_B,
+});
+
+export const toggleMediaNoB = () => ({
+  type: actionTypes.TOGGLE_MEDIA_NO_B,
 });
 
 export const toggleMediaLock = () => ({

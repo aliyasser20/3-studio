@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import * as actions from "../../../../store/actions/index";
 import {
   ExpansionPanel,
   ExpansionPanelDetails,
@@ -11,6 +11,7 @@ import {
   FormGroup,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { connect } from "react-redux";
 
 // import "./MediaBackGroundControl.scss";
 
@@ -37,24 +38,36 @@ const MediaBackGroundControl = (props) => {
             control={
               <Checkbox
                 className="custom-checkbox"
-                checked
+                checked={props.solidBackground}
                 // onChange={}
                 name="solidBackground"
               />
             }
-            label="Solid"
+            label="Solid Background"
           />
           <FormControlLabel
             className="custom-label"
             control={
               <Checkbox
                 className="custom-checkbox"
-                checked={false}
-                // onChange={}
+                checked={props.envBackground}
+                onChange={props.onToggleMediaEnvB}
                 name="environmentBackground"
               />
             }
             label="Environment Background"
+          />
+          <FormControlLabel
+            className="custom-label"
+            control={
+              <Checkbox
+                className="custom-checkbox"
+                checked={props.noBackground}
+                // onChange={}
+                name="noBackground"
+              />
+            }
+            label="No Background"
           />
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -65,6 +78,21 @@ const MediaBackGroundControl = (props) => {
 MediaBackGroundControl.propTypes = {
   expanded: PropTypes.array.isRequired,
   handleChange: PropTypes.func.isRequired,
+  solidBackground: PropTypes.bool.isRequired,
+  envBackground: PropTypes.bool.isRequired,
+  noBackground: PropTypes.bool.isRequired,
 };
 
-export default MediaBackGroundControl;
+const mapStateToProps = (state) => ({
+  envBackground: state.mediaControls.mediaEnvBackground,
+  solidBackground: state.mediaControls.mediaSolidBackground,
+  noBackground: state.mediaControls.mediaNoBackground,
+});
+const mapDispatchToProps = (dispatch) => ({
+  onToggleMediaEnvB: () => dispatch(actions.toggleMediaEnvB()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MediaBackGroundControl);
