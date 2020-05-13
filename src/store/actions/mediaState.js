@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 
 export const setMediaModel = (mediaModel) => ({
-  action: actionTypes.SET_MEDIA_MODEL,
+  type: actionTypes.SET_MEDIA_MODEL,
   mediaModel,
 });
 
