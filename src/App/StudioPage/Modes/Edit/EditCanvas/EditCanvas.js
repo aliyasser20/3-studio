@@ -18,23 +18,6 @@ import "./EditCanvas.scss";
 
 const EditCanvas = props => {
   // ! State ------------------------------------------------- //
-  // ? Lights states //
-  // Ambient
-  const [ambient, setAmbient] = useState(true);
-  const [ambientColor, setAmbientColor] = useState("ffffff");
-  const [ambientIntensity, setAmbientIntensity] = useState(0.3);
-
-  // Hemisphere
-  const [hemisphere, setHemisphere] = useState(true);
-  const [hemisphereColor, setHemisphereColor] = useState("ffffff");
-  const [hemisphereIntensity, setHemisphereIntensity] = useState(1);
-
-  // Directional
-  const [directional, setDirectional] = useState(true);
-  const [directionalColor, setDirectionalColor] = useState("ffffff");
-  const [directionalIntensity, setDirectionalIntensity] = useState(
-    0.8 * Math.PI
-  );
   const [directionalPosition, setDirectionalPosition] = useState([
     0.5,
     0,
@@ -114,21 +97,24 @@ const EditCanvas = props => {
         dispose={null}
         onPointerMove={e => handleDrop(e)}
       />
-      {directional && (
+      {props.directionalLight && (
         <directionalLight
-          intensity={directionalIntensity}
-          color={`#${directionalColor}`}
+          intensity={props.directionalIntensity}
+          color={`#${props.directionalColor}`}
           position={directionalPosition}
         />
       )}
-      {hemisphere && (
+      {props.hemisphereLight && (
         <hemisphereLight
-          intensity={hemisphereIntensity}
-          color={`#${hemisphereColor}`}
+          intensity={props.hemisphereIntensity}
+          color={`#${props.hemisphereColor}`}
         />
       )}
-      {ambient && (
-        <ambientLight intensity={ambientIntensity} color={`#${ambientColor}`} />
+      {props.ambientLight && (
+        <ambientLight
+          intensity={props.ambientIntensity}
+          color={`#${props.ambientColor}`}
+        />
       )}
       <Suspense fallback={fallbackElement}>
         <Environment
@@ -175,7 +161,16 @@ EditCanvas.propTypes = {
   boundingBox: PropTypes.bool.isRequired,
   currentEnvironmentOption: PropTypes.object.isRequired,
   onSetSelectedMaterial: PropTypes.func.isRequired,
-  mapEnvironment: PropTypes.bool.isRequired
+  mapEnvironment: PropTypes.bool.isRequired,
+  ambientLight: PropTypes.bool.isRequired,
+  directionalLight: PropTypes.bool.isRequired,
+  hemisphereLight: PropTypes.bool.isRequired,
+  ambientIntensity: PropTypes.number.isRequired,
+  hemisphereIntensity: PropTypes.number.isRequired,
+  directionalIntensity: PropTypes.number.isRequired,
+  directionalColor: PropTypes.string.isRequired,
+  hemisphereColor: PropTypes.string.isRequired,
+  ambientColor: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -195,7 +190,16 @@ const mapStateToProps = state => ({
   autorotate: state.extraControls.autorotate,
   currentEnvironmentOption: state.environmentControls.currentEnvironmentOption,
   selectedMaterial: state.appearanceControls.selectedMaterial,
-  mapEnvironment: state.environmentControls.mapEnvironment
+  mapEnvironment: state.environmentControls.mapEnvironment,
+  ambientLight: state.lightControls.ambientLight,
+  directionalLight: state.lightControls.directionalLight,
+  hemisphereLight: state.lightControls.hemisphereLight,
+  ambientIntensity: state.lightControls.ambientLightIntensity,
+  directionalIntensity: state.lightControls.directionalLightIntensity,
+  hemisphereIntensity: state.lightControls.hemisphereLightIntensity,
+  ambientColor: state.lightControls.ambientLightColor,
+  directionalColor: state.lightControls.directionalLightColor,
+  hemisphereColor: state.lightControls.hemisphereLightColor
 });
 
 const mapDispatchToProps = dispatch => ({
