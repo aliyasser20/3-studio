@@ -14,4 +14,13 @@
   .hidden-slider {
     visibility: hidden;
   }
+
+  .MuiSlider-thumb {
+    color: var(--gradient-top);
+  }
+
+  .MuiSlider-valueLabel {
+    color: white;
+    font-weight: 500;
+  }
 }
