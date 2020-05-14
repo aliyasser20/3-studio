@@ -1,5 +1,7 @@
 export {
-  toggleBackground,
+  setBackgroundSolid,
+  setBackgroundEnvironment,
+  toggleMapEnvironment,
   setBackgroundColor,
   setEnvironmentOption
 } from "./environmentControls";

@@ -79,6 +79,21 @@ const reducer = (state = initialState, action) => {
         ...state,
         backWall: action.backWall,
       };
+    case actionTypes.RESET_MEDIA_CONTROLS:
+      return {
+        ...state,
+        mediaLock: false,
+        mediaBoundingBox: false,
+        mediaAxis: false,
+        mediaAutorotate: false,
+        mediaEnvBackground: true,
+        mediaSolidBackground: false,
+        mediaNoBakground: false,
+        sphere: null,
+        keyLight: null,
+        backWall: null,
+        groundPole: null
+      };
     default:
       return state;
   }

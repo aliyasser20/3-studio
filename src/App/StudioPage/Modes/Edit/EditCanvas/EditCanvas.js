@@ -18,9 +18,6 @@ import "./EditCanvas.scss";
 
 const EditCanvas = props => {
   // ! State ------------------------------------------------- //
-  // ? Environment & background states //
-  const [mapEnvironment, setMapEnvironment] = useState(true);
-
   // ? Lights states //
   // Ambient
   const [ambient, setAmbient] = useState(true);
@@ -138,7 +135,7 @@ const EditCanvas = props => {
           bgEnvironment={props.bgEnvironment}
           bgSolid={props.bgSolid}
           bgColor={props.bgColor}
-          mapEnvironment={mapEnvironment}
+          mapEnvironment={props.mapEnvironment}
           environmentPath={props.currentEnvironmentOption.hdrPath}
         />
         <Bridge />
@@ -164,8 +161,6 @@ EditCanvas.propTypes = {
   bgEnvironment: PropTypes.bool.isRequired,
   bgSolid: PropTypes.bool.isRequired,
   bgColor: PropTypes.string.isRequired,
-  onToggleBackground: PropTypes.func.isRequired,
-  onBgSolidColor: PropTypes.func.isRequired,
   fov: PropTypes.number.isRequired,
   far: PropTypes.number.isRequired,
   near: PropTypes.number.isRequired,
@@ -179,7 +174,8 @@ EditCanvas.propTypes = {
   axis: PropTypes.bool.isRequired,
   boundingBox: PropTypes.bool.isRequired,
   currentEnvironmentOption: PropTypes.object.isRequired,
-  onSetSelectedMaterial: PropTypes.func.isRequired
+  onSetSelectedMaterial: PropTypes.func.isRequired,
+  mapEnvironment: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -198,12 +194,11 @@ const mapStateToProps = state => ({
   axis: state.extraControls.axis,
   autorotate: state.extraControls.autorotate,
   currentEnvironmentOption: state.environmentControls.currentEnvironmentOption,
-  selectedMaterial: state.appearanceControls.selectedMaterial
+  selectedMaterial: state.appearanceControls.selectedMaterial,
+  mapEnvironment: state.environmentControls.mapEnvironment
 });
 
 const mapDispatchToProps = dispatch => ({
-  onToggleBackground: () => dispatch(actions.toggleBackground()),
-  onBgSolidColor: color => dispatch(actions.setBackgroundColor(color)),
   onSetFov: fov => dispatch(actions.setFov(fov)),
   onSetSelectedMaterial: material =>
     dispatch(actions.setSelectedMaterial(material))
