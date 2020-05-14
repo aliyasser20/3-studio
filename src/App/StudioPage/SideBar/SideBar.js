@@ -61,6 +61,7 @@ const SideBar = (props) => {
                 expanded={expandedPanels}
                 handleChange={handleChange}
               />
+              {/* <ObjectControl /> */}
             </Fragment>
           )}
         </Paper>
