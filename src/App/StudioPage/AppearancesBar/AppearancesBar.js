@@ -88,21 +88,29 @@ const AppearancesBar = props => {
           >
             Polished Purple
           </div> */}
-        </Paper>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="scrollable"
-          scrollButtons="auto"
-          aria-label="scrollable auto tabs example"
-        >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-          <Tab label="Item Four" {...a11yProps(3)} />
-          <div className="">
+          <div className="top-bar">
+            <div className="title-area">
+              <h4 className="title">Appearances</h4>
+            </div>
+            <div className="tab-area">
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                variant="scrollable"
+                scrollButtons="auto"
+                aria-label="scrollable auto tabs example"
+              >
+                <Tab label="All" {...a11yProps(0)} />
+                <Tab label="Metals" {...a11yProps(1)} />
+                <Tab label="Plastics" {...a11yProps(2)} />
+                <Tab label="Stones" {...a11yProps(3)} />
+              </Tabs>
+            </div>
+            <div className="search-area"></div>
+          </div>
+          <div className="content-area">
             <TabPanel value={value} index={0}>
               Item One
             </TabPanel>
@@ -113,7 +121,7 @@ const AppearancesBar = props => {
               Item Three
             </TabPanel>
           </div>
-        </Tabs>
+        </Paper>
       </div>
     </ThemeProvider>
   );

@@ -1,37 +1,85 @@
 .appearances-bar {
   .custom-paper {
     background-color: #2f2f2f;
-    height: 180px;
+    height: 190px;
     width: 100%;
     display: grid;
-    grid-auto-flow: column;
-    grid-gap: 2em;
-    align-items: center;
-    padding-left: 2em;
-    grid-auto-columns: max-content;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
 
-    .material {
-      height: 90px;
-      width: 90px;
+    .top-bar {
       display: grid;
-      align-items: center;
-      justify-content: center;
-      padding: 0.5em;
-      text-align: center;
-      border-radius: 45px;
-      box-shadow: 0 0 4px rgba($color: #000000, $alpha: 0.4);
+      grid-template-columns: 140px 1fr;
+
+      .title-area {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+
+        .title {
+          color: white;
+          text-transform: uppercase;
+          margin-block-start: 0;
+          margin-block-end: 0;
+        }
+      }
+
+      .tab-area {
+        .MuiTab-root {
+          min-width: fit-content !important;
+          color: #cecece;
+        }
+
+        .Mui-selected {
+          background-color: #212121;
+          color: white;
+          width: max-content !important;
+        }
+
+        .MuiTabs-indicator {
+          background-color: var(--gradient-top);
+          display: none;
+        }
+
+        .MuiTab-wrapper {
+          padding: 0.75em;
+        }
+      }
     }
 
-    .red {
-      background-color: red;
-    }
-
-    .gold {
-      background-color: gold;
-    }
-
-    .purple {
-      background-color: purple;
+    .content-area {
+      background-color: #212121;
     }
   }
 }
+
+// grid-auto-flow: column;
+//     grid-gap: 2em;
+//     align-items: center;
+//     padding-left: 2em;
+//     grid-auto-columns: max-content;
+
+//     .material {
+//       height: 90px;
+//       width: 90px;
+//       display: grid;
+//       align-items: center;
+//       justify-content: center;
+//       padding: 0.5em;
+//       text-align: center;
+//       border-radius: 45px;
+//       box-shadow: 0 0 4px rgba($color: #000000, $alpha: 0.4);
+//     }
+
+//     .red {
+//       background-color: red;
+//     }
+
+//     .gold {
+//       background-color: gold;
+//     }
+
+//     .purple {
+//       background-color: purple;
+//     }
+//   }
