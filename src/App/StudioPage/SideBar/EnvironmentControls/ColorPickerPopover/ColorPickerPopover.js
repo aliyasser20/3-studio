@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-import { Popover, IconButton } from "@material-ui/core";
+import { Popover } from "@material-ui/core";
 
 import { SketchPicker } from "react-color";
+import * as actions from "../../../../../store/actions/index";
 
 import "./ColorPickerPopover.scss";
 
 const ColorPickerPopover = props => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [color, setColor] = useState("#000");
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -19,18 +20,20 @@ const ColorPickerPopover = props => {
     setAnchorEl(null);
   };
 
-  const handleColorPick = hex => {
-    setColor(hex.hex);
+  const handleColorPick = color => {
+    props.onSetBackgroundColor(color.hex.slice(1));
   };
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
+  const colorBoxClasses = props.bgSolid ? "color-box active" : "color-box";
+
   return (
     <div className="color-picker-popover">
       <div
-        style={{ backgroundColor: color }}
-        className="color-box"
+        style={{ backgroundColor: `#${props.bgColor}` }}
+        className={colorBoxClasses}
         onClick={handleClick}
       ></div>
       <Popover
@@ -49,8 +52,8 @@ const ColorPickerPopover = props => {
       >
         <div className="color-picker-popover-content">
           <SketchPicker
-            color={color}
-            onChangeComplete={hex => handleColorPick(hex)}
+            color={`#${props.bgColor}`}
+            onChangeComplete={color => handleColorPick(color)}
           />
         </div>
       </Popover>
@@ -58,6 +61,19 @@ const ColorPickerPopover = props => {
   );
 };
 
-ColorPickerPopover.propTypes = {};
+ColorPickerPopover.propTypes = {
+  bgColor: PropTypes.string.isRequired,
+  onSetBackgroundColor: PropTypes.func.isRequired,
+  bgSolid: PropTypes.bool.isRequired
+};
 
-export default ColorPickerPopover;
+const mapStateToProps = state => ({
+  bgColor: state.environmentControls.bgColor,
+  bgSolid: state.environmentControls.bgSolid
+});
+
+const mapDispatchToProps = dispatch => ({
+  onSetBackgroundColor: color => dispatch(actions.setBackgroundColor(color))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ColorPickerPopover);

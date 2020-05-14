@@ -1,9 +1,30 @@
 .color-picker-popover {
   .color-box {
-    width: 14px;
-    height: 14px;
-    border: #9f9f9f 1px solid;
-    border-radius: 2px;
+    width: 15px;
+    height: 15px;
+    border: #2f2f2f 1px solid;
+    border-radius: 3px;
     cursor: pointer;
+    visibility: hidden;
+
+    &.active {
+      visibility: visible;
+    }
+  }
+}
+
+.color-picker-popover-content {
+  background-color: #2f2f2f;
+  .sketch-picker {
+    background-color: #2f2f2f !important;
+
+    span {
+      color: white !important;
+    }
+
+    input {
+      background-color: #212121 !important;
+      color: white !important;
+    }
   }
 }
