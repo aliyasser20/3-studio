@@ -1,24 +1,30 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-
+import * as actions from "../../../store/actions/index";
 import { Paper, ThemeProvider } from "@material-ui/core";
 
 import themeCreator from "../../../helpers/themeCreator";
 
 import "./ObjectsBar.scss";
+import { connect } from "react-redux";
 
 const ObjectsBar = (props) => {
   const theme = themeCreator("#ffffff", "#212121");
-  const [object, setObject] = useState({ name: "", params: {} });
+  // const [object, setObject] = useState({ name: "", params: {} });
 
-  const handleWsphereGrab = () => {};
+  const handleWsphereGrab = () => {
+    // console.log("box",props.boxRadius.geometry.boundingSphere.radius)
+    const roundRadius = Math.ceil(props.boxRadius);
+    const vol = 4 * Math.PI * roundRadius * 2;
+    props.onSetMediaSphere({ args: [roundRadius, vol, vol] });
+  };
   return (
     <ThemeProvider theme={theme}>
       <div className="objects-bar">
         <Paper classes={{ root: "custom-paper" }} elevation={3}>
           <div
             draggable
-            onDragStart={(e) => {
+            onDragEnd={(e) => {
               e.dataTransfer.dropEffect = "link";
               handleWsphereGrab();
             }}
@@ -32,6 +38,16 @@ const ObjectsBar = (props) => {
   );
 };
 
-ObjectsBar.propTypes = {};
+ObjectsBar.propTypes = {
+  boxRadius: PropTypes.object,
+  onSetMediaSphere: PropTypes.func,
+};
 
-export default ObjectsBar;
+const mapStateToProps = (state) => ({
+  boxRadius: state.currentModel.box.geometry.boundingSphere.radius,
+});
+const mapDispatchToProps = (dispatch) => ({
+  onSetMediaSphere: (sphere) => dispatch(actions.setMediaSphere(sphere)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ObjectsBar);

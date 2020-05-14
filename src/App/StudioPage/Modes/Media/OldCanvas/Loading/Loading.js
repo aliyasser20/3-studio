@@ -17,7 +17,7 @@ const Loading = props => {
         // position={position}
         castShadow
       >
-        <sphereGeometry attach="geometry" args={[1, 16, 16]} />
+        <sphereGeometry attach="geometry" args={[97, 2437.8758991856794/100, 2437.8758991856794/100]} />
         <meshStandardMaterial
           attach="material"
           color="hsl(170,100%,40%)"
