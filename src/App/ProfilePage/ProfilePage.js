@@ -8,13 +8,17 @@ import {
   FormControl,
   MenuItem,
   InputLabel,
-  Select
+  Select,
+  Paper,
+  IconButton
 } from "@material-ui/core";
 import UserInfoTable from "./UserInfoTable/UserInfoTable";
 
 import DeleteAccountButton from "./DeleteAccountButton/DeleteAccountButton";
 
 import ResetPasswordButton from "./ResetPasswordButton/ResetPasswordButton";
+
+import SingleField from "./SingleField/SingleField";
 
 import { useAuth0 } from "../../react-auth0-spa";
 import { availableThemes } from "../../store/reducers/reducersHelpers/themesHelpers";
@@ -26,6 +30,9 @@ import "./ProfilePage.scss";
 const ProfilePage = props => {
   const { user, logout } = useAuth0();
   const [confirmDelete, setConfirmDelete] = useState(false);
+
+  const [name, setName] = useState(false);
+  const [nickname, setNickname] = useState(false);
 
   const themes = availableThemes.map(theme => (
     <MenuItem key={theme.name} value={theme.name}>
@@ -114,6 +121,8 @@ const ProfilePage = props => {
   //   </Container>
   // );
 
+  const [editValue, setEditValue] = useState(false);
+
   const page = (
     <Container maxWidth="md" classes={{ root: "container-padding" }}>
       <div className="profile-page">
@@ -139,7 +148,12 @@ const ProfilePage = props => {
             </Select>
           </div>
         </div>
-        <div className="middle-section"></div>
+        <div className="middle-section">
+          <Paper className="user-info">
+            <SingleField editValue={name} setEditValue={setName} />
+            <SingleField editValue={nickname} setEditValue={setNickname} />
+          </Paper>
+        </div>
         <div className="bottom-section"></div>
       </div>
     </Container>

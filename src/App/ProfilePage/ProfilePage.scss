@@ -2,9 +2,9 @@
   margin-top: 2em;
   height: 500px;
   width: 100%;
-  border: 1px solid red;
   display: grid;
   grid-template-rows: 170px;
+  grid-gap: 2em;
 
   .top-section {
     display: grid;
@@ -27,6 +27,16 @@
 
     .theme-selector-area {
       grid-area: theme;
+    }
+  }
+
+  .middle-section {
+    .user-info {
+      padding: 1em;
+      height: max-content;
+      background-color: #545454;
+      display: grid;
+      grid-gap: 1em;
     }
   }
 }
