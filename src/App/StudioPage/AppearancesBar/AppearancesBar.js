@@ -30,12 +30,7 @@ function TabPanel(props) {
       aria-labelledby={`scrollable-auto-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        // <Box p={3}>
-        //   <Typography>{children}</Typography>
-        // </Box>
-        <div className="custom-tab-content">{children}</div>
-      )}
+      {value === index && <div className="custom-tab-content">{children}</div>}
     </div>
   );
 }
@@ -107,25 +102,26 @@ const AppearancesBar = props => {
                   e.dataTransfer.dropEffect = "link";
                   props.onSetSelectedMaterial("cherryPolished");
                 }}
-                className="material red"
+                className="material "
               >
-                Polished Cherry
+                <img src="./assets/cherryPolished.png" alt="cherry polished" />
+                <p className="material-label">Cherry Polished</p>
               </div>
               <div
                 draggable
                 onDragStart={e => props.onSetSelectedMaterial("goldPolished")}
-                onDragEnd={e => console.log(e.screenX, e.screenY)}
-                // onDrag
-                className="material gold"
+                className="material "
               >
-                Polished Gold
+                <img src="./assets/goldPolished.png" alt="gold polished" />
+                <p className="material-label">Gold Polished</p>
               </div>
               <div
                 draggable
                 onDragStart={e => props.onSetSelectedMaterial("purplePolished")}
-                className="material purple"
+                className="material "
               >
-                Polished Purple
+                <img src="./assets/purplePolished.png" alt="purple polished" />
+                <p className="material-label">Purple Polished</p>
               </div>
             </TabPanel>
             <TabPanel value={value} index={1}>

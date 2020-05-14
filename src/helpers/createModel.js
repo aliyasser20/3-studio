@@ -24,7 +24,7 @@ const createModel = (
       // ? Default
       // o.material = materialLibrary().blackDefault;
       // ? Metals
-      // o.material = materialLibrary().goldPolished;
+      o.material = materialLibrary().goldPolished;
       // o.material = materialLibrary().cherryPolished;
       // o.material = materialLibrary().alien;
       // o.material = materialLibrary().scuffedAluminumPBR;

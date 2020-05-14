@@ -70,33 +70,31 @@
           height: 100%;
           grid-auto-flow: column;
           grid-gap: 2em;
-          align-items: center;
-          padding-left: 2em;
-          // grid-auto-rows: 1fr;
+          padding-left: 1em;
           grid-auto-columns: max-content;
 
           .material {
-            height: 90px;
             width: 90px;
             display: grid;
-            align-items: center;
+            align-content: center;
             justify-content: center;
-            padding: 0.5em;
-            text-align: center;
-            border-radius: 45px;
-            box-shadow: 0 0 4px rgba($color: #000000, $alpha: 0.4);
-          }
+            padding: 0.9em 0.5em;
+            grid-gap: 0.6em;
+            grid-template-rows: 1fr 34px;
+            cursor: pointer;
 
-          .red {
-            background-color: red;
-          }
+            img {
+              width: 100%;
+            }
 
-          .gold {
-            background-color: gold;
-          }
-
-          .purple {
-            background-color: purple;
+            .material-label {
+              margin-block-start: 0;
+              margin-block-end: 0;
+              color: white;
+              text-align: center;
+              font-size: 12px;
+              line-height: 14px;
+            }
           }
         }
       }
