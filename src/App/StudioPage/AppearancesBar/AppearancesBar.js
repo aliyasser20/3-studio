@@ -13,6 +13,8 @@ import {
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
+import { materials } from "./materials";
+
 import themeCreator from "../../../helpers/themeCreator";
 import * as actions from "../../../store/actions/index";
 
@@ -57,6 +59,36 @@ const AppearancesBar = props => {
     setValue(newValue);
   };
 
+  const metalComponents = [];
+  const plasticComponents = [];
+  const stoneComponents = [];
+
+  materials.forEach(material => {
+    const newMaterial = (
+      <div
+        key={material.name}
+        draggable
+        onDragStart={e => props.onSetSelectedMaterial(material.actionName)}
+        className="material"
+      >
+        <img src={material.imgPath} alt={material.name} />
+        <p className="material-label">{material.name}</p>
+      </div>
+    );
+
+    if (material.group === "metals") {
+      metalComponents.push(newMaterial);
+    }
+
+    if (material.group === "plastics") {
+      plasticComponents.push(newMaterial);
+    }
+
+    if (material.group === "stones") {
+      stoneComponents.push(newMaterial);
+    }
+  });
+
   return (
     <ThemeProvider theme={theme}>
       <div className="appearances-bar">
@@ -96,39 +128,13 @@ const AppearancesBar = props => {
           </div>
           <div className="content-area">
             <TabPanel value={value} index={0}>
-              <div
-                draggable
-                onDragStart={e => {
-                  e.dataTransfer.dropEffect = "link";
-                  props.onSetSelectedMaterial("cherryPolished");
-                }}
-                className="material "
-              >
-                <img src="./assets/cherryPolished.png" alt="cherry polished" />
-                <p className="material-label">Cherry Polished</p>
-              </div>
-              <div
-                draggable
-                onDragStart={e => props.onSetSelectedMaterial("goldPolished")}
-                className="material "
-              >
-                <img src="./assets/goldPolished.png" alt="gold polished" />
-                <p className="material-label">Gold Polished</p>
-              </div>
-              <div
-                draggable
-                onDragStart={e => props.onSetSelectedMaterial("purplePolished")}
-                className="material "
-              >
-                <img src="./assets/purplePolished.png" alt="purple polished" />
-                <p className="material-label">Purple Polished</p>
-              </div>
+              {metalComponents}
             </TabPanel>
             <TabPanel value={value} index={1}>
-              Item Two
+              {plasticComponents}
             </TabPanel>
             <TabPanel value={value} index={2}>
-              Item Three
+              {stoneComponents}
             </TabPanel>
           </div>
         </Paper>
