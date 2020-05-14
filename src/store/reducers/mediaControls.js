@@ -92,7 +92,7 @@ const reducer = (state = initialState, action) => {
         sphere: null,
         keyLight: null,
         backWall: null,
-        groundPole: null,
+        groundPole: null
       };
     default:
       return state;
