@@ -31,7 +31,7 @@ const LightControls = props => (
         aria-controls="light-controls-summary"
         id="light-controls-summary"
       >
-        <Typography>Light</Typography>
+        <Typography>Lights</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className="details-section">
         <div className="light-controls-area">
@@ -40,6 +40,7 @@ const LightControls = props => (
               <Button
                 variant="contained"
                 size="small"
+                onClick={props.onResetLights}
                 endIcon={<SettingsBackupRestoreIcon />}
               >
                 Reset
@@ -114,7 +115,8 @@ LightControls.propTypes = {
   onSetHemisphereLightIntensity: PropTypes.func.isRequired,
   onSetHemisphereLightColor: PropTypes.func.isRequired,
   onSetAmbientLightColor: PropTypes.func.isRequired,
-  onSetDirectionalLightColor: PropTypes.func.isRequired
+  onSetDirectionalLightColor: PropTypes.func.isRequired,
+  onResetLights: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -144,7 +146,8 @@ const mapDispatchToProps = dispatch => ({
   onSetHemisphereLightColor: color =>
     dispatch(actions.setHemisphereLightColor(color)),
   onSetDirectionalLightColor: color =>
-    dispatch(actions.setDirectionalLightColor(color))
+    dispatch(actions.setDirectionalLightColor(color)),
+  onResetLights: () => dispatch(actions.resetLights())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LightControls);
