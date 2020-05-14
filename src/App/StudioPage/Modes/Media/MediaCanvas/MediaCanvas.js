@@ -18,8 +18,8 @@ import LoaderModel from "../../../LoaderModal/LoaderModel";
 const MediaCanvas = (props) => {
   const [loading, setLoading] = useState(true);
   const { mediaFov, mediaFar, mediaNear, mediaBox, mediaSizeBounding } = props;
-  console.log(props.modelSettings);
-
+  
+  console.log(process.env.REACT_APP_API_KEY)
   useEffect(() => {
     !props.mediaFov && props.onSetMediaFov(props.modelSettings.fov);
     !props.mediaFar && props.onSetMediaFar(props.modelSettings.far);
@@ -63,6 +63,7 @@ const MediaCanvas = (props) => {
           bgEnvironment={props.mediaControls.mediaEnvBackground}
           bgSolid={props.mediaControls.mediaSolidBackground}
           bgColor={props.solidBgColor}
+          mapEnvironment
           environmentPath={props.currentEnvOption.hdrPath}
         />
         <Controls />
