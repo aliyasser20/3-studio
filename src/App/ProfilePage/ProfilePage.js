@@ -10,7 +10,8 @@ import {
   InputLabel,
   Select,
   Paper,
-  IconButton
+  IconButton,
+  Snackbar
 } from "@material-ui/core";
 import UserInfoTable from "./UserInfoTable/UserInfoTable";
 
@@ -19,6 +20,7 @@ import DeleteAccountButton from "./DeleteAccountButton/DeleteAccountButton";
 import ResetPasswordButton from "./ResetPasswordButton/ResetPasswordButton";
 
 import SingleField from "./SingleField/SingleField";
+import Alert from "../UI/Alert/Alert";
 
 import { useAuth0 } from "../../react-auth0-spa";
 import { availableThemes } from "../../store/reducers/reducersHelpers/themesHelpers";
@@ -33,6 +35,9 @@ const ProfilePage = props => {
 
   const [name, setName] = useState(false);
   const [nickname, setNickname] = useState(false);
+
+  const [message, setMessage] = useState("");
+  const [severity, setSeverity] = useState("");
 
   const themes = availableThemes.map(theme => (
     <MenuItem key={theme.name} value={theme.name}>
@@ -121,7 +126,17 @@ const ProfilePage = props => {
   //   </Container>
   // );
 
-  const [editValue, setEditValue] = useState(false);
+  const [nameField, setNameField] = useState(user.name);
+  const [nicknameField, setNicknameField] = useState(user.nickname);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const page = (
     <Container maxWidth="md" classes={{ root: "container-padding" }}>
@@ -150,12 +165,35 @@ const ProfilePage = props => {
         </div>
         <div className="middle-section">
           <Paper className="user-info">
-            <SingleField editValue={name} setEditValue={setName} />
-            <SingleField editValue={nickname} setEditValue={setNickname} />
+            <SingleField
+              setMessage={setMessage}
+              setSeverity={setSeverity}
+              setOpen={setOpen}
+              field="name"
+              editValue={name}
+              setEditValue={setName}
+              value={nameField}
+              setValue={setNameField}
+            />
+            <SingleField
+              setMessage={setMessage}
+              setSeverity={setSeverity}
+              setOpen={setOpen}
+              field="nickname"
+              editValue={nickname}
+              setEditValue={setNickname}
+              value={nicknameField}
+              setValue={setNicknameField}
+            />
           </Paper>
         </div>
         <div className="bottom-section"></div>
       </div>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity={severity}>
+          {message}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 
