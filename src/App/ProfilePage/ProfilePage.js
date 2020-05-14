@@ -72,50 +72,77 @@ const ProfilePage = props => {
       .catch(error => console.log(error));
   };
 
-  const page = (
-    <div className="profile-page">
-      <Container maxWidth="xl" classes={{ root: "container-padding" }}>
-        <h1>Profile Page</h1>
-        <img className="profile-picture" src={user.picture} alt="Profile" />
-        <h2>Testing id (sub): {user.sub}</h2>
-        <h2>Name of user: {user.name}</h2>
-        <p>Email of user: {user.email}</p>
+  // const page = (
+  //   <Container maxWidth="md" classes={{ root: "container-padding" }}>
+  //     <div className="profile-page">
+  //       <img className="profile-picture" src={user.picture} alt="Profile" />
 
-        <FormControl variant="outlined">
-          <InputLabel id="demo-simple-select-outlined-label">Theme</InputLabel>
-          <Select
-            labelId="theme"
-            id="theme"
-            value={props.currentTheme}
-            onChange={e => {
-              changeTheme(e.target.value);
-            }}
-            label="Theme"
-          >
-            {themes}
-          </Select>
-        </FormControl>
-      </Container>
-      <UserInfoTable />
-      <DeleteAccountButton
-        onClick={() => {
-          setConfirmDelete(true);
-        }}
-      />
-      {user.sub.includes("auth0") && (
-        <ResetPasswordButton onClick={resetPassword} />
-      )}
-      {confirmDelete && (
-        <button
-          onClick={() => {
-            console.log("here");
-            deleteAccount();
-          }}
-        >
-          Confirm
-        </button>
-      )}
-    </div>
+  //       <FormControl variant="outlined">
+  //         <InputLabel id="demo-simple-select-outlined-label">Theme</InputLabel>
+  //         <Select
+  //           labelId="theme"
+  //           id="theme"
+  //           value={props.currentTheme}
+  //           onChange={e => {
+  //             changeTheme(e.target.value);
+  //           }}
+  //           label="Theme"
+  //         >
+  //           {themes}
+  //         </Select>
+  //       </FormControl>
+  //       <UserInfoTable />
+  //       <DeleteAccountButton
+  //         onClick={() => {
+  //           setConfirmDelete(true);
+  //         }}
+  //       />
+  //       {user.sub.includes("auth0") && (
+  //         <ResetPasswordButton onClick={resetPassword} />
+  //       )}
+  //       {confirmDelete && (
+  //         <button
+  //           onClick={() => {
+  //             console.log("here");
+  //             deleteAccount();
+  //           }}
+  //         >
+  //           Confirm
+  //         </button>
+  //       )}
+  //     </div>
+  //   </Container>
+  // );
+
+  const page = (
+    <Container maxWidth="md" classes={{ root: "container-padding" }}>
+      <div className="profile-page">
+        <div className="top-section">
+          <div className="picture-container">
+            <img
+              className="profile-picture"
+              src={user.picture}
+              alt="profile picture"
+            />
+          </div>
+          <div className="theme-selector-area">
+            <Select
+              labelId="theme"
+              id="theme"
+              value={props.currentTheme}
+              onChange={e => {
+                changeTheme(e.target.value);
+              }}
+              label="Theme"
+            >
+              {themes}
+            </Select>
+          </div>
+        </div>
+        <div className="middle-section"></div>
+        <div className="bottom-section"></div>
+      </div>
+    </Container>
   );
 
   return page;
