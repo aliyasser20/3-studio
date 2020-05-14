@@ -67,7 +67,9 @@ const MediaCanvas = (props) => {
         />
         <Controls />
         <UserModel model={props.mediaModel} />
-        {props.mediaControls.sphere && <Loading />}
+        {props.mediaControls.sphere && (
+          <Loading sphereArgs={props.mediaControls.sphere.args} />
+        )}
       </Canvas>
     </>
   ) : (

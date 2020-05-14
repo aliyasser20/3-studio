@@ -15,7 +15,14 @@ const ObjectsBar = (props) => {
   const handleWsphereGrab = () => {
     // console.log("box",props.boxRadius.geometry.boundingSphere.radius)
     const roundRadius = Math.ceil(props.boxRadius);
-    const vol = 4 * Math.PI * roundRadius * 2;
+    let vol;
+
+    if (roundRadius > 10 && roundRadius < 100) {
+      vol = (4 * Math.PI * roundRadius * 2) / 100;
+    } else if (roundRadius > 100) {
+      vol = (4 * Math.PI * roundRadius * 2) / 1000;
+    }
+
     props.onSetMediaSphere({ args: [roundRadius, vol, vol] });
   };
   return (
