@@ -62,7 +62,8 @@ export {
   setMediaBox,
   resetMediaState,
   setMediaEnvBackground,
-  setMediaSolidBackground
+  setMediaSolidBackground,
+  setMediaDragObjects
 } from "./mediaState";
 
 export {

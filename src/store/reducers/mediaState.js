@@ -8,6 +8,7 @@ const initialState = {
   mediaSizeBounding: null,
   mediaBox: null,
   mediaSolidBackground: "000",
+  dragObjects: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -47,6 +48,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         mediaSolidBackground: action.solidBackground,
       };
+    case actionTypes.SET_DRAG_OBJECTS:
+      return {
+        ...state,
+        dragObjects: [...state.dragObjects, action.dragObjects]
+      };
     case actionTypes.RESET_MEDIA_STATE:
       return {
         ...state,
@@ -57,6 +63,7 @@ const reducer = (state = initialState, action) => {
         mediaSizeBounding: null,
         mediaBox: null,
         mediaSolidBackground: "#000",
+        dragObjects: [],
       };
     default:
       return state;

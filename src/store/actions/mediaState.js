@@ -40,6 +40,11 @@ export const setMediaSolidBackground = (solidBackground) => ({
   solidBackground,
 });
 
+export const setMediaDragObjects = (dragObjects) => ({
+  type: actionTypes.SET_DRAG_OBJECTS,
+  dragObjects,
+});
+
 export const resetMediaState = () => ({
   type: actionTypes.RESET_MEDIA_STATE,
 });
