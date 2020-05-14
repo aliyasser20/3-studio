@@ -43,6 +43,10 @@ const createModel = (
       // o.material = materialLibrary().woodFlooringTwo;
       // ? Stones
       // o.material = materialLibrary().bricks;
+      // ?.Tiles
+      // o.material = materialLibrary().tilesOne;
+      // o.material = materialLibrary().tilesTwo;
+      // o.material = materialLibrary().tilesThree;
     }
   });
   // ?

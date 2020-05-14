@@ -1,20 +1,103 @@
-table,
-td {
-  border: 1px solid #333;
+.profile-page {
+  margin-top: 2em;
+  height: 500px;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 200px;
+  grid-gap: 2em;
+
+  .top-section {
+    display: grid;
+    grid-template-areas: "empty picture theme";
+    grid-auto-columns: 1fr;
+
+    .picture-container {
+      grid-area: picture;
+      display: grid;
+      align-content: center;
+      justify-content: center;
+
+      .profile-picture {
+        height: 140px;
+        width: 140px;
+        border-radius: 75px;
+        box-shadow: 0 0 5px rgba($color: #000000, $alpha: 0.4);
+      }
+    }
+
+    .theme-selector-area {
+      grid-area: theme;
+    }
+  }
+
+  .middle-section {
+    .user-info {
+      padding: 1em;
+      height: max-content;
+      background-color: #545454;
+      display: grid;
+      grid-gap: 1em;
+    }
+  }
+
+  .bottom-section {
+    display: grid;
+    grid-gap: 1em;
+    grid-auto-flow: column;
+    justify-content: center;
+
+    .delete-account-button .MuiButton-root {
+      background: linear-gradient(#2f2f2f, #212121);
+      &:hover {
+        background: linear-gradient(#545454, #2f2f2f);
+      }
+    }
+
+    .gradient-button {
+      .Mui-disabled {
+        color: white !important;
+        opacity: 0.5;
+        cursor: not-allowed !important;
+      }
+    }
+
+    .disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      &:hover {
+        background: linear-gradient(
+          var(--gradient-top),
+          var(--gradient-bottom)
+        );
+        box-shadow: none !important;
+      }
+    }
+  }
 }
 
-thead,
-tfoot {
-  background-color: #333;
-  color: #fff;
-}
-
-.profile-picture {
-  height: 200px;
-  width: 200px;
-  border-radius: 50px;
+.cancel-delete-account {
+  color: #cecece !important;
   &:hover {
-    height: 400px;
-    width: 400px;
+    color: white !important;
+  }
+}
+
+.confirm-delete-account {
+  background: linear-gradient(var(--gradient-top), var(--gradient-bottom));
+  color: white !important;
+  &:hover {
+    background: linear-gradient(
+      var(--gradient-top-darker),
+      var(--gradient-bottom-darker)
+    );
+  }
+}
+
+.delete-account-dialog {
+  .MuiPaper-root {
+    background-color: #212121;
+    color: white;
+    padding: 0.5em;
   }
 }
