@@ -14,6 +14,7 @@ import {
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import EnvironmentOptions from "./EnvironmentOptions/EnvironmentOptions";
+import ColorPickPopover from "./ColorPickerPopover/ColorPickerPopover";
 
 import * as actions from "../../../../store/actions/index";
 
@@ -51,18 +52,21 @@ const EnvironmentControls = props => {
           />
           <EnvironmentOptions />
           <h5 className="section-title">Background</h5>
-          <FormControlLabel
-            className="custom-label"
-            control={
-              <Checkbox
-                className="custom-checkbox"
-                checked={props.bgSolid}
-                onChange={() => props.onSetBackgroundSolid()}
-                name="solidBackground"
-              />
-            }
-            label="Solid"
-          />
+          <div className="background-color-section">
+            <FormControlLabel
+              className="custom-label"
+              control={
+                <Checkbox
+                  className="custom-checkbox"
+                  checked={props.bgSolid}
+                  onChange={() => props.onSetBackgroundSolid()}
+                  name="solidBackground"
+                />
+              }
+              label="Solid"
+            />
+            <ColorPickPopover />
+          </div>
           <FormControlLabel
             className="custom-label"
             control={

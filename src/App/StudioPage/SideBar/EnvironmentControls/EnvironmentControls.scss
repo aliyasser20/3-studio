@@ -46,6 +46,13 @@
         padding-bottom: 0.5em;
         font-size: 0.95em;
       }
+
+      .background-color-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-right: 0.35em;
+      }
     }
   }
 }
