@@ -1,0 +1,26 @@
+.single-light-control {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  grid-gap: 0.4em;
+  justify-content: center;
+  justify-items: center;
+
+  .color-box {
+    margin-left: 1.1em;
+    margin-right: 0.3em;
+  }
+
+  .hidden-slider {
+    visibility: hidden;
+  }
+
+  .MuiSlider-thumb {
+    color: var(--gradient-top);
+  }
+
+  .MuiSlider-valueLabel {
+    color: white;
+    font-weight: 500;
+  }
+}
