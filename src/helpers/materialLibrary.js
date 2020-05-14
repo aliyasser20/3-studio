@@ -8,15 +8,15 @@ const materialLibrary = () => {
   const DEFAULTCOLORS = {
     black: "#000000",
     white: "#ffffff",
-    grey: "#808080"
+    grey: "#808080",
   };
 
   // eslint-disable-next-line
-    for (const color in DEFAULTCOLORS) {
+  for (const color in DEFAULTCOLORS) {
     materials[`${color}Default`] = createMaterial({
       name: `${color}Default`,
       group: "defaults",
-      color: DEFAULTCOLORS[color]
+      color: DEFAULTCOLORS[color],
     });
   }
   // ?
@@ -36,7 +36,7 @@ const materialLibrary = () => {
     lightGreen: "#8bc34a",
     lightBlue: "#03a9f4",
     purple: "#673ab7",
-    cherry: "#AE2321"
+    cherry: "#AE2321",
   };
 
   // eslint-disable-next-line
@@ -47,7 +47,7 @@ const materialLibrary = () => {
       group: "metals",
       roughness: 0.01,
       metalness: 1,
-      color: BASICMETALS[metal]
+      color: BASICMETALS[metal],
     });
 
     // Basic rough
@@ -56,7 +56,7 @@ const materialLibrary = () => {
       group: "metals",
       roughness: 0.2,
       metalness: 1,
-      color: BASICMETALS[metal]
+      color: BASICMETALS[metal],
     });
   }
 
@@ -75,7 +75,7 @@ const materialLibrary = () => {
     metalness: 1,
     normalMap: true,
     normalMapPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589400967/appearances/metals/Alien/normal_uxydlu.png"
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400967/appearances/metals/Alien/normal_uxydlu.png",
   });
 
   materials.scuffedAluminumPBR = createMaterial({
@@ -91,7 +91,7 @@ const materialLibrary = () => {
     metalness: 1,
     normalMap: true,
     normalMapPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589400958/appearances/metals/Scuffed-Aluminum-PBR/normal_rbp9y9.png"
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400958/appearances/metals/Scuffed-Aluminum-PBR/normal_rbp9y9.png",
   });
 
   materials.metalGrid = createMaterial({
@@ -109,7 +109,7 @@ const materialLibrary = () => {
       "https://res.cloudinary.com/aajfinal/image/upload/v1589400972/appearances/metals/metal-grid/normal_buvgpn.png",
     ambientOcclusionMap: true,
     ambientOcclusionMapPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589400966/appearances/metals/metal-grid/ao_ivhsda.png"
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400966/appearances/metals/metal-grid/ao_ivhsda.png",
   });
 
   materials.rust = createMaterial({
@@ -124,7 +124,7 @@ const materialLibrary = () => {
     metalness: 1,
     normalMap: true,
     normalMapPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589400966/appearances/metals/Rust/normal_fjxo9i.jpg"
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400966/appearances/metals/Rust/normal_fjxo9i.jpg",
   });
 
   materials.brushedMetal = createMaterial({
@@ -142,7 +142,7 @@ const materialLibrary = () => {
       "https://res.cloudinary.com/aajfinal/image/upload/v1589400966/appearances/metals/brushed-metal/normal_tlobwx.png",
     ambientOcclusionMap: true,
     ambientOcclusionMapPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589400959/appearances/metals/brushed-metal/ao_wgtuqd.png"
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400959/appearances/metals/brushed-metal/ao_wgtuqd.png",
   });
 
   // ?
@@ -160,7 +160,7 @@ const materialLibrary = () => {
     clearcoat: 0.1,
     roughnessMetalnessMap: true,
     roughnessMetalnessMapPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589401298/appearances/ceramics/marble-one/roughness-metalness_f4rao1.jpg"
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401298/appearances/ceramics/marble-one/roughness-metalness_f4rao1.jpg",
   });
 
   materials.fleshyGranite = createMaterial({
@@ -177,7 +177,7 @@ const materialLibrary = () => {
       "https://res.cloudinary.com/aajfinal/image/upload/v1589401298/appearances/ceramics/fleshy-granite/roughness-metalness_ruuhyd.png",
     ambientOcclusionMap: true,
     ambientOcclusionMapPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589401292/appearances/ceramics/fleshy-granite/ao_ubxcj0.png"
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401292/appearances/ceramics/fleshy-granite/ao_ubxcj0.png",
   });
 
   materials.polishedGranite = createMaterial({
@@ -189,7 +189,7 @@ const materialLibrary = () => {
     normalMap: true,
     normalMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589401299/appearances/ceramics/polished-granite/normal_vm3myb.png",
-    clearcoat: 0.1
+    clearcoat: 0.1,
   });
 
   materials.marbleTwo = createMaterial({
@@ -204,7 +204,7 @@ const materialLibrary = () => {
     clearcoat: 0.2,
     roughnessMetalnessMap: true,
     roughnessMetalnessMapPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589401302/appearances/ceramics/marble-two/roughness-metalness_p3oeim.jpg"
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401302/appearances/ceramics/marble-two/roughness-metalness_p3oeim.jpg",
   });
 
   materials.marbleThree = createMaterial({
@@ -219,7 +219,7 @@ const materialLibrary = () => {
     clearcoat: 0.2,
     roughnessMetalnessMap: true,
     roughnessMetalnessMapPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589401298/appearances/ceramics/marble-three/roughness-metalness_jhtwlt.jpg"
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589401298/appearances/ceramics/marble-three/roughness-metalness_jhtwlt.jpg",
   });
   // ?
 
@@ -240,7 +240,7 @@ const materialLibrary = () => {
     displacementMap: true,
     displacementMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589401351/appearances/woods/wood-one/displacement_qvzm6k.jpg",
-    displacementScale: 200
+    displacementScale: 200,
   });
 
   materials.woodFlooringOne = createMaterial({
@@ -259,7 +259,7 @@ const materialLibrary = () => {
     displacementMap: true,
     displacementMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589401346/appearances/woods/wood-flooring-one/displacement_afnlwj.jpg",
-    displacementScale: 200
+    displacementScale: 200,
   });
 
   materials.woodFlooringTwo = createMaterial({
@@ -281,7 +281,7 @@ const materialLibrary = () => {
     displacementMap: true,
     displacementMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589401350/appearances/woods/wood-flooring-two/displacement_fmcylk.jpg",
-    displacementScale: 1
+    displacementScale: 1,
   });
   // ?
 
@@ -305,7 +305,29 @@ const materialLibrary = () => {
     displacementMap: true,
     displacementMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589401337/appearances/stones/Bricks/displacement_orxwde.jpg",
-    displacementScale: 0.2
+    displacementScale: 0.2,
+  });
+
+  materials.wallMedieval = createMaterial({
+    name: "wallMedieval",
+    group: "stones",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500098/appearances/stones/WallMedieval/color_cyzszq.jpg",
+    color: "#171717",
+    ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500109/appearances/stones/WallMedieval/ao_o9xmqa.jpg",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500119/appearances/stones/WallMedieval/normal_dyv11c.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500129/appearances/stones/WallMedieval/roughness-metalness_vgudt7.jpg",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500104/appearances/stones/WallMedieval/displacement_psnz9e.jpg",
+    displacementScale: 0.2,
   });
   // ?
 
@@ -324,7 +346,7 @@ const materialLibrary = () => {
       "https://res.cloudinary.com/aajfinal/image/upload/v1589406245/appearances/tiles/tiles05/roughness-metalness_igqzdd.jpg",
     displacementMap: true,
     displacementMapPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589406246/appearances/tiles/tiles05/displacement_fnlfre.jpg"
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589406246/appearances/tiles/tiles05/displacement_fnlfre.jpg",
   });
 
   materials.tilesTwo = createMaterial({
@@ -341,7 +363,7 @@ const materialLibrary = () => {
       "https://res.cloudinary.com/aajfinal/image/upload/v1589406537/appearances/tiles/tilesOnyxOpaloBlack/roughness-metalness_nn3uue.jpg",
     displacementMap: true,
     displacementMapPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589406534/appearances/tiles/tilesOnyxOpaloBlack/displacement_r3awbt.jpg"
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589406534/appearances/tiles/tilesOnyxOpaloBlack/displacement_r3awbt.jpg",
   });
 
   materials.tilesThree = createMaterial({
@@ -358,7 +380,7 @@ const materialLibrary = () => {
       "https://res.cloudinary.com/aajfinal/image/upload/v1589406835/appearances/tiles/tilesRectangularMirrorGray/roughness-metalness_fwxyxx.jpg",
     displacementMap: true,
     displacementMapPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589407074/appearances/tiles/tilesRectangularMirrorGray/displacement_qe1uj6.jpg"
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589407074/appearances/tiles/tilesRectangularMirrorGray/displacement_qe1uj6.jpg",
   });
 
   return materials;
