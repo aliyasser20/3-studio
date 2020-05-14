@@ -27,8 +27,19 @@
       .light-controls-area {
         width: 100%;
         display: grid;
-        padding-top: 2em;
+        padding-top: 1em;
         grid-gap: 1.5em;
+
+        .reset-area {
+          display: flex;
+          justify-content: center;
+
+          .gradient-button {
+            .MuiButton-label {
+              color: white;
+            }
+          }
+        }
       }
 
       .custom-label {

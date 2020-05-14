@@ -6,9 +6,12 @@ import {
   ExpansionPanel,
   ExpansionPanelDetails,
   ExpansionPanelSummary,
-  Typography
+  Typography,
+  IconButton,
+  Button
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import SettingsBackupRestoreIcon from "@material-ui/icons/SettingsBackupRestore";
 
 import SingleLightControl from "./SingleLightControl/SingleLightControl";
 
@@ -36,6 +39,27 @@ const LightControls = props => {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className="details-section">
           <div className="light-controls-area">
+            <div className="reset-area">
+              {/* <IconButton
+                aria-label="reset"
+                classes={{ root: "reset-button" }}
+                size="small"
+                // onClick={() => setEdit(true)}
+              >
+                <SettingsBackupRestoreIcon />
+              </IconButton> */}
+              <span className="gradient-button">
+                <Button
+                  variant="contained"
+                  // color="primary"
+                  size="small"
+                  // className={classes.button}
+                  endIcon={<SettingsBackupRestoreIcon />}
+                >
+                  Reset
+                </Button>
+              </span>
+            </div>
             <SingleLightControl
               name="ambientLight"
               label="Ambient"
