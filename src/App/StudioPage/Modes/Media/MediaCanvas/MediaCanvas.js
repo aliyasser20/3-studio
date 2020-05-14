@@ -15,6 +15,7 @@ import "./MediaCanvas.scss";
 import Loading from "../OldCanvas/Loading/Loading";
 import LoaderModel from "../../../LoaderModal/LoaderModel";
 import WSphere from "../Models/WSphere";
+import TestingDrag from "../Models/TestingDrag";
 
 const MediaCanvas = (props) => {
   const [loading, setLoading] = useState(true);
@@ -66,11 +67,12 @@ const MediaCanvas = (props) => {
           mapEnvironment={props.mediaMapEnv}
           environmentPath={props.currentEnvOption.hdrPath}
         />
-        <Controls />
+        {/* <Controls /> */}
         <UserModel model={props.mediaModel} />
         {props.mediaControls.sphere && (
           <WSphere sphere={props.mediaControls.sphere} />
         )}
+        <TestingDrag />
       </Canvas>
     </>
   ) : (
