@@ -52,5 +52,52 @@
         background: linear-gradient(#545454, #2f2f2f);
       }
     }
+
+    .gradient-button {
+      .Mui-disabled {
+        color: white !important;
+        opacity: 0.5;
+        cursor: not-allowed !important;
+      }
+    }
+
+    .disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      &:hover {
+        background: linear-gradient(
+          var(--gradient-top),
+          var(--gradient-bottom)
+        );
+        box-shadow: none !important;
+      }
+    }
+  }
+}
+
+.cancel-delete-account {
+  color: #cecece !important;
+  &:hover {
+    color: white !important;
+  }
+}
+
+.confirm-delete-account {
+  background: linear-gradient(var(--gradient-top), var(--gradient-bottom));
+  color: white !important;
+  &:hover {
+    background: linear-gradient(
+      var(--gradient-top-darker),
+      var(--gradient-bottom-darker)
+    );
+  }
+}
+
+.delete-account-dialog {
+  .MuiPaper-root {
+    background-color: #212121;
+    color: white;
+    padding: 0.5em;
   }
 }
