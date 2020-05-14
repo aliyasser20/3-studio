@@ -14,6 +14,7 @@ import Controls from "../../Edit/Controls/Controls";
 import "./MediaCanvas.scss";
 import Loading from "../OldCanvas/Loading/Loading";
 import LoaderModel from "../../../LoaderModal/LoaderModel";
+import WSphere from "../Models/WSphere";
 
 const MediaCanvas = (props) => {
   const [loading, setLoading] = useState(true);
@@ -68,7 +69,7 @@ const MediaCanvas = (props) => {
         <Controls />
         <UserModel model={props.mediaModel} />
         {props.mediaControls.sphere && (
-          <Loading sphereArgs={props.mediaControls.sphere.args} />
+          <WSphere sphere={props.mediaControls.sphere} />
         )}
       </Canvas>
     </>

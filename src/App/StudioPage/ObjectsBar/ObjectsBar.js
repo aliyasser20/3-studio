@@ -23,7 +23,12 @@ const ObjectsBar = (props) => {
       vol = (4 * Math.PI * roundRadius * 2) / 1000;
     }
 
-    props.onSetMediaSphere({ args: [roundRadius, vol, vol] });
+    props.onSetMediaSphere({
+      args: [roundRadius, vol, vol],
+      color: "hsl(170,100%,40%)",
+      scale: [1, 1, 1],
+      position: { x: 0, y: 0, z: 0 },
+    });
   };
   return (
     <ThemeProvider theme={theme}>

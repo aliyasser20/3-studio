@@ -9,6 +9,7 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import StarBorder from "@material-ui/icons/StarBorder";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import ColorPickerPopover from "../../../ColorPickerPopover/ColorPickerPopover";
 
 const WSphere = (props) => {
   const [openWSphere, setOpenWSphere] = useState(false);
@@ -35,9 +36,9 @@ const WSphere = (props) => {
         <List component="div" disablePadding>
           <ListItem button>
             <ListItemIcon>
-              <StarBorder />
+              <ColorPickerPopover visible />
             </ListItemIcon>
-            <ListItemText primary="Starred" />
+            <ListItemText primary="Color" />
           </ListItem>
         </List>
       </Collapse>
@@ -46,7 +47,7 @@ const WSphere = (props) => {
 };
 
 WSphere.propTypes = {
-  onSetMediaSphere: PropTypes.func.isRequired
+  onSetMediaSphere: PropTypes.func.isRequired,
 };
 
 export default WSphere;
