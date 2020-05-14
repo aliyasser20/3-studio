@@ -22,7 +22,9 @@ export default function TestingDrag() {
   const aspect = size.width / viewport.width;
 
   useEffect(() => {
-    ref.current && dragObjects.push(ref.current);
+    ref.current &&
+      !dragObjects.includes(ref.current) &&
+      dragObjects.push(ref.current);
     console.log(dragObjects);
   }, []);
 

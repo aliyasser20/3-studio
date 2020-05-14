@@ -67,7 +67,7 @@ const MediaCanvas = (props) => {
           mapEnvironment={props.mediaMapEnv}
           environmentPath={props.currentEnvOption.hdrPath}
         />
-        {/* <Controls /> */}
+        <Controls />
         <UserModel model={props.mediaModel} />
         {props.mediaControls.sphere && (
           <WSphere sphere={props.mediaControls.sphere} />
