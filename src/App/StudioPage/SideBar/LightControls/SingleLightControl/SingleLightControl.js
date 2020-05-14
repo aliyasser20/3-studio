@@ -28,10 +28,9 @@ const SingleLightControl = props => {
       />
       <Slider
         className={props.visible ? "" : "hidden-slider"}
-        value={props.value.toFixed(1)}
+        value={Number(props.value.toFixed(1))}
         valueLabelDisplay="auto"
         step={props.step}
-        // marks
         min={props.min}
         max={props.max}
         onChange={handleSliderChange}
