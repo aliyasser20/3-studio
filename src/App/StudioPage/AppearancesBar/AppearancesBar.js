@@ -8,8 +8,10 @@ import {
   Tabs,
   Tab,
   Box,
-  Typography
+  Typography,
+  Button
 } from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
 
 import themeCreator from "../../../helpers/themeCreator";
 import * as actions from "../../../store/actions/index";
@@ -108,7 +110,18 @@ const AppearancesBar = props => {
                 <Tab label="Stones" {...a11yProps(3)} />
               </Tabs>
             </div>
-            <div className="search-area"></div>
+            <div className="search-area">
+              <span className="gradient-button">
+                <Button
+                  classes={{ root: "search-button" }}
+                  // onClick={deleteAccount}
+                  color="primary"
+                  autoFocus
+                >
+                  <SearchIcon />
+                </Button>
+              </span>
+            </div>
           </div>
           <div className="content-area">
             <TabPanel value={value} index={0}>
