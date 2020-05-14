@@ -61,9 +61,11 @@
 
     .content-area {
       background-color: #212121;
+      overflow: hidden;
 
       .custom-tab-panel {
         height: 100%;
+        // overflow: hidden;
 
         .custom-tab-content {
           display: grid;
@@ -72,6 +74,7 @@
           grid-gap: 2em;
           padding-left: 1em;
           grid-auto-columns: max-content;
+          overflow-x: scroll;
 
           .material {
             width: 90px;
