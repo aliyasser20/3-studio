@@ -6,13 +6,9 @@ import {
   ExpansionPanel,
   ExpansionPanelDetails,
   ExpansionPanelSummary,
-  Typography,
-  FormControlLabel,
-  Checkbox
+  Typography
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
-import ColorPickPopover from "./ColorPickerPopover/ColorPickerPopover";
 
 import * as actions from "../../../../store/actions/index";
 
@@ -35,23 +31,7 @@ const LightControls = props => {
         >
           <Typography>Light</Typography>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails className="details-section">
-          <div className="ambient-light-section">
-            <FormControlLabel
-              className="custom-label"
-              control={
-                <Checkbox
-                  className="custom-checkbox"
-                  checked={props.bgSolid}
-                  onChange={() => props.onSetBackgroundSolid()}
-                  name="ambientLight"
-                />
-              }
-              label="Ambient"
-            />
-            <ColorPickPopover />
-          </div>
-        </ExpansionPanelDetails>
+        <ExpansionPanelDetails className="details-section"></ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
   );
