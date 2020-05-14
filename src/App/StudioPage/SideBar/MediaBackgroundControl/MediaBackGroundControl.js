@@ -7,7 +7,7 @@ import {
   Typography,
   FormControlLabel,
   Checkbox,
-  Button
+  Button,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { connect } from "react-redux";
@@ -19,26 +19,27 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { SketchPicker } from "react-color";
 import * as actions from "../../../../store/actions/index";
+import ColorPickerPopover from "../ColorPickerPopover/ColorPickerPopover";
 
 import "./MediaBackGroundControl.scss";
 
 // import "../EnvironmentControls/EnvironmentControls"
-const MediaBackGroundControl = props => {
+const MediaBackGroundControl = (props) => {
   const [open, setOpen] = useState(false);
-  const [color, setColor] = useState("#000");
+  // const [color, setColor] = useState("#000");
 
   const handleOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
-    props.onSetMediaSolidBackground(color);
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   props.onSetMediaSolidBackground(color);
+  //   setOpen(false);
+  // };
 
-  const handleColorPick = hex => {
-    setColor(hex.hex.slice(1));
-  };
+  // const handleColorPick = (hex) => {
+  //   setColor(hex.hex.slice(1));
+  // };
   return (
     <div className="environment-controls">
       <ExpansionPanel
@@ -56,18 +57,25 @@ const MediaBackGroundControl = props => {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className="details-section">
           <h5 className="section-title">Background</h5>
-          <FormControlLabel
-            className="custom-label"
-            control={
-              <Checkbox
-                className="custom-checkbox"
-                checked={props.solidBackground}
-                onChange={props.onToggleMediaSolidB}
-                name="solidBackground"
-              />
-            }
-            label="Solid Background"
-          />
+          <div className="background-color-section">
+            <FormControlLabel
+              className="custom-label"
+              control={
+                <Checkbox
+                  className="custom-checkbox"
+                  checked={props.solidBackground}
+                  onChange={props.onToggleMediaSolidB}
+                  name="solidBackground"
+                />
+              }
+              label="Solid Background"
+            />
+            <ColorPickerPopover
+              color={props.solidBgColor}
+              visible={props.solidBackground}
+              setColor={props.onSetMediaSolidBackground}
+            />
+          </div>
           <FormControlLabel
             className="custom-label"
             control={
@@ -80,39 +88,18 @@ const MediaBackGroundControl = props => {
             }
             label="Environment Background"
           />
-          <div className="custom-color-picker">
-            <Button
-              classes={{ label: "color-picker-btn" }}
-              onClick={handleOpen}
-              style={{ color: "#FFF" }}
-              color="primary"
-            >
-              Background Color
-            </Button>
-            <Dialog
-              classes={{ root: "color-picker" }}
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title">Color Picker</DialogTitle>
-              <DialogContent>
-                <SketchPicker
-                  color={color}
-                  onChangeComplete={hex => handleColorPick(hex)}
-                />
-              </DialogContent>
-              <Button
-                classes={{ label: "picker" }}
-                onClick={handleClose}
-                color="error"
-                autoFocus
-              >
-                Confirm
-              </Button>
-            </Dialog>
-          </div>
+          <FormControlLabel
+            className="custom-label"
+            control={
+              <Checkbox
+                className="custom-checkbox"
+                checked={props.mediaMapEnv}
+                onChange={props.onToggleMapEnv}
+                name="mapEnvironment"
+              />
+            }
+            label="Map Environment"
+          />
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
@@ -128,20 +115,26 @@ MediaBackGroundControl.propTypes = {
   onToggleMediaEnvB: PropTypes.func.isRequired,
   onToggleMediaSolidB: PropTypes.func.isRequired,
   // onToggleMediaNoB: PropTypes.func.isRequired,
-  onSetMediaSolidBackground: PropTypes.func.isRequired
+  onSetMediaSolidBackground: PropTypes.func.isRequired,
+  solidBgColor: PropTypes.func.isRequired,
+  mediaMapEnv: PropTypes.bool.isRequired,
+  onToggleMapEnv: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   envBackground: state.mediaControls.mediaEnvBackground,
   solidBackground: state.mediaControls.mediaSolidBackground,
-  noBackground: state.mediaControls.mediaNoBackground
+  noBackground: state.mediaControls.mediaNoBackground,
+  solidBgColor: state.mediaState.mediaSolidBackground,
+  mediaMapEnv: state.mediaControls.mediaMapEnvironment,
 });
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   onToggleMediaEnvB: () => dispatch(actions.toggleMediaEnvB()),
   onToggleMediaSolidB: () => dispatch(actions.toggleMediaSolidB()),
   onToggleMediaNoB: () => dispatch(actions.toggleMediaNoB()),
-  onSetMediaSolidBackground: hexColor =>
-    dispatch(actions.setMediaSolidBackground(hexColor))
+  onToggleMapEnv: () => dispatch(actions.toggleMapEnv()),
+  onSetMediaSolidBackground: (hexColor) =>
+    dispatch(actions.setMediaSolidBackground(hexColor)),
 });
 
 export default connect(

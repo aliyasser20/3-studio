@@ -23,13 +23,19 @@ const ObjectsBar = (props) => {
       vol = (4 * Math.PI * roundRadius * 2) / 1000;
     }
 
-    props.onSetMediaSphere({ args: [roundRadius, vol, vol] });
+    props.onSetMediaSphere({
+      args: [roundRadius, vol, vol],
+      color: "00CCAA",
+      scale: [1, 1, 1],
+      position: { x: 0, y: 0, z: 0 },
+    });
   };
   return (
     <ThemeProvider theme={theme}>
       <div className="objects-bar">
         <Paper classes={{ root: "custom-paper" }} elevation={3}>
           <div
+            id="w-sphere"
             draggable
             onDragEnd={(e) => {
               e.dataTransfer.dropEffect = "link";

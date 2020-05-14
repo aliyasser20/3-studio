@@ -8,6 +8,7 @@ const initialState = {
   mediaEnvBackground: true,
   mediaSolidBackground: false,
   mediaNoBakground: false,
+  mediaMapEnvironment: false,
   sphere: null,
   keyLight: null,
   backWall: null,
@@ -58,7 +59,11 @@ const reducer = (state = initialState, action) => {
         mediaSolidBackground: false,
         mediaEnvBackground: false,
       };
-
+    case actionTypes.TOGGLE_MAP_ENV:
+      return {
+        ...state,
+        mediaMapEnvironment: !state.mediaMapEnvironment,
+      };
     case actionTypes.SET_MEDIA_SPHERE:
       return {
         ...state,
@@ -92,7 +97,7 @@ const reducer = (state = initialState, action) => {
         sphere: null,
         keyLight: null,
         backWall: null,
-        groundPole: null
+        groundPole: null,
       };
     default:
       return state;

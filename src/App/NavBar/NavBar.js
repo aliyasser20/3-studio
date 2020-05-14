@@ -52,6 +52,7 @@ const NavBar = (props) => {
   const handleLogoClick = () => {
     props.onModeSelect("EDIT");
     props.onResetMediaState();
+    props.onResetMediaControls();
   }
 
   return (
@@ -83,11 +84,13 @@ const NavBar = (props) => {
 NavBar.propTypes = {
   onModeSelect: PropTypes.func.isRequired,
   onResetMediaState: PropTypes.func.isRequired,
+  onResetMediaControls: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onModeSelect: (mode) => dispatch(actions.modeSelect(mode)),
   onResetMediaState: () => dispatch(actions.resetMediaState()),
+  onResetMediaControls: () => dispatch(actions.resetMediaControls())
 });
 
 export default connect(null, mapDispatchToProps)(NavBar);
