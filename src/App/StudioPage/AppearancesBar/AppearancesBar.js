@@ -63,31 +63,41 @@ const AppearancesBar = props => {
   const plasticComponents = [];
   const stoneComponents = [];
 
-  materials.forEach(material => {
-    const newMaterial = (
-      <div
-        key={material.name}
-        draggable
-        onDragStart={e => props.onSetSelectedMaterial(material.actionName)}
-        className="material"
-      >
-        <img src={material.imgPath} alt={material.name} />
-        <p className="material-label">{material.name}</p>
-      </div>
-    );
+  materials
+    .sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    })
+    .forEach(material => {
+      const newMaterial = (
+        <div
+          key={material.name}
+          draggable
+          onDragStart={e => props.onSetSelectedMaterial(material.actionName)}
+          className="material"
+        >
+          <img src={material.imgPath} alt={material.name} />
+          <p className="material-label">{material.name}</p>
+        </div>
+      );
 
-    if (material.group === "metals") {
-      metalComponents.push(newMaterial);
-    }
+      if (material.group === "metals") {
+        metalComponents.push(newMaterial);
+      }
 
-    if (material.group === "plastics") {
-      plasticComponents.push(newMaterial);
-    }
+      if (material.group === "plastics") {
+        plasticComponents.push(newMaterial);
+      }
 
-    if (material.group === "stones") {
-      stoneComponents.push(newMaterial);
-    }
-  });
+      if (material.group === "stones") {
+        stoneComponents.push(newMaterial);
+      }
+    });
 
   return (
     <ThemeProvider theme={theme}>

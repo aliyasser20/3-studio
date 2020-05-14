@@ -145,5 +145,26 @@ export const materials = [
       "https://res.cloudinary.com/aajfinal/image/upload/v1589490721/appearances/picture%20assets/steelRog_qwt6fg.png",
     group: "metals",
     actionName: "steelRough"
+  },
+  {
+    name: "aluminum rough",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589490718/appearances/picture%20assets/aluminumRog_qpcbhp.png",
+    group: "metals",
+    actionName: "aluminumRough"
+  },
+  {
+    name: "gold rough",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589490719/appearances/picture%20assets/goldRog_mrg3s4.png",
+    group: "metals",
+    actionName: "goldRough"
+  },
+  {
+    name: "light blue rough",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589490720/appearances/picture%20assets/lightBlueRog_wvvlay.png",
+    group: "metals",
+    actionName: "lightBlueRough"
   }
 ];
