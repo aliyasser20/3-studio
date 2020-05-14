@@ -49,6 +49,20 @@ const LightControls = props => {
             max={4}
             min={0.2}
           />
+          <SingleLightControl
+            name="directionalLight"
+            label="Directional"
+            checked={props.directionalLight}
+            changeChecked={props.onToggleDirectionalLight}
+            onChange={props.onSetDirectionalLightIntensity}
+            value={props.directionalIntensity}
+            color={props.directionalColor}
+            setColor={props.onSetDirectionalLightColor}
+            visible={props.directionalLight}
+            step={0.5}
+            max={10}
+            min={0.5}
+          />
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
