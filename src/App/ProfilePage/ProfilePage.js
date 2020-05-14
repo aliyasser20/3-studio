@@ -11,13 +11,11 @@ import {
   Select,
   Paper,
   IconButton,
-  Snackbar
+  Snackbar,
+  Button
 } from "@material-ui/core";
-import UserInfoTable from "./UserInfoTable/UserInfoTable";
-
-import DeleteAccountButton from "./DeleteAccountButton/DeleteAccountButton";
-
-import ResetPasswordButton from "./ResetPasswordButton/ResetPasswordButton";
+import DeleteSweepIcon from "@material-ui/icons/DeleteSweep";
+import VpnKeyIcon from "@material-ui/icons/VpnKey";
 
 import SingleField from "./SingleField/SingleField";
 import Alert from "../UI/Alert/Alert";
@@ -188,7 +186,30 @@ const ProfilePage = props => {
             />
           </Paper>
         </div>
-        <div className="bottom-section"></div>
+        <div className="bottom-section">
+          <span className="gradient-button">
+            <Button
+              classes={{ root: "containedSecondary" }}
+              variant="contained"
+              color="secondary"
+              startIcon={<VpnKeyIcon />}
+              // onClick={props.onClick}
+            >
+              Reset Password
+            </Button>
+          </span>
+          <span className="delete-account-button">
+            <Button
+              classes={{ root: "containedSecondary" }}
+              variant="contained"
+              color="secondary"
+              startIcon={<DeleteSweepIcon />}
+              // onClick={props.onClick}
+            >
+              Delete Account
+            </Button>
+          </span>
+        </div>
       </div>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity={severity}>
