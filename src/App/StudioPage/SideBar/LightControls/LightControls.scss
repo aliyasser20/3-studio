@@ -24,6 +24,13 @@
       overflow: auto;
       display: grid;
 
+      .light-controls-area {
+        width: 100%;
+        display: grid;
+        padding-top: 2em;
+        grid-gap: 1em;
+      }
+
       .custom-label {
         .custom-checkbox {
           svg {
