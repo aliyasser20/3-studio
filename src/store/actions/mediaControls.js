@@ -1,5 +1,9 @@
 import * as actionTypes from "./actionTypes";
 
+export const toggleMapEnv = () => ({
+  type: actionTypes.TOGGLE_MAP_ENV,
+});
+
 export const toggleMediaEnvB = () => ({
   type: actionTypes.TOGGLE_MEDIA_ENV_B,
 });

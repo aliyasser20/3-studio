@@ -58,6 +58,7 @@ export const RESET_MEDIA_STATE = "RESET_MEDIA_STATE";
 //
 
 // Media Controls
+export const TOGGLE_MAP_ENV = "TOGGLE_MAP_ENV";
 export const TOGGLE_MEDIA_ENV_B = "TOGGLE_MEDIA_ENV_B";
 export const TOGGLE_MEDIA_SOLID_B = "TOGGLE_MEDIA_SOLID_B";
 export const TOGGLE_MEDIA_NO_B = "TOGGLE_MEDIA_NO_B";
