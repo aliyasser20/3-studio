@@ -7,7 +7,6 @@ import {
   ExpansionPanelDetails,
   ExpansionPanelSummary,
   Typography,
-  IconButton,
   Button
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -19,124 +18,104 @@ import * as actions from "../../../../store/actions/index";
 
 import "./LightControls.scss";
 
-const LightControls = props => {
-  let classes;
-
-  return (
-    <div className="light-controls">
-      <ExpansionPanel
-        className="custom-panel"
-        expanded={props.expanded.includes("LIGHT-CONTROLS")}
-        onChange={() => props.handleChange("LIGHT-CONTROLS")}
+const LightControls = props => (
+  <div className="light-controls">
+    <ExpansionPanel
+      className="custom-panel"
+      expanded={props.expanded.includes("LIGHT-CONTROLS")}
+      onChange={() => props.handleChange("LIGHT-CONTROLS")}
+    >
+      <ExpansionPanelSummary
+        className="summary-section"
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="light-controls-summary"
+        id="light-controls-summary"
       >
-        <ExpansionPanelSummary
-          className="summary-section"
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="light-controls-summary"
-          id="light-controls-summary"
-        >
-          <Typography>Light</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails className="details-section">
-          <div className="light-controls-area">
-            <div className="reset-area">
-              {/* <IconButton
-                aria-label="reset"
-                classes={{ root: "reset-button" }}
+        <Typography>Light</Typography>
+      </ExpansionPanelSummary>
+      <ExpansionPanelDetails className="details-section">
+        <div className="light-controls-area">
+          <div className="reset-area">
+            <span className="gradient-button">
+              <Button
+                variant="contained"
                 size="small"
-                // onClick={() => setEdit(true)}
+                endIcon={<SettingsBackupRestoreIcon />}
               >
-                <SettingsBackupRestoreIcon />
-              </IconButton> */}
-              <span className="gradient-button">
-                <Button
-                  variant="contained"
-                  // color="primary"
-                  size="small"
-                  // className={classes.button}
-                  endIcon={<SettingsBackupRestoreIcon />}
-                >
-                  Reset
-                </Button>
-              </span>
-            </div>
-            <SingleLightControl
-              name="ambientLight"
-              label="Ambient"
-              checked={props.ambientLight}
-              changeChecked={props.onToggleAmbientLight}
-              onChange={props.onSetAmbientLightIntensity}
-              value={props.ambientIntensity}
-              color={props.ambientColor}
-              setColor={props.onSetAmbientLightColor}
-              visible={props.ambientLight}
-              step={0.2}
-              max={4}
-              min={0.2}
-            />
-            <SingleLightControl
-              name="hemisphereLight"
-              label="Hemisphere"
-              checked={props.hemisphereLight}
-              changeChecked={props.onToggleHemisphereLight}
-              onChange={props.onSetHemisphereLightIntensity}
-              value={props.hemisphereIntensity}
-              color={props.hemisphereColor}
-              setColor={props.onSetHemisphereLightColor}
-              visible={props.hemisphereLight}
-              step={0.5}
-              max={10}
-              min={0.5}
-            />
-            <SingleLightControl
-              name="directionalLight"
-              label="Directional"
-              checked={props.directionalLight}
-              changeChecked={props.onToggleDirectionalLight}
-              onChange={props.onSetDirectionalLightIntensity}
-              value={props.directionalIntensity}
-              color={props.directionalColor}
-              setColor={props.onSetDirectionalLightColor}
-              visible={props.directionalLight}
-              step={0.5}
-              max={10}
-              min={0.5}
-            />
+                Reset
+              </Button>
+            </span>
           </div>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-    </div>
-  );
-};
+          <SingleLightControl
+            name="ambientLight"
+            label="Ambient"
+            checked={props.ambientLight}
+            changeChecked={props.onToggleAmbientLight}
+            onChange={props.onSetAmbientLightIntensity}
+            value={props.ambientIntensity}
+            color={props.ambientColor}
+            setColor={props.onSetAmbientLightColor}
+            visible={props.ambientLight}
+            step={0.2}
+            max={4}
+            min={0.2}
+          />
+          <SingleLightControl
+            name="hemisphereLight"
+            label="Hemisphere"
+            checked={props.hemisphereLight}
+            changeChecked={props.onToggleHemisphereLight}
+            onChange={props.onSetHemisphereLightIntensity}
+            value={props.hemisphereIntensity}
+            color={props.hemisphereColor}
+            setColor={props.onSetHemisphereLightColor}
+            visible={props.hemisphereLight}
+            step={0.5}
+            max={10}
+            min={0.5}
+          />
+          <SingleLightControl
+            name="directionalLight"
+            label="Directional"
+            checked={props.directionalLight}
+            changeChecked={props.onToggleDirectionalLight}
+            onChange={props.onSetDirectionalLightIntensity}
+            value={props.directionalIntensity}
+            color={props.directionalColor}
+            setColor={props.onSetDirectionalLightColor}
+            visible={props.directionalLight}
+            step={0.5}
+            max={10}
+            min={0.5}
+          />
+        </div>
+      </ExpansionPanelDetails>
+    </ExpansionPanel>
+  </div>
+);
 
-// LightControls.propTypes = {
-//   expanded: PropTypes.array.isRequired,
-//   handleChange: PropTypes.func.isRequired,
-//   mapEnvironment: PropTypes.bool.isRequired,
-//   onToggleMapEnvironment: PropTypes.func.isRequired,
-//   bgSolid: PropTypes.bool.isRequired,
-//   bgEnvironment: PropTypes.bool.isRequired,
-//   onSetBackgroundEnvironment: PropTypes.func.isRequired,
-//   onSetBackgroundSolid: PropTypes.func.isRequired,
-//   ambientLight: PropTypes.bool.isRequired,
-//   directionalLight: PropTypes.bool.isRequired,
-//   hemisphereLight: PropTypes.bool.isRequired,
-//   ambientIntensity: PropTypes.number.isRequired,
-//   hemisphereIntensity: PropTypes.number.isRequired,
-//   directionalIntensity: PropTypes.number.isRequired,
-//   directionalColor: PropTypes.string.isRequired,
-//   hemisphereColor: PropTypes.string.isRequired,
-//   ambientColor: PropTypes.string.isRequired,
-//   onToggleAmbientLight: PropTypes.func.isRequired,
-//   onToggleDirectionalLight: PropTypes.func.isRequired,
-//   onToggleHemisphereLight: PropTypes.func.isRequired,
-//   onSetAmbientLightIntensity: PropTypes.func.isRequired,
-//   onSetDirectionalLightIntensity: PropTypes.func.isRequired,
-//   onSetHemisphereLightIntensity: PropTypes.func.isRequired,
-//   onSetHemisphereLightColor: PropTypes.func.isRequired,
-//   onSetAmbientLightColor: PropTypes.func.isRequired,
-//   onSetDirectionalLightColor: PropTypes.func.isRequired
-// };
+LightControls.propTypes = {
+  expanded: PropTypes.array.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  ambientLight: PropTypes.bool.isRequired,
+  directionalLight: PropTypes.bool.isRequired,
+  hemisphereLight: PropTypes.bool.isRequired,
+  ambientIntensity: PropTypes.number.isRequired,
+  hemisphereIntensity: PropTypes.number.isRequired,
+  directionalIntensity: PropTypes.number.isRequired,
+  directionalColor: PropTypes.string.isRequired,
+  hemisphereColor: PropTypes.string.isRequired,
+  ambientColor: PropTypes.string.isRequired,
+  onToggleAmbientLight: PropTypes.func.isRequired,
+  onToggleDirectionalLight: PropTypes.func.isRequired,
+  onToggleHemisphereLight: PropTypes.func.isRequired,
+  onSetAmbientLightIntensity: PropTypes.func.isRequired,
+  onSetDirectionalLightIntensity: PropTypes.func.isRequired,
+  onSetHemisphereLightIntensity: PropTypes.func.isRequired,
+  onSetHemisphereLightColor: PropTypes.func.isRequired,
+  onSetAmbientLightColor: PropTypes.func.isRequired,
+  onSetDirectionalLightColor: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   ambientLight: state.lightControls.ambientLight,
@@ -151,10 +130,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSetBackgroundSolid: () => dispatch(actions.setBackgroundSolid()),
-  onSetBackgroundEnvironment: () =>
-    dispatch(actions.setBackgroundEnvironment()),
-  onToggleMapEnvironment: () => dispatch(actions.toggleMapEnvironment()),
   onToggleAmbientLight: () => dispatch(actions.toggleAmbientLight()),
   onToggleDirectionalLight: () => dispatch(actions.toggleDirectionalLight()),
   onToggleHemisphereLight: () => dispatch(actions.toggleHemisphereLight()),
