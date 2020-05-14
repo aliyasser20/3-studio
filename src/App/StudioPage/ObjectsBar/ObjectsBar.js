@@ -30,6 +30,7 @@ const ObjectsBar = (props) => {
       <div className="objects-bar">
         <Paper classes={{ root: "custom-paper" }} elevation={3}>
           <div
+            id="w-sphere"
             draggable
             onDragEnd={(e) => {
               e.dataTransfer.dropEffect = "link";

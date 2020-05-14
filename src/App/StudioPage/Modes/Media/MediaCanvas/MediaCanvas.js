@@ -18,8 +18,7 @@ import LoaderModel from "../../../LoaderModal/LoaderModel";
 const MediaCanvas = (props) => {
   const [loading, setLoading] = useState(true);
   const { mediaFov, mediaFar, mediaNear, mediaBox, mediaSizeBounding } = props;
-  
-  console.log(process.env.REACT_APP_API_KEY)
+
   useEffect(() => {
     !props.mediaFov && props.onSetMediaFov(props.modelSettings.fov);
     !props.mediaFar && props.onSetMediaFar(props.modelSettings.far);
@@ -63,7 +62,7 @@ const MediaCanvas = (props) => {
           bgEnvironment={props.mediaControls.mediaEnvBackground}
           bgSolid={props.mediaControls.mediaSolidBackground}
           bgColor={props.solidBgColor}
-          mapEnvironment
+          mapEnvironment={props.mediaMapEnv}
           environmentPath={props.currentEnvOption.hdrPath}
         />
         <Controls />
@@ -92,6 +91,8 @@ MediaCanvas.propTypes = {
   mediaSizeBounding: PropTypes.object,
   mediaControls: PropTypes.object.isRequired,
   currentEnvOption: PropTypes.object.isRequired,
+  solidBgColor: PropTypes.string.isRequired,
+  mediaMapEnv: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -105,6 +106,7 @@ const mapStateToProps = (state) => ({
   mediaControls: state.mediaControls,
   currentEnvOption: state.environmentControls.currentEnvironmentOption,
   solidBgColor: state.mediaState.mediaSolidBackground,
+  mediaMapEnv: state.mediaControls.mediaMapEnvironment,
 });
 
 const mapDispatchToProps = (dispatch) => ({

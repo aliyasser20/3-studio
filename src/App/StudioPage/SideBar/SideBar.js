@@ -12,25 +12,26 @@ import themeCreator from "../../../helpers/themeCreator";
 
 import "./SideBar.scss";
 import MediaBackGroundControl from "./MediaBackgroundControl/MediaBackGroundControl";
+import ObjectControl from "./ObjectConrol/ObjectControl";
 
-const SideBar = props => {
+const SideBar = (props) => {
   const theme = themeCreator("#ffffff", "#212121");
 
   const [expandedPanels, setExpandedPanels] = useState([
     "ENVIRONMENT-CONTROLS",
-    "LIGHT-CONTROLS"
+    "LIGHT-CONTROLS",
     // "MATERIAL-DETAILS"
   ]);
 
   // Handle panels expanded
-  const handleChange = panel => {
+  const handleChange = (panel) => {
     let updatedPanels = [...expandedPanels];
 
     // If panel clicked is already expanded
     if (updatedPanels.includes(panel)) {
       // Remove panel from expanded panels array
       updatedPanels = updatedPanels.filter(
-        currentPanel => currentPanel !== panel
+        (currentPanel) => currentPanel !== panel
       );
       // If panel clicked is not expanded
     } else {
@@ -67,7 +68,10 @@ const SideBar = props => {
                 expanded={expandedPanels}
                 handleChange={handleChange}
               />
-              {/* <ObjectControl /> */}
+              <ObjectControl
+                expanded={expandedPanels}
+                handleChange={handleChange}
+              />
             </Fragment>
           )}
         </Paper>
@@ -77,11 +81,11 @@ const SideBar = props => {
 };
 
 SideBar.propTypes = {
-  currentMode: PropTypes.string.isRequired
+  currentMode: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = state => ({
-  currentMode: state.modeControl.currentMode
+const mapStateToProps = (state) => ({
+  currentMode: state.modeControl.currentMode,
 });
 
 export default connect(mapStateToProps, null)(SideBar);
