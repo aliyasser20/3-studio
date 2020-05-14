@@ -49,5 +49,5 @@ export const setMediaGroundPole = (groundPole) => ({
 });
 
 export const resetMediaControls = () => ({
-  type: actionTypes.RESER_MEDIA_CONTROLS,
+  type: actionTypes.RESET_MEDIA_CONTROLS,
 });
