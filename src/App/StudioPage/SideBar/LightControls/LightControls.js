@@ -50,6 +50,20 @@ const LightControls = props => {
             min={0.2}
           />
           <SingleLightControl
+            name="hemisphereLight"
+            label="Hemisphere"
+            checked={props.hemisphereLight}
+            changeChecked={props.onToggleHemisphereLight}
+            onChange={props.onSetHemisphereLightIntensity}
+            value={props.hemisphereIntensity}
+            color={props.hemisphereColor}
+            setColor={props.onSetHemisphereLightColor}
+            visible={props.hemisphereLight}
+            step={0.5}
+            max={10}
+            min={0.5}
+          />
+          <SingleLightControl
             name="directionalLight"
             label="Directional"
             checked={props.directionalLight}
