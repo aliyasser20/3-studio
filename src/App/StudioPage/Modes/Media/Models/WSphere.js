@@ -1,9 +1,13 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useFrame } from "react-three-fiber";
 
 const WSphere = (props) => {
   const wSphere = useRef();
-
+  useEffect(() => {
+    wSphere.current &&
+      !props.dragObjects.includes(wSphere.current) &&
+      props.setDrag(wSphere.current);
+  }, []);
   // useFrame(({ gl, scene, camera }) => {
   //   gl.render(scene, camera);
   //   loading.current.rotation.y += 0.02;
@@ -14,11 +18,8 @@ const WSphere = (props) => {
       <mesh
         visible
         userData={{ wSphere: "wireframe sphere" }}
-        // position={[
-        //   props.sphere.position.x,
-        //   props.sphere.position.y,
-        //   props.sphere.position.z,
-        // ]}
+        onPointerOver={(e) => props.toggleMediaLock()}
+        onPointerOut={(e) => props.toggleMediaLock()}
         castShadow
         scale={[...props.sphere.scale]}
       >

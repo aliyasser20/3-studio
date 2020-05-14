@@ -16,6 +16,7 @@ import Loading from "../OldCanvas/Loading/Loading";
 import LoaderModel from "../../../LoaderModal/LoaderModel";
 import WSphere from "../Models/WSphere";
 import TestingDrag from "../Models/TestingDrag";
+import DControls from "../DragControls/DControls";
 
 const MediaCanvas = (props) => {
   const [loading, setLoading] = useState(true);
@@ -67,12 +68,27 @@ const MediaCanvas = (props) => {
           mapEnvironment={props.mediaMapEnv}
           environmentPath={props.currentEnvOption.hdrPath}
         />
-        <Controls />
-        <UserModel model={props.mediaModel} />
+        {!props.mediaControls.mediaLock && <Controls />}
+        <DControls dragObjects={props.mediaState.dragObjects} />
+        <UserModel
+          model={props.mediaModel}
+          toggleMediaLock={props.onToggleMediaLock}
+          setDrag={props.onSetMediaDragObjects}
+          dragObjects={props.mediaState.dragObjects}
+        />
         {props.mediaControls.sphere && (
-          <WSphere sphere={props.mediaControls.sphere} />
+          <WSphere
+            sphere={props.mediaControls.sphere}
+            toggleMediaLock={props.onToggleMediaLock}
+            setDrag={props.onSetMediaDragObjects}
+            dragObjects={props.mediaState.dragObjects}
+          />
         )}
-        <TestingDrag />
+        {/* <TestingDrag
+          toggleMediaLock={props.onToggleMediaLock}
+          setDrag={props.onSetMediaDragObjects}
+          dragObjects={props.mediaState.dragObjects}
+        /> */}
       </Canvas>
     </>
   ) : (
@@ -110,6 +126,7 @@ const mapStateToProps = (state) => ({
   currentEnvOption: state.environmentControls.currentEnvironmentOption,
   solidBgColor: state.mediaState.mediaSolidBackground,
   mediaMapEnv: state.mediaControls.mediaMapEnvironment,
+  mediaState: state.mediaState,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -119,6 +136,9 @@ const mapDispatchToProps = (dispatch) => ({
   onSetMediaNear: (near) => dispatch(actions.setMediaNear(near)),
   onSetMediaSizeBounding: (sizeBounding) =>
     dispatch(actions.setMediaSizeBounding(sizeBounding)),
+  onToggleMediaLock: () => dispatch(actions.toggleMediaLock()),
+  onSetMediaDragObjects: (dragObject) =>
+    dispatch(actions.setMediaDragObjects(dragObject)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MediaCanvas);

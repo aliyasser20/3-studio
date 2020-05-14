@@ -6,12 +6,12 @@ const dragObjects = [];
 
 extend({ DragControls });
 
-const DControls = () => {
-  const orbitRef = useRef();
-  const { camera, gl } = useThree();
+// const DControls = () => {
+//   const orbitRef = useRef();
+//   const { camera, gl } = useThree();
 
-  return <dragControls args={[dragObjects, camera, gl.domElement]} />;
-};
+//   return <dragControls args={[dragObjects, camera, gl.domElement]} />;
+// };
 
 export default function TestingDrag() {
   const colors = ["hotpink", "red", "blue", "green", "yellow"];
@@ -42,7 +42,7 @@ export default function TestingDrag() {
 
   return (
     <>
-      <DControls />
+      {/* <DControls /> */}
       <mesh
         position={position}
         scale={[50, 50, 50]}
