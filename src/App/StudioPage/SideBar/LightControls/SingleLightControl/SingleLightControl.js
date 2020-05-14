@@ -28,9 +28,13 @@ const SingleLightControl = props => (
       marks
       min={props.min}
       max={props.max}
-      onChange={props.onChange}
+      onChange={e => props.onChange(e.target.value)}
     />
-    <ColorPickPopover />
+    <ColorPickPopover
+      color={props.color}
+      setColor={props.setColor}
+      visible={props.visible}
+    />
   </div>
 );
 
@@ -43,7 +47,10 @@ SingleLightControl.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.number.isRequired
+  value: PropTypes.number.isRequired,
+  color: PropTypes.string.isRequired,
+  setColor: PropTypes.func.isRequired,
+  visible: PropTypes.bool.isRequired
 };
 
 export default SingleLightControl;

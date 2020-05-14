@@ -33,7 +33,20 @@ const LightControls = props => {
           id="light-controls-summary"
         >
           <Typography>Light</Typography>
-          <SingleLightControl name="ambientLight" label="Ambient" />
+          <SingleLightControl
+            name="ambientLight"
+            label="Ambient"
+            checked={props.ambientLight}
+            changeChecked={props.onToggleAmbientLight}
+            onChange={props.onSetAmbientLightIntensity}
+            value={props.ambientIntensity}
+            color={props.ambientColor}
+            setColor={props.onSetAmbientLightColor}
+            visible={props.ambientLight}
+            step={0.2}
+            max={4}
+            min={0.2}
+          />
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className="details-section"></ExpansionPanelDetails>
       </ExpansionPanel>
