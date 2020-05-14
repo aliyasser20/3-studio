@@ -62,3 +62,15 @@ export {
   setMediaEnvBackground,
   setMediaSolidBackground
 } from "./mediaState";
+
+export {
+  setAmbientLightColor,
+  setAmbientLightIntensity,
+  setDirectionalLightColor,
+  setDirectionalLightIntensity,
+  setHemisphereLightColor,
+  setHemisphereLightIntensity,
+  toggleAmbientLight,
+  toggleDirectionalLight,
+  toggleHemisphereLight
+} from "./lightControls";

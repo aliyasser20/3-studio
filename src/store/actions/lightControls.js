@@ -12,32 +12,32 @@ export const toggleHemisphereLight = () => ({
   type: actionTypes.TOGGLE_HEMISPHERE_LIGHT
 });
 
-export const SetAmbientLightIntensity = intensity => ({
+export const setAmbientLightIntensity = intensity => ({
   type: actionTypes.SET_AMBIENT_LIGHT_INTENSITY,
   intensity
 });
 
-export const SetAmbientLightColor = color => ({
+export const setAmbientLightColor = color => ({
   type: actionTypes.SET_AMBIENT_LIGHT_COLOR,
   color
 });
 
-export const SetDirectionalLightIntensity = intensity => ({
+export const setDirectionalLightIntensity = intensity => ({
   type: actionTypes.SET_DIRECTIONAL_LIGHT_INTENSITY,
   intensity
 });
 
-export const SetDirectionalLightColor = color => ({
+export const setDirectionalLightColor = color => ({
   type: actionTypes.SET_DIRECTIONAL_LIGHT_COLOR,
   color
 });
 
-export const SetHemisphereLightIntensity = intensity => ({
+export const setHemisphereLightIntensity = intensity => ({
   type: actionTypes.SET_HEMISPHERE_LIGHT_INTENSITY,
   intensity
 });
 
-export const SetHemisphereLightColor = color => ({
+export const setHemisphereLightColor = color => ({
   type: actionTypes.SET_HEMISPHERE_LIGHT_COLOR,
   color
 });
