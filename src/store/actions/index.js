@@ -72,5 +72,6 @@ export {
   setHemisphereLightIntensity,
   toggleAmbientLight,
   toggleDirectionalLight,
-  toggleHemisphereLight
+  toggleHemisphereLight,
+  resetLights
 } from "./lightControls";

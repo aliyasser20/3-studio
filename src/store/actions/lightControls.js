@@ -41,3 +41,7 @@ export const setHemisphereLightColor = color => ({
   type: actionTypes.SET_HEMISPHERE_LIGHT_COLOR,
   color
 });
+
+export const resetLights = () => ({
+  type: actionTypes.RESET_LIGHTS
+});

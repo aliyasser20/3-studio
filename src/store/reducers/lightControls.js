@@ -59,7 +59,19 @@ const reducer = (state = initialState, action) => {
         ...state,
         ambientLightColor: action.color
       };
-
+    case actionTypes.RESET_LIGHTS:
+      return {
+        ...state,
+        ambientLight: true,
+        directionalLight: true,
+        hemisphereLight: true,
+        ambientLightIntensity: 0.3,
+        directionalLightIntensity: 0.8 * Math.PI,
+        hemisphereLightIntensity: 1,
+        ambientLightColor: "ffffff",
+        directionalLightColor: "ffffff",
+        hemisphereLightColor: "ffffff"
+      };
     default:
       return state;
   }
