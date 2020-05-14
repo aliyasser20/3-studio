@@ -8,13 +8,12 @@ import {
   ExpansionPanelSummary,
   Typography,
   FormControlLabel,
-  Checkbox,
-  FormGroup
+  Checkbox
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import EnvironmentOptions from "./EnvironmentOptions/EnvironmentOptions";
-import ColorPickPopover from "./ColorPickerPopover/ColorPickerPopover";
+import ColorPickPopover from "../ColorPickerPopover/ColorPickerPopover";
 
 import * as actions from "../../../../store/actions/index";
 
@@ -65,7 +64,11 @@ const EnvironmentControls = props => {
               }
               label="Solid"
             />
-            <ColorPickPopover />
+            <ColorPickPopover
+              color={props.bgColor}
+              visible={props.bgSolid}
+              setColor={props.onSetBackgroundColor}
+            />
           </div>
           <FormControlLabel
             className="custom-label"
@@ -93,20 +96,24 @@ EnvironmentControls.propTypes = {
   bgSolid: PropTypes.bool.isRequired,
   bgEnvironment: PropTypes.bool.isRequired,
   onSetBackgroundEnvironment: PropTypes.func.isRequired,
-  onSetBackgroundSolid: PropTypes.func.isRequired
+  onSetBackgroundSolid: PropTypes.func.isRequired,
+  bgColor: PropTypes.string.isRequired,
+  onSetBackgroundColor: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
   mapEnvironment: state.environmentControls.mapEnvironment,
   bgSolid: state.environmentControls.bgSolid,
-  bgEnvironment: state.environmentControls.bgEnvironment
+  bgEnvironment: state.environmentControls.bgEnvironment,
+  bgColor: state.environmentControls.bgColor
 });
 
 const mapDispatchToProps = dispatch => ({
   onSetBackgroundSolid: () => dispatch(actions.setBackgroundSolid()),
   onSetBackgroundEnvironment: () =>
     dispatch(actions.setBackgroundEnvironment()),
-  onToggleMapEnvironment: () => dispatch(actions.toggleMapEnvironment())
+  onToggleMapEnvironment: () => dispatch(actions.toggleMapEnvironment()),
+  onSetBackgroundColor: color => dispatch(actions.setBackgroundColor(color))
 });
 
 export default connect(
