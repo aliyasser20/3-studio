@@ -22,7 +22,7 @@ const SingleLightControl = props => (
       label={props.label}
     />
     <Slider
-      defaultValue={30}
+      defaultValue={props.value}
       valueLabelDisplay="auto"
       step={props.step}
       marks
@@ -42,7 +42,8 @@ SingleLightControl.propTypes = {
   step: PropTypes.number.isRequired,
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired
 };
 
 export default SingleLightControl;
