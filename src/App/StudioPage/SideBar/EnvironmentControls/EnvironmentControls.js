@@ -98,7 +98,7 @@ EnvironmentControls.propTypes = {
   onSetBackgroundEnvironment: PropTypes.func.isRequired,
   onSetBackgroundSolid: PropTypes.func.isRequired,
   bgColor: PropTypes.string.isRequired,
-  onSetBackgroundColor: PropTypes.string.isRequired
+  onSetBackgroundColor: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

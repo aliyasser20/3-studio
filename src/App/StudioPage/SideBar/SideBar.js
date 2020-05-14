@@ -6,29 +6,31 @@ import { Paper, ThemeProvider } from "@material-ui/core";
 
 import EnvironmentControls from "./EnvironmentControls/EnvironmentControls";
 import MaterialDetails from "./MaterialDetails/MaterialDetails";
+import LightControls from "./LightControls/LightControls";
 
 import themeCreator from "../../../helpers/themeCreator";
 
 import "./SideBar.scss";
 import MediaBackGroundControl from "./MediaBackgroundControl/MediaBackGroundControl";
 
-const SideBar = (props) => {
+const SideBar = props => {
   const theme = themeCreator("#ffffff", "#212121");
 
   const [expandedPanels, setExpandedPanels] = useState([
     "ENVIRONMENT-CONTROLS",
+    "LIGHT-CONTROLS"
     // "MATERIAL-DETAILS"
   ]);
 
   // Handle panels expanded
-  const handleChange = (panel) => {
+  const handleChange = panel => {
     let updatedPanels = [...expandedPanels];
 
     // If panel clicked is already expanded
     if (updatedPanels.includes(panel)) {
       // Remove panel from expanded panels array
       updatedPanels = updatedPanels.filter(
-        (currentPanel) => currentPanel !== panel
+        currentPanel => currentPanel !== panel
       );
       // If panel clicked is not expanded
     } else {
@@ -46,6 +48,10 @@ const SideBar = (props) => {
           {props.currentMode === "EDIT" && (
             <Fragment>
               <EnvironmentControls
+                expanded={expandedPanels}
+                handleChange={handleChange}
+              />
+              <LightControls
                 expanded={expandedPanels}
                 handleChange={handleChange}
               />
@@ -70,11 +76,11 @@ const SideBar = (props) => {
 };
 
 SideBar.propTypes = {
-  currentMode: PropTypes.string.isRequired,
+  currentMode: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  currentMode: state.modeControl.currentMode,
+const mapStateToProps = state => ({
+  currentMode: state.modeControl.currentMode
 });
 
 export default connect(mapStateToProps, null)(SideBar);

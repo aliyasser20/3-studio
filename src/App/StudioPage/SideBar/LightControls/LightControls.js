@@ -33,6 +33,8 @@ const LightControls = props => {
           id="light-controls-summary"
         >
           <Typography>Light</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails className="details-section">
           <SingleLightControl
             name="ambientLight"
             label="Ambient"
@@ -47,46 +49,42 @@ const LightControls = props => {
             max={4}
             min={0.2}
           />
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails className="details-section"></ExpansionPanelDetails>
+        </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
   );
 };
 
-LightControls.propTypes = {
-  expanded: PropTypes.array.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  mapEnvironment: PropTypes.bool.isRequired,
-  onToggleMapEnvironment: PropTypes.func.isRequired,
-  bgSolid: PropTypes.bool.isRequired,
-  bgEnvironment: PropTypes.bool.isRequired,
-  onSetBackgroundEnvironment: PropTypes.func.isRequired,
-  onSetBackgroundSolid: PropTypes.func.isRequired,
-  ambientLight: PropTypes.bool.isRequired,
-  directionalLight: PropTypes.bool.isRequired,
-  hemisphereLight: PropTypes.bool.isRequired,
-  ambientIntensity: PropTypes.number.isRequired,
-  hemisphereIntensity: PropTypes.number.isRequired,
-  directionalIntensity: PropTypes.number.isRequired,
-  directionalColor: PropTypes.string.isRequired,
-  hemisphereColor: PropTypes.string.isRequired,
-  ambientColor: PropTypes.string.isRequired,
-  onToggleAmbientLight: PropTypes.func.isRequired,
-  onToggleDirectionalLight: PropTypes.func.isRequired,
-  onToggleHemisphereLight: PropTypes.func.isRequired,
-  onSetAmbientLightIntensity: PropTypes.func.isRequired,
-  onSetDirectionalLightIntensity: PropTypes.func.isRequired,
-  onSetHemisphereLightIntensity: PropTypes.func.isRequired,
-  onSetHemisphereLightColor: PropTypes.func.isRequired,
-  onSetAmbientLightColor: PropTypes.func.isRequired,
-  onSetDirectionalLightColor: PropTypes.func.isRequired
-};
+// LightControls.propTypes = {
+//   expanded: PropTypes.array.isRequired,
+//   handleChange: PropTypes.func.isRequired,
+//   mapEnvironment: PropTypes.bool.isRequired,
+//   onToggleMapEnvironment: PropTypes.func.isRequired,
+//   bgSolid: PropTypes.bool.isRequired,
+//   bgEnvironment: PropTypes.bool.isRequired,
+//   onSetBackgroundEnvironment: PropTypes.func.isRequired,
+//   onSetBackgroundSolid: PropTypes.func.isRequired,
+//   ambientLight: PropTypes.bool.isRequired,
+//   directionalLight: PropTypes.bool.isRequired,
+//   hemisphereLight: PropTypes.bool.isRequired,
+//   ambientIntensity: PropTypes.number.isRequired,
+//   hemisphereIntensity: PropTypes.number.isRequired,
+//   directionalIntensity: PropTypes.number.isRequired,
+//   directionalColor: PropTypes.string.isRequired,
+//   hemisphereColor: PropTypes.string.isRequired,
+//   ambientColor: PropTypes.string.isRequired,
+//   onToggleAmbientLight: PropTypes.func.isRequired,
+//   onToggleDirectionalLight: PropTypes.func.isRequired,
+//   onToggleHemisphereLight: PropTypes.func.isRequired,
+//   onSetAmbientLightIntensity: PropTypes.func.isRequired,
+//   onSetDirectionalLightIntensity: PropTypes.func.isRequired,
+//   onSetHemisphereLightIntensity: PropTypes.func.isRequired,
+//   onSetHemisphereLightColor: PropTypes.func.isRequired,
+//   onSetAmbientLightColor: PropTypes.func.isRequired,
+//   onSetDirectionalLightColor: PropTypes.func.isRequired
+// };
 
 const mapStateToProps = state => ({
-  mapEnvironment: state.LightControls.mapEnvironment,
-  bgSolid: state.LightControls.bgSolid,
-  bgEnvironment: state.LightControls.bgEnvironment,
   ambientLight: state.lightControls.ambientLight,
   directionalLight: state.lightControls.directionalLight,
   hemisphereLight: state.lightControls.hemisphereLight,

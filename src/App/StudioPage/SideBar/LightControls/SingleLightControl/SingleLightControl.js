@@ -7,36 +7,42 @@ import ColorPickPopover from "../../ColorPickerPopover/ColorPickerPopover";
 
 import "./SingleLightControl.scss";
 
-const SingleLightControl = props => (
-  <div className="single-light-control">
-    <FormControlLabel
-      className="custom-label"
-      control={
-        <Checkbox
-          className="custom-checkbox"
-          checked={props.checked}
-          onChange={() => props.changeChecked}
-          name={props.name}
-        />
-      }
-      label={props.label}
-    />
-    <Slider
-      defaultValue={props.value}
-      valueLabelDisplay="auto"
-      step={props.step}
-      marks
-      min={props.min}
-      max={props.max}
-      onChange={e => props.onChange(e.target.value)}
-    />
-    <ColorPickPopover
-      color={props.color}
-      setColor={props.setColor}
-      visible={props.visible}
-    />
-  </div>
-);
+const SingleLightControl = props => {
+  const handleSliderChange = (event, newValue) => {
+    props.onChange(newValue);
+  };
+
+  return (
+    <div className="single-light-control">
+      <FormControlLabel
+        className="custom-label"
+        control={
+          <Checkbox
+            className="custom-checkbox"
+            checked={props.checked}
+            onChange={props.changeChecked}
+            name={props.name}
+          />
+        }
+        label={props.label}
+      />
+      <Slider
+        value={props.value}
+        valueLabelDisplay="auto"
+        step={props.step}
+        marks
+        min={props.min}
+        max={props.max}
+        onChange={handleSliderChange}
+      />
+      <ColorPickPopover
+        color={props.color}
+        setColor={props.setColor}
+        visible={props.visible}
+      />
+    </div>
+  );
+};
 
 SingleLightControl.propTypes = {
   checked: PropTypes.bool.isRequired,
