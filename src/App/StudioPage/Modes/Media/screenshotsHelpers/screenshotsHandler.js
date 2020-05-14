@@ -34,7 +34,7 @@ export const screeshotDownload = (file, project,counter) => {
   document.body.append(a);
   a.style = "display: none";
   a.href = file;
-  a.download = `${formatName(project.name)}-${counter}`;
+  a.download = `${formatName(project.name)}-${counter}.png`;
   a.click();
 };
 

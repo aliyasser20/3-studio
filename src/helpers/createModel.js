@@ -20,7 +20,6 @@ const createModel = (
   theModel.traverse(o => {
     // If component is a part
     if (o.isMesh) {
-      console.log(o);
       // part = o;
       // ? Default
       // o.material = materialLibrary().blackDefault;

@@ -1,9 +1,10 @@
 import React, { useRef } from "react";
 import { useFrame } from "react-three-fiber";
+import { connect } from "react-redux";
 
-const Loading = props => {
+const Loading = (props) => {
   const loading = useRef();
-  
+
   // useFrame(({ gl, scene, camera }) => {
   //   gl.render(scene, camera);
   //   loading.current.rotation.y += 0.02;
@@ -17,7 +18,7 @@ const Loading = props => {
         // position={position}
         castShadow
       >
-        <sphereGeometry attach="geometry" args={[100, 160, 160]} />
+        <sphereGeometry attach="geometry" args={[...props.sphereArgs]} />
         <meshStandardMaterial
           attach="material"
           color="hsl(170,100%,40%)"

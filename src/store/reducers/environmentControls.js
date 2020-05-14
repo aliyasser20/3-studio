@@ -5,6 +5,7 @@ const initialState = {
   bgEnvironment: true,
   bgSolid: false,
   bgColor: "262326",
+  mapEnvironment: true,
   environmentOptions,
   currentEnvironmentOption: {
     name: "studio-1",
@@ -17,11 +18,17 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.TOGGLE_BACKGROUND:
+    case actionTypes.SET_BACKGROUND_SOLID:
       return {
         ...state,
-        bgEnvironment: !state.bgEnvironment,
-        bgSolid: !state.bgSolid
+        bgEnvironment: false,
+        bgSolid: true
+      };
+    case actionTypes.SET_BACKGROUND_ENVIRONMENT:
+      return {
+        ...state,
+        bgEnvironment: true,
+        bgSolid: false
       };
     case actionTypes.SET_BACKGROUND_COLOR:
       return {
@@ -32,6 +39,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentEnvironmentOption: { ...action.option }
+      };
+    case actionTypes.TOGGLE_MAP_ENVIRONMENT:
+      return {
+        ...state,
+        mapEnvironment: !state.mapEnvironment
       };
     default:
       return state;

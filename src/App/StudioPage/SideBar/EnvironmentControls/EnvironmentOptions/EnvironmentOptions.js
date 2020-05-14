@@ -11,15 +11,18 @@ const EnvironmentOptions = props => {
 
   const options = props.environmentOptions.map(option => (
     // eslint-disable-next-line
-    <img
-      src={option.imgPath}
-      key={option.name}
-      alt={option.name}
+    <div  key={option.name} onClick={() => props.onSetEnvironmentOption(option)}
       className={
-        props.currentEnvironmentOption.name === option.name ? "selected" : ""
+        props.currentEnvironmentOption.name === option.name
+          ? "single-option selected"
+          : "single-option"
       }
-      onClick={() => props.onSetEnvironmentOption(option)}
-    />
+    >
+      <img src={option.imgPath} alt={option.name} />
+      <div className="option-name-container">
+        <p className="option-name">{option.name}</p>
+      </div>
+    </div>
   ));
 
   return <div className="environment-options">{options}</div>;

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import * as actions from "../../../../store/actions/index";
 import {
   ExpansionPanel,
   ExpansionPanelDetails,
@@ -8,7 +7,7 @@ import {
   Typography,
   FormControlLabel,
   Checkbox,
-  Button,
+  Button
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { connect } from "react-redux";
@@ -19,11 +18,12 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { SketchPicker } from "react-color";
+import * as actions from "../../../../store/actions/index";
 
 import "./MediaBackGroundControl.scss";
 
 // import "../EnvironmentControls/EnvironmentControls"
-const MediaBackGroundControl = (props) => {
+const MediaBackGroundControl = props => {
   const [open, setOpen] = useState(false);
   const [color, setColor] = useState("#000");
 
@@ -36,7 +36,7 @@ const MediaBackGroundControl = (props) => {
     setOpen(false);
   };
 
-  const handleColorPick = (hex) => {
+  const handleColorPick = hex => {
     setColor(hex.hex.slice(1));
   };
   return (
@@ -100,7 +100,7 @@ const MediaBackGroundControl = (props) => {
               <DialogContent>
                 <SketchPicker
                   color={color}
-                  onChangeComplete={(hex) => handleColorPick(hex)}
+                  onChangeComplete={hex => handleColorPick(hex)}
                 />
               </DialogContent>
               <Button
@@ -128,20 +128,20 @@ MediaBackGroundControl.propTypes = {
   onToggleMediaEnvB: PropTypes.func.isRequired,
   onToggleMediaSolidB: PropTypes.func.isRequired,
   // onToggleMediaNoB: PropTypes.func.isRequired,
-  onSetMediaSolidBackground: PropTypes.func.isRequired,
+  onSetMediaSolidBackground: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   envBackground: state.mediaControls.mediaEnvBackground,
   solidBackground: state.mediaControls.mediaSolidBackground,
-  noBackground: state.mediaControls.mediaNoBackground,
+  noBackground: state.mediaControls.mediaNoBackground
 });
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   onToggleMediaEnvB: () => dispatch(actions.toggleMediaEnvB()),
   onToggleMediaSolidB: () => dispatch(actions.toggleMediaSolidB()),
   onToggleMediaNoB: () => dispatch(actions.toggleMediaNoB()),
-  onSetMediaSolidBackground: (hexColor) =>
-    dispatch(actions.setMediaSolidBackground(hexColor)),
+  onSetMediaSolidBackground: hexColor =>
+    dispatch(actions.setMediaSolidBackground(hexColor))
 });
 
 export default connect(
