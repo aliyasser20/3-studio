@@ -25,7 +25,7 @@ const ObjectsBar = (props) => {
 
     props.onSetMediaSphere({
       args: [roundRadius, vol, vol],
-      color: "hsl(170,100%,40%)",
+      color: "00CCAA",
       scale: [1, 1, 1],
       position: { x: 0, y: 0, z: 0 },
     });

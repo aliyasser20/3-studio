@@ -25,7 +25,7 @@ const WSphere = (props) => {
         <sphereGeometry attach="geometry" args={[...props.sphere.args]} />
         <meshStandardMaterial
           attach="material"
-          color={props.sphere.color}
+          color={`#${props.sphere.color}`}
           transparent
           wireframe
           roughness={1}

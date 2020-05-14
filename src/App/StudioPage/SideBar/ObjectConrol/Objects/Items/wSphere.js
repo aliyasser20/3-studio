@@ -23,6 +23,10 @@ const WSphere = (props) => {
     setOpenWSphere(false);
   };
 
+  const handleColorSet = (color) => {
+    const sphereArgs = {...props.wSphere, color}
+    props.onSetMediaSphere(sphereArgs)
+  }
   return (
     <>
       <ListItem button onClick={handleClick}>
@@ -36,7 +40,7 @@ const WSphere = (props) => {
         <List component="div" disablePadding>
           <ListItem button>
             <ListItemIcon>
-              <ColorPickerPopover visible />
+              <ColorPickerPopover visible color={props.wSphere.color} setColor={handleColorSet}/>
             </ListItemIcon>
             <ListItemText primary="Color" />
           </ListItem>
@@ -48,6 +52,7 @@ const WSphere = (props) => {
 
 WSphere.propTypes = {
   onSetMediaSphere: PropTypes.func.isRequired,
+  wSphere: PropTypes.object
 };
 
 export default WSphere;

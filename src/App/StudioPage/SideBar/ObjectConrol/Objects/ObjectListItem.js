@@ -39,7 +39,12 @@ const ObjectListItem = (props) => {
         </ListItemIcon>
         <ListItemText primary="Drafts" />
       </ListItem> */}
-      {props.wSphere && <WSphere onSetMediaSphere={props.onSetMediaSphere} />}
+      {props.wSphere && (
+        <WSphere
+          onSetMediaSphere={props.onSetMediaSphere}
+          wSphere={props.wSphere}
+        />
+      )}
     </List>
   );
 };
