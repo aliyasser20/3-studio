@@ -74,5 +74,17 @@
         );
       }
     }
+
+    .disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      &:hover {
+        background: linear-gradient(
+          var(--gradient-top),
+          var(--gradient-bottom)
+        );
+      }
+    }
   }
 }

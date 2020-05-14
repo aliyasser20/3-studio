@@ -32,12 +32,11 @@ import "./ProfilePage.scss";
 const ProfilePage = props => {
   const { user, logout } = useAuth0();
   const [confirmDelete, setConfirmDelete] = useState(false);
-
   const [name, setName] = useState(false);
   const [nickname, setNickname] = useState(false);
-
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState("");
+  const [disabled] = useState(!user.sub.includes("auth0"));
 
   const themes = availableThemes.map(theme => (
     <MenuItem key={theme.name} value={theme.name}>
@@ -174,6 +173,7 @@ const ProfilePage = props => {
               setEditValue={setName}
               value={nameField}
               setValue={setNameField}
+              disabled={disabled}
             />
             <SingleField
               setMessage={setMessage}
@@ -184,6 +184,7 @@ const ProfilePage = props => {
               setEditValue={setNickname}
               value={nicknameField}
               setValue={setNicknameField}
+              disabled={disabled}
             />
           </Paper>
         </div>

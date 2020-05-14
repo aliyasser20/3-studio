@@ -31,6 +31,7 @@ const SingleField = props => {
         props.setSeverity("error");
         props.setOpen(true);
         props.setEditValue(false);
+        props.setValue(user[props.field]);
         console.log(err);
       });
   };
@@ -43,6 +44,10 @@ const SingleField = props => {
       props.setValue(value.slice(0, 20));
     }
   };
+
+  const editButtonClasses = props.disabled
+    ? "edit-button disabled"
+    : "edit-button";
 
   return (
     <div className="single-field">
@@ -88,8 +93,12 @@ const SingleField = props => {
         ) : (
           <button
             type="button"
-            onClick={() => props.setEditValue(true)}
-            className="edit-button"
+            onClick={() => {
+              if (!props.disabled) {
+                props.setEditValue(true);
+              }
+            }}
+            className={editButtonClasses}
           >
             <EditIcon />
           </button>
@@ -107,7 +116,8 @@ SingleField.propTypes = {
   setValue: PropTypes.func.isRequired,
   setMessage: PropTypes.func.isRequired,
   setSeverity: PropTypes.func.isRequired,
-  setOpen: PropTypes.func.isRequired
+  setOpen: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired
 };
 
 export default SingleField;
