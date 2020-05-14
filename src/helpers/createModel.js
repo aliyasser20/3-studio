@@ -45,7 +45,7 @@ const createModel = (
       // ? Stones
       // o.material = materialLibrary().bricks;
       // ?.Tiles
-      o.material = materialLibrary().tilesOne;
+      // o.material = materialLibrary().tilesOne;
       // o.material = materialLibrary().tilesTwo;
       // o.material = materialLibrary().tilesThree;
     }
