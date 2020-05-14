@@ -25,14 +25,16 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
+      className="custom-tab-panel"
       id={`scrollable-auto-tabpanel-${index}`}
       aria-labelledby={`scrollable-auto-tab-${index}`}
       {...other}
     >
       {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
+        // <Box p={3}>
+        //   <Typography>{children}</Typography>
+        // </Box>
+        <div className="custom-tab-content">{children}</div>
       )}
     </div>
   );
@@ -64,32 +66,6 @@ const AppearancesBar = props => {
     <ThemeProvider theme={theme}>
       <div className="appearances-bar">
         <Paper classes={{ root: "custom-paper" }} elevation={3}>
-          {/* <div
-            draggable
-            onDragStart={e => {
-              e.dataTransfer.dropEffect = "link";
-              props.onSetSelectedMaterial("cherryPolished");
-            }}
-            className="material red"
-          >
-            Polished Cherry
-          </div>
-          <div
-            draggable
-            onDragStart={e => props.onSetSelectedMaterial("goldPolished")}
-            onDragEnd={e => console.log(e.screenX, e.screenY)}
-            // onDrag
-            className="material gold"
-          >
-            Polished Gold
-          </div>
-          <div
-            draggable
-            onDragStart={e => props.onSetSelectedMaterial("purplePolished")}
-            className="material purple"
-          >
-            Polished Purple
-          </div> */}
           <div className="top-bar">
             <div className="title-area">
               <h4 className="title">Appearances</h4>
@@ -125,7 +101,32 @@ const AppearancesBar = props => {
           </div>
           <div className="content-area">
             <TabPanel value={value} index={0}>
-              Item One
+              <div
+                draggable
+                onDragStart={e => {
+                  e.dataTransfer.dropEffect = "link";
+                  props.onSetSelectedMaterial("cherryPolished");
+                }}
+                className="material red"
+              >
+                Polished Cherry
+              </div>
+              <div
+                draggable
+                onDragStart={e => props.onSetSelectedMaterial("goldPolished")}
+                onDragEnd={e => console.log(e.screenX, e.screenY)}
+                // onDrag
+                className="material gold"
+              >
+                Polished Gold
+              </div>
+              <div
+                draggable
+                onDragStart={e => props.onSetSelectedMaterial("purplePolished")}
+                className="material purple"
+              >
+                Polished Purple
+              </div>
             </TabPanel>
             <TabPanel value={value} index={1}>
               Item Two
