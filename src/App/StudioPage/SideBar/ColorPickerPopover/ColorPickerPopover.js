@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 
 import { Popover } from "@material-ui/core";
 
 import { SketchPicker } from "react-color";
-import * as actions from "../../../../../store/actions/index";
 
 import "./ColorPickerPopover.scss";
 
@@ -21,18 +19,18 @@ const ColorPickerPopover = props => {
   };
 
   const handleColorPick = color => {
-    props.onSetBackgroundColor(color.hex.slice(1));
+    props.setColor(color.hex.slice(1));
   };
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  const colorBoxClasses = props.bgSolid ? "color-box active" : "color-box";
+  const colorBoxClasses = props.visible ? "color-box active" : "color-box";
 
   return (
     <div className="color-picker-popover">
       <div
-        style={{ backgroundColor: `#${props.bgColor}` }}
+        style={{ backgroundColor: `#${props.color}` }}
         className={colorBoxClasses}
         onClick={handleClick}
       ></div>
@@ -52,7 +50,7 @@ const ColorPickerPopover = props => {
       >
         <div className="color-picker-popover-content">
           <SketchPicker
-            color={`#${props.bgColor}`}
+            color={`#${props.color}`}
             onChangeComplete={color => handleColorPick(color)}
           />
         </div>
@@ -62,18 +60,9 @@ const ColorPickerPopover = props => {
 };
 
 ColorPickerPopover.propTypes = {
-  bgColor: PropTypes.string.isRequired,
-  onSetBackgroundColor: PropTypes.func.isRequired,
-  bgSolid: PropTypes.bool.isRequired
+  color: PropTypes.string.isRequired,
+  setColor: PropTypes.func.isRequired,
+  visible: PropTypes.bool.isRequired
 };
 
-const mapStateToProps = state => ({
-  bgColor: state.environmentControls.bgColor,
-  bgSolid: state.environmentControls.bgSolid
-});
-
-const mapDispatchToProps = dispatch => ({
-  onSetBackgroundColor: color => dispatch(actions.setBackgroundColor(color))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ColorPickerPopover);
+export default ColorPickerPopover;
