@@ -6,6 +6,10 @@ const KLight = (props) => {
   const pointLight = useRef();
 
   useEffect(() => {
+    const dragObjs = [...props.dragObjects];
+
+    sphere.current && props.setDrag([...dragObjs, sphere.current]);
+
     if (pointLight.current) {
       pointLight.current.shadow.camera.top = 100;
       pointLight.current.shadow.camera.right = 100;
@@ -24,6 +28,8 @@ const KLight = (props) => {
         userData={{ object: "light-object" }}
         castShadow
         scale={[0.1, 0.1, 0.1]}
+        onPointerOver={(e) => props.toggleMediaLock()}
+        onPointerOut={(e) => props.toggleMediaLock()}
       >
         <sphereGeometry attach="geometry" args={[1, 16, 16]} />
         <meshBasicMaterial
@@ -52,6 +58,9 @@ const KLight = (props) => {
   );
 };
 
-KLight.propTypes = {};
+KLight.propTypes = {
+  toggleMediaLock: PropTypes.func.isRequired,
+  dragObjects: PropTypes.array.isRequired,
+};
 
 export default KLight;

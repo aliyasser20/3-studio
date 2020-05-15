@@ -19,14 +19,14 @@ const KLight = (props) => {
     setOpenKLight(!openKLight);
   };
 
-  // const handleRemoveKLight = () => {
-  //   const currentDragObjects = [...props.dragObjects];
-  //   console.log(currentDragObjects);
-  //   const removed = currentDragObjects.filter((obj) => obj.name !== "k-light");
-  //   props.onSetDragObjects(removed);
-  //   props.onSetMediaSphere(null);
-  //   setOpenKLight(false);
-  // };
+  const handleRemoveKLight = () => {
+    const currentDragObjects = [...props.dragObjects];
+    console.log(currentDragObjects);
+    const removed = currentDragObjects.filter((obj) => obj.name !== "k-light");
+    props.onSetDragObjects(removed);
+    props.onSetKLight(null);
+    setOpenKLight(false);
+  };
 
   // const handleColorSet = (color) => {
   //   const sphereArgs = { ...props.wSphere, color };
@@ -56,7 +56,7 @@ const KLight = (props) => {
     <>
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
-          <HighlightOffIcon onClick={(e) => console.log(e)} />
+          <HighlightOffIcon onClick={handleRemoveKLight} />
         </ListItemIcon>
         <ListItemText primary="K-LIGHT" />
         {openKLight ? <ExpandLess /> : <ExpandMore />}
@@ -154,10 +154,10 @@ const KLight = (props) => {
 };
 
 KLight.propTypes = {
-  // onSetMediaSphere: PropTypes.func.isRequired,
-  // wSphere: PropTypes.object,
-  // dragObjects: PropTypes.array,
-  // onSetDragObjects: PropTypes.func,
+  onSetKLight: PropTypes.func.isRequired,
+  kLight: PropTypes.object,
+  dragObjects: PropTypes.array,
+  onSetDragObjects: PropTypes.func,
 };
 
 export default KLight;
