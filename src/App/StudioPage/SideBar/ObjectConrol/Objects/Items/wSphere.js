@@ -58,17 +58,17 @@ const WSphere = (props) => {
         </List>
         <List component="div" disablePadding>
           <ListItem>
-            <ListItemText primary="Scale:" />
+            <ListItemText primary="Scale" />
+            <Slider
+              className="scale-slider"
+              value={props.wSphere.scale[0]}
+              valueLabelDisplay="auto"
+              step={0.1}
+              min={0}
+              max={10}
+              onChange={handleScaleChange}
+            />
           </ListItem>
-          <Slider
-            // className={props.visible ? "" : "hidden-slider"}
-            value={props.wSphere.scale[0]}
-            valueLabelDisplay="auto"
-            step={0.2}
-            min={0}
-            max={3}
-            onChange={handleScaleChange}
-          />
         </List>
       </Collapse>
     </>
