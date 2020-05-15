@@ -47,6 +47,6 @@ export const resetLights = () => ({
 });
 
 export const bulkSetLightControls = config => ({
-  type: actionTypes.BULK_SET_ENVIRONMENT_CONTROLS,
+  type: actionTypes.BULK_SET_LIGHT_CONTROLS,
   config
 });
