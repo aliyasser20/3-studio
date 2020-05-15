@@ -187,5 +187,40 @@ export const materials = [
       "https://res.cloudinary.com/aajfinal/image/upload/v1589500851/appearances/picture%20assets/marble-three_pdvjlp.png",
     group: "ceramics",
     actionName: "marbleThree"
+  },
+  {
+    name: "fleshy granite",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500724/appearances/picture%20assets/fleshy-g_hbavra.png",
+    group: "ceramics",
+    actionName: "fleshyGranite"
+  },
+  {
+    name: "polished granite",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500725/appearances/picture%20assets/polished-g_kkiyop.png",
+    group: "ceramics",
+    actionName: "polishedGranite"
+  },
+  {
+    name: "wood 1",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500731/appearances/picture%20assets/wood-1_hlq8sd.png",
+    group: "woods",
+    actionName: "woodOne"
+  },
+  {
+    name: "wood flooring 1",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500730/appearances/picture%20assets/wood-2_xm5b81.png",
+    group: "woods",
+    actionName: "woodFlooringOne"
+  },
+  {
+    name: "wood flooring 2",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500730/appearances/picture%20assets/wood-3_hdwhdo.png",
+    group: "woods",
+    actionName: "woodFlooringTwo"
   }
 ];
