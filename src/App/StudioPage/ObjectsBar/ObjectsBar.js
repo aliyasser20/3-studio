@@ -17,10 +17,10 @@ const ObjectsBar = (props) => {
     const roundRadius = Math.ceil(props.boxRadius);
     let vol;
 
-    if (roundRadius > 10 && roundRadius < 100) {
+    if (roundRadius > 50) {
       vol = (4 * Math.PI * roundRadius * 2) / 100;
-    } else if (roundRadius > 100) {
-      vol = (4 * Math.PI * roundRadius * 2) / 1000;
+    } else {
+      vol = 4 * Math.PI * roundRadius * 2;
     }
 
     props.onSetMediaSphere({
@@ -28,6 +28,9 @@ const ObjectsBar = (props) => {
       color: "00CCAA",
       scale: [1, 1, 1],
       position: { x: 0, y: 0, z: 0 },
+      rotationX: [false, "up"],
+      rotationY: [false, "down"],
+      rotationZ: false,
     });
   };
   return (

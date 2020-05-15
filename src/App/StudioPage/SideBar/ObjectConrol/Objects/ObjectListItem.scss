@@ -1,8 +1,7 @@
 .object-list {
-
+  font-size: 1em;
   width: 100%;
   background-color: inherit;
-
   .MuiSvgIcon-root{
     fill: #FFF;
     transition: 0.3s;
@@ -10,7 +9,7 @@
       transform:scale(1.2)
     }
   }
-
+  
   .scale-slider {
     margin-left:15px;
     width:90%;
