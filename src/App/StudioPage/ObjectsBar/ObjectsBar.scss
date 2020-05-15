@@ -11,7 +11,7 @@
     padding-left: 2em;
     grid-auto-columns: max-content;
 
-    .material {
+    .object {
       height: 90px;
       width: 90px;
       display: grid;
@@ -21,6 +21,11 @@
       text-align: center;
       border-radius: 45px;
       box-shadow: 0 0 4px rgba($color: #000000, $alpha: 0.4);
+      transition: 0.3s;
+      &:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+      }
     }
 
     .sphere {
@@ -30,8 +35,11 @@
       background-size: contain !important;
     }
 
-    .gold {
-      background-color: gold;
+    .klight {
+      background: url("/assets/w-sphere.png") !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      background-size: contain !important;
     }
 
     .purple {

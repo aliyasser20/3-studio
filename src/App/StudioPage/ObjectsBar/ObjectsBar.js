@@ -33,6 +33,25 @@ const ObjectsBar = (props) => {
       rotateZ: false,
     });
   };
+
+  handleKeyLightGrab = () => {
+    const radius = Math.ceil(props.boxRadius) / 2;
+    let vol;
+    if (radius > 50) {
+      vol = (4 * Math.PI * radius * 2) / 100;
+    } else {
+      vol = 4 * Math.PI * radius * 2;
+    }
+
+    props.onSetMediaKeyLight({
+      args: [radius, vol, vol],
+      color: "fff",
+      brightness: 1,
+      scale: [1, 1, 1],
+      rotate: { x: false, y: false, z: false },
+      orbit: { x: false, y: false, z: false },
+    });
+  };
   return (
     <ThemeProvider theme={theme}>
       <div className="objects-bar">
@@ -44,9 +63,20 @@ const ObjectsBar = (props) => {
               e.dataTransfer.dropEffect = "link";
               handleWsphereGrab();
             }}
-            className="material sphere"
+            className="object sphere"
           >
             W-SPHERE
+          </div>
+          <div
+            id="Key-Light"
+            draggable
+            onDragEnd={(e) => {
+              e.dataTransfer.dropEffect = "link";
+              handleKeyLightGrab();
+            }}
+            className="object klight"
+          >
+            K-LIGHT
           </div>
         </Paper>
       </div>
