@@ -43,6 +43,7 @@ export const TOGGLE_LOCK = "TOGGLE_LOCK";
 export const TOGGLE_BOUNDING_BOX = "TOGGLE_BOUNDING_BOX";
 export const TOGGLE_AXIS = "TOGGLE_AXIS";
 export const TOGGLE_AUTOROTATE = "TOGGLE_AUTOROTATE";
+export const RESET_EXTRA_CONTROLS = "RESET_EXTRA_CONTROLS";
 //
 
 // Material Controls

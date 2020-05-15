@@ -35,7 +35,8 @@ export {
   toggleAutorotate,
   toggleAxis,
   toggleBoundingBox,
-  toggleLock
+  toggleLock,
+  resetExtraControls
 } from "./extraControls";
 
 export { setSelectedMaterial } from "./appearanceControls";
