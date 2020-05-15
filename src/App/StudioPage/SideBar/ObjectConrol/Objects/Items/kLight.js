@@ -28,10 +28,10 @@ const KLight = (props) => {
     setOpenKLight(false);
   };
 
-  // const handleColorSet = (color) => {
-  //   const sphereArgs = { ...props.wSphere, color };
-  //   props.onSetKLight(sphereArgs);
-  // };
+  const handleColorSet = (color) => {
+    const kLightColor = { ...props.kLight, color };
+    props.onSetKLight(kLightColor);
+  };
 
   // const handleScaleChange = (e, newValue) => {
   //   const currentScale = [newValue, newValue, newValue];
@@ -65,8 +65,8 @@ const KLight = (props) => {
         {/* <ListItem button onClick={() => setRotations(!rotations)}>
           <ListItemText primary="Rotation Options" />
           {rotations ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={rotations} timeaout="auto" unmountOnExit>
+        </ListItem> */}
+        {/* <Collapse in={rotations} timeaout="auto" unmountOnExit>
           <List component="div" className="details-section" disablePadding>
             <ListItem>
               <ListItemIcon>
@@ -121,20 +121,20 @@ const KLight = (props) => {
               <ListItemText primary="Z-rotation" />
             </ListItem>
           </List>
-        </Collapse>
+        </Collapse> */}
         <List component="div" disablePadding>
           <ListItem>
             <ListItemIcon>
               <ColorPickerPopover
                 visible
-                color={props.wSphere.color}
+                color={props.kLight.color}
                 setColor={handleColorSet}
               />
             </ListItemIcon>
             <ListItemText primary="Color" />
           </ListItem>
         </List>
-        <List component="div" disablePadding>
+        {/* <List component="div" disablePadding>
           <ListItem>
             <ListItemText primary="Scale" />
             <Slider
