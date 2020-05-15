@@ -4,9 +4,9 @@ import { useFrame } from "react-three-fiber";
 const WSphere = (props) => {
   const wSphere = useRef();
   useEffect(() => {
-    wSphere.current &&
-      !props.dragObjects.includes(wSphere.current) &&
-      props.setDrag(wSphere.current);
+    const dragObjs = [...props.dragObjects];
+
+    wSphere.current && props.setDrag([...dragObjs, wSphere.current]);
   }, []);
   useFrame(({ gl, scene, camera }) => {
     gl.render(scene, camera);

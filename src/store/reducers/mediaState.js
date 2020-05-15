@@ -51,7 +51,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_DRAG_OBJECTS:
       return {
         ...state,
-        dragObjects: [...state.dragObjects, action.dragObjects]
+        dragObjects: [...action.dragObjects]
       };
     case actionTypes.RESET_MEDIA_STATE:
       return {

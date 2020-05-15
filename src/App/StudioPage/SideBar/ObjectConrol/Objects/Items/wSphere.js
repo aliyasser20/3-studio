@@ -22,9 +22,9 @@ const WSphere = (props) => {
   const handleRemoveSphere = () => {
     const currentDragObjects = [...props.dragObjects];
     console.log(currentDragObjects);
-    const filterOut = currentDragObjects.filter((obj) => obj.name !== "w-sphere");
-    console.log(props.onSetDragObjects);
-    // props.onSetMediaSphere(null);
+    const removed = currentDragObjects.filter((obj) => obj.name !== "w-sphere");
+    props.onSetDragObjects(removed);
+    props.onSetMediaSphere(null);
     setOpenWSphere(false);
   };
 
