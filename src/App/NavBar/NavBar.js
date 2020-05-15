@@ -20,7 +20,7 @@ import * as actions from "../../store/actions/index";
 
 import "./NavBar.scss";
 
-const NavBar = (props) => {
+const NavBar = props => {
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   let username;
@@ -53,7 +53,7 @@ const NavBar = (props) => {
     props.onModeSelect("EDIT");
     props.onResetMediaState();
     props.onResetMediaControls();
-  }
+  };
 
   return (
     <ThemeProvider theme={themeCreator(grey[900])}>
@@ -66,7 +66,10 @@ const NavBar = (props) => {
                   <Typography variant="h5">
                     <div className="text-color-grad">
                       <Box onClick={() => handleLogoClick()} fontWeight="700">
-                        Final Project
+                        <div className="app-logo">
+                          <div className="circle">3</div>
+                          <div className="studio">Studio</div>
+                        </div>
                       </Box>
                     </div>
                   </Typography>
@@ -87,8 +90,8 @@ NavBar.propTypes = {
   onResetMediaControls: PropTypes.func.isRequired
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onModeSelect: (mode) => dispatch(actions.modeSelect(mode)),
+const mapDispatchToProps = dispatch => ({
+  onModeSelect: mode => dispatch(actions.modeSelect(mode)),
   onResetMediaState: () => dispatch(actions.resetMediaState()),
   onResetMediaControls: () => dispatch(actions.resetMediaControls())
 });

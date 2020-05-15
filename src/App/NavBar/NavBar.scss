@@ -24,4 +24,47 @@
     padding-left: 0;
     padding-right: 0;
   }
+
+  .app-logo {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    grid-gap: 0.4em;
+    font-family: "Audiowide", cursive;
+    justify-content: center;
+    align-items: center;
+
+    .studio {
+      font-size: 22px;
+      text-shadow: 0 0 6px rgba($color: #000000, $alpha: 1);
+    }
+
+    .circle {
+      --gradient-top-lightest: hsl(
+        var(--top-first),
+        var(--top-second),
+        calc(var(--top-third) + 5%)
+      );
+
+      --gradient-bottom-darkest: hsl(
+        var(--bottom-first),
+        var(--bottom-second),
+        calc(var(--bottom-third) - var(--darkness) - 12%)
+      );
+
+      background: linear-gradient(
+        -135deg,
+        var(--gradient-top-lightest),
+        var(--gradient-bottom-darkest)
+      );
+      width: 38px;
+      height: 38px;
+      border-radius: 25px;
+      display: grid;
+      align-content: center;
+      justify-content: center;
+      font-size: 27px;
+      padding-left: 3px;
+      box-shadow: 0 0 6px rgba($color: #000000, $alpha: 1);
+    }
+  }
 }
