@@ -84,7 +84,7 @@ const materialLibrary = () => {
     colorMap: true,
     colorMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589400957/appearances/metals/Scuffed-Aluminum-PBR/color_lbgnuj.png",
-    color: "#222222",
+    color: "#CeCeCe",
     roughnessMetalnessMap: true,
     roughnessMetalnessMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589400967/appearances/metals/Scuffed-Aluminum-PBR/roughness-metalness_w9oi2h.png",
@@ -390,7 +390,7 @@ const materialLibrary = () => {
   });
   // ?
 
-  // fabric ?
+  // ? Fabrics
   materials.fleece = createMaterial({
     name: "fleece",
     group: "fabric",

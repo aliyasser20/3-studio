@@ -278,5 +278,33 @@ export const materials = [
       "https://res.cloudinary.com/aajfinal/image/upload/v1589500346/appearances/picture%20assets/bricks_imyxx3.png",
     group: "stones",
     actionName: "bricks"
+  },
+  {
+    name: "scuffed",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589507684/appearances/picture%20assets/scuffedMetal_1_i5hldr.png",
+    group: "metals",
+    actionName: "scuffedAluminumPBR"
+  },
+  {
+    name: "leather",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589507679/appearances/picture%20assets/leather_ovzwuk.png",
+    group: "fabrics",
+    actionName: "leather"
+  },
+  {
+    name: "fleece",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589507677/appearances/picture%20assets/fleece_vpjvy1.png",
+    group: "fabrics",
+    actionName: "fleece"
+  },
+  {
+    name: "medieval",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589507700/appearances/picture%20assets/wallMedevil_fan3c7.png",
+    group: "stones",
+    actionName: "wallMedieval"
   }
 ];
