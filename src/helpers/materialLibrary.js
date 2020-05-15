@@ -432,6 +432,43 @@ const materialLibrary = () => {
     displacementScale: 0.3
   });
   // ?
+
+  // ? Plastics
+  // Basic
+  const BASICPLASTICS = {
+    grey: "#1e1d19",
+    green: "#008000",
+    lightBlue: "#03a9f4",
+    lightPurple: "#673ab7",
+    rose: "#AE2321",
+    blue: "#0000ff",
+    red: "#ff0000",
+    purple: "#350982",
+    hotPink: "#800080",
+    yellow: "#6e3d01",
+    orange: "#511500"
+  };
+
+  // eslint-disable-next-line
+  for (const plastic in BASICPLASTICS) {
+    // Basic polished
+    materials[`${plastic}ShinyPlastic`] = createMaterial({
+      name: `${plastic}-shiny-plastic`,
+      group: "plastics",
+      roughness: 0.01,
+      color: BASICPLASTICS[plastic]
+    });
+
+    // Basic rough
+    materials[`${plastic}RoughPlastic`] = createMaterial({
+      name: `${plastic}-rough-plastic`,
+      group: "plastics",
+      roughness: 0.3,
+      color: BASICPLASTICS[plastic]
+    });
+  }
+  // ?
+
   return materials;
 };
 
