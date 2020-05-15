@@ -385,7 +385,7 @@ const materialLibrary = () => {
   // ?
 
   // fabric ?
-  materials.bricks = createMaterial({
+  materials.fleece = createMaterial({
     name: "fleece",
     group: "fabric",
     colorMap: true,
