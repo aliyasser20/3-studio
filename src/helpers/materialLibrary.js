@@ -12,7 +12,7 @@ const materialLibrary = () => {
   };
 
   // eslint-disable-next-line
-    for (const color in DEFAULTCOLORS) {
+  for (const color in DEFAULTCOLORS) {
     materials[`${color}Default`] = createMaterial({
       name: `${color}Default`,
       group: "defaults",
@@ -307,6 +307,28 @@ const materialLibrary = () => {
       "https://res.cloudinary.com/aajfinal/image/upload/v1589401337/appearances/stones/Bricks/displacement_orxwde.jpg",
     displacementScale: 0.2
   });
+
+  materials.wallMedieval = createMaterial({
+    name: "wallMedieval",
+    group: "stones",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500098/appearances/stones/WallMedieval/color_cyzszq.jpg",
+    color: "#171717",
+    ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500109/appearances/stones/WallMedieval/ao_o9xmqa.jpg",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500119/appearances/stones/WallMedieval/normal_dyv11c.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500129/appearances/stones/WallMedieval/roughness-metalness_vgudt7.jpg",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500104/appearances/stones/WallMedieval/displacement_psnz9e.jpg",
+    displacementScale: 0.2
+  });
   // ?
 
   // ? Tiles
@@ -366,7 +388,50 @@ const materialLibrary = () => {
     displacementMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589407074/appearances/tiles/tilesRectangularMirrorGray/displacement_qe1uj6.jpg"
   });
+  // ?
 
+  // fabric ?
+  materials.fleece = createMaterial({
+    name: "fleece",
+    group: "fabric",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589502764/appearances/fabric/Fleece/color_lyuqix.jpg",
+    color: "#171717",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589502741/appearances/fabric/Fleece/normal_evwarj.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589503024/appearances/fabric/Fleece/roughness-metalness_c4kftv.jpg",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589502793/appearances/fabric/Fleece/displacement_jktllc.tiff",
+    displacementScale: 0.2
+  });
+
+  materials.leather = createMaterial({
+    name: "leather",
+    group: "fabric",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589503475/appearances/fabric/Leather/color_cpg5od.jpg",
+    color: "#191919",
+    ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589503448/appearances/fabric/Leather/ao_ixcdcy.jpg",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589503431/appearances/fabric/Leather/normal_bkb1ye.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589503506/appearances/fabric/Leather/roughness-metalness_c9ev2e.jpg",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589503491/appearances/fabric/Leather/displacement_l7rcfa.jpg",
+    displacementScale: 0.3
+  });
+  // ?
   return materials;
 };
 

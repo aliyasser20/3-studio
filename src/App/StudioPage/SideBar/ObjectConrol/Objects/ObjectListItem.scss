@@ -1,0 +1,13 @@
+.object-list {
+
+  width: 100%;
+  background-color: inherit;
+
+  .MuiSvgIcon-root{
+    fill: #FFF;
+    transition: 0.3s;
+    &:hover {
+      transform:scale(1.2)
+    }
+  }
+}

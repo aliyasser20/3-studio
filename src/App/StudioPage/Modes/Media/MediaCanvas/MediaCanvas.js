@@ -14,11 +14,14 @@ import Controls from "../../Edit/Controls/Controls";
 import "./MediaCanvas.scss";
 import Loading from "../OldCanvas/Loading/Loading";
 import LoaderModel from "../../../LoaderModal/LoaderModel";
+import WSphere from "../Models/WSphere";
+import TestingDrag from "../Models/TestingDrag";
+import DControls from "../DragControls/DControls";
+import GroundPlane from "../OldCanvas/GroundPlane/GroundPlane";
 
 const MediaCanvas = (props) => {
   const [loading, setLoading] = useState(true);
   const { mediaFov, mediaFar, mediaNear, mediaBox, mediaSizeBounding } = props;
-  console.log(props.modelSettings);
 
   useEffect(() => {
     !props.mediaFov && props.onSetMediaFov(props.modelSettings.fov);
@@ -63,13 +66,32 @@ const MediaCanvas = (props) => {
           bgEnvironment={props.mediaControls.mediaEnvBackground}
           bgSolid={props.mediaControls.mediaSolidBackground}
           bgColor={props.solidBgColor}
+          mapEnvironment={props.mediaMapEnv}
           environmentPath={props.currentEnvOption.hdrPath}
         />
-        <Controls />
-        <UserModel model={props.mediaModel} />
+        {!props.mediaControls.mediaLock && <Controls />}
+        <DControls dragObjects={props.mediaState.dragObjects} />
+        <UserModel
+          model={props.mediaModel}
+          toggleMediaLock={props.onToggleMediaLock}
+          setDrag={props.onSetMediaDragObjects}
+          dragObjects={props.mediaState.dragObjects}
+        />
         {props.mediaControls.sphere && (
-          <Loading sphereArgs={props.mediaControls.sphere.args} />
+          <WSphere
+            sphere={props.mediaControls.sphere}
+            toggleMediaLock={props.onToggleMediaLock}
+            setDrag={props.onSetMediaDragObjects}
+            dragObjects={props.mediaState.dragObjects}
+          />
         )}
+
+        <GroundPlane />
+        {/* <TestingDrag
+          toggleMediaLock={props.onToggleMediaLock}
+          setDrag={props.onSetMediaDragObjects}
+          dragObjects={props.mediaState.dragObjects}
+        /> */}
       </Canvas>
     </>
   ) : (
@@ -91,6 +113,8 @@ MediaCanvas.propTypes = {
   mediaSizeBounding: PropTypes.object,
   mediaControls: PropTypes.object.isRequired,
   currentEnvOption: PropTypes.object.isRequired,
+  solidBgColor: PropTypes.string.isRequired,
+  mediaMapEnv: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -104,6 +128,8 @@ const mapStateToProps = (state) => ({
   mediaControls: state.mediaControls,
   currentEnvOption: state.environmentControls.currentEnvironmentOption,
   solidBgColor: state.mediaState.mediaSolidBackground,
+  mediaMapEnv: state.mediaControls.mediaMapEnvironment,
+  mediaState: state.mediaState,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -113,6 +139,9 @@ const mapDispatchToProps = (dispatch) => ({
   onSetMediaNear: (near) => dispatch(actions.setMediaNear(near)),
   onSetMediaSizeBounding: (sizeBounding) =>
     dispatch(actions.setMediaSizeBounding(sizeBounding)),
+  onToggleMediaLock: () => dispatch(actions.toggleMediaLock()),
+  onSetMediaDragObjects: (dragObject) =>
+    dispatch(actions.setMediaDragObjects(dragObject)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MediaCanvas);

@@ -41,6 +41,9 @@ const MediaTopNav = (props) => {
   };
   const handleClose = () => {
     setOpen(false);
+    const preview = document.querySelector("#preview-video");
+    const vid = document.querySelector("video");
+    vid && preview.removeChild(vid);
   };
   const snackbarSet = (type, message) => {
     setSeverity(type);
