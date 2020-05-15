@@ -45,11 +45,13 @@ const createModel = (
       // ? Stones
       // o.material = materialLibrary().bricks;
       // o.material = materialLibrary().wallMedieval;
+      // o.material = materialLibrary().cobbleStoneCurved;
       // ? Tiles
       // o.material = materialLibrary().tilesOne;
       // o.material = materialLibrary().tilesTwo;
       // o.material = materialLibrary().tilesThree;
       // o.material = materialLibrary().tilesFour;
+      // o.material = materialLibrary().tilesFive;
       // ? Fabrics
       // o.material = materialLibrary().fleece;
       // o.material = materialLibrary().leather;
@@ -60,8 +62,13 @@ const createModel = (
       // ? Plastics
       // o.material = materialLibrary().redRoughPlastic;
       // o.material = materialLibrary().scuffedPlastic;
+      // o.material = materialLibrary().gridPatternPlastic;
       // ? Synthetics
       // o.material = materialLibrary().rubber;
+      // o.material = materialLibrary().foam;
+      // ? Other
+      // o.material = materialLibrary().solarPanel;
+      // o.material = materialLibrary().mixedMoss;
     }
   });
   // ?

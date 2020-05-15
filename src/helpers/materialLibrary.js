@@ -347,6 +347,28 @@ const materialLibrary = () => {
       "https://res.cloudinary.com/aajfinal/image/upload/v1589500104/appearances/stones/WallMedieval/displacement_psnz9e.jpg",
     displacementScale: 0.2
   });
+
+  materials.cobbleStoneCurved = createMaterial({
+    name: "cobbleStoneCurved",
+    group: "stones",
+    colorMap: true,
+    color: "#f5f5dc",
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589522818/appearances/stones/cobblestonecurved/cobblestone-curved_2_albedo_k1g5tc.png",
+    ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589522810/appearances/stones/cobblestonecurved/cobblestone-curved_2_ao_uvkjix.png",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589522862/appearances/stones/cobblestonecurved/cobblestone-curved_2_normal-dx_yjftu6.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589522810/appearances/stones/cobblestonecurved/cobblestone-curved_2_roughness_qpsrfp.png",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589522820/appearances/stones/cobblestonecurved/cobblestone-curved_2_height_tyrfcj.png",
+    displacementScale: 0.2
+  });
   // ?
 
   // ? Tiles
@@ -411,7 +433,6 @@ const materialLibrary = () => {
     name: "tiles-four",
     group: "tiles",
     colorMap: true,
-    // color: "#212121",
     colorMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589518753/appearances/tiles/greenTile/green-ceramic-tiles_basecolor_dgn6dj.png",
     normalMap: true,
@@ -424,6 +445,24 @@ const materialLibrary = () => {
     ambientOcclusionMap: true,
     ambientOcclusionMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589518746/appearances/tiles/greenTile/green-ceramic-tiles_AO_e4qdqo.png"
+  });
+
+  materials.tilesFive = createMaterial({
+    name: "tiles-five",
+    group: "tiles",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589521564/appearances/tiles/tilesnumber5/Tiles032_2K_Color_ndjo0i.jpg",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589521565/appearances/tiles/tilesnumber5/Tiles032_2K_Normal_gunfkc.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589521564/appearances/tiles/tilesnumber5/Tiles032_2K_Roughness_eskori.jpg",
+    roughness: 0.1,
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589521563/appearances/tiles/tilesnumber5/Tiles032_2K_Displacement_luhcow.jpg"
   });
   // ?
 
@@ -597,6 +636,20 @@ const materialLibrary = () => {
     roughnessMetalnessMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589517606/appearances/plastics/scuffed/scuffed-plastic-rough_j7h2wh.png"
   });
+
+  materials.gridPatternPlastic = createMaterial({
+    name: "grid-pattern-plastic",
+    group: "plastics",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589520842/appearances/plastics/gridpattern/plasticpattern1-albedo_qaumfg.png",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589520845/appearances/plastics/gridpattern/plasticpattern1-normal2b_fnsjks.png",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589520849/appearances/plastics/gridpattern/plasticpattern1-roughness2_anjdjl.png"
+  });
   // ?
 
   // ? Synthetics
@@ -613,6 +666,64 @@ const materialLibrary = () => {
     roughnessMetalnessMap: true,
     roughnessMetalnessMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589518257/appearances/synthetics/rubber/synth-rubber-roughness_ktg2bd.png"
+  });
+
+  materials.foam = createMaterial({
+    name: "foam",
+    group: "synthetics",
+    colorMap: true,
+    color: "#212121",
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589520539/appearances/synthetics/foam/foam-grip1-albedo_fgw0qx.png",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589520541/appearances/synthetics/foam/foam-grip1-normal-ogl_q1ckus.png",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589520624/appearances/synthetics/foam/foam-grip1-roughness_ylfwhy.png",
+    ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589520540/appearances/synthetics/foam/foam-grip1-ao_qhfbdv.png"
+  });
+  // ?
+
+  // ? Other
+  materials.solarPanel = createMaterial({
+    name: "solar-panel",
+    group: "other",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589520300/appearances/other/solarpanel/SolarPanel003_2K_Color_aqr68z.jpg",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589520301/appearances/other/solarpanel/SolarPanel003_2K_Normal_ioud1m.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589520296/appearances/other/solarpanel/SolarPanel003_2K_Roughness_u0jcdl.jpg",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589520297/appearances/other/solarpanel/SolarPanel003_2K_Displacement_dfemoc.jpg"
+  });
+
+  materials.mixedMoss = createMaterial({
+    name: "mixed-moss",
+    group: "other",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589521116/appearances/other/mixedMoss/mixedmoss-albedo2_ybjika.png",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589521114/appearances/other/mixedMoss/mixedmoss-normal2_tr1qgr.png",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589521115/appearances/other/mixedMoss/mixedmoss-roughness_ykwfth.png",
+    ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589521110/appearances/other/mixedMoss/mixedmoss-ao2_sg9fie.png",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589521239/appearances/other/mixedMoss/mixedmoss-height_gcfph5.png",
+    displacementScale: 2
   });
   // ?
 

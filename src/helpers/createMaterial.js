@@ -98,6 +98,8 @@ const createMaterial = config => {
       return new THREE.MeshStandardMaterial(textureConfiguration);
     case "ceramics":
       return new THREE.MeshPhysicalMaterial(textureConfiguration);
+    case "metallic-paint":
+      return new THREE.MeshPhysicalMaterial(textureConfiguration);
     case "woods":
       return new THREE.MeshStandardMaterial(textureConfiguration);
     case "stones":
