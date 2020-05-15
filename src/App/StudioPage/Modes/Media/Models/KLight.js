@@ -37,7 +37,7 @@ const KLight = (props) => {
         name="k-light"
         userData={{ object: "light-object" }}
         castShadow
-        scale={[0.1, 0.1, 0.1]}
+        scale={props.kLight.scale}
         position={[-props.kLight.initPosition, 0, 0]}
         onPointerOver={(e) => {
           props.toggleMediaLock();
@@ -59,12 +59,11 @@ const KLight = (props) => {
 
       <pointLight
         ref={pointLight}
-        scale={props.kLight.spread}
         color={`#${props.kLight.color}`}
         intensity={props.kLight.brightness * Math.PI}
-        power={100}
         position={lightPosition}
         lookAt={[0, 0, 0]}
+        power={props.kLight.power * 4 * Math.PI}
         penumbra={1}
         castShadow
       />

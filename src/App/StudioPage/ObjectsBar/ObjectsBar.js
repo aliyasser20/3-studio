@@ -51,7 +51,7 @@ const ObjectsBar = (props) => {
       brightness: 0.1,
       scale: [0.1, 0.1, 0.1],
       initPosition,
-      spread: [radius / 10, radius / 10, radius / 10],
+      power: 0.1,
       rotate: { x: false, y: false, z: false },
       orbit: { x: false, y: false, z: false },
     });

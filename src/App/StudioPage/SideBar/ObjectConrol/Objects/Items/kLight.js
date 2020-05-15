@@ -38,7 +38,11 @@ const KLight = (props) => {
     const newScale = { ...props.kLight, scale: [...currentScale] };
     props.onSetKLight(newScale);
   };
-
+  const handlePowerChange = (e, newValue) => {
+    const power = newValue ;
+    const newSpread = { ...props.kLight, power };
+    props.onSetKLight(newSpread);
+  };
   // const handleXrotation = () => {
   //   const toggleRotateX = { ...props.wSphere, rotateX: !props.wSphere.rotateX };
   //   props.onSetMediaSphere(toggleRotateX);
@@ -145,6 +149,20 @@ const KLight = (props) => {
               min={0}
               max={1}
               onChange={handleScaleChange}
+            />
+          </ListItem>
+        </List>
+        <List component="div" disablePadding>
+          <ListItem>
+            <ListItemText primary="Power" />
+            <Slider
+              className="scale-slider"
+              value={props.kLight.power}
+              valueLabelDisplay="auto"
+              step={0.01}
+              min={0}
+              max={3}
+              onChange={handlePowerChange}
             />
           </ListItem>
         </List>

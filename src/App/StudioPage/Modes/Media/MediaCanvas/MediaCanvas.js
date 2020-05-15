@@ -101,7 +101,7 @@ const MediaCanvas = (props) => {
             dragObjects={props.mediaState.dragObjects}
           />
         )}
-        {/* <GroundPlane /> */}
+        <GroundPlane />
       </Canvas>
     </>
   ) : (
