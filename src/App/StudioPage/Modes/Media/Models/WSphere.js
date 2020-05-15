@@ -17,8 +17,9 @@ const WSphere = (props) => {
   return (
     <mesh
       ref={wSphere}
+      name="w-sphere"
       visible
-      userData={{ wSphere: "wireframe sphere" }}
+      userData={{ name: "w-sphere" }}
       onPointerOver={(e) => props.toggleMediaLock()}
       onPointerOut={(e) => props.toggleMediaLock()}
       castShadow

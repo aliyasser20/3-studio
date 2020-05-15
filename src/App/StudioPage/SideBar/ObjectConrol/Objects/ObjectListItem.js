@@ -55,7 +55,7 @@ ObjectListItem.propTypes = {
   wSphere: PropTypes.object,
   onSetMediaSphere: PropTypes.func.isRequired,
   dragObjects: PropTypes.array,
-  onSetDragObjects: PropTypes.func,
+  onSetMediaDragObjects: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
