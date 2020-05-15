@@ -383,5 +383,82 @@ export const materials = [
       "https://res.cloudinary.com/aajfinal/image/upload/v1589512092/appearances/picture%20assets/hotPinkShinyP_lfwufy.png",
     group: "plastics",
     actionName: "hotPinkShinyPlastic"
+  },
+  {
+    name: "orange rough",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589513191/appearances/picture%20assets/orangeRoughPlastic_hlbudp.png",
+    group: "plastics",
+    actionName: "orangeRoughPlastic"
+  },
+  {
+    name: "yellow rough",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589513191/appearances/picture%20assets/yellowRoughPlastic_tnjdwx.png",
+    group: "plastics",
+    actionName: "yellowRoughPlastic"
+  },
+  {
+    name: "green rough",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589513190/appearances/picture%20assets/greenRoughPlastic_jhexcg.png",
+    group: "plastics",
+    actionName: "greenRoughPlastic"
+  },
+  {
+    name: "red rough",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589513191/appearances/picture%20assets/redRoughPlastic_qjfwjt.png",
+    group: "plastics",
+    actionName: "redRoughPlastic"
+  },
+  {
+    name: "grey rough",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589513190/appearances/picture%20assets/greyRoughPlastic_vgounp.png",
+    group: "plastics",
+    actionName: "greyRoughPlastic"
+  },
+  {
+    name: "light blue rough",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589513191/appearances/picture%20assets/lightBlueRoughPlastic_rxs59x.png",
+    group: "plastics",
+    actionName: "lightBlueRoughPlastic"
+  },
+  {
+    name: "blue rough",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589513190/appearances/picture%20assets/blueRoughPlastic_vvh0xp.png",
+    group: "plastics",
+    actionName: "blueRoughPlastic"
+  },
+  {
+    name: "rose rough",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589513192/appearances/picture%20assets/roseRoughPlastic_uduunt.png",
+    group: "plastics",
+    actionName: "roseRoughPlastic"
+  },
+  {
+    name: "light purple rough",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589513189/appearances/picture%20assets/lightPurpleRoughPlastic_tnhkot.png",
+    group: "plastics",
+    actionName: "lightPurpleRoughPlastic"
+  },
+  {
+    name: "purple rough",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589513191/appearances/picture%20assets/purpleRoughPlastic_d9t70e.png",
+    group: "plastics",
+    actionName: "purpleRoughPlastic"
+  },
+  {
+    name: "hot pink rough",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589513190/appearances/picture%20assets/HotPinkRoughPlastic_h1pcso.png",
+    group: "plastics",
+    actionName: "hotPinkRoughPlastic"
   }
 ];

@@ -52,7 +52,7 @@ const createModel = (
       // o.material = materialLibrary().fleece;
       // o.material = materialLibrary().leather;
       // ? Plastics
-      o.material = materialLibrary().orangeShinyPlastic;
+      o.material = materialLibrary().redRoughPlastic;
     }
   });
   // ?
