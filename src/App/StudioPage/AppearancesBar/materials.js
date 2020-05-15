@@ -255,7 +255,7 @@ export const materials = [
     name: "grid",
     imgPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589500724/appearances/picture%20assets/metal_grid_g5hxrz.png",
-    group: "woods",
+    group: "metals",
     actionName: "metalGrid"
   },
   {
