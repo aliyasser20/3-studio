@@ -38,6 +38,22 @@ const ProfilePage = props => {
   const [nicknameField, setNicknameField] = useState(user.nickname);
   const [open, setOpen] = React.useState(false);
 
+  // ! Resets
+  // General resets
+  props.onModeSelect("EDIT");
+
+  // Media resets
+  props.onResetMediaState();
+  props.onResetMediaControls();
+
+  // Edit resets
+  props.onResetLights();
+  props.onResetEditState();
+  props.onSetCameraMode("PERSPECTIVE");
+  props.onResetEnvironmentControls();
+  props.onResetExtraControls();
+  // !
+
   const themes = availableThemes.map(theme => (
     <MenuItem key={theme.name} value={theme.name}>
       {theme.name}
@@ -225,7 +241,15 @@ const ProfilePage = props => {
 
 ProfilePage.propTypes = {
   currentTheme: PropTypes.string.isRequired,
-  onSetTheme: PropTypes.func.isRequired
+  onSetTheme: PropTypes.func.isRequired,
+  onModeSelect: PropTypes.func.isRequired,
+  onResetMediaState: PropTypes.func.isRequired,
+  onResetMediaControls: PropTypes.func.isRequired,
+  onResetEditState: PropTypes.func.isRequired,
+  onResetLights: PropTypes.func.isRequired,
+  onSetCameraMode: PropTypes.func.isRequired,
+  onResetEnvironmentControls: PropTypes.func.isRequired,
+  onResetExtraControls: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -233,7 +257,16 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSetTheme: theme => dispatch(actions.setTheme(theme))
+  onSetTheme: theme => dispatch(actions.setTheme(theme)),
+  onModeSelect: mode => dispatch(actions.modeSelect(mode)),
+  onResetMediaState: () => dispatch(actions.resetMediaState()),
+  onResetMediaControls: () => dispatch(actions.resetMediaControls()),
+  onResetEditState: () => dispatch(actions.resetEditState()),
+  onResetLights: () => dispatch(actions.resetLights()),
+  onSetCameraMode: mode => dispatch(actions.setCameraMode(mode)),
+  onResetEnvironmentControls: () =>
+    dispatch(actions.resetEnvironmentControls()),
+  onResetExtraControls: () => dispatch(actions.resetExtraControls())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);

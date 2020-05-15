@@ -2,9 +2,9 @@ import * as actionTypes from "../actions/actionTypes";
 import { environmentOptions } from "./reducersHelpers/environmentControlsHelpers";
 
 const initialState = {
-  bgEnvironment: true,
-  bgSolid: false,
-  bgColor: "262326",
+  bgEnvironment: false,
+  bgSolid: true,
+  bgColor: "525252",
   mapEnvironment: true,
   environmentOptions,
   currentEnvironmentOption: {
@@ -44,6 +44,10 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         mapEnvironment: !state.mapEnvironment
+      };
+    case actionTypes.RESET_ENVIRONMENT_CONTROLS:
+      return {
+        ...initialState
       };
     default:
       return state;

@@ -8,6 +8,14 @@ const createMaterial = config => {
     textureConfiguration.color = config.color;
   }
 
+  if (config.emissive) {
+    textureConfiguration.emissive = config.emissive;
+  }
+
+  if (config.specular) {
+    textureConfiguration.specular = config.specular;
+  }
+
   if (config.colorMap) {
     textureConfiguration.map = new THREE.TextureLoader().load(
       config.colorMapPath
@@ -90,11 +98,15 @@ const createMaterial = config => {
       return new THREE.MeshStandardMaterial(textureConfiguration);
     case "ceramics":
       return new THREE.MeshPhysicalMaterial(textureConfiguration);
+    case "metallic-paint":
+      return new THREE.MeshPhysicalMaterial(textureConfiguration);
     case "woods":
       return new THREE.MeshStandardMaterial(textureConfiguration);
     case "stones":
       return new THREE.MeshStandardMaterial(textureConfiguration);
     case "tiles":
+      return new THREE.MeshStandardMaterial(textureConfiguration);
+    case "plastics":
       return new THREE.MeshStandardMaterial(textureConfiguration);
     default:
       return new THREE.MeshStandardMaterial(textureConfiguration);

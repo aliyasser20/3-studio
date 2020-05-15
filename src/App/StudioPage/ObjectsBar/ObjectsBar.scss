@@ -1,6 +1,6 @@
 .objects-bar {
   .custom-paper {
-    color:#fff;
+    color: #fff;
     background-color: #2f2f2f;
     height: 130px;
     width: 100%;
@@ -24,12 +24,10 @@
     }
 
     .sphere {
-      background-image:url('/assets/w-sphere.png');
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: center; 
-      background-size: contain;
-
+      background: url("/assets/w-sphere.png") !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      background-size: contain !important;
     }
 
     .gold {
