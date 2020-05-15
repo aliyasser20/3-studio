@@ -9,12 +9,27 @@ import NewProject from "./NewProject/NewProject";
 import Alert from "../UI/Alert/Alert";
 import Loader from "../UI/Loader/Loader";
 
+import * as actions from "../../store/actions/index";
+
 import "./Dashboard.scss";
 
 const DashboardPage = props => {
   const [snackBarOpen, setSnackBarOpen] = useState(false);
   const [snackBarStatus, setSnackBarStatus] = useState("");
   const [snackBarMessage, setSnackBarMessage] = useState("");
+
+  // ! Resets
+  // General resets
+  props.onModeSelect("EDIT");
+
+  // Media resets
+  props.onResetMediaState();
+  props.onResetMediaControls();
+
+  // Edit resets
+  props.onResetLights();
+  props.onResetEditState();
+  // !
 
   const handleSnackBarClose = () => {
     setSnackBarOpen(false);
@@ -81,7 +96,12 @@ const DashboardPage = props => {
 
 DashboardPage.propTypes = {
   allProjects: PropTypes.array,
-  projectsLoading: PropTypes.bool.isRequired
+  projectsLoading: PropTypes.bool.isRequired,
+  onModeSelect: PropTypes.func.isRequired,
+  onResetMediaState: PropTypes.func.isRequired,
+  onResetMediaControls: PropTypes.func.isRequired,
+  onResetEditState: PropTypes.func.isRequired,
+  onResetLights: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -89,4 +109,12 @@ const mapStateToProps = state => ({
   projectsLoading: state.projects.projectsLoading
 });
 
-export default connect(mapStateToProps, null)(DashboardPage);
+const mapDispatchToProps = dispatch => ({
+  onModeSelect: mode => dispatch(actions.modeSelect(mode)),
+  onResetMediaState: () => dispatch(actions.resetMediaState()),
+  onResetMediaControls: () => dispatch(actions.resetMediaControls()),
+  onResetEditState: () => dispatch(actions.resetEditState()),
+  onResetLights: () => dispatch(actions.resetLights())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

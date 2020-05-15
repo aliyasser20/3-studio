@@ -41,6 +41,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         box: action.box
       };
+    case actionTypes.RESET_EDIT_STATE:
+      return {
+        ...state,
+        model: null,
+        fov: 45,
+        far: 0,
+        near: 0,
+        sizeBounding: { x: 0, y: 0, z: 0 },
+        box: null
+      };
     default:
       return state;
   }
