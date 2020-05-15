@@ -28,6 +28,12 @@ const WSphere = (props) => {
     const sphereArgs = { ...props.wSphere, color };
     props.onSetMediaSphere(sphereArgs);
   };
+
+  const handleScaleChange = (e, newValue) => {
+    const currentScale = [newValue, newValue, newValue];
+    const newScale = { ...props.wSphere, scale: [...currentScale] };
+    props.onSetMediaSphere(newScale);
+  };
   return (
     <>
       <ListItem button onClick={handleClick}>
@@ -52,17 +58,17 @@ const WSphere = (props) => {
         </List>
         <List component="div" disablePadding>
           <ListItem>
-            <ListItemText primary="Scale" />
-            <Slider
-              // className={props.visible ? "" : "hidden-slider"}
-              value={1}
-              valueLabelDisplay="auto"
-              step={0.2}
-              min={0}
-              max={3}
-              // onChange={handleSliderChange}
-            />
+            <ListItemText primary="Scale:" />
           </ListItem>
+          <Slider
+            // className={props.visible ? "" : "hidden-slider"}
+            value={props.wSphere.scale[0]}
+            valueLabelDisplay="auto"
+            step={0.2}
+            min={0}
+            max={3}
+            onChange={handleScaleChange}
+          />
         </List>
       </Collapse>
     </>
