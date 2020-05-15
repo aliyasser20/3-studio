@@ -47,5 +47,12 @@ export const environmentOptions = [
       "https://res.cloudinary.com/aajfinal/raw/upload/v1589400036/environments/abandoned_parking_2k_uxz5zd.hdr",
     imgPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589400041/environments/abandoned_parking_2k_ckhqvp.jpg"
-  }
+  },
+  {
+    name: "abandoned parking",
+    hdrPath:
+      "https://res.cloudinary.com/aajfinal/raw/upload/v1589400036/environments/abandoned_parking_2k_uxz5zd.hdr",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589400041/environments/abandoned_parking_2k_ckhqvp.jpg"
+  },
 ];

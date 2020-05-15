@@ -360,6 +360,18 @@ const materialLibrary = () => {
     displacementMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589407074/appearances/tiles/tilesRectangularMirrorGray/displacement_qe1uj6.jpg"
   });
+  //
+
+  //start ????
+  materials.stars = createMaterial({
+    name: "stars",
+    group: "sky",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589508515/appearances/sky/starts/color_psiyus.jpg",
+  });
+  //
+
 
   return materials;
 };
