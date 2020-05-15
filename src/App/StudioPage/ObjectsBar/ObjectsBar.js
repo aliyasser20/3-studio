@@ -14,7 +14,9 @@ const ObjectsBar = (props) => {
 
   const handleWsphereGrab = () => {
     // console.log("box",props.boxRadius.geometry.boundingSphere.radius)
-    const roundRadius = Math.ceil(props.boxRadius);
+    const roundRadius = Math.ceil(
+      props.boxRadius.geometry.boundingSphere.radius
+    );
     let vol;
 
     if (roundRadius > 50) {
@@ -35,7 +37,8 @@ const ObjectsBar = (props) => {
   };
 
   const handleKeyLightGrab = () => {
-    const radius = Math.ceil(props.boxRadius) / 2;
+    const radius =
+      Math.ceil(props.boxRadius.geometry.boundingSphere.radius) / 2;
     let vol;
     if (radius > 50) {
       vol = (4 * Math.PI * radius * 2) / 100;
@@ -91,7 +94,7 @@ ObjectsBar.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  boxRadius: state.currentModel.box.geometry.boundingSphere.radius,
+  boxRadius: state.currentModel.box,
 });
 const mapDispatchToProps = (dispatch) => ({
   onSetMediaSphere: (sphere) => dispatch(actions.setMediaSphere(sphere)),

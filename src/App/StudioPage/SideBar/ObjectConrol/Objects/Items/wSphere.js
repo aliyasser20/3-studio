@@ -20,6 +20,7 @@ const WSphere = (props) => {
   };
 
   const handleRemoveSphere = () => {
+    
     props.onSetMediaSphere(null);
     setOpenWSphere(false);
   };
@@ -152,6 +153,8 @@ const WSphere = (props) => {
 WSphere.propTypes = {
   onSetMediaSphere: PropTypes.func.isRequired,
   wSphere: PropTypes.object,
+  dragObjects: PropTypes.array,
+  onSetDragObjects: PropTypes.func
 };
 
 export default WSphere;

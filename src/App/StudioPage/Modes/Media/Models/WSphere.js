@@ -10,9 +10,9 @@ const WSphere = (props) => {
   }, []);
   useFrame(({ gl, scene, camera }) => {
     gl.render(scene, camera);
-    if (props.sphere.rotateX) wSphere.current.rotation.x += 0.02;
-    if (props.sphere.rotateY) wSphere.current.rotation.y += 0.02;
-    if (props.sphere.rotateZ) wSphere.current.rotation.z += 0.02;
+    if (props.sphere.rotateX) wSphere.current.rotation.x += 0.009;
+    if (props.sphere.rotateY) wSphere.current.rotation.y += 0.009;
+    if (props.sphere.rotateZ) wSphere.current.rotation.z += 0.009;
   });
   return (
     <mesh

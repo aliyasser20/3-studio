@@ -43,6 +43,8 @@ const ObjectListItem = (props) => {
         <WSphere
           onSetMediaSphere={props.onSetMediaSphere}
           wSphere={props.wSphere}
+          dragObjects={props.dragObjects}
+          onSetDragObjects={props.onSetMediaDragObjects}
         />
       )}
     </List>
@@ -52,13 +54,18 @@ const ObjectListItem = (props) => {
 ObjectListItem.propTypes = {
   wSphere: PropTypes.object,
   onSetMediaSphere: PropTypes.func.isRequired,
+  dragObjects: PropTypes.array,
+  onSetDragObjects: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   wSphere: state.mediaControls.sphere,
+  dragObjects: state.mediaState.dragObjects,
 });
 const mapDispatchToState = (dispatch) => ({
   onSetMediaSphere: (arg) => dispatch(actions.setMediaSphere(arg)),
+  onSetMediaDragObjects: (dragObject) =>
+    dispatch(actions.setMediaDragObjects(dragObject)),
 });
 
 export default connect(mapStateToProps, mapDispatchToState)(ObjectListItem);

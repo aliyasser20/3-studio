@@ -56,13 +56,15 @@ const MediaCanvas = (props) => {
         onCreated={({ gl, scene }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
           gl.outputEncoding = THREE.sRGBEncoding;
+          gl.shadowMap.type = THREE.PCFSoftShadowMap;
+          gl.shadowMap.enabled = true;
           gl.gammaFactor = 2.2;
         }}
       >
         {camere}
-        {/* <ambientLight intensity={0.3} />
-        <hemisphereLight intensity={1} />
-        <directionalLight intensity={0.8 * Math.PI} position={[0.5, 0, 0.86]} /> */}
+        {/* <ambientLight intensity={0.1} />
+        <hemisphereLight intensity={0.1} /> */}
+        {/* <directionalLight intensity={0.1 * Math.PI} position={[0.5, 0, 0.86]} /> */}
         <Environment
           bgEnvironment={props.mediaControls.mediaEnvBackground}
           bgSolid={props.mediaControls.mediaSolidBackground}
@@ -87,14 +89,14 @@ const MediaCanvas = (props) => {
           />
         )}
         {props.mediaControls.keyLight && (
-          <KLight 
+          <KLight
             kLight={props.mediaControls.keyLight}
             toggleMediaLock={props.onToggleMediaLock}
             setDrag={props.onSetMediaDragObjects}
             dragObjects={props.mediaState.dragObjects}
           />
         )}
-
+        <GroundPlane />
       </Canvas>
     </>
   ) : (
@@ -133,7 +135,6 @@ const mapStateToProps = (state) => ({
   solidBgColor: state.mediaState.mediaSolidBackground,
   mediaMapEnv: state.mediaControls.mediaMapEnvironment,
   mediaState: state.mediaState,
-
 });
 
 const mapDispatchToProps = (dispatch) => ({

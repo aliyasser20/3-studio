@@ -10,6 +10,7 @@ const UserModel = (props) => {
     currentModel.current &&
       !props.dragObjects.includes(currentModel.current) &&
       props.setDrag(currentModel.current);
+    currentModel.current.children[0].castShadow = true;
   }, []);
   // useFrame(({ gl, scene, camera }) => {
   //   gl.render(scene, camera);
@@ -21,7 +22,7 @@ const UserModel = (props) => {
       object={model}
       ref={currentModel}
       dispose={null}
-      castshadow
+      castShadow
       onPointerOver={(e) => props.toggleMediaLock()}
       onPointerOut={(e) => props.toggleMediaLock()}
       rotation={[0, 0, 0]}
