@@ -3,7 +3,8 @@ export {
   setBackgroundEnvironment,
   toggleMapEnvironment,
   setBackgroundColor,
-  setEnvironmentOption
+  setEnvironmentOption,
+  resetEnvironmentControls
 } from "./environmentControls";
 
 export {
@@ -24,7 +25,8 @@ export {
   setFar,
   setFov,
   setNear,
-  setSizeBounding
+  setSizeBounding,
+  resetEditState
 } from "./currentModel";
 
 export { setCameraMode } from "./cameraControls";
@@ -33,7 +35,8 @@ export {
   toggleAutorotate,
   toggleAxis,
   toggleBoundingBox,
-  toggleLock
+  toggleLock,
+  resetExtraControls
 } from "./extraControls";
 
 export { setSelectedMaterial } from "./appearanceControls";

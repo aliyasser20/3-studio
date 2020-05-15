@@ -41,6 +41,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         box: action.box
       };
+    case actionTypes.RESET_EDIT_STATE:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }

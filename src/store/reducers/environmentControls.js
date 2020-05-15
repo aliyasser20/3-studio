@@ -45,6 +45,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         mapEnvironment: !state.mapEnvironment
       };
+    case actionTypes.RESET_ENVIRONMENT_CONTROLS:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }
