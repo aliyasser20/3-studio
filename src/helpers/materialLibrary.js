@@ -314,6 +314,7 @@ const materialLibrary = () => {
     name: "tiles-one",
     group: "tiles",
     colorMap: true,
+    color: "#aba191",
     colorMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589406263/appearances/tiles/tiles05/color_d5utzo.jpg",
     normalMap: true,
@@ -322,9 +323,11 @@ const materialLibrary = () => {
     roughnessMetalnessMap: true,
     roughnessMetalnessMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589406245/appearances/tiles/tiles05/roughness-metalness_igqzdd.jpg",
+    roughness: 1,
     displacementMap: true,
     displacementMapPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589406246/appearances/tiles/tiles05/displacement_fnlfre.jpg"
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589406246/appearances/tiles/tiles05/displacement_fnlfre.jpg",
+    displacementScale: 1
   });
 
   materials.tilesTwo = createMaterial({
@@ -339,6 +342,7 @@ const materialLibrary = () => {
     roughnessMetalnessMap: true,
     roughnessMetalnessMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589406537/appearances/tiles/tilesOnyxOpaloBlack/roughness-metalness_nn3uue.jpg",
+    roughness: 0.2,
     displacementMap: true,
     displacementMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589406534/appearances/tiles/tilesOnyxOpaloBlack/displacement_r3awbt.jpg"
@@ -348,6 +352,7 @@ const materialLibrary = () => {
     name: "tiles-three",
     group: "tiles",
     colorMap: true,
+    color: "#212121",
     colorMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589406834/appearances/tiles/tilesRectangularMirrorGray/color_b8arfd.jpg",
     normalMap: true,
@@ -356,6 +361,7 @@ const materialLibrary = () => {
     roughnessMetalnessMap: true,
     roughnessMetalnessMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589406835/appearances/tiles/tilesRectangularMirrorGray/roughness-metalness_fwxyxx.jpg",
+    roughness: 0.1,
     displacementMap: true,
     displacementMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589407074/appearances/tiles/tilesRectangularMirrorGray/displacement_qe1uj6.jpg"

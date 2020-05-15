@@ -166,5 +166,26 @@ export const materials = [
       "https://res.cloudinary.com/aajfinal/image/upload/v1589490720/appearances/picture%20assets/lightBlueRog_wvvlay.png",
     group: "metals",
     actionName: "lightBlueRough"
+  },
+  {
+    name: "marble 1",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500316/appearances/picture%20assets/marble-one_wdztcy.png",
+    group: "ceramics",
+    actionName: "marbleOne"
+  },
+  {
+    name: "marble 2",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500723/appearances/picture%20assets/marble-two_rmvmu2.png",
+    group: "ceramics",
+    actionName: "marbleTwo"
+  },
+  {
+    name: "marble 3",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500851/appearances/picture%20assets/marble-three_pdvjlp.png",
+    group: "ceramics",
+    actionName: "marbleThree"
   }
 ];

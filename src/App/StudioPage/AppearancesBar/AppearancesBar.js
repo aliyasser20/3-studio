@@ -61,6 +61,7 @@ const AppearancesBar = props => {
 
   const metalComponents = [];
   const plasticComponents = [];
+  const ceramicComponents = [];
   const stoneComponents = [];
 
   materials
@@ -94,6 +95,10 @@ const AppearancesBar = props => {
         plasticComponents.push(newMaterial);
       }
 
+      if (material.group === "ceramics") {
+        ceramicComponents.push(newMaterial);
+      }
+
       if (material.group === "stones") {
         stoneComponents.push(newMaterial);
       }
@@ -117,9 +122,9 @@ const AppearancesBar = props => {
                 scrollButtons="auto"
                 aria-label="scrollable auto tabs example"
               >
-                <Tab label="All" {...a11yProps(0)} />
-                <Tab label="Metals" {...a11yProps(1)} />
-                <Tab label="Plastics" {...a11yProps(2)} />
+                <Tab label="Metals" {...a11yProps(0)} />
+                <Tab label="Plastics" {...a11yProps(1)} />
+                <Tab label="Ceramics" {...a11yProps(2)} />
                 <Tab label="Stones" {...a11yProps(3)} />
               </Tabs>
             </div>
@@ -144,6 +149,9 @@ const AppearancesBar = props => {
               {plasticComponents}
             </TabPanel>
             <TabPanel value={value} index={2}>
+              {ceramicComponents}
+            </TabPanel>
+            <TabPanel value={value} index={3}>
               {stoneComponents}
             </TabPanel>
           </div>
