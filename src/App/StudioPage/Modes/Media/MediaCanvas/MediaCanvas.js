@@ -48,6 +48,14 @@ const MediaCanvas = (props) => {
     />
   ) : null;
 
+  const lights = props.defaultLight ? (
+    <>
+      <ambientLight intensity={0.1} />
+      <hemisphereLight intensity={0.1} />
+      <directionalLight intensity={0.1 * Math.PI} position={[0.5, 0, 0.86]} />
+    </>
+  ) : null;
+
   return !loading || !props.modelSettings.model || !props.mediaModel ? (
     <>
       <Canvas
@@ -62,9 +70,7 @@ const MediaCanvas = (props) => {
         }}
       >
         {camere}
-        {/* <ambientLight intensity={0.1} />
-        <hemisphereLight intensity={0.1} /> */}
-        {/* <directionalLight intensity={0.1 * Math.PI} position={[0.5, 0, 0.86]} /> */}
+        {lights}
         <Environment
           bgEnvironment={props.mediaControls.mediaEnvBackground}
           bgSolid={props.mediaControls.mediaSolidBackground}
@@ -120,6 +126,8 @@ MediaCanvas.propTypes = {
   currentEnvOption: PropTypes.object.isRequired,
   solidBgColor: PropTypes.string.isRequired,
   mediaMapEnv: PropTypes.bool.isRequired,
+  defaultLight: PropTypes.bool.isRequired,
+  onToggleDefaultLight: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -135,6 +143,7 @@ const mapStateToProps = (state) => ({
   solidBgColor: state.mediaState.mediaSolidBackground,
   mediaMapEnv: state.mediaControls.mediaMapEnvironment,
   mediaState: state.mediaState,
+  defaultLight: state.mediaControls.defaultLight,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -147,6 +156,7 @@ const mapDispatchToProps = (dispatch) => ({
   onToggleMediaLock: () => dispatch(actions.toggleMediaLock()),
   onSetMediaDragObjects: (dragObject) =>
     dispatch(actions.setMediaDragObjects(dragObject)),
+  onToggleDefaultLight: () => dispatch(actions.toggleDefaultLight()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MediaCanvas);

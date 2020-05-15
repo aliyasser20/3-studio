@@ -65,6 +65,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         mediaMapEnvironment: !state.mediaMapEnvironment,
       };
+    case actionTypes.TOGGLE_DEFAULT_LIGHT:
+      return {
+        ...state,
+        defaultLight: !state.defaultLight,
+      };
     case actionTypes.SET_MEDIA_SPHERE:
       return {
         ...state,

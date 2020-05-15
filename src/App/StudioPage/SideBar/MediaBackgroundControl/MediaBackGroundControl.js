@@ -105,8 +105,8 @@ const MediaBackGroundControl = (props) => {
             control={
               <Checkbox
                 className="custom-checkbox"
-                checked={false}
-                // onChange={props.onToggleLights}
+                checked={props.defaultLight}
+                onChange={props.onToggleDefaultLight}
                 name="Lights"
               />
             }
@@ -131,6 +131,8 @@ MediaBackGroundControl.propTypes = {
   solidBgColor: PropTypes.func.isRequired,
   mediaMapEnv: PropTypes.bool.isRequired,
   onToggleMapEnv: PropTypes.func.isRequired,
+  defaultLight: PropTypes.bool.isRequired,
+  onToggleDefaultLight: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -139,6 +141,7 @@ const mapStateToProps = (state) => ({
   noBackground: state.mediaControls.mediaNoBackground,
   solidBgColor: state.mediaState.mediaSolidBackground,
   mediaMapEnv: state.mediaControls.mediaMapEnvironment,
+  defaultLight: state.mediaControls.defaultLight,
 });
 const mapDispatchToProps = (dispatch) => ({
   onToggleMediaEnvB: () => dispatch(actions.toggleMediaEnvB()),
@@ -147,6 +150,7 @@ const mapDispatchToProps = (dispatch) => ({
   onToggleMapEnv: () => dispatch(actions.toggleMapEnv()),
   onSetMediaSolidBackground: (hexColor) =>
     dispatch(actions.setMediaSolidBackground(hexColor)),
+  onToggleDefaultLight: () => dispatch(actions.toggleDefaultLight()),
 });
 
 export default connect(
