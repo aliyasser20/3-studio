@@ -306,5 +306,82 @@ export const materials = [
       "https://res.cloudinary.com/aajfinal/image/upload/v1589507700/appearances/picture%20assets/wallMedevil_fan3c7.png",
     group: "stones",
     actionName: "wallMedieval"
+  },
+  {
+    name: "orange shiny",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589512089/appearances/picture%20assets/OrangeShinyP_p8qimk.png",
+    group: "plastics",
+    actionName: "orangeShinyPlastic"
+  },
+  {
+    name: "yellow shiny",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589512092/appearances/picture%20assets/YellowShinyP_ivsfw0.png",
+    group: "plastics",
+    actionName: "yellowShinyPlastic"
+  },
+  {
+    name: "green shiny",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589512093/appearances/picture%20assets/greenShinyP_qc4hhp.png",
+    group: "plastics",
+    actionName: "greenShinyPlastic"
+  },
+  {
+    name: "red shiny",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589512092/appearances/picture%20assets/redShinyP_dvds2l.png",
+    group: "plastics",
+    actionName: "redShinyPlastic"
+  },
+  {
+    name: "grey shiny",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589512090/appearances/picture%20assets/greyShinyP_fsvz6a.png",
+    group: "plastics",
+    actionName: "greyShinyPlastic"
+  },
+  {
+    name: "light blue shiny",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589512090/appearances/picture%20assets/lightBlueShinyP_i0d6hp.png",
+    group: "plastics",
+    actionName: "lightBlueShinyPlastic"
+  },
+  {
+    name: "blue shiny",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589512090/appearances/picture%20assets/blueShinyP_p3hssi.png",
+    group: "plastics",
+    actionName: "blueShinyPlastic"
+  },
+  {
+    name: "rose shiny",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589512091/appearances/picture%20assets/roseShinyP_ejrvda.png",
+    group: "plastics",
+    actionName: "roseShinyPlastic"
+  },
+  {
+    name: "light purple shiny",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589512089/appearances/picture%20assets/lightPurpleShinyP_axhp0o.png",
+    group: "plastics",
+    actionName: "lightPurpleShinyPlastic"
+  },
+  {
+    name: "purple shiny",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589512093/appearances/picture%20assets/purpleShinyP_iuhbji.png",
+    group: "plastics",
+    actionName: "purpleShinyPlastic"
+  },
+  {
+    name: "hot pink shiny",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589512092/appearances/picture%20assets/hotPinkShinyP_lfwufy.png",
+    group: "plastics",
+    actionName: "hotPinkShinyPlastic"
   }
 ];
