@@ -65,7 +65,6 @@
 
       .custom-tab-panel {
         height: 100%;
-        // overflow: hidden;
 
         .custom-tab-content {
           display: grid;
@@ -75,6 +74,7 @@
           padding-left: 1em;
           grid-auto-columns: max-content;
           overflow-x: scroll;
+          overflow-y: hidden;
 
           .material {
             width: 90px;
