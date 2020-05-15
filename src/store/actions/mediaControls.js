@@ -32,6 +32,10 @@ export const toggleMediaAutoRotate = () => ({
   type: actionTypes.TOGGLE_MEDIA_AUTOROTATE,
 });
 
+export const toggleDefaultLight = () => ({
+  type: actionTypes.TOGGLE_DEFAULT_LIGHT,
+});
+
 export const setMediaSphere = (sphere) => ({
   type: actionTypes.SET_MEDIA_SPHERE,
   sphere,

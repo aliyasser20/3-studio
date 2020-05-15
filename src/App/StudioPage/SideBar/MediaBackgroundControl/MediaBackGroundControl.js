@@ -100,6 +100,18 @@ const MediaBackGroundControl = (props) => {
             }
             label="Map Environment"
           />
+          <FormControlLabel
+            className="custom-label"
+            control={
+              <Checkbox
+                className="custom-checkbox"
+                checked={false}
+                // onChange={props.onToggleLights}
+                name="Lights"
+              />
+            }
+            label="Default Light"
+          />
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
