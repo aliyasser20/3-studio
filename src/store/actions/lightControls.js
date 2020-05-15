@@ -45,3 +45,8 @@ export const setHemisphereLightColor = color => ({
 export const resetLights = () => ({
   type: actionTypes.RESET_LIGHTS
 });
+
+export const bulkSetLightControls = config => ({
+  type: actionTypes.BULK_SET_ENVIRONMENT_CONTROLS,
+  config
+});

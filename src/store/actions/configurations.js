@@ -1,6 +1,9 @@
 import * as actionTypes from "./actionTypes";
 import backendAxios from "../../axiosInstances/backendAxios";
 
+import * as environmentControls from "./environmentControls";
+import * as lightControls from "./lightControls";
+
 export const getConfigurations = projectId => dispatch => {
   // dispatch(getProjectsStart());
   backendAxios
@@ -20,4 +23,9 @@ export const getConfigurations = projectId => dispatch => {
     .catch(error => {
       console.log(error);
     });
+};
+
+export const setConfiguration = config => dispatch => {
+  dispatch(environmentControls.bulkSetEnvironmentControls(config));
+  dispatch(lightControls.bulkSetLightControls(config));
 };
