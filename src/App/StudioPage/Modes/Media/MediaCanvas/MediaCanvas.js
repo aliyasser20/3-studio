@@ -60,9 +60,9 @@ const MediaCanvas = (props) => {
         }}
       >
         {camere}
-        <ambientLight intensity={0.3} />
+        {/* <ambientLight intensity={0.3} />
         <hemisphereLight intensity={1} />
-        <directionalLight intensity={0.8 * Math.PI} position={[0.5, 0, 0.86]} />
+        <directionalLight intensity={0.8 * Math.PI} position={[0.5, 0, 0.86]} /> */}
         <Environment
           bgEnvironment={props.mediaControls.mediaEnvBackground}
           bgSolid={props.mediaControls.mediaSolidBackground}
