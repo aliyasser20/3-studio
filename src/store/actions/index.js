@@ -81,3 +81,5 @@ export {
   toggleHemisphereLight,
   resetLights
 } from "./lightControls";
+
+export { getConfigurations } from "./configurations";

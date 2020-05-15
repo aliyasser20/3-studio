@@ -25,6 +25,8 @@ const StudioPage = props => {
   // ? Load model with materials
   useEffect(() => {
     if (props.currentProject && props.currentProject.modelLink) {
+      props.onGetConfigurations(props.currentProject.id);
+
       new GLTFLoader().load(props.currentProject.modelLink, gltf =>
         // Order of inputs is important
         createModel(
@@ -43,8 +45,11 @@ const StudioPage = props => {
     props.onSetBox,
     props.onSetFar,
     props.onSetSizeBounding,
-    props.onSetNear
+    props.onSetNear,
+    props
   ]);
+
+  //
 
   const page =
     props.currentProject && props.currentProject.modelLink ? (
@@ -86,7 +91,8 @@ StudioPage.propTypes = {
   onSetNear: PropTypes.func.isRequired,
   onSetSizeBounding: PropTypes.func.isRequired,
   onSetBox: PropTypes.func.isRequired,
-  currentMode: PropTypes.string.isRequired
+  currentMode: PropTypes.string.isRequired,
+  onGetConfigurations: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -101,7 +107,9 @@ const mapDispatchToProps = dispatch => ({
   onSetNear: near => dispatch(actions.setNear(near)),
   onSetSizeBounding: sizeBounding =>
     dispatch(actions.setSizeBounding(sizeBounding)),
-  onSetBox: box => dispatch(actions.setBox(box))
+  onSetBox: box => dispatch(actions.setBox(box)),
+  onGetConfigurations: projectId =>
+    dispatch(actions.getConfigurations(projectId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudioPage);
