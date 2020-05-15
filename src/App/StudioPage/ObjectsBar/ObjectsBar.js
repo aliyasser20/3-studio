@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import * as actions from "../../../store/actions/index";
 import { Paper, ThemeProvider } from "@material-ui/core";
+import { connect } from "react-redux";
+import * as actions from "../../../store/actions/index";
 
 import themeCreator from "../../../helpers/themeCreator";
 
 import "./ObjectsBar.scss";
-import { connect } from "react-redux";
 
 const ObjectsBar = (props) => {
   const theme = themeCreator("#ffffff", "#212121");
@@ -34,7 +34,7 @@ const ObjectsBar = (props) => {
     });
   };
 
-  handleKeyLightGrab = () => {
+  const handleKeyLightGrab = () => {
     const radius = Math.ceil(props.boxRadius) / 2;
     let vol;
     if (radius > 50) {
@@ -87,6 +87,7 @@ const ObjectsBar = (props) => {
 ObjectsBar.propTypes = {
   boxRadius: PropTypes.object,
   onSetMediaSphere: PropTypes.func,
+  onSetMediaKeyLight: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -94,6 +95,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   onSetMediaSphere: (sphere) => dispatch(actions.setMediaSphere(sphere)),
+  onSetMediaKeyLight: (kLight) => dispatch(actions.setMediaKeyLight(kLight)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ObjectsBar);

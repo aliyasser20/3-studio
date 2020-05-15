@@ -15,26 +15,25 @@ const WSphere = (props) => {
     if (props.sphere.rotateZ) wSphere.current.rotation.z += 0.02;
   });
   return (
-    <group ref={wSphere}>
-      <mesh
-        visible
-        userData={{ wSphere: "wireframe sphere" }}
-        onPointerOver={(e) => props.toggleMediaLock()}
-        onPointerOut={(e) => props.toggleMediaLock()}
-        castShadow
-        scale={[...props.sphere.scale]}
-      >
-        <sphereGeometry attach="geometry" args={[...props.sphere.args]} />
-        <meshStandardMaterial
-          attach="material"
-          color={`#${props.sphere.color}`}
-          transparent
-          wireframe
-          roughness={1}
-          metalness={0}
-        />
-      </mesh>
-    </group>
+    <mesh
+      ref={wSphere}
+      visible
+      userData={{ wSphere: "wireframe sphere" }}
+      onPointerOver={(e) => props.toggleMediaLock()}
+      onPointerOut={(e) => props.toggleMediaLock()}
+      castShadow
+      scale={[...props.sphere.scale]}
+    >
+      <sphereGeometry attach="geometry" args={[...props.sphere.args]} />
+      <meshStandardMaterial
+        attach="material"
+        color={`#${props.sphere.color}`}
+        transparent
+        wireframe
+        roughness={1}
+        metalness={0}
+      />
+    </mesh>
   );
 };
 

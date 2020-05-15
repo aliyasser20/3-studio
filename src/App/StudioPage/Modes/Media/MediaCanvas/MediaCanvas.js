@@ -18,6 +18,7 @@ import WSphere from "../Models/WSphere";
 import TestingDrag from "../Models/TestingDrag";
 import DControls from "../DragControls/DControls";
 import GroundPlane from "../OldCanvas/GroundPlane/GroundPlane";
+import KLight from "../Models/KLight";
 
 const MediaCanvas = (props) => {
   const [loading, setLoading] = useState(true);
@@ -85,13 +86,15 @@ const MediaCanvas = (props) => {
             dragObjects={props.mediaState.dragObjects}
           />
         )}
+        {props.mediaControls.keyLight && (
+          <KLight 
+            kLight={props.mediaControls.keyLight}
+            toggleMediaLock={props.onToggleMediaLock}
+            setDrag={props.onSetMediaDragObjects}
+            dragObjects={props.mediaState.dragObjects}
+          />
+        )}
 
-        {/* <GroundPlane /> */}
-        {/* <TestingDrag
-          toggleMediaLock={props.onToggleMediaLock}
-          setDrag={props.onSetMediaDragObjects}
-          dragObjects={props.mediaState.dragObjects}
-        /> */}
       </Canvas>
     </>
   ) : (
@@ -130,6 +133,7 @@ const mapStateToProps = (state) => ({
   solidBgColor: state.mediaState.mediaSolidBackground,
   mediaMapEnv: state.mediaControls.mediaMapEnvironment,
   mediaState: state.mediaState,
+
 });
 
 const mapDispatchToProps = (dispatch) => ({
