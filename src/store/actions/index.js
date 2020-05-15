@@ -3,7 +3,8 @@ export {
   setBackgroundEnvironment,
   toggleMapEnvironment,
   setBackgroundColor,
-  setEnvironmentOption
+  setEnvironmentOption,
+  resetEnvironmentControls
 } from "./environmentControls";
 
 export {
