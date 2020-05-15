@@ -38,13 +38,14 @@ const KLight = (props) => {
         userData={{ object: "light-object" }}
         castShadow
         scale={[0.1, 0.1, 0.1]}
+        position={[-props.kLight.initPosition, 0, 0]}
         onPointerOver={(e) => {
           props.toggleMediaLock();
-          console.log(sphere.current);
+          console.log(pointLight.current);
         }}
         onPointerOut={(e) => props.toggleMediaLock()}
       >
-        <sphereGeometry attach="geometry" args={[1, 16, 16]} />
+        <sphereGeometry attach="geometry" args={props.kLight.args} />
         <meshBasicMaterial
           attach="material"
           color={`#${props.kLight.color}`}
@@ -58,13 +59,13 @@ const KLight = (props) => {
 
       <pointLight
         ref={pointLight}
-        scale={[0.5, 0.5, 0.5]}
-        args={[1, 16, 16]}
+        scale={props.kLight.spread}
         color={`#${props.kLight.color}`}
-        intensity={0.1 * Math.PI}
+        intensity={props.kLight.brightness * Math.PI}
+        power={100}
         position={lightPosition}
         lookAt={[0, 0, 0]}
-        penumbra={2}
+        penumbra={1}
         castShadow
       />
     </>

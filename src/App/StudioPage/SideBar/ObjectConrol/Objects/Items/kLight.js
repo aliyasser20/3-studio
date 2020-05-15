@@ -33,11 +33,11 @@ const KLight = (props) => {
     props.onSetKLight(kLightColor);
   };
 
-  // const handleScaleChange = (e, newValue) => {
-  //   const currentScale = [newValue, newValue, newValue];
-  //   const newScale = { ...props.wSphere, scale: [...currentScale] };
-  //   props.onSetMediaSphere(newScale);
-  // };
+  const handleScaleChange = (e, newValue) => {
+    const currentScale = [newValue, newValue, newValue];
+    const newScale = { ...props.kLight, scale: [...currentScale] };
+    props.onSetKLight(newScale);
+  };
 
   // const handleXrotation = () => {
   //   const toggleRotateX = { ...props.wSphere, rotateX: !props.wSphere.rotateX };
@@ -134,20 +134,20 @@ const KLight = (props) => {
             <ListItemText primary="Color" />
           </ListItem>
         </List>
-        {/* <List component="div" disablePadding>
+        <List component="div" disablePadding>
           <ListItem>
             <ListItemText primary="Scale" />
             <Slider
               className="scale-slider"
-              value={props.wSphere.scale[0]}
+              value={props.kLight.scale[0]}
               valueLabelDisplay="auto"
-              step={0.1}
+              step={0.01}
               min={0}
-              max={10}
+              max={1}
               onChange={handleScaleChange}
             />
           </ListItem>
-        </List> */}
+        </List>
       </Collapse>
     </>
   );

@@ -37,20 +37,21 @@ const ObjectsBar = (props) => {
   };
 
   const handleKeyLightGrab = () => {
-    const radius =
-      Math.ceil(props.boxRadius.geometry.boundingSphere.radius) / 2;
+    const radius = Math.ceil(props.boxRadius.geometry.boundingSphere.radius);
     let vol;
     if (radius > 50) {
-      vol = (4 * Math.PI * radius * 2) / 100;
+      vol = (4 * Math.PI * radius) / 100;
     } else {
-      vol = 4 * Math.PI * radius * 2;
+      vol = 4 * Math.PI * radius;
     }
-
+    const initPosition = radius > 100 ? radius : radius * 0.3
     props.onSetMediaKeyLight({
-      args: [radius, vol, vol],
+      args: [radius / 4, vol, vol],
       color: "fff",
-      brightness: 1,
-      scale: [1, 1, 1],
+      brightness: 0.1,
+      scale: [0.1, 0.1, 0.1],
+      initPosition,
+      spread: [radius / 10, radius / 10, radius / 10],
       rotate: { x: false, y: false, z: false },
       orbit: { x: false, y: false, z: false },
     });
