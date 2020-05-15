@@ -86,7 +86,7 @@ const MediaCanvas = (props) => {
           />
         )}
 
-        <GroundPlane />
+        {/* <GroundPlane /> */}
         {/* <TestingDrag
           toggleMediaLock={props.onToggleMediaLock}
           setDrag={props.onSetMediaDragObjects}
