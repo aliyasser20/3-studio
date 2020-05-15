@@ -14,7 +14,9 @@ import { FormControlLabel, Checkbox, Slider } from "@material-ui/core";
 
 const WSphere = (props) => {
   const [openWSphere, setOpenWSphere] = useState(false);
-
+  const [rotateX, setRotateX] = useState(false);
+  const [rotateY, setRotateY] = useState(false);
+  const [rotateZ, setRotateZ] = useState(false);
   const handleClick = () => {
     setOpenWSphere(!openWSphere);
   };
@@ -35,14 +37,10 @@ const WSphere = (props) => {
     props.onSetMediaSphere(newScale);
   };
 
-  const handleXrotation = () => {
+  const handleXrotation = () => {};
+  const handleYrotation = () => {};
 
-  }
-  const handleYrotation = () => {
-
-  }
-
-  const handleZrotation = () => {}
+  const handleZrotation = () => {};
   return (
     <>
       <ListItem button onClick={handleClick}>
@@ -53,20 +51,20 @@ const WSphere = (props) => {
         {openWSphere ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={openWSphere} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
+        <List component="div" className="details-section" disablePadding>
           <ListItem>
             <ListItemIcon>
-            <FormControlLabel
-              className="custom-label"
-              control={
-                <Checkbox
-                  className="custom-checkbox"
-                  checked={props.solidBackground}
-                  onChange={props.onToggleMediaSolidB}
-                  name="solidBackground"
-                />
-              }
-            />
+              <FormControlLabel
+                className="custom-label"
+                control={
+                  <Checkbox
+                    className="custom-checkbox"
+                    checked={rotateX}
+                    onChange={handleXrotation}
+                    name="x-rotation"
+                  />
+                }
+              />
             </ListItemIcon>
             <ListItemText primary="X-rotation" />
           </ListItem>

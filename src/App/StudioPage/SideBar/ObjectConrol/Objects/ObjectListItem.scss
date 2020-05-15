@@ -17,4 +17,16 @@
     color: var(--gradient-top);
     }
   }
+
+  .custom-checkbox,.color-box {
+    svg {
+      height: 17px;
+      fill: url(#gradient-vertical);
+    }
+  }
+
+  .MuiTypography-root {
+    font-size: 0.9em;
+  }
+
 }
