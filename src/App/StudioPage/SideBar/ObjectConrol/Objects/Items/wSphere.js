@@ -34,6 +34,15 @@ const WSphere = (props) => {
     const newScale = { ...props.wSphere, scale: [...currentScale] };
     props.onSetMediaSphere(newScale);
   };
+
+  const handleXrotation = () => {
+
+  }
+  const handleYrotation = () => {
+
+  }
+
+  const handleZrotation = () => {}
   return (
     <>
       <ListItem button onClick={handleClick}>
@@ -44,6 +53,24 @@ const WSphere = (props) => {
         {openWSphere ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={openWSphere} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <ListItem>
+            <ListItemIcon>
+            <FormControlLabel
+              className="custom-label"
+              control={
+                <Checkbox
+                  className="custom-checkbox"
+                  checked={props.solidBackground}
+                  onChange={props.onToggleMediaSolidB}
+                  name="solidBackground"
+                />
+              }
+            />
+            </ListItemIcon>
+            <ListItemText primary="X-rotation" />
+          </ListItem>
+        </List>
         <List component="div" disablePadding>
           <ListItem>
             <ListItemIcon>

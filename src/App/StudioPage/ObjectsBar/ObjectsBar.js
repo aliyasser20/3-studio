@@ -28,9 +28,6 @@ const ObjectsBar = (props) => {
       color: "00CCAA",
       scale: [1, 1, 1],
       position: { x: 0, y: 0, z: 0 },
-      rotationX: [false, "up"],
-      rotationY: [false, "down"],
-      rotationZ: false,
     });
   };
   return (
