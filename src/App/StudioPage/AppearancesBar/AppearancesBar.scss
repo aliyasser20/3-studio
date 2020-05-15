@@ -30,6 +30,7 @@
       }
 
       .tab-area {
+        overflow-x: scroll;
         .MuiTab-root {
           min-width: fit-content !important;
           color: #cecece;
@@ -48,6 +49,10 @@
 
         .MuiTab-wrapper {
           padding: 0.65em;
+        }
+
+        .MuiTabScrollButton-root {
+          color: white;
         }
       }
 
