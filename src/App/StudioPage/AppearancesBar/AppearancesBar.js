@@ -62,6 +62,7 @@ const AppearancesBar = props => {
   const metalComponents = [];
   const plasticComponents = [];
   const ceramicComponents = [];
+  const tilesComponents = [];
   const stoneComponents = [];
   const woodComponents = [];
 
@@ -100,6 +101,10 @@ const AppearancesBar = props => {
         ceramicComponents.push(newMaterial);
       }
 
+      if (material.group === "tiles") {
+        tilesComponents.push(newMaterial);
+      }
+
       if (material.group === "stones") {
         stoneComponents.push(newMaterial);
       }
@@ -131,7 +136,8 @@ const AppearancesBar = props => {
                 <Tab label="Plastics" {...a11yProps(1)} />
                 <Tab label="Ceramics" {...a11yProps(2)} />
                 <Tab label="Stones" {...a11yProps(3)} />
-                <Tab label="Woods" {...a11yProps(3)} />
+                <Tab label="Tiles" {...a11yProps(4)} />
+                <Tab label="Woods" {...a11yProps(5)} />
               </Tabs>
             </div>
             <div className="search-area">
@@ -161,6 +167,9 @@ const AppearancesBar = props => {
               {stoneComponents}
             </TabPanel>
             <TabPanel value={value} index={4}>
+              {tilesComponents}
+            </TabPanel>
+            <TabPanel value={value} index={5}>
               {woodComponents}
             </TabPanel>
           </div>

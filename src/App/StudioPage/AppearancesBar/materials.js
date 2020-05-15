@@ -222,5 +222,61 @@ export const materials = [
       "https://res.cloudinary.com/aajfinal/image/upload/v1589500730/appearances/picture%20assets/wood-3_hdwhdo.png",
     group: "woods",
     actionName: "woodFlooringTwo"
+  },
+  {
+    name: "tiles 1",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500724/appearances/picture%20assets/tile-1_uxyfxj.png",
+    group: "tiles",
+    actionName: "tilesOne"
+  },
+  {
+    name: "tiles 2",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500727/appearances/picture%20assets/tile-2_polobg.png",
+    group: "tiles",
+    actionName: "tilesTwo"
+  },
+  {
+    name: "tiles 3",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500729/appearances/picture%20assets/tile-3_pyjuwc.png",
+    group: "tiles",
+    actionName: "tilesThree"
+  },
+  {
+    name: "alien",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500722/appearances/picture%20assets/alien_n6jhxj.png",
+    group: "metals",
+    actionName: "alien"
+  },
+  {
+    name: "grid",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500724/appearances/picture%20assets/metal_grid_g5hxrz.png",
+    group: "woods",
+    actionName: "metalGrid"
+  },
+  {
+    name: "rust",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500725/appearances/picture%20assets/rust_sssw1k.png",
+    group: "metals",
+    actionName: "rust"
+  },
+  {
+    name: "brushed",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500720/appearances/picture%20assets/brushed_a7fmai.png",
+    group: "metals",
+    actionName: "brushedMetal"
+  },
+  {
+    name: "bricks",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589500346/appearances/picture%20assets/bricks_imyxx3.png",
+    group: "stones",
+    actionName: "bricks"
   }
 ];

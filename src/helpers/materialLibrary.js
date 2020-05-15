@@ -233,14 +233,14 @@ const materialLibrary = () => {
     bumpMap: true,
     bumpMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589401357/appearances/woods/wood-one/normal_ca9qka.jpg",
-    bumpScale: 200,
+    bumpScale: 1,
     roughnessMetalnessMap: true,
     roughnessMetalnessMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589401354/appearances/woods/wood-one/roughness-metalness_lpzitz.jpg",
     displacementMap: true,
     displacementMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589401351/appearances/woods/wood-one/displacement_qvzm6k.jpg",
-    displacementScale: 200
+    displacementScale: 1
   });
 
   materials.woodFlooringOne = createMaterial({
@@ -252,14 +252,14 @@ const materialLibrary = () => {
     bumpMap: true,
     bumpMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589401350/appearances/woods/wood-flooring-one/normal_lxzs0x.jpg",
-    bumpScale: 50,
+    bumpScale: 1,
     roughnessMetalnessMap: true,
     roughnessMetalnessMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589401350/appearances/woods/wood-flooring-one/roughness-metalness_zunnxy.jpg",
     displacementMap: true,
     displacementMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589401346/appearances/woods/wood-flooring-one/displacement_afnlwj.jpg",
-    displacementScale: 200
+    displacementScale: 1
   });
 
   materials.woodFlooringTwo = createMaterial({
@@ -271,7 +271,7 @@ const materialLibrary = () => {
     bumpMap: true,
     bumpMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589401351/appearances/woods/wood-flooring-two/normal_ff2oec.jpg",
-    bumpScale: 100,
+    bumpScale: 1,
     roughnessMetalnessMap: true,
     roughnessMetalnessMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589401355/appearances/woods/wood-flooring-two/roughness-metalness_jqqxmw.jpg",
