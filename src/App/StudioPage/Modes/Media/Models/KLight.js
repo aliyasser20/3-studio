@@ -1,7 +1,10 @@
 import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
+import { useState } from "react";
+import { useFrame } from "react-three-fiber";
 
 const KLight = (props) => {
+  const [lightPosition, setLightPosition] = useState([0, 0, 0]);
   const sphere = useRef();
   const pointLight = useRef();
 
@@ -18,7 +21,14 @@ const KLight = (props) => {
     }
   }, []);
 
-  console.log(sphere.current && sphere.current);
+  useFrame(() => {
+    sphere.current &&
+      setLightPosition([
+        sphere.current.position.x,
+        sphere.current.position.y,
+        sphere.current.position.z,
+      ]);
+  });
   return (
     <>
       <mesh
@@ -28,7 +38,10 @@ const KLight = (props) => {
         userData={{ object: "light-object" }}
         castShadow
         scale={[0.1, 0.1, 0.1]}
-        onPointerOver={(e) => props.toggleMediaLock()}
+        onPointerOver={(e) => {
+          props.toggleMediaLock();
+          console.log(sphere.current);
+        }}
         onPointerOut={(e) => props.toggleMediaLock()}
       >
         <sphereGeometry attach="geometry" args={[1, 16, 16]} />
@@ -48,8 +61,8 @@ const KLight = (props) => {
         scale={[0.5, 0.5, 0.5]}
         args={[1, 16, 16]}
         color="#FCF8DC"
-        intensity={0.5 * Math.PI}
-        position={[0, 0, 0]}
+        intensity={0.1 * Math.PI}
+        position={lightPosition}
         lookAt={[0, 0, 0]}
         penumbra={2}
         castShadow

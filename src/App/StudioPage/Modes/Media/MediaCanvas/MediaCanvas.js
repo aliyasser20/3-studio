@@ -23,7 +23,6 @@ import KLight from "../Models/KLight";
 const MediaCanvas = (props) => {
   const [loading, setLoading] = useState(true);
   const { mediaFov, mediaFar, mediaNear, mediaBox, mediaSizeBounding } = props;
-
   useEffect(() => {
     !props.mediaFov && props.onSetMediaFov(props.modelSettings.fov);
     !props.mediaFar && props.onSetMediaFar(props.modelSettings.far);
