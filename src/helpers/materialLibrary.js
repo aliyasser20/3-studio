@@ -403,6 +403,28 @@ const materialLibrary = () => {
       "https://res.cloudinary.com/aajfinal/image/upload/v1589502793/appearances/fabric/Fleece/displacement_jktllc.tiff",
     displacementScale: 0.2,
   });
+
+  materials.leather = createMaterial({
+    name: "leather",
+    group: "fabric",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589503475/appearances/fabric/Leather/color_cpg5od.jpg",
+    color: "#191919",
+    ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589503448/appearances/fabric/Leather/ao_ixcdcy.jpg",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589503431/appearances/fabric/Leather/normal_bkb1ye.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589503506/appearances/fabric/Leather/roughness-metalness_c9ev2e.jpg",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589503491/appearances/fabric/Leather/displacement_l7rcfa.jpg",
+    displacementScale: 0.3,
+  });
   // ?
   return materials;
 };

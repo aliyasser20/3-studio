@@ -6,7 +6,7 @@ const GroundPlane = () => {
   useEffect(() => {
     console.log(mesh.current);
     if (mesh.current) {
-      mesh.current.material = materialLibrary().fleece;
+      mesh.current.material = materialLibrary().leather;
     }
   });
 
