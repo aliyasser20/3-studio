@@ -66,7 +66,10 @@ const NavBar = props => {
                   <Typography variant="h5">
                     <div className="text-color-grad">
                       <Box onClick={() => handleLogoClick()} fontWeight="700">
-                        3 Studio
+                        <div className="app-logo">
+                          <div className="circle">3</div>
+                          <div className="studio">Studio</div>
+                        </div>
                       </Box>
                     </div>
                   </Typography>
