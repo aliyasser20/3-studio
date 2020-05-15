@@ -290,14 +290,14 @@ export const materials = [
     name: "leather",
     imgPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589507679/appearances/picture%20assets/leather_ovzwuk.png",
-    group: "fabrics",
+    group: "fabric",
     actionName: "leather"
   },
   {
     name: "fleece",
     imgPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589507677/appearances/picture%20assets/fleece_vpjvy1.png",
-    group: "fabrics",
+    group: "fabric",
     actionName: "fleece"
   },
   {
@@ -467,5 +467,96 @@ export const materials = [
       "https://res.cloudinary.com/aajfinal/image/upload/v1589517869/appearances/picture%20assets/scuffedPlastic_n7xh3r.png",
     group: "plastics",
     actionName: "scuffedPlastic"
+  },
+  {
+    name: "foam",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589524811/appearances/picture%20assets/foam_doxwft.png",
+    group: "synthetics",
+    actionName: "foam"
+  },
+  {
+    name: "cobblestone curved",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589524811/appearances/picture%20assets/cobblestonecurved_wcm3u6.png",
+    group: "stones",
+    actionName: "cobbleStoneCurved"
+  },
+  {
+    name: "basket weave",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589524811/appearances/picture%20assets/basket-weave_qgygne.png",
+    group: "fabric",
+    actionName: "basketWeave"
+  },
+  {
+    name: "leather buttoned one",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589524811/appearances/picture%20assets/leatherbuttoned_fzsigb.png",
+    group: "fabric",
+    actionName: "leatherButtoned"
+  },
+  {
+    name: "leather buttoned two",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589524813/appearances/picture%20assets/leatherbuttonedtwo_ygedf5.png",
+    group: "fabric",
+    actionName: "leatherButtonedTwo"
+  },
+  {
+    name: "grid pattern",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589524811/appearances/picture%20assets/grid-patternplastic_iqebxi.png",
+    group: "plastics",
+    actionName: "gridPatternPlastic"
+  },
+  {
+    name: "carpet",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589524811/appearances/picture%20assets/carpetone_lk57cm.png",
+    group: "fabric",
+    actionName: "carpetOne"
+  },
+  {
+    name: "mixed moss",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589524813/appearances/picture%20assets/moss_vk8nia.png",
+    group: "other",
+    actionName: "mixedMoss"
+  },
+  {
+    name: "painted",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589524813/appearances/picture%20assets/paintedmetal_kvbzuq.png",
+    group: "metals",
+    actionName: "painted"
+  },
+  {
+    name: "rubber",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589524813/appearances/picture%20assets/rubber_bolffn.png",
+    group: "synthetics",
+    actionName: "rubber"
+  },
+  {
+    name: "solar panel",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589524813/appearances/picture%20assets/solar-panel_yqoped.png",
+    group: "other",
+    actionName: "solarPanel"
+  },
+  {
+    name: "tiles 4",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589524814/appearances/picture%20assets/tilesfour_hxiete.png",
+    group: "tiles",
+    actionName: "tilesFour"
+  },
+  {
+    name: "tiles 5",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589524813/appearances/picture%20assets/tilesfive_jtl0oh.png",
+    group: "tiles",
+    actionName: "tilesFive"
   }
 ];
