@@ -460,5 +460,12 @@ export const materials = [
       "https://res.cloudinary.com/aajfinal/image/upload/v1589513190/appearances/picture%20assets/HotPinkRoughPlastic_h1pcso.png",
     group: "plastics",
     actionName: "hotPinkRoughPlastic"
+  },
+  {
+    name: "scuffed",
+    imgPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589517869/appearances/picture%20assets/scuffedPlastic_n7xh3r.png",
+    group: "plastics",
+    actionName: "scuffedPlastic"
   }
 ];

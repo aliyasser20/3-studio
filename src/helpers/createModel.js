@@ -31,6 +31,7 @@ const createModel = (
       // o.material = materialLibrary().metalGrid;
       // o.material = materialLibrary().rust;
       // o.material = materialLibrary().brushedMetal;
+      // o.material = materialLibrary().painted;
       // ? Ceramics
       // o.material = materialLibrary().marbleOne;
       // o.material = materialLibrary().fleshyGranite;
@@ -48,11 +49,19 @@ const createModel = (
       // o.material = materialLibrary().tilesOne;
       // o.material = materialLibrary().tilesTwo;
       // o.material = materialLibrary().tilesThree;
+      // o.material = materialLibrary().tilesFour;
       // ? Fabrics
       // o.material = materialLibrary().fleece;
       // o.material = materialLibrary().leather;
+      // o.material = materialLibrary().carpetOne;
+      // o.material = materialLibrary().leatherButtoned;
+      // o.material = materialLibrary().leatherButtonedTwo;
+      // o.material = materialLibrary().basketWeave;
       // ? Plastics
-      o.material = materialLibrary().redRoughPlastic;
+      // o.material = materialLibrary().redRoughPlastic;
+      // o.material = materialLibrary().scuffedPlastic;
+      // ? Synthetics
+      // o.material = materialLibrary().rubber;
     }
   });
   // ?

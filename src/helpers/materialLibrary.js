@@ -145,6 +145,24 @@ const materialLibrary = () => {
       "https://res.cloudinary.com/aajfinal/image/upload/v1589400959/appearances/metals/brushed-metal/ao_wgtuqd.png"
   });
 
+  materials.painted = createMaterial({
+    name: "painted",
+    group: "metals",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519352/appearances/metals/painted/PaintedMetal001_2K_Color_qrajdx.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519367/appearances/metals/painted/PaintedMetal001_2K_Roughness_y409ia.jpg",
+    metalness: 2,
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519365/appearances/metals/painted/PaintedMetal001_2K_Normal_vku2bg.jpg",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519360/appearances/metals/painted/PaintedMetal001_2K_Displacement_xoykvq.jpg"
+  });
+
   // ?
 
   // ? Ceramics
@@ -388,6 +406,25 @@ const materialLibrary = () => {
     displacementMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589407074/appearances/tiles/tilesRectangularMirrorGray/displacement_qe1uj6.jpg"
   });
+
+  materials.tilesFour = createMaterial({
+    name: "tiles-four",
+    group: "tiles",
+    colorMap: true,
+    // color: "#212121",
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589518753/appearances/tiles/greenTile/green-ceramic-tiles_basecolor_dgn6dj.png",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589518753/appearances/tiles/greenTile/green-ceramic-tiles_normal-dx_tlc4is.png",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589518755/appearances/tiles/greenTile/green-ceramic-tiles_roughness_fwuvlz.png",
+    roughness: 0.1,
+    ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589518746/appearances/tiles/greenTile/green-ceramic-tiles_AO_e4qdqo.png"
+  });
   // ?
 
   // ? Fabrics
@@ -431,6 +468,82 @@ const materialLibrary = () => {
       "https://res.cloudinary.com/aajfinal/image/upload/v1589503491/appearances/fabric/Leather/displacement_l7rcfa.jpg",
     displacementScale: 0.3
   });
+
+  materials.carpetOne = createMaterial({
+    name: "carpet-one",
+    group: "fabric",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589518430/appearances/fabric/carpet-1/Carpet006_2K_Color_wrv4ew.jpg",
+    color: "#191919",
+    ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589518433/appearances/fabric/carpet-1/Carpet006_2K_AmbientOcclusion_bqpm6b.jpg",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589518585/appearances/fabric/carpet-1/Carpet006_2K_Normal_i3mboe.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589518438/appearances/fabric/carpet-1/Carpet006_2K_Roughness_i4kuau.jpg",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589518434/appearances/fabric/carpet-1/Carpet006_2K_Displacement_dkmzbf.jpg",
+    displacementScale: 0.3
+  });
+
+  materials.leatherButtoned = createMaterial({
+    name: "leather-buttoned",
+    group: "fabric",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519613/appearances/fabric/leatherbuttoned/Leather011_2K_Color_fxzh1f.jpg",
+    color: "#191919",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519617/appearances/fabric/leatherbuttoned/Leather011_2K_Normal_h3gt6q.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519614/appearances/fabric/leatherbuttoned/Leather011_2K_Roughness_midmzu.jpg",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519613/appearances/fabric/leatherbuttoned/Leather011_2K_Displacement_uchjza.jpg",
+    displacementScale: 0.3
+  });
+
+  materials.leatherButtonedTwo = createMaterial({
+    name: "leather-buttoned-two",
+    group: "fabric",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519613/appearances/fabric/leatherbuttoned/Leather011_2K_Color_fxzh1f.jpg",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519617/appearances/fabric/leatherbuttoned/Leather011_2K_Normal_h3gt6q.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519614/appearances/fabric/leatherbuttoned/Leather011_2K_Roughness_midmzu.jpg",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519613/appearances/fabric/leatherbuttoned/Leather011_2K_Displacement_uchjza.jpg",
+    displacementScale: 0.3
+  });
+
+  materials.basketWeave = createMaterial({
+    name: "basket-weave",
+    group: "fabric",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519895/appearances/fabric/basketweave/simple-basket-weave1-albedo_xx5qyy.png",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519897/appearances/fabric/basketweave/simple-basket-weave1-normal-dx_m7ozzf.png",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519893/appearances/fabric/basketweave/simple-basket-weave1-roughness_ftt6tn.png",
+    ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589519892/appearances/fabric/basketweave/simple-basket-weave1-ao_uyaqw5.png"
+  });
   // ?
 
   // ? Plastics
@@ -467,6 +580,40 @@ const materialLibrary = () => {
       color: BASICPLASTICS[plastic]
     });
   }
+
+  materials.scuffedPlastic = createMaterial({
+    name: "scuffed-plastic",
+    group: "plastics",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589517594/appearances/plastics/scuffed/scuffed-plastic4-alb_xsojm8.png",
+    ambientOcclusionMap: true,
+    ambientOcclusionMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589517602/appearances/plastics/scuffed/scuffed-plastic-ao_du3js6.png",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589517598/appearances/plastics/scuffed/scuffed-plastic-normal_gzkdwr.png",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589517606/appearances/plastics/scuffed/scuffed-plastic-rough_j7h2wh.png"
+  });
+  // ?
+
+  // ? Synthetics
+  materials.rubber = createMaterial({
+    name: "rubber",
+    group: "synthetics",
+    colorMap: true,
+    color: "#212121",
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589518039/appearances/synthetics/rubber/synth-rubber-albedo_rlqldd.png",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589518154/appearances/synthetics/rubber/synth-rubber-normal_sleptr.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589518257/appearances/synthetics/rubber/synth-rubber-roughness_ktg2bd.png"
+  });
   // ?
 
   return materials;
