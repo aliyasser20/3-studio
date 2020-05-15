@@ -19,6 +19,10 @@ export const setCurrentConfigurationName = name => ({
   name
 });
 
+export const setConfigurationSaved = () => ({
+  type: actionTypes.SET_CONFIGURATION_SAVED
+});
+
 export const getConfigurations = projectId => dispatch => {
   backendAxios
     .get("/api/configurations", {

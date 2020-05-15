@@ -21,6 +21,7 @@ import themeCreator from "../../../helpers/themeCreator";
 import fileExporter from "../../../helpers/fileExporter";
 import backendAxios from "../../../axiosInstances/backendAxios";
 import { useAuth0 } from "../../../react-auth0-spa";
+import * as actions from "../../../store/actions/index";
 
 import "./StudioTopBar.scss";
 
@@ -56,11 +57,16 @@ const StudioTopBar = props => {
       })
       .then(resp => {
         console.log(resp);
+        props.onSetConfigurationSaved();
       })
       .catch(err => {
         console.log(err);
       });
   };
+
+  const savedBoxClasses = props.configurationSaved
+    ? "save-status"
+    : "save-status unsaved";
 
   return (
     <ThemeProvider theme={theme}>
@@ -75,7 +81,7 @@ const StudioTopBar = props => {
               </Box>
               <span className="gradient-button">
                 <Button variant="contained" endIcon={<ExpandMoreIcon />}>
-                  Configuration 3
+                  {props.currentConfigurationName}
                 </Button>
               </span>
             </div>
@@ -86,7 +92,9 @@ const StudioTopBar = props => {
               {props.currentMode === "MEDIA" && <MediaTopNav />}
               {props.currentMode === "EDIT" && (
                 <Fragment>
-                  <div className="save-status unsaved">Changes unsaved</div>
+                  <div className={savedBoxClasses}>
+                    {props.configurationSaved ? "Saved" : "Changes unsaved"}
+                  </div>
                   <IconButton
                     aria-label="edit"
                     classes={{ root: "action-button" }}
@@ -130,7 +138,10 @@ StudioTopBar.propTypes = {
   hemisphereColor: PropTypes.string.isRequired,
   ambientColor: PropTypes.string.isRequired,
   currentConfigurationId: PropTypes.number.isRequired,
-  currentEnvironmentOption: PropTypes.object.isRequired
+  currentConfigurationName: PropTypes.string.isRequired,
+  currentEnvironmentOption: PropTypes.object.isRequired,
+  onSetConfigurationSaved: PropTypes.func.isRequired,
+  configurationSaved: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -150,7 +161,13 @@ const mapStateToProps = state => ({
   directionalColor: state.lightControls.directionalLightColor,
   hemisphereColor: state.lightControls.hemisphereLightColor,
   currentConfigurationId: state.configurations.currentConfigurationId,
-  currentEnvironmentOption: state.environmentControls.currentEnvironmentOption
+  currentConfigurationName: state.configurations.currentConfigurationName,
+  currentEnvironmentOption: state.environmentControls.currentEnvironmentOption,
+  configurationSaved: state.configurations.configurationSaved
 });
 
-export default connect(mapStateToProps)(StudioTopBar);
+const mapDispatchToProps = dispatch => ({
+  onSetConfigurationSaved: () => dispatch(actions.setConfigurationSaved())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudioTopBar);

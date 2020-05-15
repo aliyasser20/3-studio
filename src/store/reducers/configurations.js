@@ -3,7 +3,8 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   allConfigurations: [],
   currentConfigurationId: NaN,
-  currentConfigurationName: ""
+  currentConfigurationName: "",
+  configurationSaved: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,6 +18,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentConfigurationName: action.name
+      };
+    case actionTypes.SET_CONFIGURATION_SAVED:
+      return {
+        ...state,
+        configurationSaved: true
       };
     default:
       return state;
