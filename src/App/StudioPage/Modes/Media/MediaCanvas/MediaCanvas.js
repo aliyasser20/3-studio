@@ -128,6 +128,9 @@ MediaCanvas.propTypes = {
   mediaMapEnv: PropTypes.bool.isRequired,
   defaultLight: PropTypes.bool.isRequired,
   onToggleDefaultLight: PropTypes.func.isRequired,
+  mediaState: PropTypes.object.isRequired,
+  onSetMediaDragObjects: PropTypes.func.isRequired,
+  onToggleMediaLock: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
