@@ -17,6 +17,7 @@ import LoaderModel from "../../../LoaderModal/LoaderModel";
 import WSphere from "../Models/WSphere";
 import TestingDrag from "../Models/TestingDrag";
 import DControls from "../DragControls/DControls";
+import GroundPlane from "../OldCanvas/GroundPlane/GroundPlane";
 
 const MediaCanvas = (props) => {
   const [loading, setLoading] = useState(true);
@@ -84,6 +85,8 @@ const MediaCanvas = (props) => {
             dragObjects={props.mediaState.dragObjects}
           />
         )}
+
+        <GroundPlane />
         {/* <TestingDrag
           toggleMediaLock={props.onToggleMediaLock}
           setDrag={props.onSetMediaDragObjects}
