@@ -19,6 +19,7 @@ import * as actions from "../../../../../store/actions/index";
 import "./ObjectListItem.scss";
 import { connect } from "react-redux";
 import WSphere from "./Items/wSphere";
+import KLight from "./Items/kLight";
 
 const ObjectListItem = (props) => {
   return (
@@ -47,6 +48,7 @@ const ObjectListItem = (props) => {
           onSetDragObjects={props.onSetMediaDragObjects}
         />
       )}
+      {props.kLight && <KLight />}
     </List>
   );
 };
@@ -56,11 +58,13 @@ ObjectListItem.propTypes = {
   onSetMediaSphere: PropTypes.func.isRequired,
   dragObjects: PropTypes.array,
   onSetMediaDragObjects: PropTypes.func,
+  kLight: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
   wSphere: state.mediaControls.sphere,
   dragObjects: state.mediaState.dragObjects,
+  kLight: state.mediaControls.keyLight
 });
 const mapDispatchToState = (dispatch) => ({
   onSetMediaSphere: (arg) => dispatch(actions.setMediaSphere(arg)),

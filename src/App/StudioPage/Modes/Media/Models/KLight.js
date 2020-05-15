@@ -20,7 +20,8 @@ const KLight = (props) => {
       <mesh
         ref={sphere}
         visible
-        userData={{ sphere: "light sphere" }}
+        name="k-light"
+        userData={{ object: "light-object" }}
         castShadow
         scale={[0.1, 0.1, 0.1]}
       >
