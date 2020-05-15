@@ -382,7 +382,28 @@ const materialLibrary = () => {
     displacementMapPath:
       "https://res.cloudinary.com/aajfinal/image/upload/v1589407074/appearances/tiles/tilesRectangularMirrorGray/displacement_qe1uj6.jpg",
   });
+  // ?
 
+  // fabric ?
+  materials.bricks = createMaterial({
+    name: "fleece",
+    group: "fabric",
+    colorMap: true,
+    colorMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589502764/appearances/fabric/Fleece/color_lyuqix.jpg",
+    color: "#171717",
+    normalMap: true,
+    normalMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589502741/appearances/fabric/Fleece/normal_evwarj.jpg",
+    roughnessMetalnessMap: true,
+    roughnessMetalnessMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589503024/appearances/fabric/Fleece/roughness-metalness_c4kftv.jpg",
+    displacementMap: true,
+    displacementMapPath:
+      "https://res.cloudinary.com/aajfinal/image/upload/v1589502793/appearances/fabric/Fleece/displacement_jktllc.tiff",
+    displacementScale: 0.2,
+  });
+  // ?
   return materials;
 };
 
