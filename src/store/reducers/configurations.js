@@ -2,7 +2,8 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   allConfigurations: [],
-  currentConfigurationId: NaN
+  currentConfigurationId: NaN,
+  currentConfigurationName: ""
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,6 +12,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentConfigurationId: action.id
+      };
+    case actionTypes.SET_CURRENT_CONFIGURATION_NAME:
+      return {
+        ...state,
+        currentConfigurationName: action.name
       };
     default:
       return state;
