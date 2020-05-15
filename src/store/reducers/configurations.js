@@ -4,7 +4,7 @@ const initialState = {
   allConfigurations: [],
   currentConfigurationId: NaN,
   currentConfigurationName: "",
-  configurationSaved: false
+  configurationSaved: true
 };
 
 const reducer = (state = initialState, action) => {

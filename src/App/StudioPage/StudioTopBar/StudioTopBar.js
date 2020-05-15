@@ -16,6 +16,7 @@ import SaveIcon from "@material-ui/icons/Save";
 
 import ModeSelector from "./ModeSelector/ModeSelector";
 import MediaTopNav from "../Modes/Media/MediaTopNav/MediaTopNav";
+import ConfigurationSelector from "./ConfigurationSelector/ConfigurationSelector";
 
 import themeCreator from "../../../helpers/themeCreator";
 import fileExporter from "../../../helpers/fileExporter";
@@ -79,11 +80,12 @@ const StudioTopBar = props => {
                   {props.currentProject.name}
                 </Typography>
               </Box>
-              <span className="gradient-button">
+              {/* <span className="gradient-button">
                 <Button variant="contained" endIcon={<ExpandMoreIcon />}>
                   {props.currentConfigurationName}
                 </Button>
-              </span>
+              </span> */}
+              <ConfigurationSelector />
             </div>
             <div className="top-bar-center">
               <ModeSelector />

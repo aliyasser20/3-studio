@@ -1,0 +1,12 @@
+.configuration-selector {
+  display: grid;
+
+  .gradient-button {
+    border-radius: 20px !important;
+    overflow: hidden;
+
+    .MuiButton-label {
+      color: white;
+    }
+  }
+}
