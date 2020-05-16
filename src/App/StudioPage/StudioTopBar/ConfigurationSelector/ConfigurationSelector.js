@@ -232,6 +232,11 @@ const ConfigurationSelector = props => {
           );
           props.onSetCurrentConfigurationName(props.allConfigurations[0].name);
           props.onSetCurrentConfigurationId(props.allConfigurations[0].id);
+
+          updateModelMaterials(
+            props.model,
+            JSON.parse(props.allConfigurations[0].config_data).materials
+          );
         }
 
         setMessage("Configuration successfully deleted!");
@@ -277,6 +282,11 @@ const ConfigurationSelector = props => {
       props.onSetCurrentConfigurationName(configuration.name);
       props.onSetCurrentConfigurationId(configuration.id);
 
+      updateModelMaterials(
+        props.model,
+        JSON.parse(configuration.config_data).materials
+      );
+
       saveConfig().then(() => {
         props.onUpdateConfiguration(
           props.currentConfigurationId,
@@ -295,7 +305,7 @@ const ConfigurationSelector = props => {
             ambientLightColor: props.ambientLightColor,
             directionalLightColor: props.directionalLightColor,
             hemisphereLightColor: props.hemisphereLightColor,
-            materials: []
+            materials: props.materials
           })
         );
       });
