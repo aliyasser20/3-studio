@@ -189,8 +189,10 @@ const ConfigurationSelector = props => {
   const deleteConfiguration = () => {
     backendAxios
       .delete("/api/configurations", {
-        configurationId: configToDelete.id,
-        userId: user.sub
+        data: {
+          configurationId: configToDelete.id,
+          userId: user.sub
+        }
       })
       .then(resp => {
         console.log(resp);

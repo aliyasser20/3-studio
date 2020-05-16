@@ -33,6 +33,11 @@ export const addConfiguration = config => ({
   config
 });
 
+export const deleteConfiguration = configId => ({
+  type: actionTypes.DELETE_CONFIGURATION,
+  configId
+});
+
 export const getConfigurations = projectId => dispatch => {
   backendAxios
     .get("/api/configurations", {
