@@ -64,7 +64,7 @@ const ConfigurationSelector = props => {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  const saveConfig = () => {
+  const saveConfig = () =>
     backendAxios
       .put("/api/configurations", {
         userId: user.sub,
@@ -95,7 +95,6 @@ const ConfigurationSelector = props => {
       .catch(err => {
         console.log(err);
       });
-  };
 
   const newConfiguration = () => {
     const newConfigData = {
@@ -152,26 +151,48 @@ const ConfigurationSelector = props => {
         configuration: newConfigData
       })
       .then(resp => {
-        newConfigData.id = resp.data.id;
-
         // ! Order here is very important because of stringify!!!
-        props.onSetConfiguration(newConfigData.config_data);
+        saveConfig().then(() => {
+          newConfigData.id = resp.data.id;
+          props.onUpdateConfiguration(
+            props.currentConfigurationId,
+            JSON.stringify({
+              bgEnvironment: props.bgEnvironment,
+              bgSolid: props.bgSolid,
+              bgColor: props.bgColor,
+              mapEnvironment: props.mapEnvironment,
+              currentEnvironmentOption: props.currentEnvironmentOption,
+              ambientLight: props.ambientLight,
+              directionalLight: props.directionalLight,
+              hemisphereLight: props.hemisphereLight,
+              ambientLightIntensity: props.ambientIntensity,
+              directionalLightIntensity: props.directionalIntensity,
+              hemisphereLightIntensity: props.hemisphereIntensity,
+              ambientLightColor: props.ambientLightColor,
+              directionalLightColor: props.directionalLightColor,
+              hemisphereLightColor: props.hemisphereLightColor,
+              materials: []
+            })
+          );
 
-        newConfigData.config_data = JSON.stringify(newConfigData.config_data);
+          props.onSetConfiguration(newConfigData.config_data);
 
-        saveConfig();
+          newConfigData.config_data = JSON.stringify(newConfigData.config_data);
 
-        props.onAddConfiguration(newConfigData);
-        props.onSetCurrentConfigurationName(configurationNameField);
-        props.onSetCurrentConfigurationId(resp.data.id);
+          props.onAddConfiguration(newConfigData);
+          props.onSetCurrentConfigurationName(configurationNameField);
+          props.onSetCurrentConfigurationId(resp.data.id);
 
-        // Order is important
-        setMessage(`Switched to new configuration: ${configurationNameField}`);
-        setSeverity("success");
-        setSnackBarOpen(true);
-        setCreateConfiguration(false);
-        setConfigurationNameField("");
-        setCopyCurrentConfiguration(false);
+          // Order is important
+          setMessage(
+            `Switched to new configuration: ${configurationNameField}`
+          );
+          setSeverity("success");
+          setSnackBarOpen(true);
+          setCreateConfiguration(false);
+          setConfigurationNameField("");
+          setCopyCurrentConfiguration(false);
+        });
       })
       .catch(err => {
         console.log(err);
@@ -199,6 +220,15 @@ const ConfigurationSelector = props => {
 
         // Order is important
         props.onDeleteConfiguration(configToDelete.id);
+
+        if (props.currentConfigurationId === configToDelete.id) {
+          props.onSetConfiguration(
+            JSON.parse(props.allConfigurations[0].config_data)
+          );
+          props.onSetCurrentConfigurationName(props.allConfigurations[0].name);
+          props.onSetCurrentConfigurationId(props.allConfigurations[0].id);
+        }
+
         setMessage("Configuration successfully deleted!");
         setSeverity("success");
         setSnackBarOpen(true);
@@ -252,14 +282,16 @@ const ConfigurationSelector = props => {
         onClick={handleSelectConfigurationOption}
       >
         <p className="configuration-name">{configuration.name}</p>
-        <IconButton
-          aria-label="delete-configuration"
-          classes={{ root: "delete-configuration-button" }}
-          size="small"
-          onClick={e => garbageClick(e, configuration.id, configuration.name)}
-        >
-          <DeleteIcon />
-        </IconButton>
+        {configuration.name !== "default" && (
+          <IconButton
+            aria-label="delete-configuration"
+            classes={{ root: "delete-configuration-button" }}
+            size="small"
+            onClick={e => garbageClick(e, configuration.id, configuration.name)}
+          >
+            <DeleteIcon />
+          </IconButton>
+        )}
       </div>
     );
   });
@@ -329,7 +361,7 @@ const ConfigurationSelector = props => {
             type="text"
             fullWidth
             onChange={e =>
-              setConfigurationNameField(e.target.value.slice(0, 10))
+              setConfigurationNameField(e.target.value.slice(0, 15))
             }
           />
           <FormControlLabel
@@ -436,7 +468,8 @@ ConfigurationSelector.propTypes = {
   onAddConfiguration: PropTypes.func.isRequired,
   currentConfigurationId: PropTypes.number.isRequired,
   onSetConfigurationSaved: PropTypes.func.isRequired,
-  onDeleteConfiguration: PropTypes.func.isRequired
+  onDeleteConfiguration: PropTypes.func.isRequired,
+  onUpdateConfiguration: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -469,7 +502,9 @@ const mapDispatchToProps = dispatch => ({
   onAddConfiguration: config => dispatch(actions.addConfiguration(config)),
   onSetConfigurationSaved: () => dispatch(actions.setConfigurationSaved()),
   onDeleteConfiguration: configId =>
-    dispatch(actions.deleteConfiguration(configId))
+    dispatch(actions.deleteConfiguration(configId)),
+  onUpdateConfiguration: (configId, configData) =>
+    dispatch(actions.updateConfiguration(configId, configData))
 });
 
 export default connect(

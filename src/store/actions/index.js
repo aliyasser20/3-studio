@@ -91,7 +91,8 @@ export {
   setCurrentConfigurationId,
   setCurrentConfigurationName,
   addConfiguration,
-  deleteConfiguration
+  deleteConfiguration,
+  updateConfiguration
 } from "./configurations";
 
 export { setProfileImage } from "./users";

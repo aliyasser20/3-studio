@@ -1,5 +1,8 @@
 import * as actionTypes from "../actions/actionTypes";
-import { deleteConfiguration } from "./reducersHelpers/configurationsHelpers";
+import {
+  deleteConfiguration,
+  updateConfiguration
+} from "./reducersHelpers/configurationsHelpers";
 
 const initialState = {
   allConfigurations: [],
@@ -41,6 +44,15 @@ const reducer = (state = initialState, action) => {
         allConfigurations: deleteConfiguration(
           state.allConfigurations,
           action.configId
+        )
+      };
+    case actionTypes.UPDATE_CONFIGURATION:
+      return {
+        ...state,
+        allConfigurations: updateConfiguration(
+          state.allConfigurations,
+          action.configId,
+          action.configData
         )
       };
     default:
