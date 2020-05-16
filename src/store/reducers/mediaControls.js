@@ -76,19 +76,29 @@ const reducer = (state = initialState, action) => {
         ...state,
         sphere: action.sphere,
       };
-    
+
     case actionTypes.SET_MEDIA_L_SPHERE:
       return {
         ...state,
-        lSphere: action.lSphere
-      }
+        lSphere: action.lSphere,
+      };
     // lights
     case actionTypes.SET_MEDIA_KEY_LIGHT:
       return {
         ...state,
         keyLight: action.keyLight,
       };
+    case actionTypes.SET_MEDIA_D_LIGHT:
+      return {
+        ...state,
+        dLight: action.dLight,
+      };
 
+    case actionTypes.SET_MEDIA_B_LIGHT:
+      return {
+        ...state,
+        bLight: action.bLight,
+      };
     // plain objects
     case actionTypes.SET_MEDIA_P_WALL:
       return {
