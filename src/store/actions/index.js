@@ -42,7 +42,8 @@ export {
 export {
   setSelectedMaterial,
   updateMaterials,
-  updateEntireMaterials
+  updateEntireMaterials,
+  resetAppearanceControls
 } from "./appearanceControls";
 
 export {
@@ -97,7 +98,8 @@ export {
   setCurrentConfigurationName,
   addConfiguration,
   deleteConfiguration,
-  updateConfiguration
+  updateConfiguration,
+  resetConfigurations
 } from "./configurations";
 
 export { setProfileImage } from "./users";

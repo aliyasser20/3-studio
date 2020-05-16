@@ -13,7 +13,6 @@ import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
 
 import materialLibrary from "../../../../../helpers/materialLibrary";
 import * as actions from "../../../../../store/actions/index";
-import { updateModelMaterials } from "../../../../../helpers/updateModelMaterials";
 
 import "./EditCanvas.scss";
 
@@ -30,12 +29,6 @@ const EditCanvas = props => {
   const [ortho, setOrtho] = useState(null);
 
   // ! ------------------------------------------------- //
-
-  // useEffect(() => {
-  //   if (props.model) {
-  //     updateModelMaterials(props.model, props.materials);
-  //   }
-  // });
 
   // ? Fallback case
   const fallbackElement = (
@@ -69,7 +62,7 @@ const EditCanvas = props => {
   const handleDrop = e => {
     // console.log(e);
     if (props.selectedMaterial) {
-      console.log(e.object);
+      // console.log(e.object);
 
       props.onUpdateMaterial(e.object.name, {
         name: props.selectedMaterial

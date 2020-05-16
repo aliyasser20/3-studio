@@ -15,3 +15,7 @@ export const updateEntireMaterials = materials => ({
   type: actionTypes.UPDATE_ENTIRE_MATERIALS,
   materials
 });
+
+export const resetAppearanceControls = () => ({
+  type: actionTypes.RESET_APPEARANCE_CONTROLS
+});

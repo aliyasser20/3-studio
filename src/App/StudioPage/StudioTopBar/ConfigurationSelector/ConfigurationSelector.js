@@ -177,6 +177,9 @@ const ConfigurationSelector = props => {
           );
 
           props.onSetConfiguration(newConfigData.config_data);
+
+          console.log(newConfigData.config_data.materials);
+
           updateModelMaterials(
             props.model,
             newConfigData.config_data.materials

@@ -55,6 +55,10 @@ const reducer = (state = initialState, action) => {
           action.configData
         )
       };
+    case actionTypes.RESET_CONFIGURATIONS:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }

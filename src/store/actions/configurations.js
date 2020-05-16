@@ -46,6 +46,10 @@ export const updateConfiguration = (configId, configData) => ({
   configData
 });
 
+export const resetConfigurations = () => ({
+  type: actionTypes.RESET_CONFIGURATIONS
+});
+
 export const getConfigurations = projectId => dispatch => {
   backendAxios
     .get("/api/configurations", {

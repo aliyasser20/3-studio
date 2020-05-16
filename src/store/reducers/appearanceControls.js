@@ -27,6 +27,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         materials: { ...action.materials }
       };
+    case actionTypes.RESET_APPEARANCE_CONTROLS:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }
