@@ -82,4 +82,8 @@ export {
   resetLights
 } from "./lightControls";
 
-export { getConfigurations, setConfigurationSaved } from "./configurations";
+export {
+  getConfigurations,
+  setConfigurationSaved,
+  setAllConfigurations
+} from "./configurations";

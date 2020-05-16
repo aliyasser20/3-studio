@@ -23,6 +23,11 @@ export const setConfigurationSaved = () => ({
   type: actionTypes.SET_CONFIGURATION_SAVED
 });
 
+export const setAllConfigurations = configs => ({
+  type: actionTypes.SET_ALL_CONFIGURATIONS,
+  configs
+});
+
 export const getConfigurations = projectId => dispatch => {
   backendAxios
     .get("/api/configurations", {
@@ -35,6 +40,7 @@ export const getConfigurations = projectId => dispatch => {
       dispatch(setConfiguration(JSON.parse(response.data[0].config_data)));
       dispatch(setCurrentConfigurationId(response.data[0].id));
       dispatch(setCurrentConfigurationName(response.data[0].name));
+      dispatch(setAllConfigurations(response.data));
     })
     .catch(error => {
       console.log(error);

@@ -80,11 +80,6 @@ const StudioTopBar = props => {
                   {props.currentProject.name}
                 </Typography>
               </Box>
-              {/* <span className="gradient-button">
-                <Button variant="contained" endIcon={<ExpandMoreIcon />}>
-                  {props.currentConfigurationName}
-                </Button>
-              </span> */}
               <ConfigurationSelector />
             </div>
             <div className="top-bar-center">

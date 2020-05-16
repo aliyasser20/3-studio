@@ -62,6 +62,50 @@ const ConfigurationSelector = props => {
                 <DeleteIcon />
               </IconButton>
             </div>
+            <div className="configuration-option selected">
+              <p className="configuration-name">Default</p>
+              <IconButton
+                aria-label="delete-configuration"
+                classes={{ root: "delete-configuration-button" }}
+                size="small"
+                // onClick={() => fileExporter()}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </div>
+            <div className="configuration-option">
+              <p className="configuration-name">Default</p>
+              <IconButton
+                aria-label="delete-configuration"
+                classes={{ root: "delete-configuration-button" }}
+                size="small"
+                // onClick={() => fileExporter()}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </div>
+            <div className="configuration-option">
+              <p className="configuration-name">Default</p>
+              <IconButton
+                aria-label="delete-configuration"
+                classes={{ root: "delete-configuration-button" }}
+                size="small"
+                // onClick={() => fileExporter()}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </div>
+            <div className="configuration-option">
+              <p className="configuration-name">Default</p>
+              <IconButton
+                aria-label="delete-configuration"
+                classes={{ root: "delete-configuration-button" }}
+                size="small"
+                // onClick={() => fileExporter()}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </div>
           </div>
           <div className="add-configuration-area">
             <span className="gradient-button">

@@ -18,7 +18,7 @@
   .configuration-selector-popover-content {
     background-color: #212121;
     width: 260px;
-    height: 350px;
+    height: 300px;
     display: grid;
     grid-template-rows: 1fr auto;
     grid-gap: 1em;
@@ -38,6 +38,14 @@
         border-bottom: 1px solid #212121;
         align-items: center;
 
+        &:hover,
+        &.selected {
+          background: linear-gradient(
+            var(--gradient-top),
+            var(--gradient-bottom)
+          );
+        }
+
         .configuration-name {
           font-weight: 500;
         }
@@ -50,11 +58,11 @@
           }
 
           &:hover {
-            background: linear-gradient(
-              var(--gradient-top),
-              var(--gradient-bottom)
-            );
-            box-shadow: 0 0 4px rgba($color: #000000, $alpha: 0.4);
+            // background: linear-gradient(
+            //   var(--gradient-top),
+            //   var(--gradient-bottom)
+            // );
+            // box-shadow: 0 0 4px rgba($color: #000000, $alpha: 0.4);
             color: white;
           }
         }
