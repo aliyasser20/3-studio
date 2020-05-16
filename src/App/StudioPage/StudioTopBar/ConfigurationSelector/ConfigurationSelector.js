@@ -220,6 +220,15 @@ const ConfigurationSelector = props => {
 
         // Order is important
         props.onDeleteConfiguration(configToDelete.id);
+
+        if (props.currentConfigurationId === configToDelete.id) {
+          props.onSetConfiguration(
+            JSON.parse(props.allConfigurations[0].config_data)
+          );
+          props.onSetCurrentConfigurationName(props.allConfigurations[0].name);
+          props.onSetCurrentConfigurationId(props.allConfigurations[0].id);
+        }
+
         setMessage("Configuration successfully deleted!");
         setSeverity("success");
         setSnackBarOpen(true);
