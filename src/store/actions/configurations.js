@@ -3,10 +3,12 @@ import backendAxios from "../../axiosInstances/backendAxios";
 
 import * as environmentControls from "./environmentControls";
 import * as lightControls from "./lightControls";
+import * as appearanceControls from "./appearanceControls";
 
 export const setConfiguration = config => dispatch => {
   dispatch(environmentControls.bulkSetEnvironmentControls(config));
   dispatch(lightControls.bulkSetLightControls(config));
+  dispatch(appearanceControls.updateEntireMaterials(config.materials));
 };
 
 export const setCurrentConfigurationId = id => ({

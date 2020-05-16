@@ -39,7 +39,11 @@ export {
   resetExtraControls
 } from "./extraControls";
 
-export { setSelectedMaterial, updateMaterials } from "./appearanceControls";
+export {
+  setSelectedMaterial,
+  updateMaterials,
+  updateEntireMaterials
+} from "./appearanceControls";
 
 export {
   toggleMediaLock,

@@ -86,7 +86,7 @@ const ConfigurationSelector = props => {
             ambientLightColor: props.ambientLightColor,
             directionalLightColor: props.directionalLightColor,
             hemisphereLightColor: props.hemisphereLightColor,
-            materials: []
+            materials: props.materials
           }
         }
       })

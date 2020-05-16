@@ -22,6 +22,11 @@ const reducer = (state = initialState, action) => {
           action.material
         )
       };
+    case actionTypes.UPDATE_ENTIRE_MATERIALS:
+      return {
+        ...state,
+        materials: { ...action.materials }
+      };
     default:
       return state;
   }

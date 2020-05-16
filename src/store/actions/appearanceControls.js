@@ -10,3 +10,8 @@ export const updateMaterials = (partName, material) => ({
   partName,
   material
 });
+
+export const updateEntireMaterials = materials => ({
+  type: actionTypes.UPDATE_ENTIRE_MATERIALS,
+  materials
+});
