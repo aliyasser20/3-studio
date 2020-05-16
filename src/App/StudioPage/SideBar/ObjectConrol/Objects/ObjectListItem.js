@@ -36,6 +36,14 @@ const ObjectListItem = (props) => {
           onSetDragObjects={props.onSetMediaDragObjects}
         />
       )}
+      {props.lSphere && (
+        <WSphere
+          onSetMediaLSphere={props.onSetMediaLSphere}
+          lSphere={props.lSphere}
+          dragObjects={props.dragObjects}
+          onSetDragObjects={props.onSetMediaDragObjects}
+        />
+      )}
       {props.kLight && (
         <KLight
           onSetKLight={props.onSetMediaKeyLight}
@@ -50,20 +58,24 @@ const ObjectListItem = (props) => {
 
 ObjectListItem.propTypes = {
   wSphere: PropTypes.object,
+  lSphere: PropTypes.object,
   onSetMediaSphere: PropTypes.func.isRequired,
   dragObjects: PropTypes.array,
   onSetMediaDragObjects: PropTypes.func,
   kLight: PropTypes.object,
   onSetMediaKeyLight: PropTypes.func.isRequired,
+  onSetMediaLSphere: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   wSphere: state.mediaControls.sphere,
+  lSphere: state.mediaControls.lSphere,
   dragObjects: state.mediaState.dragObjects,
   kLight: state.mediaControls.keyLight,
 });
 const mapDispatchToState = (dispatch) => ({
   onSetMediaSphere: (arg) => dispatch(actions.setMediaSphere(arg)),
+  onSetMediaLSphere: (arg) => dispatch(actions.setMediaLSphere(arg)),
   onSetMediaDragObjects: (dragObject) =>
     dispatch(actions.setMediaDragObjects(dragObject)),
   onSetMediaKeyLight: (kLight) => dispatch(actions.setMediaKeyLight(kLight)),

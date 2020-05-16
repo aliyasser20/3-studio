@@ -13,53 +13,53 @@ import ColorPickerPopover from "../../../ColorPickerPopover/ColorPickerPopover";
 import { FormControlLabel, Checkbox, Slider } from "@material-ui/core";
 
 const LSphere = (props) => {
-  const [openWSphere, setOpenWSphere] = useState(false);
+  const [openLSphere, setOpenLSphere] = useState(false);
   const [rotations, setRotations] = useState(false);
   const handleClick = () => {
-    setOpenWSphere(!openWSphere);
+    setOpenLSphere(!openLSphere);
   };
 
-  const handleRemoveSphere = () => {
+  const handleRemoveLSphere = () => {
     const currentDragObjects = [...props.dragObjects];
     console.log(currentDragObjects);
-    const removed = currentDragObjects.filter((obj) => obj.name !== "w-sphere");
+    const removed = currentDragObjects.filter((obj) => obj.name !== "l-sphere");
     props.onSetDragObjects(removed);
-    props.onSetMediaSphere(null);
-    setOpenWSphere(false);
+    props.onSetMediaLSphere(null);
+    setOpenLSphere(false);
   };
 
   const handleColorSet = (color) => {
     const sphereArgs = { ...props.wSphere, color };
-    props.onSetMediaSphere(sphereArgs);
+    props.onSetMediaLSphere(sphereArgs);
   };
 
   const handleScaleChange = (e, newValue) => {
     const currentScale = [newValue, newValue, newValue];
-    const newScale = { ...props.wSphere, scale: [...currentScale] };
-    props.onSetMediaSphere(newScale);
+    const newScale = { ...props.lSphere, scale: [...currentScale] };
+    props.onSetMediaLSphere(newScale);
   };
 
   const handleXrotation = () => {
-    const toggleRotateX = { ...props.wSphere, rotateX: !props.wSphere.rotateX };
-    props.onSetMediaSphere(toggleRotateX);
+    const toggleRotateX = { ...props.lSphere, rotateX: !props.lSphere.rotateX };
+    props.onSetMediaLSphere(toggleRotateX);
   };
   const handleYrotation = () => {
-    const toggleRotateY = { ...props.wSphere, rotateY: !props.wSphere.rotateY };
-    props.onSetMediaSphere(toggleRotateY);
+    const toggleRotateY = { ...props.lSphere, rotateY: !props.lSphere.rotateY };
+    props.onSetMediaLSphere(toggleRotateY);
   };
   const handleZrotation = () => {
-    const toggleRotateZ = { ...props.wSphere, rotateZ: !props.wSphere.rotateZ };
-    props.onSetMediaSphere(toggleRotateZ);
+    const toggleRotateZ = { ...props.lSphere, rotateZ: !props.lSphere.rotateZ };
+    props.onSetMediaLSphere(toggleRotateZ);
   };
 
   return (
     <>
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
-          <HighlightOffIcon onClick={() => handleRemoveSphere()} />
+          <HighlightOffIcon onClick={() => handleRemoveLSphere()} />
         </ListItemIcon>
-        <ListItemText primary="W-SPHERE" />
-        {openWSphere ? <ExpandLess /> : <ExpandMore />}
+        <ListItemText primary="L-SPHERE" />
+        {openLSphere ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={openWSphere} timeout="auto" unmountOnExit>
         <ListItem button onClick={() => setRotations(!rotations)}>
@@ -75,7 +75,7 @@ const LSphere = (props) => {
                   control={
                     <Checkbox
                       className="custom-checkbox"
-                      checked={props.wSphere.rotateX}
+                      checked={props.lSphere.rotateX}
                       onChange={handleXrotation}
                       name="x-rotation"
                     />
@@ -93,7 +93,7 @@ const LSphere = (props) => {
                   control={
                     <Checkbox
                       className="custom-checkbox"
-                      checked={props.wSphere.rotateY}
+                      checked={props.lSphere.rotateY}
                       onChange={handleYrotation}
                       name="y-rotation"
                     />
@@ -111,7 +111,7 @@ const LSphere = (props) => {
                   control={
                     <Checkbox
                       className="custom-checkbox"
-                      checked={props.wSphere.rotateZ}
+                      checked={props.lSphere.rotateZ}
                       onChange={handleZrotation}
                       name="z-rotation"
                     />
@@ -127,7 +127,7 @@ const LSphere = (props) => {
             <ListItemIcon>
               <ColorPickerPopover
                 visible
-                color={props.wSphere.color}
+                color={props.lSphere.color}
                 setColor={handleColorSet}
               />
             </ListItemIcon>
@@ -139,7 +139,7 @@ const LSphere = (props) => {
             <ListItemText primary="Scale" />
             <Slider
               className="scale-slider"
-              value={props.wSphere.scale[0]}
+              value={props.lSphere.scale[0]}
               valueLabelDisplay="auto"
               step={0.1}
               min={0}
@@ -154,8 +154,8 @@ const LSphere = (props) => {
 };
 
 LSphere.propTypes = {
-  onSetMediaSphere: PropTypes.func.isRequired,
-  wSphere: PropTypes.object,
+  onSetMediaLSphere: PropTypes.func.isRequired,
+  lSphere: PropTypes.object,
   dragObjects: PropTypes.array,
   onSetDragObjects: PropTypes.func,
 };
