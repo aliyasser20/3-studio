@@ -38,6 +38,12 @@ export const deleteConfiguration = configId => ({
   configId
 });
 
+export const updateConfiguration = (configId, configData) => ({
+  type: actionTypes.UPDATE_CONFIGURATION,
+  configId,
+  configData
+});
+
 export const getConfigurations = projectId => dispatch => {
   backendAxios
     .get("/api/configurations", {

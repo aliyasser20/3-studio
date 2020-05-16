@@ -9,3 +9,15 @@ export const deleteConfiguration = (configurations, configId) => {
 
   return newConfigurations;
 };
+
+export const updateConfiguration = (configurations, configId, configData) => {
+  const newConfigurations = configurations;
+
+  configurations.forEach(configuration => {
+    if (configuration.id === configId) {
+      configuration.config_data = configData;
+    }
+  });
+
+  return newConfigurations;
+};
