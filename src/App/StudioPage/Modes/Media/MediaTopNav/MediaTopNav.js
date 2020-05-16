@@ -32,6 +32,7 @@ const MediaTopNav = (props) => {
   const [screenshot, setScreenshot] = useState();
   const [counter, setCounter] = useState(props.currentProject.counter);
   const [recording, setRecording] = useState("");
+  const [seconds, setSeconds] = useState(10);
 
   const { user } = useAuth0();
 
@@ -44,6 +45,7 @@ const MediaTopNav = (props) => {
     const preview = document.querySelector("#preview-video");
     const vid = document.querySelector("video");
     vid && preview.removeChild(vid);
+    setScreenshot("");
   };
   const snackbarSet = (type, message) => {
     setSeverity(type);
@@ -60,6 +62,8 @@ const MediaTopNav = (props) => {
   };
   const handleDownload = () => {
     screeshotDownload(screenshot, props.currentProject, counter);
+    setOpen(false);
+    setScreenshot("");
   };
 
   const handleSave = () => {
@@ -69,6 +73,7 @@ const MediaTopNav = (props) => {
         : snackbarSet("error", "Error, screenshot not saved.");
       setSnackbar(true);
       setOpen(false);
+      setScreenshot("");
     });
     handleCounter(user.sub, counter, props.currentProject.id).then((res) =>
       console.log(res)
@@ -107,7 +112,7 @@ const MediaTopNav = (props) => {
 
   return (
     <div className="media-top-nav">
-      <span className="media-top-nav-item">Recording: 00:10:00 </span>
+      <span className="media-top-nav-item"> 00:{seconds} </span>
       <FiberManualRecordIcon
         onClick={(e) => handleRecord()}
         fontSize="large"
