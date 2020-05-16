@@ -93,3 +93,5 @@ export {
   addConfiguration,
   deleteConfiguration
 } from "./configurations";
+
+export { setProfileImage } from "./users";

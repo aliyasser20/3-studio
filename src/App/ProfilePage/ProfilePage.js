@@ -16,6 +16,8 @@ import {
 import DeleteSweepIcon from "@material-ui/icons/DeleteSweep";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 
+import { DropzoneArea } from "material-ui-dropzone";
+
 import SingleField from "./SingleField/SingleField";
 import Alert from "../UI/Alert/Alert";
 
@@ -23,6 +25,11 @@ import { useAuth0 } from "../../react-auth0-spa";
 import { availableThemes } from "../../store/reducers/reducersHelpers/themesHelpers";
 import * as actions from "../../store/actions/index";
 import backendAxios from "../../axiosInstances/backendAxios";
+
+import {
+  savePictureToCloud,
+  updateProfilePicture
+} from "./UpdateProfilePictureHelper";
 
 import "./ProfilePage.scss";
 
@@ -36,7 +43,16 @@ const ProfilePage = props => {
   const [disabled] = useState(!user.sub.includes("auth0"));
   const [nameField, setNameField] = useState(user.name);
   const [nicknameField, setNicknameField] = useState(user.nickname);
-  const [open, setOpen] = React.useState(false);
+  // For deleting account and resetting password
+  const [open, setOpen] = useState(false);
+  // For opening profile picture change modal
+  const [openPictureChanger, setOpenPictureChanger] = useState(false);
+  // For opening and closing profile picture dialog
+  const [openDialog, setOpenDialog] = useState(false);
+  // used to change profile picture
+  const [picture, setPicture] = useState([]);
+  // currrent picture
+  const [profilePicture, setProfilePicture] = useState(user.picture);
 
   // ! Resets
   // General resets
@@ -111,6 +127,55 @@ const ProfilePage = props => {
     setOpen(false);
   };
 
+  const handleChangePictureButton = () => {
+    setOpenPictureChanger(true);
+    setOpenDialog(true);
+  };
+
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+  };
+
+  const handleDrop = file => {
+    setPicture(file);
+  };
+
+  const handleDelete = () => {
+    setPicture([]);
+  };
+
+  const handlePictureUpdate = () => {
+    savePictureToCloud(picture).then(pictureLink => {
+      updateProfilePicture({
+        userId: user.sub,
+        picture: pictureLink.data.url
+      })
+        .then(() => {
+          setProfilePicture(pictureLink.data.url);
+          setMessage("Successfully changed profile picture!");
+          setSeverity("success");
+          setOpen(true);
+          setOpenPictureChanger(false);
+          props.onSetProfileImage(pictureLink.data.url);
+        })
+        .catch(err => {
+          console.log(err);
+          setMessage("Could not update profile picture!");
+          setSeverity("error");
+          setOpen(true);
+          setOpenPictureChanger(false);
+        });
+    });
+  };
+
+  // Click on change profile picture and setOpenProfilePictureChanger(false);
+  // Open dialog
+  // Have upload and/or dropzone to add picture
+  // Add picture to cloudinary and take response as filepath
+  // Set uploaded picture to user.picture in backend (put router / patch axios request to /users)
+  // If success, show success message and close dialog (setOpenProfilePictureChanger(false))
+  // If failure, show fail message and return to dialog, user could reattempt uploading or click on "x" in dialog and setOpenProfilePictureChanger(false)]
+
   const page = (
     <Container maxWidth="md" classes={{ root: "container-padding" }}>
       <div className="profile-page">
@@ -118,11 +183,49 @@ const ProfilePage = props => {
           <div className="picture-container">
             <img
               className="profile-picture"
-              src={user.picture}
+              src={profilePicture}
               alt="profile picture"
             />
+            <Button onClick={handleChangePictureButton}>
+              Change profile picture
+            </Button>
+            {openPictureChanger && (
+              <Dialog
+                open={openDialog}
+                onClose={handleDialogClose}
+                aria-labelledby="Update picture"
+              >
+                <DropzoneArea
+                  dropzoneText="Drag profile picture here"
+                  acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
+                  maxFileSize={10000000}
+                  filesLimit={1}
+                  onDrop={e => handleDrop(e)}
+                  onDelete={handleDelete}
+                />
+
+                <DialogActions>
+                  <Button onClick={handleDialogClose} color="primary">
+                    Cancel
+                  </Button>
+                  <Button onClick={handlePictureUpdate} color="primary">
+                    Update
+                  </Button>
+                </DialogActions>
+              </Dialog>
+              // {/* // <DropzoneDialog */}
+              //   cancelButtonText="Cancel"
+              //   submitButtonText="Submit"
+              //   open={open}
+              //   acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
+              //   showPreviews
+              //   maxFileSize={5000000}
+              //   onClose={handleProfilePictureClickClose}
+              // />
+            )}
           </div>
           <div className="theme-selector-area">
+            <p>Theme</p>
             <Select
               labelId="theme"
               id="theme"
@@ -198,7 +301,6 @@ const ProfilePage = props => {
         </Alert>
       </Snackbar>
       <Dialog
-        // classes={{ root: "delete-account-dialog" }}
         className="delete-account-dialog"
         open={confirmDelete}
         onClose={() => setConfirmDelete(false)}
@@ -237,7 +339,8 @@ ProfilePage.propTypes = {
   onSetTheme: PropTypes.func.isRequired,
   onModeSelect: PropTypes.func.isRequired,
   onResetMediaState: PropTypes.func.isRequired,
-  onResetMediaControls: PropTypes.func.isRequired
+  onResetMediaControls: PropTypes.func.isRequired,
+  onSetProfileImage: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -248,7 +351,8 @@ const mapDispatchToProps = dispatch => ({
   onSetTheme: theme => dispatch(actions.setTheme(theme)),
   onModeSelect: mode => dispatch(actions.modeSelect(mode)),
   onResetMediaState: () => dispatch(actions.resetMediaState()),
-  onResetMediaControls: () => dispatch(actions.resetMediaControls())
+  onResetMediaControls: () => dispatch(actions.resetMediaControls()),
+  onSetProfileImage: image => dispatch(actions.setProfileImage(image))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);

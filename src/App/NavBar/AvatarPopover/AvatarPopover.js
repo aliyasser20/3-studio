@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
@@ -36,7 +37,7 @@ const AvatarPopover = props => {
     <ThemeProvider theme={theme}>
       <div className="avatar-popover">
         <IconButton aria-describedby={id} onClick={handleClick}>
-          <Avatar alt={props.username} src={props.picture} />
+          <Avatar alt={props.username} src={props.imagePath} />
         </IconButton>
         <Popover
           id={id}
@@ -57,7 +58,7 @@ const AvatarPopover = props => {
               <Avatar
                 className="large-avatar"
                 alt={props.username}
-                src={props.picture}
+                src={props.imagePath}
               />
               <Typography variant="h5" classes={{ root: "user-display-name" }}>
                 <Box fontWeight="700">{props.username.slice(0, 18)}</Box>
@@ -89,7 +90,12 @@ const AvatarPopover = props => {
 AvatarPopover.propTypes = {
   logout: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired
+  picture: PropTypes.string.isRequired,
+  imagePath: PropTypes.string.isRequired
 };
 
-export default AvatarPopover;
+const mapStateToProps = state => ({
+  imagePath: state.users.imagePath
+});
+
+export default connect(mapStateToProps, null)(AvatarPopover);
