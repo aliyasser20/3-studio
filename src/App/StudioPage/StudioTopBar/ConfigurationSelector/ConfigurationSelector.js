@@ -24,6 +24,7 @@ import Alert from "../../../UI/Alert/Alert";
 import * as actions from "../../../../store/actions/index";
 import backendAxios from "../../../../axiosInstances/backendAxios";
 import { useAuth0 } from "../../../../react-auth0-spa";
+import { updateModelMaterials } from "../../../../helpers/updateModelMaterials";
 
 import "./ConfigurationSelector.scss";
 
@@ -118,7 +119,7 @@ const ConfigurationSelector = props => {
         ambientLightColor: props.ambientLightColor,
         directionalLightColor: props.directionalLightColor,
         hemisphereLightColor: props.hemisphereLightColor,
-        materials: []
+        materials: props.materials
       };
     } else {
       newConfigData.config_data = {
@@ -142,7 +143,7 @@ const ConfigurationSelector = props => {
         ambientLightColor: "ffffff",
         directionalLightColor: "ffffff",
         hemisphereLightColor: "ffffff",
-        materials: []
+        materials: {}
       };
     }
 
@@ -171,11 +172,15 @@ const ConfigurationSelector = props => {
               ambientLightColor: props.ambientLightColor,
               directionalLightColor: props.directionalLightColor,
               hemisphereLightColor: props.hemisphereLightColor,
-              materials: []
+              materials: props.materials
             })
           );
 
           props.onSetConfiguration(newConfigData.config_data);
+          updateModelMaterials(
+            props.model,
+            newConfigData.config_data.materials
+          );
 
           newConfigData.config_data = JSON.stringify(newConfigData.config_data);
 
@@ -492,7 +497,9 @@ ConfigurationSelector.propTypes = {
   currentConfigurationId: PropTypes.number.isRequired,
   onSetConfigurationSaved: PropTypes.func.isRequired,
   onDeleteConfiguration: PropTypes.func.isRequired,
-  onUpdateConfiguration: PropTypes.func.isRequired
+  onUpdateConfiguration: PropTypes.func.isRequired,
+  materials: PropTypes.object.isRequired,
+  model: PropTypes.object
 };
 
 const mapStateToProps = state => ({
@@ -513,7 +520,9 @@ const mapStateToProps = state => ({
   directionalLightColor: state.lightControls.directionalLightColor,
   hemisphereLightColor: state.lightControls.hemisphereLightColor,
   currentConfigurationId: state.configurations.currentConfigurationId,
-  currentEnvironmentOption: state.environmentControls.currentEnvironmentOption
+  currentEnvironmentOption: state.environmentControls.currentEnvironmentOption,
+  materials: state.appearanceControls.materials,
+  model: state.currentModel.model
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -13,6 +13,7 @@ import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
 
 import materialLibrary from "../../../../../helpers/materialLibrary";
 import * as actions from "../../../../../store/actions/index";
+import { updateModelMaterials } from "../../../../../helpers/updateModelMaterials";
 
 import "./EditCanvas.scss";
 
@@ -29,6 +30,12 @@ const EditCanvas = props => {
   const [ortho, setOrtho] = useState(null);
 
   // ! ------------------------------------------------- //
+
+  // useEffect(() => {
+  //   if (props.model) {
+  //     updateModelMaterials(props.model, props.materials);
+  //   }
+  // });
 
   // ? Fallback case
   const fallbackElement = (
@@ -61,9 +68,13 @@ const EditCanvas = props => {
 
   const handleDrop = e => {
     // console.log(e);
-    console.log(e.object);
-
     if (props.selectedMaterial) {
+      console.log(e.object);
+
+      props.onUpdateMaterial(e.object.name, {
+        name: props.selectedMaterial
+      });
+
       e.object.material = materialLibrary()[props.selectedMaterial];
       props.onSetSelectedMaterial("");
     }
@@ -170,7 +181,9 @@ EditCanvas.propTypes = {
   directionalIntensity: PropTypes.number.isRequired,
   directionalLightColor: PropTypes.string.isRequired,
   hemisphereLightColor: PropTypes.string.isRequired,
-  ambientLightColor: PropTypes.string.isRequired
+  ambientLightColor: PropTypes.string.isRequired,
+  onUpdateMaterial: PropTypes.func.isRequired,
+  materials: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -199,13 +212,16 @@ const mapStateToProps = state => ({
   hemisphereIntensity: state.lightControls.hemisphereLightIntensity,
   ambientLightColor: state.lightControls.ambientLightColor,
   directionalLightColor: state.lightControls.directionalLightColor,
-  hemisphereLightColor: state.lightControls.hemisphereLightColor
+  hemisphereLightColor: state.lightControls.hemisphereLightColor,
+  materials: state.appearanceControls.materials
 });
 
 const mapDispatchToProps = dispatch => ({
   onSetFov: fov => dispatch(actions.setFov(fov)),
   onSetSelectedMaterial: material =>
-    dispatch(actions.setSelectedMaterial(material))
+    dispatch(actions.setSelectedMaterial(material)),
+  onUpdateMaterial: (partName, material) =>
+    dispatch(actions.updateMaterials(partName, material))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditCanvas);
