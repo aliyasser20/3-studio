@@ -22,12 +22,17 @@ const KLight = (props) => {
   }, []);
 
   useFrame(() => {
-    sphere.current &&
+    const time = Date.now() * 0.0005;
+    if (sphere.current) {
+      sphere.current.position.x = 50 * Math.sin(time * 0.7) * 30;
+      // sphere.current.position.y = 10 * Math.cos(time * 0.5) * 40;
+      sphere.current.position.z = 50 * Math.cos(time * 0.3) * 30;
       setLightPosition([
         sphere.current.position.x,
         sphere.current.position.y,
         sphere.current.position.z,
       ]);
+    }
   });
   return (
     <>
@@ -39,6 +44,7 @@ const KLight = (props) => {
         castShadow
         scale={props.kLight.scale}
         position={[-props.kLight.initPosition, 0, 0]}
+        lookAt={[0, 0, 0]}
         onPointerOver={(e) => {
           props.toggleMediaLock();
           console.log(pointLight.current);
