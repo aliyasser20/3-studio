@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { Button, Popover } from "@material-ui/core";
+import { Button, Popover, IconButton } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import AddIcon from "@material-ui/icons/Add";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 import "./ConfigurationSelector.scss";
 
@@ -33,20 +35,46 @@ const ConfigurationSelector = props => {
         </Button>
       </span>
       <Popover
+        className="configuration-selector-popover"
         id={id}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "right"
+          horizontal: "left"
         }}
         transformOrigin={{
           vertical: "top",
-          horizontal: "right"
+          horizontal: "left"
         }}
       >
-        <div className="configuration-selector-popover-content">Hello</div>
+        <div className="configuration-selector-popover-content">
+          <div className="configuration-options">
+            <div className="configuration-option">
+              <p className="configuration-name">Default</p>
+              <IconButton
+                aria-label="delete-configuration"
+                classes={{ root: "delete-configuration-button" }}
+                size="small"
+                // onClick={() => fileExporter()}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </div>
+          </div>
+          <div className="add-configuration-area">
+            <span className="gradient-button">
+              <Button
+                onClick={handleClose}
+                variant="contained"
+                startIcon={<AddIcon />}
+              >
+                New Configuration
+              </Button>
+            </span>
+          </div>
+        </div>
       </Popover>
     </div>
   );

@@ -1,5 +1,6 @@
 .configuration-selector {
   display: grid;
+  color: white;
 
   .gradient-button {
     border-radius: 20px !important;
@@ -7,6 +8,72 @@
 
     .MuiButton-label {
       color: white;
+    }
+  }
+}
+
+.configuration-selector-popover {
+  margin-top: 0.5em;
+
+  .configuration-selector-popover-content {
+    background-color: #212121;
+    width: 260px;
+    height: 350px;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-gap: 1em;
+    padding: 1em;
+
+    .configuration-options {
+      border: 1px solid #757575;
+      border-radius: 5px;
+      overflow: auto;
+
+      .configuration-option {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        background-color: #2e2e2e;
+        color: white;
+        padding: 0 1em;
+        border-bottom: 1px solid #212121;
+        align-items: center;
+
+        .configuration-name {
+          font-weight: 500;
+        }
+
+        .delete-configuration-button {
+          color: #cecece;
+
+          svg {
+            padding: 0.1em;
+          }
+
+          &:hover {
+            background: linear-gradient(
+              var(--gradient-top),
+              var(--gradient-bottom)
+            );
+            box-shadow: 0 0 4px rgba($color: #000000, $alpha: 0.4);
+            color: white;
+          }
+        }
+      }
+    }
+
+    .add-configuration-area {
+      display: grid;
+      justify-content: center;
+
+      .gradient-button {
+        .MuiButton-root {
+          width: calc(260px - 2em);
+        }
+
+        .MuiButton-label {
+          color: white;
+        }
+      }
     }
   }
 }
