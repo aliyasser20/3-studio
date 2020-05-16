@@ -28,7 +28,14 @@ const StudioPage = props => {
       props.currentProject.modelLink &&
       props.allConfigurations[0]
     ) {
-      // props.onGetConfigurations(props.currentProject.id);
+      let currentConfigData = JSON.parse(props.allConfigurations[0].config_data)
+        .materials;
+
+      props.allConfigurations.forEach(config => {
+        if (config.id === props.currentConfigurationId) {
+          currentConfigData = JSON.parse(config.config_data).materials;
+        }
+      });
 
       new GLTFLoader().load(props.currentProject.modelLink, gltf =>
         // Order of inputs is important
@@ -39,7 +46,7 @@ const StudioPage = props => {
           props.onSetModel,
           props.onSetSizeBounding,
           props.onSetNear,
-          JSON.parse(props.allConfigurations[0].config_data).materials
+          currentConfigData
         )
       );
     }
@@ -50,7 +57,8 @@ const StudioPage = props => {
     props.onSetSizeBounding,
     props.onSetFar,
     props.onSetNear,
-    props.allConfigurations
+    props.allConfigurations,
+    props.currentConfigurationId
   ]);
   //
 
@@ -113,7 +121,8 @@ const mapStateToProps = state => ({
   currentProject: state.projects.currentProject,
   currentMode: state.modeControl.currentMode,
   materials: state.appearanceControls.materials,
-  allConfigurations: state.configurations.allConfigurations
+  allConfigurations: state.configurations.allConfigurations,
+  currentConfigurationId: state.configurations.currentConfigurationId
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -178,8 +178,6 @@ const ConfigurationSelector = props => {
 
           props.onSetConfiguration(newConfigData.config_data);
 
-          console.log(newConfigData.config_data.materials);
-
           updateModelMaterials(
             props.model,
             newConfigData.config_data.materials
@@ -285,11 +283,6 @@ const ConfigurationSelector = props => {
       props.onSetCurrentConfigurationName(configuration.name);
       props.onSetCurrentConfigurationId(configuration.id);
 
-      updateModelMaterials(
-        props.model,
-        JSON.parse(configuration.config_data).materials
-      );
-
       saveConfig().then(() => {
         props.onUpdateConfiguration(
           props.currentConfigurationId,
@@ -310,6 +303,11 @@ const ConfigurationSelector = props => {
             hemisphereLightColor: props.hemisphereLightColor,
             materials: props.materials
           })
+        );
+
+        updateModelMaterials(
+          props.model,
+          JSON.parse(configuration.config_data).materials
         );
       });
 
