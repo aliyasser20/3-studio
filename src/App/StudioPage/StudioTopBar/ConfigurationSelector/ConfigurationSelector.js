@@ -10,14 +10,16 @@ import {
   DialogActions,
   DialogTitle,
   DialogContent,
-  DialogContentText,
   TextField,
   FormControlLabel,
-  Checkbox
+  Checkbox,
+  Snackbar
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
+
+import Alert from "../../../UI/Alert/Alert";
 
 import * as actions from "../../../../store/actions/index";
 import backendAxios from "../../../../axiosInstances/backendAxios";
@@ -34,6 +36,11 @@ const ConfigurationSelector = props => {
   const [copyCurrentConfiguration, setCopyCurrentConfiguration] = useState(
     false
   );
+  const [message, setMessage] = useState("");
+  const [severity, setSeverity] = useState("");
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [configToDelete, setConfigToDelete] = useState(null);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -41,6 +48,11 @@ const ConfigurationSelector = props => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleSnackBarClose = () => {
+    // Order is important
+    setSnackBarOpen(false);
   };
 
   const handleCancelNewConfig = () => {
@@ -153,11 +165,71 @@ const ConfigurationSelector = props => {
         props.onSetCurrentConfigurationName(configurationNameField);
         props.onSetCurrentConfigurationId(resp.data.id);
 
+        // Order is important
+        setMessage(`Switched to new configuration: ${configurationNameField}`);
+        setSeverity("success");
+        setSnackBarOpen(true);
         setCreateConfiguration(false);
         setConfigurationNameField("");
         setCopyCurrentConfiguration(false);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+
+        // Order is important
+        setMessage("Could not create new configuration!");
+        setSeverity("error");
+        setSnackBarOpen(true);
+        setCreateConfiguration(false);
+        setConfigurationNameField("");
+        setCopyCurrentConfiguration(false);
+      });
+  };
+
+  const deleteConfiguration = () => {
+    backendAxios
+      .delete("/api/configurations", {
+        data: {
+          configurationId: configToDelete.id,
+          userId: user.sub
+        }
+      })
+      .then(resp => {
+        console.log(resp);
+
+        // Order is important
+        props.onDeleteConfiguration(configToDelete.id);
+        setMessage("Configuration successfully deleted!");
+        setSeverity("success");
+        setSnackBarOpen(true);
+        setConfirmDelete(false);
+        setConfigToDelete(null);
+      })
+      .catch(err => {
+        console.log(err);
+
+        setMessage("Could not delete configuration!");
+        setSeverity("error");
+        setSnackBarOpen(true);
+        setConfirmDelete(false);
+        setConfigToDelete(null);
+      });
+  };
+
+  const garbageClick = (e, configId, configName) => {
+    e.stopPropagation();
+
+    setConfigToDelete({
+      id: configId,
+      name: configName
+    });
+
+    setConfirmDelete(true);
+  };
+
+  const handleCancelDelete = () => {
+    setConfirmDelete(false);
+    setConfigToDelete(null);
   };
 
   const configurationOptions = props.allConfigurations.map(configuration => {
@@ -184,7 +256,7 @@ const ConfigurationSelector = props => {
           aria-label="delete-configuration"
           classes={{ root: "delete-configuration-button" }}
           size="small"
-          // onClick={() => fileExporter()}
+          onClick={e => garbageClick(e, configuration.id, configuration.name)}
         >
           <DeleteIcon />
         </IconButton>
@@ -292,6 +364,50 @@ const ConfigurationSelector = props => {
           </Button>
         </DialogActions>
       </Dialog>
+      <Dialog
+        className="create-configuration-dialog"
+        open={confirmDelete}
+        onClose={handleCancelDelete}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle
+          className="config-delete-dialog-title"
+          id="alert-dialog-title"
+        >
+          Are you sure you want to permanently delete the{" "}
+          <span className="config-to-delete">
+            {configToDelete ? configToDelete.name : ""}
+          </span>{" "}
+          configuration?
+        </DialogTitle>
+        <DialogActions>
+          <Button
+            classes={{ root: "cancel-create-configuration" }}
+            onClick={handleCancelDelete}
+            color="primary"
+          >
+            Cancel
+          </Button>
+          <Button
+            classes={{ root: "confirm-create-configuration" }}
+            onClick={deleteConfiguration}
+            color="primary"
+            autoFocus
+          >
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Snackbar
+        open={snackBarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackBarClose}
+      >
+        <Alert onClose={handleSnackBarClose} severity={severity}>
+          {message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
@@ -320,7 +436,7 @@ ConfigurationSelector.propTypes = {
   onAddConfiguration: PropTypes.func.isRequired,
   currentConfigurationId: PropTypes.number.isRequired,
   onSetConfigurationSaved: PropTypes.func.isRequired,
-  onSetConfiguration: PropTypes.func.isRequired
+  onDeleteConfiguration: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -352,7 +468,8 @@ const mapDispatchToProps = dispatch => ({
   onSetConfiguration: config => dispatch(actions.setConfiguration(config)),
   onAddConfiguration: config => dispatch(actions.addConfiguration(config)),
   onSetConfigurationSaved: () => dispatch(actions.setConfigurationSaved()),
-  onSetConfiguration: config => dispatch(actions.setConfiguration(config))
+  onDeleteConfiguration: configId =>
+    dispatch(actions.deleteConfiguration(configId))
 });
 
 export default connect(
