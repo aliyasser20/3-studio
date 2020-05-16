@@ -273,14 +273,16 @@ const ConfigurationSelector = props => {
         onClick={handleSelectConfigurationOption}
       >
         <p className="configuration-name">{configuration.name}</p>
-        <IconButton
-          aria-label="delete-configuration"
-          classes={{ root: "delete-configuration-button" }}
-          size="small"
-          onClick={e => garbageClick(e, configuration.id, configuration.name)}
-        >
-          <DeleteIcon />
-        </IconButton>
+        {configuration.name !== "default" && (
+          <IconButton
+            aria-label="delete-configuration"
+            classes={{ root: "delete-configuration-button" }}
+            size="small"
+            onClick={e => garbageClick(e, configuration.id, configuration.name)}
+          >
+            <DeleteIcon />
+          </IconButton>
+        )}
       </div>
     );
   });
