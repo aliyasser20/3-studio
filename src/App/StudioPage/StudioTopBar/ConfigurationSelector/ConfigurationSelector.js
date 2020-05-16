@@ -135,6 +135,10 @@ const ConfigurationSelector = props => {
       })
       .then(resp => {
         newConfigData.id = resp.data.id;
+
+        // ! Order here is very important because of stringify!!!
+        props.onSetConfiguration(newConfigData.config_data);
+
         newConfigData.config_data = JSON.stringify(newConfigData.config_data);
 
         saveConfig();
@@ -306,7 +310,8 @@ ConfigurationSelector.propTypes = {
   currentEnvironmentOption: PropTypes.object.isRequired,
   onAddConfiguration: PropTypes.func.isRequired,
   currentConfigurationId: PropTypes.number.isRequired,
-  onSetConfigurationSaved: PropTypes.func.isRequired
+  onSetConfigurationSaved: PropTypes.func.isRequired,
+  onSetConfiguration: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -337,7 +342,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.setCurrentConfigurationId(id)),
   onSetConfiguration: config => dispatch(actions.setConfiguration(config)),
   onAddConfiguration: config => dispatch(actions.addConfiguration(config)),
-  onSetConfigurationSaved: () => dispatch(actions.setConfigurationSaved())
+  onSetConfigurationSaved: () => dispatch(actions.setConfigurationSaved()),
+  onSetConfiguration: config => dispatch(actions.setConfiguration(config))
 });
 
 export default connect(
