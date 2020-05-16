@@ -15,7 +15,7 @@ import ObjectListItem from "./Objects/ObjectListItem";
 const ObjectControl = (props) => (
   <div className="material-details">
     <ExpansionPanel
-      className="custom-panel"
+      className="custom-panel objects"
       expanded={props.expanded.includes("MATERIAL-DETAILS")}
       onChange={() => props.handleChange("MATERIAL-DETAILS")}
     >

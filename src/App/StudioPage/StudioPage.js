@@ -48,7 +48,6 @@ const StudioPage = props => {
     props.onSetNear,
     props
   ]);
-
   //
 
   const page =

@@ -18,11 +18,11 @@ import WSphere from "../Models/WSphere";
 import TestingDrag from "../Models/TestingDrag";
 import DControls from "../DragControls/DControls";
 import GroundPlane from "../OldCanvas/GroundPlane/GroundPlane";
+import KLight from "../Models/KLight";
 
 const MediaCanvas = (props) => {
   const [loading, setLoading] = useState(true);
   const { mediaFov, mediaFar, mediaNear, mediaBox, mediaSizeBounding } = props;
-
   useEffect(() => {
     !props.mediaFov && props.onSetMediaFov(props.modelSettings.fov);
     !props.mediaFar && props.onSetMediaFar(props.modelSettings.far);
@@ -47,6 +47,14 @@ const MediaCanvas = (props) => {
     />
   ) : null;
 
+  const lights = props.defaultLight ? (
+    <>
+      <ambientLight intensity={0.1} />
+      <hemisphereLight intensity={0.1} />
+      <directionalLight intensity={0.1 * Math.PI} position={[0.5, 0, 0.86]} />
+    </>
+  ) : null;
+
   return !loading || !props.modelSettings.model || !props.mediaModel ? (
     <>
       <Canvas
@@ -55,13 +63,13 @@ const MediaCanvas = (props) => {
         onCreated={({ gl, scene }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
           gl.outputEncoding = THREE.sRGBEncoding;
+          gl.shadowMap.type = THREE.PCFSoftShadowMap;
+          gl.shadowMap.enabled = true;
           gl.gammaFactor = 2.2;
         }}
       >
         {camere}
-        <ambientLight intensity={0.3} />
-        <hemisphereLight intensity={1} />
-        <directionalLight intensity={0.8 * Math.PI} position={[0.5, 0, 0.86]} />
+        {lights}
         <Environment
           bgEnvironment={props.mediaControls.mediaEnvBackground}
           bgSolid={props.mediaControls.mediaSolidBackground}
@@ -85,13 +93,15 @@ const MediaCanvas = (props) => {
             dragObjects={props.mediaState.dragObjects}
           />
         )}
-
+        {props.mediaControls.keyLight && (
+          <KLight
+            kLight={props.mediaControls.keyLight}
+            toggleMediaLock={props.onToggleMediaLock}
+            setDrag={props.onSetMediaDragObjects}
+            dragObjects={props.mediaState.dragObjects}
+          />
+        )}
         <GroundPlane />
-        {/* <TestingDrag
-          toggleMediaLock={props.onToggleMediaLock}
-          setDrag={props.onSetMediaDragObjects}
-          dragObjects={props.mediaState.dragObjects}
-        /> */}
       </Canvas>
     </>
   ) : (
@@ -115,6 +125,11 @@ MediaCanvas.propTypes = {
   currentEnvOption: PropTypes.object.isRequired,
   solidBgColor: PropTypes.string.isRequired,
   mediaMapEnv: PropTypes.bool.isRequired,
+  defaultLight: PropTypes.bool.isRequired,
+  onToggleDefaultLight: PropTypes.func.isRequired,
+  mediaState: PropTypes.object.isRequired,
+  onSetMediaDragObjects: PropTypes.func.isRequired,
+  onToggleMediaLock: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -130,6 +145,7 @@ const mapStateToProps = (state) => ({
   solidBgColor: state.mediaState.mediaSolidBackground,
   mediaMapEnv: state.mediaControls.mediaMapEnvironment,
   mediaState: state.mediaState,
+  defaultLight: state.mediaControls.defaultLight,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -142,6 +158,7 @@ const mapDispatchToProps = (dispatch) => ({
   onToggleMediaLock: () => dispatch(actions.toggleMediaLock()),
   onSetMediaDragObjects: (dragObject) =>
     dispatch(actions.setMediaDragObjects(dragObject)),
+  onToggleDefaultLight: () => dispatch(actions.toggleDefaultLight()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MediaCanvas);
