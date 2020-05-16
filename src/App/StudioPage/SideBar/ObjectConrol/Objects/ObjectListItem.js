@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import ListSubheader from "@material-ui/core/ListSubheader";
@@ -19,6 +19,7 @@ import * as actions from "../../../../../store/actions/index";
 import "./ObjectListItem.scss";
 import { connect } from "react-redux";
 import WSphere from "./Items/wSphere";
+import KLight from "./Items/kLight";
 
 const ObjectListItem = (props) => {
   return (
@@ -27,22 +28,20 @@ const ObjectListItem = (props) => {
       aria-labelledby="nested-list-subheader"
       className="object-list"
     >
-      {/* <ListItem button>
-        <ListItemIcon>
-          <SendIcon />
-        </ListItemIcon>
-        <ListItemText primary="Sent mail" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <DraftsIcon />
-        </ListItemIcon>
-        <ListItemText primary="Drafts" />
-      </ListItem> */}
       {props.wSphere && (
         <WSphere
           onSetMediaSphere={props.onSetMediaSphere}
           wSphere={props.wSphere}
+          dragObjects={props.dragObjects}
+          onSetDragObjects={props.onSetMediaDragObjects}
+        />
+      )}
+      {props.kLight && (
+        <KLight
+          onSetKLight={props.onSetMediaKeyLight}
+          kLight={props.kLight}
+          dragObjects={props.dragObjects}
+          onSetDragObjects={props.onSetMediaDragObjects}
         />
       )}
     </List>
@@ -52,13 +51,22 @@ const ObjectListItem = (props) => {
 ObjectListItem.propTypes = {
   wSphere: PropTypes.object,
   onSetMediaSphere: PropTypes.func.isRequired,
+  dragObjects: PropTypes.array,
+  onSetMediaDragObjects: PropTypes.func,
+  kLight: PropTypes.object,
+  onSetMediaKeyLight: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   wSphere: state.mediaControls.sphere,
+  dragObjects: state.mediaState.dragObjects,
+  kLight: state.mediaControls.keyLight,
 });
 const mapDispatchToState = (dispatch) => ({
   onSetMediaSphere: (arg) => dispatch(actions.setMediaSphere(arg)),
+  onSetMediaDragObjects: (dragObject) =>
+    dispatch(actions.setMediaDragObjects(dragObject)),
+  onSetMediaKeyLight: (kLight) => dispatch(actions.setMediaKeyLight(kLight)),
 });
 
 export default connect(mapStateToProps, mapDispatchToState)(ObjectListItem);
