@@ -32,8 +32,6 @@ const StudioTopBar = props => {
   const theme = themeCreator("#ffffff", "#212121");
 
   const saveConfig = () => {
-    console.log(props.materials);
-
     backendAxios
       .put("/api/configurations", {
         userId: user.sub,
