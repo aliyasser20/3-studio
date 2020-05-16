@@ -16,7 +16,7 @@ import {
 import DeleteSweepIcon from "@material-ui/icons/DeleteSweep";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 
-import { DropzoneDialog, DropzoneArea } from "material-ui-dropzone";
+import { DropzoneArea } from "material-ui-dropzone";
 
 import SingleField from "./SingleField/SingleField";
 import Alert from "../UI/Alert/Alert";
@@ -49,7 +49,10 @@ const ProfilePage = props => {
   const [openPictureChanger, setOpenPictureChanger] = useState(false);
   // For opening and closing profile picture dialog
   const [openDialog, setOpenDialog] = useState(false);
+  // used to change profile picture
   const [picture, setPicture] = useState([]);
+  // currrent picture
+  const [profilePicture, setProfilePicture] = useState(user.picture);
 
   // ! Resets
   // General resets
@@ -142,15 +145,19 @@ const ProfilePage = props => {
   };
 
   const handlePictureUpdate = () => {
-    console.log(picture, "pictures array");
-    savePictureToCloud(picture).then(picturePath => console.log(picturePath));
-
-    // .then(updateProfilePicture => {
-    //   backendAxios.put("/api/users", {
-    //     userId: user.sub,
-    //     profilePicture: picturePath
-    //   });
-    // })
+    savePictureToCloud(picture).then(pictureLink => {
+      updateProfilePicture({
+        userId: user.sub,
+        picture: pictureLink.data.url
+      })
+        .then(() => {
+          setProfilePicture(pictureLink.data.url);
+          setOpenPictureChanger(false);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    });
   };
 
   // Click on change profile picture and setOpenProfilePictureChanger(false);
@@ -168,7 +175,7 @@ const ProfilePage = props => {
           <div className="picture-container">
             <img
               className="profile-picture"
-              src={user.picture}
+              src={profilePicture}
               alt="profile picture"
             />
             <Button onClick={handleChangePictureButton}>
@@ -185,7 +192,7 @@ const ProfilePage = props => {
                   acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
                   maxFileSize={10000000}
                   filesLimit={1}
-                  onDrop={handleDrop}
+                  onDrop={e => handleDrop(e)}
                   onDelete={handleDelete}
                 />
 
