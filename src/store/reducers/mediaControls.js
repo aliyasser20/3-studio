@@ -111,7 +111,16 @@ const reducer = (state = initialState, action) => {
         pWall: action.pGround,
       };
     // box
-
+    case actionTypes.SET_MEDIA_M_BOX:
+      return {
+        ...state,
+        mBox: action.mBox,
+      };
+    case actionTypes.SET_MEDIA_W_BOX:
+      return {
+        ...state,
+        wBox: action.wBox,
+      };
     case actionTypes.RESET_MEDIA_CONTROLS:
       return {
         ...initialState,
