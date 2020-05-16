@@ -13,11 +13,14 @@ import {
   DialogContentText,
   TextField,
   FormControlLabel,
-  Checkbox
+  Checkbox,
+  Snackbar
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
+
+import Alert from "../../../UI/Alert/Alert";
 
 import * as actions from "../../../../store/actions/index";
 import backendAxios from "../../../../axiosInstances/backendAxios";
@@ -34,6 +37,9 @@ const ConfigurationSelector = props => {
   const [copyCurrentConfiguration, setCopyCurrentConfiguration] = useState(
     false
   );
+  const [message, setMessage] = useState("");
+  const [severity, setSeverity] = useState("");
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -41,6 +47,11 @@ const ConfigurationSelector = props => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleSnackBarClose = () => {
+    // Order is important
+    setSnackBarOpen(false);
   };
 
   const handleCancelNewConfig = () => {
@@ -153,11 +164,25 @@ const ConfigurationSelector = props => {
         props.onSetCurrentConfigurationName(configurationNameField);
         props.onSetCurrentConfigurationId(resp.data.id);
 
+        // Order is important
+        setMessage(`Switched to new configuration: ${configurationNameField}`);
+        setSeverity("success");
+        setSnackBarOpen(true);
         setCreateConfiguration(false);
         setConfigurationNameField("");
         setCopyCurrentConfiguration(false);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+
+        // Order is important
+        setMessage("Could not create new configuration");
+        setSeverity("error");
+        setSnackBarOpen(true);
+        setCreateConfiguration(false);
+        setConfigurationNameField("");
+        setCopyCurrentConfiguration(false);
+      });
   };
 
   const configurationOptions = props.allConfigurations.map(configuration => {
@@ -292,6 +317,15 @@ const ConfigurationSelector = props => {
           </Button>
         </DialogActions>
       </Dialog>
+      <Snackbar
+        open={snackBarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackBarClose}
+      >
+        <Alert onClose={handleSnackBarClose} severity={severity}>
+          {message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
