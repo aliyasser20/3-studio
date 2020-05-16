@@ -20,7 +20,10 @@ import DControls from "../DragControls/DControls";
 import GroundPlane from "../OldCanvas/GroundPlane/GroundPlane";
 import KLight from "../Models/KLight";
 
+
+
 const MediaCanvas = (props) => {
+  console.log(props.currentEnvOption)
   const [loading, setLoading] = useState(true);
   const { mediaFov, mediaFar, mediaNear, mediaBox, mediaSizeBounding } = props;
   useEffect(() => {
@@ -77,7 +80,7 @@ const MediaCanvas = (props) => {
           mapEnvironment={props.mediaMapEnv}
           environmentPath={props.currentEnvOption.hdrPath}
         />
-        {!props.mediaControls.mediaLock && <Controls />}
+        {!props.mediaControls.mediaLock && <Controls autoRotate={props.mediaControls.mediaAutorotate}/>}
         <DControls dragObjects={props.mediaState.dragObjects} />
         <UserModel
           model={props.mediaModel}
@@ -101,7 +104,7 @@ const MediaCanvas = (props) => {
             dragObjects={props.mediaState.dragObjects}
           />
         )}
-        <GroundPlane />
+        {/* <GroundPlane /> */}
       </Canvas>
     </>
   ) : (

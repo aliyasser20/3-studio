@@ -92,6 +92,7 @@ const MediaTopNav = (props) => {
   };
   const handleRecord = () => {
     setScreenshot("");
+    const ctx = document.querySelector("canvas");
     const exportVid = (blob) => {
       setBlob(blob);
       const preview = document.querySelector("#preview-video");
@@ -112,13 +113,15 @@ const MediaTopNav = (props) => {
         videoBitsPerSecond: 15000000,
         mimeType: "video/webm;codecs=vp8",
       });
-      rec.ondataavailable = (e) => chunks.push(e.data);
+      rec.ondataavailable = (e) => {
+        console.log(e);
+        chunks.push(e.data);
+      };
       rec.onstop = (e) => {
         console.log(stream, rec);
         setOpen(true);
         setRecording("");
         exportVid(new Blob(chunks, { type: "video/mp4" }));
-        
       };
       const timer = new Timer({ target: { seconds: timerValue } });
       timer.start({ precision: "secondTenths" });
@@ -139,8 +142,8 @@ const MediaTopNav = (props) => {
         rec.stop();
       }, timerValue * 1000);
     };
-    const canvas = document.querySelector("canvas");
-    startRecording(canvas, timeValue.s);
+
+    startRecording(ctx, timeValue.s);
   };
 
   return (
