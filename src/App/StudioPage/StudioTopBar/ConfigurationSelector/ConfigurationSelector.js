@@ -124,13 +124,13 @@ const ConfigurationSelector = props => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">New Configuration</DialogTitle>
+        <DialogTitle className="dialog-title" id="alert-dialog-title">
+          New Configuration
+        </DialogTitle>
         <DialogContent>
-          {/* <DialogContentText>
-            Please fill out th
-          </DialogContentText> */}
           <TextField
             value={configurationNameField}
+            className="name-field"
             autoFocus
             margin="dense"
             id="name"
@@ -142,6 +142,7 @@ const ConfigurationSelector = props => {
             }
           />
           <FormControlLabel
+            className="checkbox-area"
             control={
               <Checkbox
                 checked={copyCurrentConfiguration}
