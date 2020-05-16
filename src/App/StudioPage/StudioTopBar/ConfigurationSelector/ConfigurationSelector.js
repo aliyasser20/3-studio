@@ -43,6 +43,12 @@ const ConfigurationSelector = props => {
     setAnchorEl(null);
   };
 
+  const handleCancelNewConfig = () => {
+    setCreateConfiguration(false);
+    setConfigurationNameField("");
+    setCopyCurrentConfiguration(false);
+  };
+
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
@@ -146,7 +152,10 @@ const ConfigurationSelector = props => {
         props.onAddConfiguration(newConfigData);
         props.onSetCurrentConfigurationName(configurationNameField);
         props.onSetCurrentConfigurationId(resp.data.id);
+
         setCreateConfiguration(false);
+        setConfigurationNameField("");
+        setCopyCurrentConfiguration(false);
       })
       .catch(err => console.log(err));
   };
@@ -230,7 +239,7 @@ const ConfigurationSelector = props => {
       <Dialog
         className="create-configuration-dialog"
         open={createConfiguration}
-        onClose={() => setCreateConfiguration(false)}
+        onClose={handleCancelNewConfig}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
@@ -268,7 +277,7 @@ const ConfigurationSelector = props => {
         <DialogActions>
           <Button
             classes={{ root: "cancel-create-configuration" }}
-            onClick={() => setCreateConfiguration(false)}
+            onClick={handleCancelNewConfig}
             color="primary"
           >
             Cancel
