@@ -92,6 +92,7 @@ export {
 export {
   getConfigurations,
   setConfigurationSaved,
+  setConfigurationUnsaved,
   setAllConfigurations,
   setConfiguration,
   setCurrentConfigurationId,

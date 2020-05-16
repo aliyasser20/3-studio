@@ -25,6 +25,10 @@ export const setConfigurationSaved = () => ({
   type: actionTypes.SET_CONFIGURATION_SAVED
 });
 
+export const setConfigurationUnsaved = () => ({
+  type: actionTypes.SET_CONFIGURATION_UNSAVED
+});
+
 export const setAllConfigurations = configs => ({
   type: actionTypes.SET_ALL_CONFIGURATIONS,
   configs

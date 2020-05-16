@@ -11,7 +11,14 @@ const EnvironmentOptions = props => {
 
   const options = props.environmentOptions.map(option => (
     // eslint-disable-next-line
-    <div  key={option.name} onClick={() => props.onSetEnvironmentOption(option)}
+    <div  key={option.name} onClick={() => {
+        // Trigger unsaved changes
+        if (props.currentEnvironmentOption.name !== option.name) {
+          props.onSetConfigurationUnsaved();
+        }
+        //
+        props.onSetEnvironmentOption(option);
+      }}
       className={
         props.currentEnvironmentOption.name === option.name
           ? "single-option selected"
@@ -31,7 +38,8 @@ const EnvironmentOptions = props => {
 EnvironmentOptions.propTypes = {
   environmentOptions: PropTypes.array.isRequired,
   onSetEnvironmentOption: PropTypes.func.isRequired,
-  currentEnvironmentOption: PropTypes.object.isRequired
+  currentEnvironmentOption: PropTypes.object.isRequired,
+  onSetConfigurationUnsaved: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -41,7 +49,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onSetEnvironmentOption: option =>
-    dispatch(actions.setEnvironmentOption(option))
+    dispatch(actions.setEnvironmentOption(option)),
+  onSetConfigurationUnsaved: () => dispatch(actions.setConfigurationUnsaved())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EnvironmentOptions);

@@ -70,6 +70,9 @@ const EditCanvas = props => {
 
       e.object.material = materialLibrary()[props.selectedMaterial];
       props.onSetSelectedMaterial("");
+
+      // Trigger unsaved changes
+      props.onSetConfigurationUnsaved();
     }
   };
 
@@ -176,7 +179,8 @@ EditCanvas.propTypes = {
   hemisphereLightColor: PropTypes.string.isRequired,
   ambientLightColor: PropTypes.string.isRequired,
   onUpdateMaterial: PropTypes.func.isRequired,
-  materials: PropTypes.object.isRequired
+  materials: PropTypes.object.isRequired,
+  onSetConfigurationUnsaved: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -214,7 +218,8 @@ const mapDispatchToProps = dispatch => ({
   onSetSelectedMaterial: material =>
     dispatch(actions.setSelectedMaterial(material)),
   onUpdateMaterial: (partName, material) =>
-    dispatch(actions.updateMaterials(partName, material))
+    dispatch(actions.updateMaterials(partName, material)),
+  onSetConfigurationUnsaved: () => dispatch(actions.setConfigurationUnsaved())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditCanvas);
