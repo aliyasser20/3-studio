@@ -17,6 +17,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import CameraAltIcon from "@material-ui/icons/CameraAlt";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import Alert from "../../../../UI/Alert/Alert";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 import "./MediaTopNav.scss";
 
@@ -104,7 +106,9 @@ const MediaTopNav = (props) => {
       };
 
       rec.start();
-      setTimeout(() => rec.stop(), timer * 1000);
+      setTimeout(() => {
+        rec.stop();
+      }, timer * 1000);
     };
     const canvas = document.querySelector("canvas");
     startRecording(canvas, 10);
@@ -112,7 +116,16 @@ const MediaTopNav = (props) => {
 
   return (
     <div className="media-top-nav">
-      <span className="media-top-nav-item"> 00:{seconds} </span>
+      <div className="timer-div">
+        <RemoveIcon
+          onClick={() => seconds >= 1 && setSeconds((prev) => prev - 1)}
+        />
+        <span className="media-top-nav-item">
+          00:{seconds < 10 ? `0${seconds}` : seconds}
+        </span>
+        onClick={() => seconds <= 30 && setSeconds((prev) => prev + 1)}
+        <AddIcon />
+      </div>
       <FiberManualRecordIcon
         onClick={(e) => handleRecord()}
         fontSize="large"
