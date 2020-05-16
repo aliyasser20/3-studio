@@ -37,6 +37,7 @@
         padding: 0 1em;
         border-bottom: 1px solid #212121;
         align-items: center;
+        cursor: pointer;
 
         &:hover,
         &.selected {
@@ -78,6 +79,33 @@
           color: white;
         }
       }
+    }
+  }
+}
+
+.create-configuration-dialog {
+  .MuiPaper-root {
+    background-color: #212121;
+    color: white;
+    padding: 0.5em;
+    width: 500px;
+  }
+
+  .cancel-create-configuration {
+    color: #cecece !important;
+    &:hover {
+      color: white !important;
+    }
+  }
+
+  .confirm-create-configuration {
+    background: linear-gradient(var(--gradient-top), var(--gradient-bottom));
+    color: white !important;
+    &:hover {
+      background: linear-gradient(
+        var(--gradient-top-darker),
+        var(--gradient-bottom-darker)
+      );
     }
   }
 }

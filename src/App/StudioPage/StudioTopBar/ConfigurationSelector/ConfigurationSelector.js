@@ -2,7 +2,19 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { Button, Popover, IconButton, CardActions } from "@material-ui/core";
+import {
+  Button,
+  Popover,
+  IconButton,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  TextField,
+  FormControlLabel,
+  Checkbox
+} from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -13,6 +25,11 @@ import "./ConfigurationSelector.scss";
 
 const ConfigurationSelector = props => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [createConfiguration, setCreateConfiguration] = useState(false);
+  const [configurationNameField, setConfigurationNameField] = useState("");
+  const [copyCurrentConfiguration, setCopyCurrentConfiguration] = useState(
+    false
+  );
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -87,7 +104,10 @@ const ConfigurationSelector = props => {
           <div className="add-configuration-area">
             <span className="gradient-button">
               <Button
-                onClick={handleClose}
+                onClick={() => {
+                  handleClose();
+                  setCreateConfiguration(true);
+                }}
                 variant="contained"
                 startIcon={<AddIcon />}
               >
@@ -97,6 +117,61 @@ const ConfigurationSelector = props => {
           </div>
         </div>
       </Popover>
+      <Dialog
+        className="create-configuration-dialog"
+        open={createConfiguration}
+        onClose={() => setCreateConfiguration(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">New Configuration</DialogTitle>
+        <DialogContent>
+          {/* <DialogContentText>
+            Please fill out th
+          </DialogContentText> */}
+          <TextField
+            value={configurationNameField}
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Configuration Name"
+            type="text"
+            fullWidth
+            onChange={e =>
+              setConfigurationNameField(e.target.value.slice(0, 10))
+            }
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={copyCurrentConfiguration}
+                onChange={() =>
+                  setCopyCurrentConfiguration(!copyCurrentConfiguration)
+                }
+                name="copyConfiguration"
+              />
+            }
+            label="Copy current configuration"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button
+            classes={{ root: "cancel-create-configuration" }}
+            onClick={() => setCreateConfiguration(false)}
+            color="primary"
+          >
+            Cancel
+          </Button>
+          <Button
+            classes={{ root: "confirm-create-configuration" }}
+            // onClick={newConfiguration}
+            color="primary"
+            autoFocus
+          >
+            Create
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
