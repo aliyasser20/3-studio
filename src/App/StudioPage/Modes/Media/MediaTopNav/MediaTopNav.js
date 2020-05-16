@@ -41,7 +41,7 @@ const MediaTopNav = (props) => {
   const [counter, setCounter] = useState(props.currentProject.counter);
   const [recording, setRecording] = useState("");
   const [timeValue, setTimeValue] = useState({ s: 10, ms: 0 });
-
+  const [dots, setDots] = useState(".");
   const { user } = useAuth0();
 
   const closeSnackbar = () => {
@@ -104,7 +104,7 @@ const MediaTopNav = (props) => {
       setRecording("recording");
       const chunks = [];
       const stream = canvas.captureStream();
-      const rec = new MediaRecorder(stream);
+      const rec = new MediaRecorder(stream, { videoBitsPerSecond: 15000000 });
       rec.ondataavailable = (e) => chunks.push(e.data);
       rec.onstop = (e) => {
         setOpen(true);
@@ -121,8 +121,9 @@ const MediaTopNav = (props) => {
         setTimeValue((prev) => ({
           ...prev,
           s: timerValue - seconds,
-          ms: 9 - secondTenths,
+          ms: secondTenths > 0 && 10 - secondTenths,
         }));
+        setDots((prev) => (prev.length < 3 ? prev + "." : "."));
       });
       rec.start();
       setTimeout(() => {
@@ -130,59 +131,66 @@ const MediaTopNav = (props) => {
       }, timerValue * 1000);
     };
     const canvas = document.querySelector("canvas");
-    startRecording(canvas, timeValue);
+    startRecording(canvas, timeValue.s);
   };
 
   return (
     <div className="media-top-nav">
-      <PopupState
-        variant="popover"
-        popupId="demo-popup-popover"
-      >
-        {(popupState) => (
-          <div>
-            <Button
-              variant="contained"
-              color="primary"
-              {...bindTrigger(popupState)}
-            >
-              Set Timer
-            </Button>
-            <Popover
-              {...bindPopover(popupState)}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "center",
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "center",
-              }}
-            >
-              <Box p={2} classes={{ root: "timer-popover" }}>
-                <div className="timer-div">
-                  <RemoveIcon
-                    onClick={() =>
-                      timeValue.s > 0 &&
-                      setTimeValue((prev) => ({ ...prev, s: prev.s - 1 }))
-                    }
-                  />
-                  <span className="media-top-nav-item">
-                    {timeValue.s < 10 ? `0${timeValue.s}` : timeValue.s}:
-                    {timeValue.ms}0
-                  </span>
-                  <AddIcon
-                    onClick={() =>
-                      timeValue.s < 30 &&
-                      setTimeValue((prev) => ({ ...prev, s: prev.s + 1 }))
-                    }
-                  />
-                </div>
-              </Box>
-            </Popover>
-          </div>
-        )}
-      </PopupState>
+      {!recording ? (
+        <PopupState variant="popover" popupId="demo-popup-popover">
+          {(popupState) => (
+            <div>
+              <Button
+                variant="contained"
+                color="primary"
+                {...bindTrigger(popupState)}
+              >
+                Set Timer
+              </Button>
+              <Popover
+                marginThreshold={3}
+                {...bindPopover(popupState)}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "center",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "center",
+                }}
+              >
+                <Box p={2} classes={{ root: "timer-popover" }}>
+                  <div className="timer-div">
+                    <RemoveIcon
+                      onClick={() =>
+                        timeValue.s > 0 &&
+                        setTimeValue((prev) => ({ ...prev, s: prev.s - 1 }))
+                      }
+                    />
+                    <span className="media-top-nav-item">
+                      {timeValue.s < 10 ? `0${timeValue.s}` : timeValue.s}:
+                      {timeValue.ms}0
+                    </span>
+                    <AddIcon
+                      onClick={() =>
+                        timeValue.s < 30 &&
+                        setTimeValue((prev) => ({ ...prev, s: prev.s + 1 }))
+                      }
+                    />
+                  </div>
+                </Box>
+              </Popover>
+            </div>
+          )}
+        </PopupState>
+      ) : (
+        <>
+          <span className="media-top-nav-item">Recording {dots}</span>
+          <span className="media-top-nav-item">
+            {timeValue.s < 10 ? `0${timeValue.s}` : timeValue.s}:{timeValue.ms}0
+          </span>
+        </>
+      )}
       <FiberManualRecordIcon
         onClick={(e) => handleRecord()}
         fontSize="large"
