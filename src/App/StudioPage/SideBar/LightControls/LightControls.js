@@ -40,7 +40,11 @@ const LightControls = props => (
               <Button
                 variant="contained"
                 size="small"
-                onClick={props.onResetLights}
+                onClick={() => {
+                  // Trigger unsaved changes
+                  props.onSetConfigurationUnsaved();
+                  props.onResetLights();
+                }}
                 endIcon={<SettingsBackupRestoreIcon />}
               >
                 Reset
@@ -51,11 +55,26 @@ const LightControls = props => (
             name="ambientLight"
             label="Ambient"
             checked={props.ambientLight}
-            changeChecked={props.onToggleAmbientLight}
-            onChange={props.onSetAmbientLightIntensity}
+            changeChecked={() => {
+              // Trigger unsaved changes
+              props.onSetConfigurationUnsaved();
+              //
+              props.onToggleAmbientLight();
+            }}
+            onChange={intensity => {
+              // Trigger unsaved changes
+              props.onSetConfigurationUnsaved();
+              //
+              props.onSetAmbientLightIntensity(intensity);
+            }}
             value={props.ambientIntensity}
             color={props.ambientLightColor}
-            setColor={props.onSetAmbientLightColor}
+            setColor={color => {
+              // Trigger unsaved changes
+              props.onSetConfigurationUnsaved();
+              //
+              props.onSetAmbientLightColor(color);
+            }}
             visible={props.ambientLight}
             step={0.2}
             max={4}
@@ -65,11 +84,26 @@ const LightControls = props => (
             name="hemisphereLight"
             label="Hemisphere"
             checked={props.hemisphereLight}
-            changeChecked={props.onToggleHemisphereLight}
-            onChange={props.onSetHemisphereLightIntensity}
+            changeChecked={() => {
+              // Trigger unsaved changes
+              props.onSetConfigurationUnsaved();
+              //
+              props.onToggleHemisphereLight();
+            }}
+            onChange={intensity => {
+              // Trigger unsaved changes
+              props.onSetConfigurationUnsaved();
+              //
+              props.onSetHemisphereLightIntensity(intensity);
+            }}
             value={props.hemisphereIntensity}
             color={props.hemisphereLightColor}
-            setColor={props.onSetHemisphereLightColor}
+            setColor={color => {
+              // Trigger unsaved changes
+              props.onSetConfigurationUnsaved();
+              //
+              props.onSetHemisphereLightColor(color);
+            }}
             visible={props.hemisphereLight}
             step={0.5}
             max={10}
@@ -79,11 +113,26 @@ const LightControls = props => (
             name="directionalLight"
             label="Directional"
             checked={props.directionalLight}
-            changeChecked={props.onToggleDirectionalLight}
-            onChange={props.onSetDirectionalLightIntensity}
+            changeChecked={() => {
+              // Trigger unsaved changes
+              props.onSetConfigurationUnsaved();
+              //
+              props.onToggleDirectionalLight();
+            }}
+            onChange={intensity => {
+              // Trigger unsaved changes
+              props.onSetConfigurationUnsaved();
+              //
+              props.onSetDirectionalLightIntensity(intensity);
+            }}
             value={props.directionalIntensity}
             color={props.directionalLightColor}
-            setColor={props.onSetDirectionalLightColor}
+            setColor={color => {
+              // Trigger unsaved changes
+              props.onSetConfigurationUnsaved();
+              //
+              props.onSetDirectionalLightColor(color);
+            }}
             visible={props.directionalLight}
             step={0.5}
             max={10}
@@ -116,7 +165,8 @@ LightControls.propTypes = {
   onSetHemisphereLightColor: PropTypes.func.isRequired,
   onSetAmbientLightColor: PropTypes.func.isRequired,
   onSetDirectionalLightColor: PropTypes.func.isRequired,
-  onResetLights: PropTypes.func.isRequired
+  onResetLights: PropTypes.func.isRequired,
+  onSetConfigurationUnsaved: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -147,7 +197,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.setHemisphereLightColor(color)),
   onSetDirectionalLightColor: color =>
     dispatch(actions.setDirectionalLightColor(color)),
-  onResetLights: () => dispatch(actions.resetLights())
+  onResetLights: () => dispatch(actions.resetLights()),
+  onSetConfigurationUnsaved: () => dispatch(actions.setConfigurationUnsaved())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LightControls);

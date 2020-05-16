@@ -32,6 +32,8 @@ const DashboardPage = props => {
   props.onSetCameraMode("PERSPECTIVE");
   props.onResetEnvironmentControls();
   props.onResetExtraControls();
+  props.onResetConfigurations();
+  props.onResetAppearanceControls();
   // !
 
   const handleSnackBarClose = () => {
@@ -113,7 +115,9 @@ DashboardPage.propTypes = {
   onResetLights: PropTypes.func.isRequired,
   onSetCameraMode: PropTypes.func.isRequired,
   onResetEnvironmentControls: PropTypes.func.isRequired,
-  onResetExtraControls: PropTypes.func.isRequired
+  onResetExtraControls: PropTypes.func.isRequired,
+  onResetConfigurations: PropTypes.func.isRequired,
+  onResetAppearanceControls: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -130,7 +134,9 @@ const mapDispatchToProps = dispatch => ({
   onSetCameraMode: mode => dispatch(actions.setCameraMode(mode)),
   onResetEnvironmentControls: () =>
     dispatch(actions.resetEnvironmentControls()),
-  onResetExtraControls: () => dispatch(actions.resetExtraControls())
+  onResetExtraControls: () => dispatch(actions.resetExtraControls()),
+  onResetConfigurations: () => dispatch(actions.resetConfigurations()),
+  onResetAppearanceControls: () => dispatch(actions.resetAppearanceControls())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

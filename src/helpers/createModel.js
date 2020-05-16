@@ -9,7 +9,8 @@ const createModel = (
   setFar,
   setModel,
   setSizeBounding,
-  setNear
+  setNear,
+  materials
 ) => {
   const theModel = gltf.scene;
 
@@ -20,6 +21,12 @@ const createModel = (
   theModel.traverse(o => {
     // If component is a part
     if (o.isMesh) {
+      // eslint-disable-next-line
+      for (const part in materials) {
+        if (o.name === part) {
+          o.material = materialLibrary()[materials[part].name];
+        }
+      }
       // part = o;
       // ? Default
       // o.material = materialLibrary().blackDefault;
