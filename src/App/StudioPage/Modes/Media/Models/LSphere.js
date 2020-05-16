@@ -1,12 +1,15 @@
 import React, { useRef, useEffect } from "react";
 import { useFrame } from "react-three-fiber";
+import materialLibrary from "../../../../../helpers/materialLibrary";
 
 const LSphere = (props) => {
   const lSphere = useRef();
   useEffect(() => {
     const dragObjs = [...props.dragObjects];
-
-    lSphere.current && props.setDrag([...dragObjs, lSphere.current]);
+    if (lSphere.current) {
+      props.setDrag([...dragObjs, lSphere.current]);
+      lSphere.current.material = materialLibrary().leather;
+    }
   }, []);
   useFrame(({ gl, scene, camera }) => {
     gl.render(scene, camera);
