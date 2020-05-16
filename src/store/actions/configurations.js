@@ -43,9 +43,33 @@ export const getConfigurations = projectId => dispatch => {
     .then(response => {
       console.log(response.data);
       dispatch(setConfiguration(JSON.parse(response.data[0].config_data)));
-      dispatch(setCurrentConfigurationId(response.data[0].id));
+      dispatch(
+        setCurrentConfigurationId(
+          response.data.sort((a, b) => {
+            if (a.id > b.id) {
+              return 1;
+            }
+            if (b.id > a.id) {
+              return -1;
+            }
+            return 0;
+          })[0].id
+        )
+      );
       dispatch(setCurrentConfigurationName(response.data[0].name));
-      dispatch(setAllConfigurations(response.data));
+      dispatch(
+        setAllConfigurations(
+          response.data.sort((a, b) => {
+            if (a.id > b.id) {
+              return 1;
+            }
+            if (b.id > a.id) {
+              return -1;
+            }
+            return 0;
+          })
+        )
+      );
     })
     .catch(error => {
       console.log(error);

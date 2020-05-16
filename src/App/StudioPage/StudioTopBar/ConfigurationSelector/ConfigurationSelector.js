@@ -109,47 +109,37 @@ const ConfigurationSelector = props => {
       .catch(err => console.log(err));
   };
 
-  const configurationOptions = props.allConfigurations
-    .sort((a, b) => {
-      if (a.id > b.id) {
-        return 1;
-      }
-      if (b.id > a.id) {
-        return -1;
-      }
-      return 0;
-    })
-    .map(configuration => {
-      const optionClasses =
-        props.currentConfigurationName === configuration.name
-          ? "configuration-option selected"
-          : "configuration-option";
+  const configurationOptions = props.allConfigurations.map(configuration => {
+    const optionClasses =
+      props.currentConfigurationName === configuration.name
+        ? "configuration-option selected"
+        : "configuration-option";
 
-      const handleSelectConfigurationOption = () => {
-        props.onSetCurrentConfigurationName(configuration.name);
-        props.onSetCurrentConfigurationId(configuration.id);
+    const handleSelectConfigurationOption = () => {
+      props.onSetCurrentConfigurationName(configuration.name);
+      props.onSetCurrentConfigurationId(configuration.id);
 
-        props.onSetConfiguration(JSON.parse(configuration.config_data));
-      };
+      props.onSetConfiguration(JSON.parse(configuration.config_data));
+    };
 
-      return (
-        <div
-          key={configuration.id}
-          className={optionClasses}
-          onClick={handleSelectConfigurationOption}
+    return (
+      <div
+        key={configuration.id}
+        className={optionClasses}
+        onClick={handleSelectConfigurationOption}
+      >
+        <p className="configuration-name">{configuration.name}</p>
+        <IconButton
+          aria-label="delete-configuration"
+          classes={{ root: "delete-configuration-button" }}
+          size="small"
+          // onClick={() => fileExporter()}
         >
-          <p className="configuration-name">{configuration.name}</p>
-          <IconButton
-            aria-label="delete-configuration"
-            classes={{ root: "delete-configuration-button" }}
-            size="small"
-            // onClick={() => fileExporter()}
-          >
-            <DeleteIcon />
-          </IconButton>
-        </div>
-      );
-    });
+          <DeleteIcon />
+        </IconButton>
+      </div>
+    );
+  });
 
   return (
     <div className="configuration-selector">
