@@ -25,11 +25,11 @@ const KLight = (props) => {
     console.log(sphere.current.position.x);
     const time = Date.now() * 0.0005;
     if (sphere.current) {
-      sphere.current.position.x +=
-        props.kLight.args[0] * 0.03 * Math.sin(time * 0.7);
-      // // sphere.current.position.y = 10 * Math.cos(time * 0.5) * 40;
-      sphere.current.position.z +=
-        props.kLight.args[0] * 0.03 * Math.cos(time * 0.7);
+      // sphere.current.position.x +=
+      //   props.kLight.args[0] * 0.03 * Math.sin(time * 0.7);
+      // // // sphere.current.position.y = 10 * Math.cos(time * 0.5) * 40;
+      // sphere.current.position.z +=
+      //   props.kLight.args[0] * 0.03 * Math.cos(time * 0.7);
       setLightPosition([
         sphere.current.position.x,
         sphere.current.position.y,

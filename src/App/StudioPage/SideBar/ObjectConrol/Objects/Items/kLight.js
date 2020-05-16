@@ -39,22 +39,22 @@ const KLight = (props) => {
     props.onSetKLight(newScale);
   };
   const handlePowerChange = (e, newValue) => {
-    const power = newValue ;
+    const power = newValue;
     const newSpread = { ...props.kLight, power };
     props.onSetKLight(newSpread);
   };
-  // const handleXrotation = () => {
-  //   const toggleRotateX = { ...props.wSphere, rotateX: !props.wSphere.rotateX };
-  //   props.onSetMediaSphere(toggleRotateX);
-  // };
-  // const handleYrotation = () => {
-  //   const toggleRotateY = { ...props.wSphere, rotateY: !props.wSphere.rotateY };
-  //   props.onSetMediaSphere(toggleRotateY);
-  // };
-  // const handleZrotation = () => {
-  //   const toggleRotateZ = { ...props.wSphere, rotateZ: !props.wSphere.rotateZ };
-  //   props.onSetMediaSphere(toggleRotateZ);
-  // };
+  const handleXmovment = () => {
+    // const toggleRotateX = { ...props.wSphere, rotateX: !props.wSphere.rotateX };
+    // props.onSetMediaSphere(toggleRotateX);
+  };
+  const handleYmovment = () => {
+    // const toggleRotateY = { ...props.wSphere, rotateY: !props.wSphere.rotateY };
+    // props.onSetMediaSphere(toggleRotateY);
+  };
+  const handleZmovment = () => {
+    // const toggleRotateZ = { ...props.wSphere, rotateZ: !props.wSphere.rotateZ };
+    // props.onSetMediaSphere(toggleRotateZ);
+  };
 
   return (
     <>
@@ -66,11 +66,11 @@ const KLight = (props) => {
         {openKLight ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={openKLight} timeout="auto" unmountOnExit>
-        {/* <ListItem button onClick={() => setRotations(!rotations)}>
+        <ListItem button onClick={() => setOrbit(!orbit)}>
           <ListItemText primary="Rotation Options" />
-          {rotations ? <ExpandLess /> : <ExpandMore />}
-        </ListItem> */}
-        {/* <Collapse in={rotations} timeaout="auto" unmountOnExit>
+          {orbit ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={orbit} timeaout="auto" unmountOnExit>
           <List component="div" className="details-section" disablePadding>
             <ListItem>
               <ListItemIcon>
@@ -79,14 +79,14 @@ const KLight = (props) => {
                   control={
                     <Checkbox
                       className="custom-checkbox"
-                      checked={props.wSphere.rotateX}
-                      onChange={handleXrotation}
-                      name="x-rotation"
+                      checked={props.kLight.orbit.x}
+                      onChange={handleXmovment}
+                      name="x-movment"
                     />
                   }
                 />
               </ListItemIcon>
-              <ListItemText primary="X-rotation" />
+              <ListItemText primary="X-movment" />
             </ListItem>
           </List>
           <List component="div" className="details-section" disablePadding>
@@ -97,14 +97,14 @@ const KLight = (props) => {
                   control={
                     <Checkbox
                       className="custom-checkbox"
-                      checked={props.wSphere.rotateY}
-                      onChange={handleYrotation}
-                      name="y-rotation"
+                      checked={props.kLight.orbit.y}
+                      onChange={handleYmovment}
+                      name="Y-movment"
                     />
                   }
                 />
               </ListItemIcon>
-              <ListItemText primary="Y-rotation" />
+              <ListItemText primary="Y-movment" />
             </ListItem>
           </List>
           <List component="div" className="details-section" disablePadding>
@@ -115,9 +115,9 @@ const KLight = (props) => {
                   control={
                     <Checkbox
                       className="custom-checkbox"
-                      checked={props.wSphere.rotateZ}
-                      onChange={handleZrotation}
-                      name="z-rotation"
+                      checked={props.kLight.orbit.z}
+                      onChange={handleZmovment}
+                      name="Z-movement"
                     />
                   }
                 />
@@ -125,7 +125,7 @@ const KLight = (props) => {
               <ListItemText primary="Z-rotation" />
             </ListItem>
           </List>
-        </Collapse> */}
+        </Collapse>
         <List component="div" disablePadding>
           <ListItem>
             <ListItemIcon>
