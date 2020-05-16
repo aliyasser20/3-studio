@@ -222,8 +222,6 @@ const ConfigurationSelector = props => {
         }
       })
       .then(resp => {
-        console.log(resp);
-
         // Order is important
         props.onDeleteConfiguration(configToDelete.id);
 
