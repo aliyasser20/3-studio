@@ -272,6 +272,29 @@ const ConfigurationSelector = props => {
       props.onSetCurrentConfigurationName(configuration.name);
       props.onSetCurrentConfigurationId(configuration.id);
 
+      saveConfig().then(() => {
+        props.onUpdateConfiguration(
+          props.currentConfigurationId,
+          JSON.stringify({
+            bgEnvironment: props.bgEnvironment,
+            bgSolid: props.bgSolid,
+            bgColor: props.bgColor,
+            mapEnvironment: props.mapEnvironment,
+            currentEnvironmentOption: props.currentEnvironmentOption,
+            ambientLight: props.ambientLight,
+            directionalLight: props.directionalLight,
+            hemisphereLight: props.hemisphereLight,
+            ambientLightIntensity: props.ambientIntensity,
+            directionalLightIntensity: props.directionalIntensity,
+            hemisphereLightIntensity: props.hemisphereIntensity,
+            ambientLightColor: props.ambientLightColor,
+            directionalLightColor: props.directionalLightColor,
+            hemisphereLightColor: props.hemisphereLightColor,
+            materials: []
+          })
+        );
+      });
+
       props.onSetConfiguration(JSON.parse(configuration.config_data));
     };
 
