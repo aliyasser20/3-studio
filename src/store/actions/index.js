@@ -39,7 +39,8 @@ export {
   resetExtraControls
 } from "./extraControls";
 
-export { setSelectedMaterial } from "./appearanceControls";
+export { setSelectedMaterial, updateMaterials } from "./appearanceControls";
+
 export {
   toggleMediaLock,
   toggleMediaBoundingBox,

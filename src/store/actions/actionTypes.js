@@ -47,8 +47,11 @@ export const TOGGLE_AUTOROTATE = "TOGGLE_AUTOROTATE";
 export const RESET_EXTRA_CONTROLS = "RESET_EXTRA_CONTROLS";
 //
 
-// Material Controls
+// Appearance Controls
 export const SET_SELECTED_MATERIAL = "SET_SELECTED_MATERIAL";
+export const UPDATE_MATERIALS = "UPDATE_MATERIALS";
+//
+
 // Media State
 export const SET_MEDIA_MODEL = "SET_MEDIA_MODEL";
 export const SET_MEDIA_FOV = "SET_MEDIA_FOV";

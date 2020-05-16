@@ -61,7 +61,7 @@ const EditCanvas = props => {
 
   const handleDrop = e => {
     // console.log(e);
-    // console.log(e.object);
+    console.log(e.object);
 
     if (props.selectedMaterial) {
       e.object.material = materialLibrary()[props.selectedMaterial];
