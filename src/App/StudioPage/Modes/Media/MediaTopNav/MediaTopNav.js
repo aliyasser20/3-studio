@@ -42,6 +42,7 @@ const MediaTopNav = (props) => {
   const [recording, setRecording] = useState("");
   const [timeValue, setTimeValue] = useState({ s: 10, ms: 0 });
   const [dots, setDots] = useState(".");
+  const [blob, setBlob] = useState();
   const { user } = useAuth0();
 
   const closeSnackbar = () => {
@@ -54,6 +55,8 @@ const MediaTopNav = (props) => {
     const vid = document.querySelector("video");
     vid && preview.removeChild(vid);
     setScreenshot("");
+    URL.revokeObjectURL(blob);
+    setBlob(null);
   };
   const snackbarSet = (type, message) => {
     setSeverity(type);
@@ -90,6 +93,7 @@ const MediaTopNav = (props) => {
   const handleRecord = () => {
     setScreenshot("");
     const exportVid = (blob) => {
+      setBlob(blob);
       const preview = document.querySelector("#preview-video");
       const vid = document.createElement("video");
       vid.style.width = "100%";
@@ -104,12 +108,17 @@ const MediaTopNav = (props) => {
       setRecording("recording");
       const chunks = [];
       const stream = canvas.captureStream();
-      const rec = new MediaRecorder(stream, { videoBitsPerSecond: 15000000 });
+      const rec = new MediaRecorder(stream, {
+        videoBitsPerSecond: 15000000,
+        mimeType: "video/webm;codecs=vp8",
+      });
       rec.ondataavailable = (e) => chunks.push(e.data);
       rec.onstop = (e) => {
+        console.log(stream, rec);
         setOpen(true);
         setRecording("");
         exportVid(new Blob(chunks, { type: "video/mp4" }));
+        
       };
       const timer = new Timer({ target: { seconds: timerValue } });
       timer.start({ precision: "secondTenths" });
@@ -121,9 +130,9 @@ const MediaTopNav = (props) => {
         setTimeValue((prev) => ({
           ...prev,
           s: timerValue - seconds,
-          ms: secondTenths > 0 && 10 - secondTenths,
+          ms: secondTenths > 0 ? 10 - secondTenths : 0,
         }));
-        setDots((prev) => (prev.length < 3 ? prev + "." : "."));
+        setDots((prev) => (prev.length < 6 ? prev + "." : "."));
       });
       rec.start();
       setTimeout(() => {
@@ -141,6 +150,7 @@ const MediaTopNav = (props) => {
           {(popupState) => (
             <div>
               <Button
+                classes={{ root: "timer-btn" }}
                 variant="contained"
                 color="primary"
                 {...bindTrigger(popupState)}
@@ -148,10 +158,11 @@ const MediaTopNav = (props) => {
                 Set Timer
               </Button>
               <Popover
+                classes={{ root: "timer-popover" }}
                 marginThreshold={3}
                 {...bindPopover(popupState)}
                 anchorOrigin={{
-                  vertical: "top",
+                  vertical: "bottom",
                   horizontal: "center",
                 }}
                 transformOrigin={{
@@ -159,7 +170,7 @@ const MediaTopNav = (props) => {
                   horizontal: "center",
                 }}
               >
-                <Box p={2} classes={{ root: "timer-popover" }}>
+                <Box p={2}>
                   <div className="timer-div">
                     <RemoveIcon
                       onClick={() =>
@@ -185,14 +196,16 @@ const MediaTopNav = (props) => {
         </PopupState>
       ) : (
         <>
-          <span className="media-top-nav-item">Recording {dots}</span>
+          <span className="media-top-nav-item recording-text">
+            Recording {dots}
+          </span>
           <span className="media-top-nav-item">
-            {timeValue.s < 10 ? `0${timeValue.s}` : timeValue.s}:{timeValue.ms}0
+            {timeValue.s < 10 ? `0${timeValue.s}` : timeValue.s}:{timeValue.ms}
           </span>
         </>
       )}
       <FiberManualRecordIcon
-        onClick={(e) => handleRecord()}
+        onClick={(e) => !recording && handleRecord()}
         fontSize="large"
         color="error"
         classes={{ root: `media-top-nav-item ${recording}` }}
