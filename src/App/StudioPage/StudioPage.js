@@ -7,7 +7,6 @@ import { Container } from "@material-ui/core";
 
 import StudioTopBar from "./StudioTopBar/StudioTopBar";
 import SideBar from "./SideBar/SideBar";
-import GroupsBar from "./GroupsBar/GroupsBar";
 import AppearancesBar from "./AppearancesBar/AppearancesBar";
 import EditCanvas from "./Modes/Edit/EditCanvas/EditCanvas";
 import MediaCanvas from "./Modes/Media/MediaCanvas/MediaCanvas";
@@ -69,7 +68,6 @@ const StudioPage = props => {
                     </Fragment>
                   )}
                 </div>
-                {/* {props.currentMode === "EDIT" && <GroupsBar />} */}
                 {props.currentMode === "EDIT" && <AppearancesBar />}
                 {props.currentMode === "MEDIA" && <ObjectsBar />}
               </div>
