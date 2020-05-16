@@ -22,6 +22,7 @@ const App = props => {
     if (user) {
       props.onGetProjects(user.sub);
       props.onGetTheme(user.sub);
+      props.onSetProfileImage(user.picture);
     }
   }, [props, user]);
 
@@ -55,12 +56,15 @@ const App = props => {
 };
 
 App.propTypes = {
-  onGetTheme: PropTypes.func.isRequired
+  onGetTheme: PropTypes.func.isRequired,
+  onSetProfileImage: PropTypes.func.isRequired,
+  onGetProjects: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({
   onGetTheme: userId => dispatch(actions.getTheme(userId)),
-  onGetProjects: userId => dispatch(actions.getProjects(userId))
+  onGetProjects: userId => dispatch(actions.getProjects(userId)),
+  onSetProfileImage: image => dispatch(actions.setProfileImage(image))
 });
 
 export default connect(null, mapDispatchToProps)(App);

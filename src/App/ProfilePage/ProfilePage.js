@@ -152,10 +152,18 @@ const ProfilePage = props => {
       })
         .then(() => {
           setProfilePicture(pictureLink.data.url);
+          setMessage("Successfully changed profile picture!");
+          setSeverity("success");
+          setOpen(true);
           setOpenPictureChanger(false);
+          props.onSetProfileImage(pictureLink.data.url);
         })
         .catch(err => {
           console.log(err);
+          setMessage("Could not update profile picture!");
+          setSeverity("error");
+          setOpen(true);
+          setOpenPictureChanger(false);
         });
     });
   };
@@ -331,7 +339,8 @@ ProfilePage.propTypes = {
   onSetTheme: PropTypes.func.isRequired,
   onModeSelect: PropTypes.func.isRequired,
   onResetMediaState: PropTypes.func.isRequired,
-  onResetMediaControls: PropTypes.func.isRequired
+  onResetMediaControls: PropTypes.func.isRequired,
+  onSetProfileImage: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -342,7 +351,8 @@ const mapDispatchToProps = dispatch => ({
   onSetTheme: theme => dispatch(actions.setTheme(theme)),
   onModeSelect: mode => dispatch(actions.modeSelect(mode)),
   onResetMediaState: () => dispatch(actions.resetMediaState()),
-  onResetMediaControls: () => dispatch(actions.resetMediaControls())
+  onResetMediaControls: () => dispatch(actions.resetMediaControls()),
+  onSetProfileImage: image => dispatch(actions.setProfileImage(image))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);

@@ -24,6 +24,7 @@ import mediaState from "./store/reducers/mediaState";
 import mediaControls from "./store/reducers/mediaControls";
 import lightControls from "./store/reducers/lightControls";
 import configurations from "./store/reducers/configurations";
+import users from "./store/reducers/users";
 
 import * as serviceWorker from "./serviceWorker";
 
@@ -46,7 +47,8 @@ const rootReducer = combineReducers({
   mediaState,
   mediaControls,
   lightControls,
-  configurations
+  configurations,
+  users
 });
 
 const store = createStore(
