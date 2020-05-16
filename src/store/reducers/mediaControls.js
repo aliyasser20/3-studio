@@ -11,9 +11,14 @@ const initialState = {
   mediaMapEnvironment: false,
   defaultLight: true,
   sphere: null,
+  lSphere: null,
+  wBox: null,
+  mBox: null,
   keyLight: null,
-  backWall: null,
-  groundPole: null,
+  dLight: null,
+  bLight: null,
+  pWall: null,
+  pGround: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -83,20 +88,7 @@ const reducer = (state = initialState, action) => {
       };
     case actionTypes.RESET_MEDIA_CONTROLS:
       return {
-        ...state,
-        mediaLock: false,
-        mediaBoundingBox: false,
-        mediaAxis: false,
-        mediaAutorotate: false,
-        mediaEnvBackground: false,
-        mediaSolidBackground: true,
-        mediaNoBakground: false,
-        mediaMapEnvironment: false,
-        defaultLight: true,
-        sphere: null,
-        keyLight: null,
-        backWall: null,
-        groundPole: null,
+        ...initialState
       };
     default:
       return state;
