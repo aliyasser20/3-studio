@@ -20,6 +20,7 @@ import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 import * as actions from "../../../../store/actions/index";
+import backendAxios from "../../../../axiosInstances/backendAxios";
 
 import "./ConfigurationSelector.scss";
 
@@ -41,6 +42,40 @@ const ConfigurationSelector = props => {
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
+
+  const newConfiguration = () => {
+    const newConfigData = {
+      name: configurationNameField,
+      projectId: props.currentProject.id
+    };
+
+    if (copyCurrentConfiguration) {
+      newConfigData.config_data = {
+        bgEnvironment: props.bgEnvironment,
+        bgSolid: props.bgSolid,
+        bgColor: props.bgColor,
+        mapEnvironment: props.mapEnvironment,
+        currentEnvironmentOption: props.currentEnvironmentOption,
+        ambientLight: props.ambientLight,
+        directionalLight: props.directionalLight,
+        hemisphereLight: props.hemisphereLight,
+        ambientLightIntensity: props.ambientIntensity,
+        directionalLightIntensity: props.directionalIntensity,
+        hemisphereLightIntensity: props.hemisphereIntensity,
+        ambientLightColor: props.ambientColor,
+        directionalLightColor: props.directionalColor,
+        hemisphereLightColor: props.hemisphereColor,
+        materials: []
+      };
+    }
+
+    backendAxios
+      .post("/api/configurations", newConfigData)
+      .then(resp => {
+        console.log(resp);
+      })
+      .catch(err => console.log(err));
+  };
 
   const configurationOptions = props.allConfigurations.map(configuration => {
     const optionClasses =
@@ -182,12 +217,43 @@ ConfigurationSelector.propTypes = {
   allConfigurations: PropTypes.array.isRequired,
   onSetCurrentConfigurationName: PropTypes.func.isRequired,
   onSetCurrentConfigurationId: PropTypes.func.isRequired,
-  onSetConfiguration: PropTypes.func.isRequired
+  onSetConfiguration: PropTypes.func.isRequired,
+  currentProject: PropTypes.object.isRequired,
+  mapEnvironment: PropTypes.bool.isRequired,
+  bgSolid: PropTypes.bool.isRequired,
+  bgEnvironment: PropTypes.bool.isRequired,
+  bgColor: PropTypes.string.isRequired,
+  ambientLight: PropTypes.bool.isRequired,
+  directionalLight: PropTypes.bool.isRequired,
+  hemisphereLight: PropTypes.bool.isRequired,
+  ambientIntensity: PropTypes.number.isRequired,
+  hemisphereIntensity: PropTypes.number.isRequired,
+  directionalIntensity: PropTypes.number.isRequired,
+  directionalColor: PropTypes.string.isRequired,
+  hemisphereColor: PropTypes.string.isRequired,
+  ambientColor: PropTypes.string.isRequired,
+  currentEnvironmentOption: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   currentConfigurationName: state.configurations.currentConfigurationName,
-  allConfigurations: state.configurations.allConfigurations
+  allConfigurations: state.configurations.allConfigurations,
+  currentProject: state.projects.currentProject,
+  mapEnvironment: state.environmentControls.mapEnvironment,
+  bgSolid: state.environmentControls.bgSolid,
+  bgEnvironment: state.environmentControls.bgEnvironment,
+  bgColor: state.environmentControls.bgColor,
+  ambientLight: state.lightControls.ambientLight,
+  directionalLight: state.lightControls.directionalLight,
+  hemisphereLight: state.lightControls.hemisphereLight,
+  ambientIntensity: state.lightControls.ambientLightIntensity,
+  directionalIntensity: state.lightControls.directionalLightIntensity,
+  hemisphereIntensity: state.lightControls.hemisphereLightIntensity,
+  ambientColor: state.lightControls.ambientLightColor,
+  directionalColor: state.lightControls.directionalLightColor,
+  hemisphereColor: state.lightControls.hemisphereLightColor,
+  currentConfigurationId: state.configurations.currentConfigurationId,
+  currentEnvironmentOption: state.environmentControls.currentEnvironmentOption
 });
 
 const mapDispatchToProps = dispatch => ({
