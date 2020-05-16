@@ -23,6 +23,27 @@ const ConfigurationSelector = props => {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
+  const configurationOptions = props.allConfigurations.map(configuration => {
+    const optionClasses =
+      props.currentConfigurationName === configuration.name
+        ? "configuration-option selected"
+        : "configuration-option";
+
+    return (
+      <div key={configuration.name} className={optionClasses}>
+        <p className="configuration-name">{configuration.name}</p>
+        <IconButton
+          aria-label="delete-configuration"
+          classes={{ root: "delete-configuration-button" }}
+          size="small"
+          // onClick={() => fileExporter()}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </div>
+    );
+  });
+
   return (
     <div className="configuration-selector">
       <span className="gradient-button">
@@ -50,63 +71,7 @@ const ConfigurationSelector = props => {
         }}
       >
         <div className="configuration-selector-popover-content">
-          <div className="configuration-options">
-            <div className="configuration-option">
-              <p className="configuration-name">Default</p>
-              <IconButton
-                aria-label="delete-configuration"
-                classes={{ root: "delete-configuration-button" }}
-                size="small"
-                // onClick={() => fileExporter()}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </div>
-            <div className="configuration-option selected">
-              <p className="configuration-name">Default</p>
-              <IconButton
-                aria-label="delete-configuration"
-                classes={{ root: "delete-configuration-button" }}
-                size="small"
-                // onClick={() => fileExporter()}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </div>
-            <div className="configuration-option">
-              <p className="configuration-name">Default</p>
-              <IconButton
-                aria-label="delete-configuration"
-                classes={{ root: "delete-configuration-button" }}
-                size="small"
-                // onClick={() => fileExporter()}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </div>
-            <div className="configuration-option">
-              <p className="configuration-name">Default</p>
-              <IconButton
-                aria-label="delete-configuration"
-                classes={{ root: "delete-configuration-button" }}
-                size="small"
-                // onClick={() => fileExporter()}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </div>
-            <div className="configuration-option">
-              <p className="configuration-name">Default</p>
-              <IconButton
-                aria-label="delete-configuration"
-                classes={{ root: "delete-configuration-button" }}
-                size="small"
-                // onClick={() => fileExporter()}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </div>
-          </div>
+          <div className="configuration-options">{configurationOptions}</div>
           <div className="add-configuration-area">
             <span className="gradient-button">
               <Button
@@ -125,11 +90,13 @@ const ConfigurationSelector = props => {
 };
 
 ConfigurationSelector.propTypes = {
-  currentConfigurationName: PropTypes.string.isRequired
+  currentConfigurationName: PropTypes.string.isRequired,
+  allConfigurations: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
-  currentConfigurationName: state.configurations.currentConfigurationName
+  currentConfigurationName: state.configurations.currentConfigurationName,
+  allConfigurations: state.configurations.allConfigurations
 });
 
 export default connect(mapStateToProps, null)(ConfigurationSelector);
