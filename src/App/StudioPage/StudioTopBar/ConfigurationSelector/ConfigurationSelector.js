@@ -177,7 +177,7 @@ const ConfigurationSelector = props => {
         console.log(err);
 
         // Order is important
-        setMessage("Could not create new configuration");
+        setMessage("Could not create new configuration!");
         setSeverity("error");
         setSnackBarOpen(true);
         setCreateConfiguration(false);
@@ -196,9 +196,23 @@ const ConfigurationSelector = props => {
       })
       .then(resp => {
         console.log(resp);
+
+        // Order is important
+        props.onDeleteConfiguration(configToDelete.id);
+        setMessage("Configuration successfully deleted!");
+        setSeverity("success");
+        setSnackBarOpen(true);
+        setConfirmDelete(false);
+        setConfigToDelete(null);
       })
       .catch(err => {
         console.log(err);
+
+        setMessage("Could not delete configuration!");
+        setSeverity("error");
+        setSnackBarOpen(true);
+        setConfirmDelete(false);
+        setConfigToDelete(null);
       });
   };
 
@@ -422,7 +436,7 @@ ConfigurationSelector.propTypes = {
   onAddConfiguration: PropTypes.func.isRequired,
   currentConfigurationId: PropTypes.number.isRequired,
   onSetConfigurationSaved: PropTypes.func.isRequired,
-  onSetConfiguration: PropTypes.func.isRequired
+  onDeleteConfiguration: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -454,7 +468,8 @@ const mapDispatchToProps = dispatch => ({
   onSetConfiguration: config => dispatch(actions.setConfiguration(config)),
   onAddConfiguration: config => dispatch(actions.addConfiguration(config)),
   onSetConfigurationSaved: () => dispatch(actions.setConfigurationSaved()),
-  onSetConfiguration: config => dispatch(actions.setConfiguration(config))
+  onDeleteConfiguration: configId =>
+    dispatch(actions.deleteConfiguration(configId))
 });
 
 export default connect(
