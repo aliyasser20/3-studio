@@ -93,6 +93,12 @@ const DashboardPage = props => {
         )}
         {snackBarOpen && snackBar}
       </Container>
+      <svg>
+        <linearGradient id="gradient-vertical" x2="0" y2="1">
+          <stop offset="0%" stopColor="var(--gradient-top)" />
+          <stop offset="100%" stopColor="var(--gradient-bottom)" />
+        </linearGradient>
+      </svg>
     </div>
   );
 };
