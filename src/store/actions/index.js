@@ -39,7 +39,13 @@ export {
   resetExtraControls
 } from "./extraControls";
 
-export { setSelectedMaterial } from "./appearanceControls";
+export {
+  setSelectedMaterial,
+  updateMaterials,
+  updateEntireMaterials,
+  resetAppearanceControls
+} from "./appearanceControls";
+
 export {
   toggleMediaLock,
   toggleMediaBoundingBox,
@@ -86,13 +92,15 @@ export {
 export {
   getConfigurations,
   setConfigurationSaved,
+  setConfigurationUnsaved,
   setAllConfigurations,
   setConfiguration,
   setCurrentConfigurationId,
   setCurrentConfigurationName,
   addConfiguration,
   deleteConfiguration,
-  updateConfiguration
+  updateConfiguration,
+  resetConfigurations
 } from "./configurations";
 
 export { setProfileImage } from "./users";

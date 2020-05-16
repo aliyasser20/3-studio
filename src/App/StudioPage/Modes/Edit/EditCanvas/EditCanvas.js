@@ -61,11 +61,18 @@ const EditCanvas = props => {
 
   const handleDrop = e => {
     // console.log(e);
-    // console.log(e.object);
-
     if (props.selectedMaterial) {
+      // console.log(e.object);
+
+      props.onUpdateMaterial(e.object.name, {
+        name: props.selectedMaterial
+      });
+
       e.object.material = materialLibrary()[props.selectedMaterial];
       props.onSetSelectedMaterial("");
+
+      // Trigger unsaved changes
+      props.onSetConfigurationUnsaved();
     }
   };
 
@@ -170,7 +177,10 @@ EditCanvas.propTypes = {
   directionalIntensity: PropTypes.number.isRequired,
   directionalLightColor: PropTypes.string.isRequired,
   hemisphereLightColor: PropTypes.string.isRequired,
-  ambientLightColor: PropTypes.string.isRequired
+  ambientLightColor: PropTypes.string.isRequired,
+  onUpdateMaterial: PropTypes.func.isRequired,
+  materials: PropTypes.object.isRequired,
+  onSetConfigurationUnsaved: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -199,13 +209,17 @@ const mapStateToProps = state => ({
   hemisphereIntensity: state.lightControls.hemisphereLightIntensity,
   ambientLightColor: state.lightControls.ambientLightColor,
   directionalLightColor: state.lightControls.directionalLightColor,
-  hemisphereLightColor: state.lightControls.hemisphereLightColor
+  hemisphereLightColor: state.lightControls.hemisphereLightColor,
+  materials: state.appearanceControls.materials
 });
 
 const mapDispatchToProps = dispatch => ({
   onSetFov: fov => dispatch(actions.setFov(fov)),
   onSetSelectedMaterial: material =>
-    dispatch(actions.setSelectedMaterial(material))
+    dispatch(actions.setSelectedMaterial(material)),
+  onUpdateMaterial: (partName, material) =>
+    dispatch(actions.updateMaterials(partName, material)),
+  onSetConfigurationUnsaved: () => dispatch(actions.setConfigurationUnsaved())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditCanvas);

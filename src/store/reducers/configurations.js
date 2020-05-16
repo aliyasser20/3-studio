@@ -28,6 +28,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         configurationSaved: true
       };
+    case actionTypes.SET_CONFIGURATION_UNSAVED:
+      return {
+        ...state,
+        configurationSaved: false
+      };
     case actionTypes.SET_ALL_CONFIGURATIONS:
       return {
         ...state,
@@ -54,6 +59,10 @@ const reducer = (state = initialState, action) => {
           action.configId,
           action.configData
         )
+      };
+    case actionTypes.RESET_CONFIGURATIONS:
+      return {
+        ...initialState
       };
     default:
       return state;

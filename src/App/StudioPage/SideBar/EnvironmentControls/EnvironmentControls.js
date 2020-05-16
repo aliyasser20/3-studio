@@ -43,7 +43,12 @@ const EnvironmentControls = props => {
               <Checkbox
                 className="custom-checkbox"
                 checked={props.mapEnvironment}
-                onChange={() => props.onToggleMapEnvironment()}
+                onChange={() => {
+                  // Trigger unsaved changes
+                  props.onSetConfigurationUnsaved();
+                  //
+                  props.onToggleMapEnvironment();
+                }}
                 name="environmentMap"
               />
             }
@@ -58,7 +63,12 @@ const EnvironmentControls = props => {
                 <Checkbox
                   className="custom-checkbox"
                   checked={props.bgSolid}
-                  onChange={() => props.onSetBackgroundSolid()}
+                  onChange={() => {
+                    // Trigger unsaved changes
+                    props.onSetConfigurationUnsaved();
+                    //
+                    props.onSetBackgroundSolid();
+                  }}
                   name="solidBackground"
                 />
               }
@@ -67,7 +77,12 @@ const EnvironmentControls = props => {
             <ColorPickPopover
               color={props.bgColor}
               visible={props.bgSolid}
-              setColor={props.onSetBackgroundColor}
+              setColor={color => {
+                // Trigger unsaved changes
+                props.onSetConfigurationUnsaved();
+                //
+                props.onSetBackgroundColor(color);
+              }}
             />
           </div>
           <FormControlLabel
@@ -76,7 +91,12 @@ const EnvironmentControls = props => {
               <Checkbox
                 className="custom-checkbox"
                 checked={props.bgEnvironment}
-                onChange={() => props.onSetBackgroundEnvironment()}
+                onChange={() => {
+                  // Trigger unsaved changes
+                  props.onSetConfigurationUnsaved();
+                  //
+                  props.onSetBackgroundEnvironment();
+                }}
                 name="environmentBackground"
               />
             }
@@ -98,7 +118,8 @@ EnvironmentControls.propTypes = {
   onSetBackgroundEnvironment: PropTypes.func.isRequired,
   onSetBackgroundSolid: PropTypes.func.isRequired,
   bgColor: PropTypes.string.isRequired,
-  onSetBackgroundColor: PropTypes.func.isRequired
+  onSetBackgroundColor: PropTypes.func.isRequired,
+  onSetConfigurationUnsaved: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -113,7 +134,8 @@ const mapDispatchToProps = dispatch => ({
   onSetBackgroundEnvironment: () =>
     dispatch(actions.setBackgroundEnvironment()),
   onToggleMapEnvironment: () => dispatch(actions.toggleMapEnvironment()),
-  onSetBackgroundColor: color => dispatch(actions.setBackgroundColor(color))
+  onSetBackgroundColor: color => dispatch(actions.setBackgroundColor(color)),
+  onSetConfigurationUnsaved: () => dispatch(actions.setConfigurationUnsaved())
 });
 
 export default connect(
