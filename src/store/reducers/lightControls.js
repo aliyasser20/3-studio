@@ -72,7 +72,7 @@ const reducer = (state = initialState, action) => {
         ambientLightIntensity: action.config.ambientLightIntensity,
         directionalLightIntensity: action.config.directionalLightIntensity,
         hemisphereLightIntensity: action.config.hemisphereLightIntensity,
-        ambientLightColor: action.config.hemisphereLightColor,
+        ambientLightColor: action.config.ambientLightColor,
         directionalLightColor: action.config.directionalLightColor,
         hemisphereLightColor: action.config.hemisphereLightColor
       };

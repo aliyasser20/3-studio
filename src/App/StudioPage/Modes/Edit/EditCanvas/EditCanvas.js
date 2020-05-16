@@ -100,20 +100,20 @@ const EditCanvas = props => {
       {props.directionalLight && (
         <directionalLight
           intensity={props.directionalIntensity}
-          color={`#${props.directionalColor}`}
+          color={`#${props.directionalLightColor}`}
           position={directionalPosition}
         />
       )}
       {props.hemisphereLight && (
         <hemisphereLight
           intensity={props.hemisphereIntensity}
-          color={`#${props.hemisphereColor}`}
+          color={`#${props.hemisphereLightColor}`}
         />
       )}
       {props.ambientLight && (
         <ambientLight
           intensity={props.ambientIntensity}
-          color={`#${props.ambientColor}`}
+          color={`#${props.ambientLightColor}`}
         />
       )}
       <Suspense fallback={fallbackElement}>
@@ -168,9 +168,9 @@ EditCanvas.propTypes = {
   ambientIntensity: PropTypes.number.isRequired,
   hemisphereIntensity: PropTypes.number.isRequired,
   directionalIntensity: PropTypes.number.isRequired,
-  directionalColor: PropTypes.string.isRequired,
-  hemisphereColor: PropTypes.string.isRequired,
-  ambientColor: PropTypes.string.isRequired
+  directionalLightColor: PropTypes.string.isRequired,
+  hemisphereLightColor: PropTypes.string.isRequired,
+  ambientLightColor: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -197,9 +197,9 @@ const mapStateToProps = state => ({
   ambientIntensity: state.lightControls.ambientLightIntensity,
   directionalIntensity: state.lightControls.directionalLightIntensity,
   hemisphereIntensity: state.lightControls.hemisphereLightIntensity,
-  ambientColor: state.lightControls.ambientLightColor,
-  directionalColor: state.lightControls.directionalLightColor,
-  hemisphereColor: state.lightControls.hemisphereLightColor
+  ambientLightColor: state.lightControls.ambientLightColor,
+  directionalLightColor: state.lightControls.directionalLightColor,
+  hemisphereLightColor: state.lightControls.hemisphereLightColor
 });
 
 const mapDispatchToProps = dispatch => ({

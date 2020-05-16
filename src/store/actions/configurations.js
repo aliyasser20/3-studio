@@ -41,7 +41,6 @@ export const getConfigurations = projectId => dispatch => {
       }
     })
     .then(response => {
-      console.log(response.data);
       dispatch(setConfiguration(JSON.parse(response.data[0].config_data)));
       dispatch(
         setCurrentConfigurationId(

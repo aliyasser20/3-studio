@@ -21,10 +21,13 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 import * as actions from "../../../../store/actions/index";
 import backendAxios from "../../../../axiosInstances/backendAxios";
+import { useAuth0 } from "../../../../react-auth0-spa";
 
 import "./ConfigurationSelector.scss";
 
 const ConfigurationSelector = props => {
+  const { user } = useAuth0();
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [createConfiguration, setCreateConfiguration] = useState(false);
   const [configurationNameField, setConfigurationNameField] = useState("");
@@ -42,6 +45,39 @@ const ConfigurationSelector = props => {
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
+
+  const saveConfig = () => {
+    backendAxios
+      .put("/api/configurations", {
+        userId: user.sub,
+        configuration: {
+          id: props.currentConfigurationId,
+          data: {
+            bgEnvironment: props.bgEnvironment,
+            bgSolid: props.bgSolid,
+            bgColor: props.bgColor,
+            mapEnvironment: props.mapEnvironment,
+            currentEnvironmentOption: props.currentEnvironmentOption,
+            ambientLight: props.ambientLight,
+            directionalLight: props.directionalLight,
+            hemisphereLight: props.hemisphereLight,
+            ambientLightIntensity: props.ambientIntensity,
+            directionalLightIntensity: props.directionalIntensity,
+            hemisphereLightIntensity: props.hemisphereIntensity,
+            ambientLightColor: props.ambientLightColor,
+            directionalLightColor: props.directionalLightColor,
+            hemisphereLightColor: props.hemisphereLightColor,
+            materials: []
+          }
+        }
+      })
+      .then(resp => {
+        props.onSetConfigurationSaved();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const newConfiguration = () => {
     const newConfigData = {
@@ -62,9 +98,9 @@ const ConfigurationSelector = props => {
         ambientLightIntensity: props.ambientIntensity,
         directionalLightIntensity: props.directionalIntensity,
         hemisphereLightIntensity: props.hemisphereIntensity,
-        ambientLightColor: props.ambientColor,
-        directionalLightColor: props.directionalColor,
-        hemisphereLightColor: props.hemisphereColor,
+        ambientLightColor: props.ambientLightColor,
+        directionalLightColor: props.directionalLightColor,
+        hemisphereLightColor: props.hemisphereLightColor,
         materials: []
       };
     } else {
@@ -100,6 +136,8 @@ const ConfigurationSelector = props => {
       .then(resp => {
         newConfigData.id = resp.data.id;
         newConfigData.config_data = JSON.stringify(newConfigData.config_data);
+
+        saveConfig();
 
         props.onAddConfiguration(newConfigData);
         props.onSetCurrentConfigurationName(configurationNameField);
@@ -262,11 +300,13 @@ ConfigurationSelector.propTypes = {
   ambientIntensity: PropTypes.number.isRequired,
   hemisphereIntensity: PropTypes.number.isRequired,
   directionalIntensity: PropTypes.number.isRequired,
-  directionalColor: PropTypes.string.isRequired,
-  hemisphereColor: PropTypes.string.isRequired,
-  ambientColor: PropTypes.string.isRequired,
+  directionalLightColor: PropTypes.string.isRequired,
+  hemisphereLightColor: PropTypes.string.isRequired,
+  ambientLightColor: PropTypes.string.isRequired,
   currentEnvironmentOption: PropTypes.object.isRequired,
-  onAddConfiguration: PropTypes.func.isRequired
+  onAddConfiguration: PropTypes.func.isRequired,
+  currentConfigurationId: PropTypes.number.isRequired,
+  onSetConfigurationSaved: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -283,9 +323,9 @@ const mapStateToProps = state => ({
   ambientIntensity: state.lightControls.ambientLightIntensity,
   directionalIntensity: state.lightControls.directionalLightIntensity,
   hemisphereIntensity: state.lightControls.hemisphereLightIntensity,
-  ambientColor: state.lightControls.ambientLightColor,
-  directionalColor: state.lightControls.directionalLightColor,
-  hemisphereColor: state.lightControls.hemisphereLightColor,
+  ambientLightColor: state.lightControls.ambientLightColor,
+  directionalLightColor: state.lightControls.directionalLightColor,
+  hemisphereLightColor: state.lightControls.hemisphereLightColor,
   currentConfigurationId: state.configurations.currentConfigurationId,
   currentEnvironmentOption: state.environmentControls.currentEnvironmentOption
 });
@@ -296,7 +336,8 @@ const mapDispatchToProps = dispatch => ({
   onSetCurrentConfigurationId: id =>
     dispatch(actions.setCurrentConfigurationId(id)),
   onSetConfiguration: config => dispatch(actions.setConfiguration(config)),
-  onAddConfiguration: config => dispatch(actions.addConfiguration(config))
+  onAddConfiguration: config => dispatch(actions.addConfiguration(config)),
+  onSetConfigurationSaved: () => dispatch(actions.setConfigurationSaved())
 });
 
 export default connect(

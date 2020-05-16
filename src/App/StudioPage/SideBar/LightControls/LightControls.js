@@ -54,7 +54,7 @@ const LightControls = props => (
             changeChecked={props.onToggleAmbientLight}
             onChange={props.onSetAmbientLightIntensity}
             value={props.ambientIntensity}
-            color={props.ambientColor}
+            color={props.ambientLightColor}
             setColor={props.onSetAmbientLightColor}
             visible={props.ambientLight}
             step={0.2}
@@ -68,7 +68,7 @@ const LightControls = props => (
             changeChecked={props.onToggleHemisphereLight}
             onChange={props.onSetHemisphereLightIntensity}
             value={props.hemisphereIntensity}
-            color={props.hemisphereColor}
+            color={props.hemisphereLightColor}
             setColor={props.onSetHemisphereLightColor}
             visible={props.hemisphereLight}
             step={0.5}
@@ -82,7 +82,7 @@ const LightControls = props => (
             changeChecked={props.onToggleDirectionalLight}
             onChange={props.onSetDirectionalLightIntensity}
             value={props.directionalIntensity}
-            color={props.directionalColor}
+            color={props.directionalLightColor}
             setColor={props.onSetDirectionalLightColor}
             visible={props.directionalLight}
             step={0.5}
@@ -104,9 +104,9 @@ LightControls.propTypes = {
   ambientIntensity: PropTypes.number.isRequired,
   hemisphereIntensity: PropTypes.number.isRequired,
   directionalIntensity: PropTypes.number.isRequired,
-  directionalColor: PropTypes.string.isRequired,
-  hemisphereColor: PropTypes.string.isRequired,
-  ambientColor: PropTypes.string.isRequired,
+  directionalLightColor: PropTypes.string.isRequired,
+  hemisphereLightColor: PropTypes.string.isRequired,
+  ambientLightColor: PropTypes.string.isRequired,
   onToggleAmbientLight: PropTypes.func.isRequired,
   onToggleDirectionalLight: PropTypes.func.isRequired,
   onToggleHemisphereLight: PropTypes.func.isRequired,
@@ -126,9 +126,9 @@ const mapStateToProps = state => ({
   ambientIntensity: state.lightControls.ambientLightIntensity,
   directionalIntensity: state.lightControls.directionalLightIntensity,
   hemisphereIntensity: state.lightControls.hemisphereLightIntensity,
-  ambientColor: state.lightControls.ambientLightColor,
-  directionalColor: state.lightControls.directionalLightColor,
-  hemisphereColor: state.lightControls.hemisphereLightColor
+  ambientLightColor: state.lightControls.ambientLightColor,
+  directionalLightColor: state.lightControls.directionalLightColor,
+  hemisphereLightColor: state.lightControls.hemisphereLightColor
 });
 
 const mapDispatchToProps = dispatch => ({

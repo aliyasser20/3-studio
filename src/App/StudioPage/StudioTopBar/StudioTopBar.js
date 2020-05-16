@@ -49,15 +49,14 @@ const StudioTopBar = props => {
             ambientLightIntensity: props.ambientIntensity,
             directionalLightIntensity: props.directionalIntensity,
             hemisphereLightIntensity: props.hemisphereIntensity,
-            ambientLightColor: props.ambientColor,
-            directionalLightColor: props.directionalColor,
-            hemisphereLightColor: props.hemisphereColor,
+            ambientLightColor: props.ambientLightColor,
+            directionalLightColor: props.directionalLightColor,
+            hemisphereLightColor: props.hemisphereLightColor,
             materials: []
           }
         }
       })
       .then(resp => {
-        console.log(resp);
         props.onSetConfigurationSaved();
       })
       .catch(err => {
@@ -131,9 +130,9 @@ StudioTopBar.propTypes = {
   ambientIntensity: PropTypes.number.isRequired,
   hemisphereIntensity: PropTypes.number.isRequired,
   directionalIntensity: PropTypes.number.isRequired,
-  directionalColor: PropTypes.string.isRequired,
-  hemisphereColor: PropTypes.string.isRequired,
-  ambientColor: PropTypes.string.isRequired,
+  directionalLightColor: PropTypes.string.isRequired,
+  hemisphereLightColor: PropTypes.string.isRequired,
+  ambientLightColor: PropTypes.string.isRequired,
   currentConfigurationId: PropTypes.number.isRequired,
   currentConfigurationName: PropTypes.string.isRequired,
   currentEnvironmentOption: PropTypes.object.isRequired,
@@ -154,9 +153,9 @@ const mapStateToProps = state => ({
   ambientIntensity: state.lightControls.ambientLightIntensity,
   directionalIntensity: state.lightControls.directionalLightIntensity,
   hemisphereIntensity: state.lightControls.hemisphereLightIntensity,
-  ambientColor: state.lightControls.ambientLightColor,
-  directionalColor: state.lightControls.directionalLightColor,
-  hemisphereColor: state.lightControls.hemisphereLightColor,
+  ambientLightColor: state.lightControls.ambientLightColor,
+  directionalLightColor: state.lightControls.directionalLightColor,
+  hemisphereLightColor: state.lightControls.hemisphereLightColor,
   currentConfigurationId: state.configurations.currentConfigurationId,
   currentConfigurationName: state.configurations.currentConfigurationName,
   currentEnvironmentOption: state.environmentControls.currentEnvironmentOption,
