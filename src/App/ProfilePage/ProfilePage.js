@@ -16,6 +16,8 @@ import {
 import DeleteSweepIcon from "@material-ui/icons/DeleteSweep";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 
+import { DropzoneDialog, DropzoneArea } from "material-ui-dropzone";
+
 import SingleField from "./SingleField/SingleField";
 import Alert from "../UI/Alert/Alert";
 
@@ -23,6 +25,11 @@ import { useAuth0 } from "../../react-auth0-spa";
 import { availableThemes } from "../../store/reducers/reducersHelpers/themesHelpers";
 import * as actions from "../../store/actions/index";
 import backendAxios from "../../axiosInstances/backendAxios";
+
+import {
+  savePictureToCloud,
+  updateProfilePicture
+} from "./UpdateProfilePictureHelper";
 
 import "./ProfilePage.scss";
 
@@ -36,7 +43,13 @@ const ProfilePage = props => {
   const [disabled] = useState(!user.sub.includes("auth0"));
   const [nameField, setNameField] = useState(user.name);
   const [nicknameField, setNicknameField] = useState(user.nickname);
-  const [open, setOpen] = React.useState(false);
+  // For deleting account and resetting password
+  const [open, setOpen] = useState(false);
+  // For opening profile picture change modal
+  const [openPictureChanger, setOpenPictureChanger] = useState(false);
+  // For opening and closing profile picture dialog
+  const [openDialog, setOpenDialog] = useState(false);
+  const [picture, setPicture] = useState([]);
 
   const themes = availableThemes.map(theme => (
     <MenuItem key={theme.name} value={theme.name}>
@@ -102,6 +115,43 @@ const ProfilePage = props => {
     setOpen(false);
   };
 
+  const handleChangePictureButton = () => {
+    setOpenPictureChanger(true);
+    setOpenDialog(true);
+  };
+
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+  };
+
+  const handleDrop = file => {
+    setPicture(file);
+  };
+
+  const handleDelete = () => {
+    setPicture([]);
+  };
+
+  const handlePictureUpdate = () => {
+    console.log(picture, "pictures array");
+    savePictureToCloud(picture).then(picturePath => console.log(picturePath));
+
+    // .then(updateProfilePicture => {
+    //   backendAxios.put("/api/users", {
+    //     userId: user.sub,
+    //     profilePicture: picturePath
+    //   });
+    // })
+  };
+
+  // Click on change profile picture and setOpenProfilePictureChanger(false);
+  // Open dialog
+  // Have upload and/or dropzone to add picture
+  // Add picture to cloudinary and take response as filepath
+  // Set uploaded picture to user.picture in backend (put router / patch axios request to /users)
+  // If success, show success message and close dialog (setOpenProfilePictureChanger(false))
+  // If failure, show fail message and return to dialog, user could reattempt uploading or click on "x" in dialog and setOpenProfilePictureChanger(false)]
+
   const page = (
     <Container maxWidth="md" classes={{ root: "container-padding" }}>
       <div className="profile-page">
@@ -112,8 +162,46 @@ const ProfilePage = props => {
               src={user.picture}
               alt="profile picture"
             />
+            <Button onClick={handleChangePictureButton}>
+              Change profile picture
+            </Button>
+            {openPictureChanger && (
+              <Dialog
+                open={openDialog}
+                onClose={handleDialogClose}
+                aria-labelledby="Update picture"
+              >
+                <DropzoneArea
+                  dropzoneText="Drag profile picture here"
+                  acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
+                  maxFileSize={10000000}
+                  filesLimit={1}
+                  onDrop={handleDrop}
+                  onDelete={handleDelete}
+                />
+
+                <DialogActions>
+                  <Button onClick={handleDialogClose} color="primary">
+                    Cancel
+                  </Button>
+                  <Button onClick={handlePictureUpdate} color="primary">
+                    Update
+                  </Button>
+                </DialogActions>
+              </Dialog>
+              // {/* // <DropzoneDialog */}
+              //   cancelButtonText="Cancel"
+              //   submitButtonText="Submit"
+              //   open={open}
+              //   acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
+              //   showPreviews
+              //   maxFileSize={5000000}
+              //   onClose={handleProfilePictureClickClose}
+              // />
+            )}
           </div>
           <div className="theme-selector-area">
+            <p>Theme</p>
             <Select
               labelId="theme"
               id="theme"
@@ -189,7 +277,6 @@ const ProfilePage = props => {
         </Alert>
       </Snackbar>
       <Dialog
-        // classes={{ root: "delete-account-dialog" }}
         className="delete-account-dialog"
         open={confirmDelete}
         onClose={() => setConfirmDelete(false)}
