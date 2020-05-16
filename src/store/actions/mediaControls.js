@@ -1,5 +1,9 @@
 import * as actionTypes from "./actionTypes";
 
+export const toggleMapEnv = () => ({
+  type: actionTypes.TOGGLE_MAP_ENV,
+});
+
 export const toggleMediaEnvB = () => ({
   type: actionTypes.TOGGLE_MEDIA_ENV_B,
 });
@@ -26,6 +30,10 @@ export const toggleMediaAxis = () => ({
 
 export const toggleMediaAutoRotate = () => ({
   type: actionTypes.TOGGLE_MEDIA_AUTOROTATE,
+});
+
+export const toggleDefaultLight = () => ({
+  type: actionTypes.TOGGLE_DEFAULT_LIGHT,
 });
 
 export const setMediaSphere = (sphere) => ({

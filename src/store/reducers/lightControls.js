@@ -61,16 +61,20 @@ const reducer = (state = initialState, action) => {
       };
     case actionTypes.RESET_LIGHTS:
       return {
+        ...initialState
+      };
+    case actionTypes.BULK_SET_LIGHT_CONTROLS:
+      return {
         ...state,
-        ambientLight: true,
-        directionalLight: true,
-        hemisphereLight: true,
-        ambientLightIntensity: 0.3,
-        directionalLightIntensity: 0.8 * Math.PI,
-        hemisphereLightIntensity: 1,
-        ambientLightColor: "ffffff",
-        directionalLightColor: "ffffff",
-        hemisphereLightColor: "ffffff"
+        ambientLight: action.config.ambientLight,
+        directionalLight: action.config.directionalLight,
+        hemisphereLight: action.config.hemisphereLight,
+        ambientLightIntensity: action.config.ambientLightIntensity,
+        directionalLightIntensity: action.config.directionalLightIntensity,
+        hemisphereLightIntensity: action.config.hemisphereLightIntensity,
+        ambientLightColor: action.config.ambientLightColor,
+        directionalLightColor: action.config.directionalLightColor,
+        hemisphereLightColor: action.config.hemisphereLightColor
       };
     default:
       return state;

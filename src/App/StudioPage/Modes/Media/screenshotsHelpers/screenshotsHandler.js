@@ -6,6 +6,7 @@ const formatName = (name) => {
 };
 
 export const saveToCloud = (file, project,counter) => {
+  console.log(process.env.REACT_APP_SCREENSHOT_UPLOAD_PRESET)
   const formData = new FormData();
   formData.append("file", file);
   formData.append("public_id", `${project.id}/${formatName(project.name)}-${counter}`);

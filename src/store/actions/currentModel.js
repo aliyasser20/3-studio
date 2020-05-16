@@ -29,3 +29,7 @@ export const setBox = box => ({
   type: actionTypes.SET_BOX,
   box
 });
+
+export const resetEditState = () => ({
+  type: actionTypes.RESET_EDIT_STATE
+});

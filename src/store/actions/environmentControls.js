@@ -21,3 +21,12 @@ export const setEnvironmentOption = option => ({
   type: actionTypes.SET_ENVIRONMENT_OPTION,
   option
 });
+
+export const resetEnvironmentControls = () => ({
+  type: actionTypes.RESET_ENVIRONMENT_CONTROLS
+});
+
+export const bulkSetEnvironmentControls = config => ({
+  type: actionTypes.BULK_SET_ENVIRONMENT_CONTROLS,
+  config
+});

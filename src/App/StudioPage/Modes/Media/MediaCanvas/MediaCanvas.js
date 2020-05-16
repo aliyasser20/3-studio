@@ -14,12 +14,15 @@ import Controls from "../../Edit/Controls/Controls";
 import "./MediaCanvas.scss";
 import Loading from "../OldCanvas/Loading/Loading";
 import LoaderModel from "../../../LoaderModal/LoaderModel";
+import WSphere from "../Models/WSphere";
+import TestingDrag from "../Models/TestingDrag";
+import DControls from "../DragControls/DControls";
+import GroundPlane from "../OldCanvas/GroundPlane/GroundPlane";
+import KLight from "../Models/KLight";
 
 const MediaCanvas = (props) => {
   const [loading, setLoading] = useState(true);
   const { mediaFov, mediaFar, mediaNear, mediaBox, mediaSizeBounding } = props;
-  console.log(props.modelSettings);
-
   useEffect(() => {
     !props.mediaFov && props.onSetMediaFov(props.modelSettings.fov);
     !props.mediaFar && props.onSetMediaFar(props.modelSettings.far);
@@ -44,6 +47,14 @@ const MediaCanvas = (props) => {
     />
   ) : null;
 
+  const lights = props.defaultLight ? (
+    <>
+      <ambientLight intensity={0.1} />
+      <hemisphereLight intensity={0.1} />
+      <directionalLight intensity={0.1 * Math.PI} position={[0.5, 0, 0.86]} />
+    </>
+  ) : null;
+
   return !loading || !props.modelSettings.model || !props.mediaModel ? (
     <>
       <Canvas
@@ -52,24 +63,45 @@ const MediaCanvas = (props) => {
         onCreated={({ gl, scene }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
           gl.outputEncoding = THREE.sRGBEncoding;
+          gl.shadowMap.type = THREE.PCFSoftShadowMap;
+          gl.shadowMap.enabled = true;
           gl.gammaFactor = 2.2;
         }}
       >
         {camere}
-        <ambientLight intensity={0.3} />
-        <hemisphereLight intensity={1} />
-        <directionalLight intensity={0.8 * Math.PI} position={[0.5, 0, 0.86]} />
+        {lights}
         <Environment
           bgEnvironment={props.mediaControls.mediaEnvBackground}
           bgSolid={props.mediaControls.mediaSolidBackground}
           bgColor={props.solidBgColor}
+          mapEnvironment={props.mediaMapEnv}
           environmentPath={props.currentEnvOption.hdrPath}
         />
-        <Controls />
-        <UserModel model={props.mediaModel} />
+        {!props.mediaControls.mediaLock && <Controls />}
+        <DControls dragObjects={props.mediaState.dragObjects} />
+        <UserModel
+          model={props.mediaModel}
+          toggleMediaLock={props.onToggleMediaLock}
+          setDrag={props.onSetMediaDragObjects}
+          dragObjects={props.mediaState.dragObjects}
+        />
         {props.mediaControls.sphere && (
-          <Loading sphereArgs={props.mediaControls.sphere.args} />
+          <WSphere
+            sphere={props.mediaControls.sphere}
+            toggleMediaLock={props.onToggleMediaLock}
+            setDrag={props.onSetMediaDragObjects}
+            dragObjects={props.mediaState.dragObjects}
+          />
         )}
+        {props.mediaControls.keyLight && (
+          <KLight
+            kLight={props.mediaControls.keyLight}
+            toggleMediaLock={props.onToggleMediaLock}
+            setDrag={props.onSetMediaDragObjects}
+            dragObjects={props.mediaState.dragObjects}
+          />
+        )}
+        <GroundPlane />
       </Canvas>
     </>
   ) : (
@@ -91,6 +123,13 @@ MediaCanvas.propTypes = {
   mediaSizeBounding: PropTypes.object,
   mediaControls: PropTypes.object.isRequired,
   currentEnvOption: PropTypes.object.isRequired,
+  solidBgColor: PropTypes.string.isRequired,
+  mediaMapEnv: PropTypes.bool.isRequired,
+  defaultLight: PropTypes.bool.isRequired,
+  onToggleDefaultLight: PropTypes.func.isRequired,
+  mediaState: PropTypes.object.isRequired,
+  onSetMediaDragObjects: PropTypes.func.isRequired,
+  onToggleMediaLock: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -104,6 +143,9 @@ const mapStateToProps = (state) => ({
   mediaControls: state.mediaControls,
   currentEnvOption: state.environmentControls.currentEnvironmentOption,
   solidBgColor: state.mediaState.mediaSolidBackground,
+  mediaMapEnv: state.mediaControls.mediaMapEnvironment,
+  mediaState: state.mediaState,
+  defaultLight: state.mediaControls.defaultLight,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -113,6 +155,10 @@ const mapDispatchToProps = (dispatch) => ({
   onSetMediaNear: (near) => dispatch(actions.setMediaNear(near)),
   onSetMediaSizeBounding: (sizeBounding) =>
     dispatch(actions.setMediaSizeBounding(sizeBounding)),
+  onToggleMediaLock: () => dispatch(actions.toggleMediaLock()),
+  onSetMediaDragObjects: (dragObject) =>
+    dispatch(actions.setMediaDragObjects(dragObject)),
+  onToggleDefaultLight: () => dispatch(actions.toggleDefaultLight()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MediaCanvas);

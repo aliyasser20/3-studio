@@ -5,9 +5,11 @@ const initialState = {
   mediaBoundingBox: false,
   mediaAxis: false,
   mediaAutorotate: false,
-  mediaEnvBackground: true,
-  mediaSolidBackground: false,
+  mediaEnvBackground: false,
+  mediaSolidBackground: true,
   mediaNoBakground: false,
+  mediaMapEnvironment: false,
+  defaultLight: true,
   sphere: null,
   keyLight: null,
   backWall: null,
@@ -40,25 +42,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         mediaEnvBackground: !state.mediaEnvBackground,
-        mediaNoBackground: false,
-        mediaSolidBackground: false,
+        mediaSolidBackground: !state.mediaSolidBackground,
       };
 
     case actionTypes.TOGGLE_MEDIA_SOLID_B:
       return {
         ...state,
         mediaSolidBackground: !state.mediaSolidBackground,
-        mediaNoBackground: false,
-        mediaEnvBackground: false,
+        mediaEnvBackground: !state.mediaEnvBackground,
       };
-    case actionTypes.TOGGLE_MEDIA_NO_B:
+    case actionTypes.TOGGLE_MAP_ENV:
       return {
         ...state,
-        mediaNoBackground: !state.mediaNoBackground,
-        mediaSolidBackground: false,
-        mediaEnvBackground: false,
+        mediaMapEnvironment: !state.mediaMapEnvironment,
       };
-
+    case actionTypes.TOGGLE_DEFAULT_LIGHT:
+      return {
+        ...state,
+        defaultLight: !state.defaultLight,
+      };
     case actionTypes.SET_MEDIA_SPHERE:
       return {
         ...state,
@@ -86,13 +88,15 @@ const reducer = (state = initialState, action) => {
         mediaBoundingBox: false,
         mediaAxis: false,
         mediaAutorotate: false,
-        mediaEnvBackground: true,
-        mediaSolidBackground: false,
+        mediaEnvBackground: false,
+        mediaSolidBackground: true,
         mediaNoBakground: false,
+        mediaMapEnvironment: false,
+        defaultLight: true,
         sphere: null,
         keyLight: null,
         backWall: null,
-        groundPole: null
+        groundPole: null,
       };
     default:
       return state;

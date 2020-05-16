@@ -15,15 +15,58 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import SaveIcon from "@material-ui/icons/Save";
 
 import ModeSelector from "./ModeSelector/ModeSelector";
+import MediaTopNav from "../Modes/Media/MediaTopNav/MediaTopNav";
+import ConfigurationSelector from "./ConfigurationSelector/ConfigurationSelector";
 
 import themeCreator from "../../../helpers/themeCreator";
 import fileExporter from "../../../helpers/fileExporter";
+import backendAxios from "../../../axiosInstances/backendAxios";
+import { useAuth0 } from "../../../react-auth0-spa";
+import * as actions from "../../../store/actions/index";
 
 import "./StudioTopBar.scss";
-import MediaTopNav from "../Modes/Media/MediaTopNav/MediaTopNav";
 
-const StudioTopBar = (props) => {
+const StudioTopBar = props => {
+  const { user } = useAuth0();
+
   const theme = themeCreator("#ffffff", "#212121");
+
+  const saveConfig = () => {
+    backendAxios
+      .put("/api/configurations", {
+        userId: user.sub,
+        configuration: {
+          id: props.currentConfigurationId,
+          data: {
+            bgEnvironment: props.bgEnvironment,
+            bgSolid: props.bgSolid,
+            bgColor: props.bgColor,
+            mapEnvironment: props.mapEnvironment,
+            currentEnvironmentOption: props.currentEnvironmentOption,
+            ambientLight: props.ambientLight,
+            directionalLight: props.directionalLight,
+            hemisphereLight: props.hemisphereLight,
+            ambientLightIntensity: props.ambientIntensity,
+            directionalLightIntensity: props.directionalIntensity,
+            hemisphereLightIntensity: props.hemisphereIntensity,
+            ambientLightColor: props.ambientLightColor,
+            directionalLightColor: props.directionalLightColor,
+            hemisphereLightColor: props.hemisphereLightColor,
+            materials: []
+          }
+        }
+      })
+      .then(resp => {
+        props.onSetConfigurationSaved();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const savedBoxClasses = props.configurationSaved
+    ? "save-status"
+    : "save-status unsaved";
 
   return (
     <ThemeProvider theme={theme}>
@@ -36,11 +79,7 @@ const StudioTopBar = (props) => {
                   {props.currentProject.name}
                 </Typography>
               </Box>
-              <span className="gradient-button">
-                <Button variant="contained" endIcon={<ExpandMoreIcon />}>
-                  Configuration 3
-                </Button>
-              </span>
+              <ConfigurationSelector />
             </div>
             <div className="top-bar-center">
               <ModeSelector />
@@ -49,11 +88,14 @@ const StudioTopBar = (props) => {
               {props.currentMode === "MEDIA" && <MediaTopNav />}
               {props.currentMode === "EDIT" && (
                 <Fragment>
-                  <div className="save-status unsaved">Changes unsaved</div>
+                  <div className={savedBoxClasses}>
+                    {props.configurationSaved ? "Saved" : "Changes unsaved"}
+                  </div>
                   <IconButton
                     aria-label="edit"
                     classes={{ root: "action-button" }}
                     size="small"
+                    onClick={saveConfig}
                   >
                     <SaveIcon />
                   </IconButton>
@@ -77,12 +119,51 @@ const StudioTopBar = (props) => {
 
 StudioTopBar.propTypes = {
   currentProject: PropTypes.object.isRequired,
-  currentMode: PropTypes.string.isRequired
+  currentMode: PropTypes.string.isRequired,
+  mapEnvironment: PropTypes.bool.isRequired,
+  bgSolid: PropTypes.bool.isRequired,
+  bgEnvironment: PropTypes.bool.isRequired,
+  bgColor: PropTypes.string.isRequired,
+  ambientLight: PropTypes.bool.isRequired,
+  directionalLight: PropTypes.bool.isRequired,
+  hemisphereLight: PropTypes.bool.isRequired,
+  ambientIntensity: PropTypes.number.isRequired,
+  hemisphereIntensity: PropTypes.number.isRequired,
+  directionalIntensity: PropTypes.number.isRequired,
+  directionalLightColor: PropTypes.string.isRequired,
+  hemisphereLightColor: PropTypes.string.isRequired,
+  ambientLightColor: PropTypes.string.isRequired,
+  currentConfigurationId: PropTypes.number.isRequired,
+  currentConfigurationName: PropTypes.string.isRequired,
+  currentEnvironmentOption: PropTypes.object.isRequired,
+  onSetConfigurationSaved: PropTypes.func.isRequired,
+  configurationSaved: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
   currentProject: state.projects.currentProject,
-  currentMode: state.modeControl.currentMode
+  currentMode: state.modeControl.currentMode,
+  mapEnvironment: state.environmentControls.mapEnvironment,
+  bgSolid: state.environmentControls.bgSolid,
+  bgEnvironment: state.environmentControls.bgEnvironment,
+  bgColor: state.environmentControls.bgColor,
+  ambientLight: state.lightControls.ambientLight,
+  directionalLight: state.lightControls.directionalLight,
+  hemisphereLight: state.lightControls.hemisphereLight,
+  ambientIntensity: state.lightControls.ambientLightIntensity,
+  directionalIntensity: state.lightControls.directionalLightIntensity,
+  hemisphereIntensity: state.lightControls.hemisphereLightIntensity,
+  ambientLightColor: state.lightControls.ambientLightColor,
+  directionalLightColor: state.lightControls.directionalLightColor,
+  hemisphereLightColor: state.lightControls.hemisphereLightColor,
+  currentConfigurationId: state.configurations.currentConfigurationId,
+  currentConfigurationName: state.configurations.currentConfigurationName,
+  currentEnvironmentOption: state.environmentControls.currentEnvironmentOption,
+  configurationSaved: state.configurations.configurationSaved
 });
 
-export default connect(mapStateToProps)(StudioTopBar);
+const mapDispatchToProps = dispatch => ({
+  onSetConfigurationSaved: () => dispatch(actions.setConfigurationSaved())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudioTopBar);

@@ -41,6 +41,9 @@ const MediaTopNav = (props) => {
   };
   const handleClose = () => {
     setOpen(false);
+    const preview = document.querySelector("#preview-video");
+    const vid = document.querySelector("video");
+    vid && preview.removeChild(vid);
   };
   const snackbarSet = (type, message) => {
     setSeverity(type);
@@ -92,7 +95,7 @@ const MediaTopNav = (props) => {
       rec.onstop = (e) => {
         setOpen(true);
         setRecording("");
-        exportVid(new Blob(chunks, { type: "video/webm" }));
+        exportVid(new Blob(chunks, { type: "video/mp4" }));
       };
 
       rec.start();

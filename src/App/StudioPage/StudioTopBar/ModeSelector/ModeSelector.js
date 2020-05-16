@@ -13,7 +13,7 @@ import * as actions from "../../../../store/actions/index";
 
 import "./ModeSelector.scss";
 
-const ModeSelector = props => {
+const ModeSelector = (props) => {
   let modes;
 
   const viewClasses =
@@ -38,7 +38,11 @@ const ModeSelector = props => {
           View
         </Button>
         <Button
-          onClick={() => props.onModeSelect("EDIT")}
+          onClick={() => {
+            props.onModeSelect("EDIT");
+            props.onResetMediaState()
+            props.onResetMediaControls()
+          }}
           classes={{ root: editClasses }}
         >
           <EditIcon />
@@ -58,15 +62,19 @@ const ModeSelector = props => {
 
 ModeSelector.propTypes = {
   currentMode: PropTypes.string.isRequired,
-  onModeSelect: PropTypes.func.isRequired
+  onModeSelect: PropTypes.func.isRequired,
+  onResetMediaState: PropTypes.func.isRequired,
+  onResetMediaControls: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  currentMode: state.modeControl.currentMode
+const mapStateToProps = (state) => ({
+  currentMode: state.modeControl.currentMode,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onModeSelect: mode => dispatch(actions.modeSelect(mode))
+const mapDispatchToProps = (dispatch) => ({
+  onModeSelect: (mode) => dispatch(actions.modeSelect(mode)),
+  onResetMediaState: () => dispatch(actions.resetMediaState()),
+  onResetMediaControls: () => dispatch(actions.resetMediaControls()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModeSelector);

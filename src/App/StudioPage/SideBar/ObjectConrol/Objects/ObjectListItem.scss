@@ -1,0 +1,32 @@
+.object-list {
+  font-size: 1em;
+  width: 100%;
+  background-color: inherit;
+  .MuiSvgIcon-root{
+    fill: #FFF;
+    transition: 0.3s;
+    &:hover {
+      transform:scale(1.2)
+    }
+  }
+  
+  .scale-slider {
+    margin-left:15px;
+    width:90%;
+    .MuiSlider-thumb{
+    color: var(--gradient-top);
+    }
+  }
+
+  .custom-checkbox,.color-box {
+    svg {
+      height: 17px;
+      fill: url(#gradient-vertical);
+    }
+  }
+
+  .MuiTypography-root {
+    font-size: 0.9em;
+  }
+
+}

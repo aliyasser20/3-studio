@@ -45,7 +45,7 @@ export const getProjects = userId => dispatch => {
       }
     })
     .then(response => {
-      dispatch(populateProjects(response.data.projects));
+      dispatch(populateProjects(response.data.projects.reverse()));
       const projectId = Number(sessionStorage.getItem("currentProjectId"));
 
       dispatch(setCurrentProject(projectId));

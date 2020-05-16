@@ -29,6 +29,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         autorotate: !state.autorotate
       };
+    case actionTypes.RESET_EXTRA_CONTROLS:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }

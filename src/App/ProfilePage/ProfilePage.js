@@ -51,6 +51,15 @@ const ProfilePage = props => {
   const [openDialog, setOpenDialog] = useState(false);
   const [picture, setPicture] = useState([]);
 
+  // ! Resets
+  // General resets
+  props.onModeSelect("EDIT");
+
+  // Media resets
+  props.onResetMediaState();
+  props.onResetMediaControls();
+  // !
+
   const themes = availableThemes.map(theme => (
     <MenuItem key={theme.name} value={theme.name}>
       {theme.name}
@@ -312,7 +321,10 @@ const ProfilePage = props => {
 
 ProfilePage.propTypes = {
   currentTheme: PropTypes.string.isRequired,
-  onSetTheme: PropTypes.func.isRequired
+  onSetTheme: PropTypes.func.isRequired,
+  onModeSelect: PropTypes.func.isRequired,
+  onResetMediaState: PropTypes.func.isRequired,
+  onResetMediaControls: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -320,7 +332,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSetTheme: theme => dispatch(actions.setTheme(theme))
+  onSetTheme: theme => dispatch(actions.setTheme(theme)),
+  onModeSelect: mode => dispatch(actions.modeSelect(mode)),
+  onResetMediaState: () => dispatch(actions.resetMediaState()),
+  onResetMediaControls: () => dispatch(actions.resetMediaControls())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);

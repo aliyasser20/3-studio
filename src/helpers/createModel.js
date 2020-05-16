@@ -24,13 +24,14 @@ const createModel = (
       // ? Default
       // o.material = materialLibrary().blackDefault;
       // ? Metals
-      // o.material = materialLibrary().goldPolished;
+      // o.material = materialLibrary().purpleRough;
       // o.material = materialLibrary().cherryPolished;
       // o.material = materialLibrary().alien;
       // o.material = materialLibrary().scuffedAluminumPBR;
       // o.material = materialLibrary().metalGrid;
       // o.material = materialLibrary().rust;
       // o.material = materialLibrary().brushedMetal;
+      // o.material = materialLibrary().painted;
       // ? Ceramics
       // o.material = materialLibrary().marbleOne;
       // o.material = materialLibrary().fleshyGranite;
@@ -43,10 +44,31 @@ const createModel = (
       // o.material = materialLibrary().woodFlooringTwo;
       // ? Stones
       // o.material = materialLibrary().bricks;
-      // ?.Tiles
+      // o.material = materialLibrary().wallMedieval;
+      // o.material = materialLibrary().cobbleStoneCurved;
+      // ? Tiles
       // o.material = materialLibrary().tilesOne;
       // o.material = materialLibrary().tilesTwo;
       // o.material = materialLibrary().tilesThree;
+      // o.material = materialLibrary().tilesFour;
+      // o.material = materialLibrary().tilesFive;
+      // ? Fabrics
+      // o.material = materialLibrary().fleece;
+      // o.material = materialLibrary().leather;
+      // o.material = materialLibrary().carpetOne;
+      // o.material = materialLibrary().leatherButtoned;
+      // o.material = materialLibrary().leatherButtonedTwo;
+      // o.material = materialLibrary().basketWeave;
+      // ? Plastics
+      // o.material = materialLibrary().redRoughPlastic;
+      // o.material = materialLibrary().scuffedPlastic;
+      // o.material = materialLibrary().gridPatternPlastic;
+      // ? Synthetics
+      // o.material = materialLibrary().rubber;
+      // o.material = materialLibrary().foam;
+      // ? Other
+      // o.material = materialLibrary().solarPanel;
+      // o.material = materialLibrary().mixedMoss;
     }
   });
   // ?

@@ -15,3 +15,7 @@ export const toggleAxis = () => ({
 export const toggleAutorotate = () => ({
   type: actionTypes.TOGGLE_AUTOROTATE
 });
+
+export const resetExtraControls = () => ({
+  type: actionTypes.RESET_EXTRA_CONTROLS
+});
