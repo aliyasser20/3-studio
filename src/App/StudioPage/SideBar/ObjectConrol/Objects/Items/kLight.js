@@ -44,16 +44,25 @@ const KLight = (props) => {
     props.onSetKLight(newSpread);
   };
   const handleXmovment = () => {
-    // const toggleRotateX = { ...props.wSphere, rotateX: !props.wSphere.rotateX };
-    // props.onSetMediaSphere(toggleRotateX);
+    const toggleMovmentX = {
+      ...props.kLight,
+      orbit: { ...props.kLight.orbit, x: !props.kLight.orbit.x },
+    };
+    props.onSetKLight(toggleMovmentX);
   };
   const handleYmovment = () => {
-    // const toggleRotateY = { ...props.wSphere, rotateY: !props.wSphere.rotateY };
-    // props.onSetMediaSphere(toggleRotateY);
+    const toggleMovmentY = {
+      ...props.kLight,
+      orbit: { ...props.kLight.orbit, y: !props.kLight.orbit.y },
+    };
+    props.onSetKLight(toggleMovmentY);
   };
   const handleZmovment = () => {
-    // const toggleRotateZ = { ...props.wSphere, rotateZ: !props.wSphere.rotateZ };
-    // props.onSetMediaSphere(toggleRotateZ);
+    const toggleMovmentZ = {
+      ...props.kLight,
+      orbit: { ...props.kLight.orbit, z: !props.kLight.orbit.z },
+    };
+    props.onSetKLight(toggleMovmentZ);
   };
 
   return (
@@ -67,7 +76,7 @@ const KLight = (props) => {
       </ListItem>
       <Collapse in={openKLight} timeout="auto" unmountOnExit>
         <ListItem button onClick={() => setOrbit(!orbit)}>
-          <ListItemText primary="Rotation Options" />
+          <ListItemText primary="Movment Options" />
           {orbit ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={orbit} timeaout="auto" unmountOnExit>

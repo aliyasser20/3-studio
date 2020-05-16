@@ -49,7 +49,7 @@ const ObjectsBar = (props) => {
       args: [radius / 4, vol, vol],
       color: "fff",
       brightness: 0.1,
-      scale: [0.1, 0.1, 0.1],
+      scale: [0.3, 0.3, 0.3],
       initPosition,
       power: 0.1,
       rotate: { x: false, y: false, z: false },

@@ -23,10 +23,18 @@ const KLight = (props) => {
 
   useFrame(() => {
     console.log(sphere.current.position.x);
-    const time = Date.now() * 0.0005;
+    const time = Date.now() * 0.001;
     if (sphere.current) {
-      // sphere.current.position.x +=
-      //   props.kLight.args[0] * 0.03 * Math.sin(time * 0.7);
+      if (props.kLight.orbit.x)
+        sphere.current.position.x +=
+          props.kLight.args[0] * 0.07 * Math.sin(time * 0.7);
+      if (props.kLight.orbit.y)
+        sphere.current.position.y +=
+          props.kLight.args[0] * 0.07 * Math.cos(time * 0.7);
+      if (props.kLight.orbit.z)
+        sphere.current.position.z +=
+          props.kLight.args[0] * 0.07 * Math.cos(time * 0.7);
+
       // // // sphere.current.position.y = 10 * Math.cos(time * 0.5) * 40;
       // sphere.current.position.z +=
       //   props.kLight.args[0] * 0.03 * Math.cos(time * 0.7);
