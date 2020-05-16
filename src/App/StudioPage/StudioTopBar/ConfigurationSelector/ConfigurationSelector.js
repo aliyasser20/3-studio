@@ -361,7 +361,7 @@ const ConfigurationSelector = props => {
             type="text"
             fullWidth
             onChange={e =>
-              setConfigurationNameField(e.target.value.slice(0, 10))
+              setConfigurationNameField(e.target.value.slice(0, 15))
             }
           />
           <FormControlLabel
