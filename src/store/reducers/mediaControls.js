@@ -23,6 +23,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    // Controls
     case actionTypes.TOGGLE_MEDIA_LOCK:
       return {
         ...state,
@@ -43,6 +44,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         mediaAutorotate: !state.mediaAutorotate,
       };
+    // Background
     case actionTypes.TOGGLE_MEDIA_ENV_B:
       return {
         ...state,
@@ -66,29 +68,43 @@ const reducer = (state = initialState, action) => {
         ...state,
         defaultLight: !state.defaultLight,
       };
+
+    // Object
+    // sphere
     case actionTypes.SET_MEDIA_SPHERE:
       return {
         ...state,
         sphere: action.sphere,
       };
+    
+    case actionTypes.SET_MEDIA_L_SPHERE:
+      return {
+        ...state,
+        lSphere: action.lSphere
+      }
+    // lights
     case actionTypes.SET_MEDIA_KEY_LIGHT:
       return {
         ...state,
         keyLight: action.keyLight,
       };
-    case actionTypes.SET_MEDIA_BACK_WALL:
+
+    // plain objects
+    case actionTypes.SET_MEDIA_P_WALL:
       return {
         ...state,
         backWall: action.backWall,
       };
-    case actionTypes.SET_MEDIA_GROUND_POLE:
+    case actionTypes.SET_MEDIA_P_GROUND:
       return {
         ...state,
-        backWall: action.backWall,
+        pWall: action.pGround,
       };
+    // box
+
     case actionTypes.RESET_MEDIA_CONTROLS:
       return {
-        ...initialState
+        ...initialState,
       };
     default:
       return state;
