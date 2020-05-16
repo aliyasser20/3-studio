@@ -7,10 +7,10 @@ import { SketchPicker } from "react-color";
 
 import "./ColorPickerPopover.scss";
 
-const ColorPickerPopover = (props) => {
+const ColorPickerPopover = props => {
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleClick = (event) => {
+  const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -18,7 +18,7 @@ const ColorPickerPopover = (props) => {
     setAnchorEl(null);
   };
 
-  const handleColorPick = (color) => {
+  const handleColorPick = color => {
     props.setColor(color.hex.slice(1));
   };
 
@@ -41,17 +41,17 @@ const ColorPickerPopover = (props) => {
         onClose={handleClose}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "right",
+          horizontal: "right"
         }}
         transformOrigin={{
           vertical: "top",
-          horizontal: "right",
+          horizontal: "right"
         }}
       >
         <div className="color-picker-popover-content">
           <SketchPicker
             color={`#${props.color}`}
-            onChangeComplete={(color) => handleColorPick(color)}
+            onChangeComplete={color => handleColorPick(color)}
           />
         </div>
       </Popover>
@@ -62,7 +62,7 @@ const ColorPickerPopover = (props) => {
 ColorPickerPopover.propTypes = {
   color: PropTypes.string.isRequired,
   setColor: PropTypes.func.isRequired,
-  visible: PropTypes.bool.isRequired,
+  visible: PropTypes.bool.isRequired
 };
 
 export default ColorPickerPopover;

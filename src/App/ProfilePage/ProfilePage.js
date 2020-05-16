@@ -45,13 +45,6 @@ const ProfilePage = props => {
   // Media resets
   props.onResetMediaState();
   props.onResetMediaControls();
-
-  // Edit resets
-  props.onResetLights();
-  props.onResetEditState();
-  props.onSetCameraMode("PERSPECTIVE");
-  props.onResetEnvironmentControls();
-  props.onResetExtraControls();
   // !
 
   const themes = availableThemes.map(theme => (
@@ -244,12 +237,7 @@ ProfilePage.propTypes = {
   onSetTheme: PropTypes.func.isRequired,
   onModeSelect: PropTypes.func.isRequired,
   onResetMediaState: PropTypes.func.isRequired,
-  onResetMediaControls: PropTypes.func.isRequired,
-  onResetEditState: PropTypes.func.isRequired,
-  onResetLights: PropTypes.func.isRequired,
-  onSetCameraMode: PropTypes.func.isRequired,
-  onResetEnvironmentControls: PropTypes.func.isRequired,
-  onResetExtraControls: PropTypes.func.isRequired
+  onResetMediaControls: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -260,13 +248,7 @@ const mapDispatchToProps = dispatch => ({
   onSetTheme: theme => dispatch(actions.setTheme(theme)),
   onModeSelect: mode => dispatch(actions.modeSelect(mode)),
   onResetMediaState: () => dispatch(actions.resetMediaState()),
-  onResetMediaControls: () => dispatch(actions.resetMediaControls()),
-  onResetEditState: () => dispatch(actions.resetEditState()),
-  onResetLights: () => dispatch(actions.resetLights()),
-  onSetCameraMode: mode => dispatch(actions.setCameraMode(mode)),
-  onResetEnvironmentControls: () =>
-    dispatch(actions.resetEnvironmentControls()),
-  onResetExtraControls: () => dispatch(actions.resetExtraControls())
+  onResetMediaControls: () => dispatch(actions.resetMediaControls())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);

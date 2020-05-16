@@ -49,6 +49,15 @@ const reducer = (state = initialState, action) => {
       return {
         ...initialState
       };
+    case actionTypes.BULK_SET_ENVIRONMENT_CONTROLS:
+      return {
+        ...state,
+        bgEnvironment: action.config.bgEnvironment,
+        bgSolid: action.config.bgSolid,
+        bgColor: action.config.bgColor,
+        mapEnvironment: action.config.mapEnvironment,
+        currentEnvironmentOption: action.config.currentEnvironmentOption
+      };
     default:
       return state;
   }

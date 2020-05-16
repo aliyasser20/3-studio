@@ -20,15 +20,6 @@
         grid-auto-flow: column;
         grid-auto-columns: max-content;
         grid-gap: 1.5em;
-
-        .gradient-button {
-          border-radius: 20px;
-          overflow: hidden;
-
-          .MuiButton-label {
-            color: white;
-          }
-        }
       }
 
       .top-bar-center {

@@ -7,7 +7,6 @@ import { Container } from "@material-ui/core";
 
 import StudioTopBar from "./StudioTopBar/StudioTopBar";
 import SideBar from "./SideBar/SideBar";
-import GroupsBar from "./GroupsBar/GroupsBar";
 import AppearancesBar from "./AppearancesBar/AppearancesBar";
 import EditCanvas from "./Modes/Edit/EditCanvas/EditCanvas";
 import MediaCanvas from "./Modes/Media/MediaCanvas/MediaCanvas";
@@ -21,11 +20,13 @@ import LoaderModel from "./LoaderModal/LoaderModel";
 import "./StudioPage.scss";
 import ObjectsBar from "./ObjectsBar/ObjectsBar";
 
-const StudioPage = (props) => {
+const StudioPage = props => {
   // ? Load model with materials
   useEffect(() => {
     if (props.currentProject && props.currentProject.modelLink) {
-      new GLTFLoader().load(props.currentProject.modelLink, (gltf) =>
+      props.onGetConfigurations(props.currentProject.id);
+
+      new GLTFLoader().load(props.currentProject.modelLink, gltf =>
         // Order of inputs is important
         createModel(
           gltf,
@@ -44,7 +45,9 @@ const StudioPage = (props) => {
     props.onSetFar,
     props.onSetSizeBounding,
     props.onSetNear,
+    props
   ]);
+  //
 
   const page =
     props.currentProject && props.currentProject.modelLink ? (
@@ -65,7 +68,6 @@ const StudioPage = (props) => {
                     </Fragment>
                   )}
                 </div>
-                {/* {props.currentMode === "EDIT" && <GroupsBar />} */}
                 {props.currentMode === "EDIT" && <AppearancesBar />}
                 {props.currentMode === "MEDIA" && <ObjectsBar />}
               </div>
@@ -87,21 +89,24 @@ StudioPage.propTypes = {
   onSetSizeBounding: PropTypes.func.isRequired,
   onSetBox: PropTypes.func.isRequired,
   currentMode: PropTypes.string.isRequired,
+  onGetConfigurations: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentProject: state.projects.currentProject,
-  currentMode: state.modeControl.currentMode,
+  currentMode: state.modeControl.currentMode
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onSetModel: (model) => dispatch(actions.setModel(model)),
-  onSetFov: (fov) => dispatch(actions.setFov(fov)),
-  onSetFar: (far) => dispatch(actions.setFar(far)),
-  onSetNear: (near) => dispatch(actions.setNear(near)),
-  onSetSizeBounding: (sizeBounding) =>
+const mapDispatchToProps = dispatch => ({
+  onSetModel: model => dispatch(actions.setModel(model)),
+  onSetFov: fov => dispatch(actions.setFov(fov)),
+  onSetFar: far => dispatch(actions.setFar(far)),
+  onSetNear: near => dispatch(actions.setNear(near)),
+  onSetSizeBounding: sizeBounding =>
     dispatch(actions.setSizeBounding(sizeBounding)),
-  onSetBox: (box) => dispatch(actions.setBox(box)),
+  onSetBox: box => dispatch(actions.setBox(box)),
+  onGetConfigurations: projectId =>
+    dispatch(actions.getConfigurations(projectId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudioPage);
