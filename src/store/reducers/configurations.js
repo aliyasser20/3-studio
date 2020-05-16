@@ -29,6 +29,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         allConfigurations: action.configs
       };
+    case actionTypes.ADD_CONFIGURATION:
+      return {
+        ...state,
+        allConfigurations: [...state.allConfigurations, action.config]
+      };
     default:
       return state;
   }

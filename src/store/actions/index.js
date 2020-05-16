@@ -88,5 +88,6 @@ export {
   setAllConfigurations,
   setConfiguration,
   setCurrentConfigurationId,
-  setCurrentConfigurationName
+  setCurrentConfigurationName,
+  addConfiguration
 } from "./configurations";

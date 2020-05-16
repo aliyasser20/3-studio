@@ -28,6 +28,11 @@ export const setAllConfigurations = configs => ({
   configs
 });
 
+export const addConfiguration = config => ({
+  type: actionTypes.ADD_CONFIGURATION,
+  config
+});
+
 export const getConfigurations = projectId => dispatch => {
   backendAxios
     .get("/api/configurations", {

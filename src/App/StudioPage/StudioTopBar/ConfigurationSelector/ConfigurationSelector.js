@@ -67,12 +67,44 @@ const ConfigurationSelector = props => {
         hemisphereLightColor: props.hemisphereColor,
         materials: []
       };
+    } else {
+      newConfigData.config_data = {
+        bgEnvironment: false,
+        bgSolid: true,
+        bgColor: "525252",
+        mapEnvironment: true,
+        currentEnvironmentOption: {
+          name: "studio-1",
+          hdrPath:
+            "https://res.cloudinary.com/aajfinal/raw/upload/v1589352709/environments/studio-1_ugueaj.hdr",
+          imgPath:
+            "https://res.cloudinary.com/aajfinal/image/upload/v1589352866/environments/studio-1_sl7xag.jpg"
+        },
+        ambientLight: true,
+        directionalLight: true,
+        hemisphereLight: true,
+        ambientLightIntensity: 0.3,
+        directionalLightIntensity: 0.8 * Math.PI,
+        hemisphereLightIntensity: 1,
+        ambientLightColor: "ffffff",
+        directionalLightColor: "ffffff",
+        hemisphereLightColor: "ffffff",
+        materials: []
+      };
     }
 
     backendAxios
-      .post("/api/configurations", newConfigData)
+      .post("/api/configurations", {
+        configuration: newConfigData
+      })
       .then(resp => {
-        console.log(resp);
+        newConfigData.id = resp.data.id;
+        newConfigData.config_data = JSON.stringify(newConfigData.config_data);
+
+        props.onAddConfiguration(newConfigData);
+        props.onSetCurrentConfigurationName(configurationNameField);
+        props.onSetCurrentConfigurationId(resp.data.id);
+        setCreateConfiguration(false);
       })
       .catch(err => console.log(err));
   };
@@ -86,12 +118,13 @@ const ConfigurationSelector = props => {
     const handleSelectConfigurationOption = () => {
       props.onSetCurrentConfigurationName(configuration.name);
       props.onSetCurrentConfigurationId(configuration.id);
+
       props.onSetConfiguration(JSON.parse(configuration.config_data));
     };
 
     return (
       <div
-        key={configuration.name}
+        key={configuration.id}
         className={optionClasses}
         onClick={handleSelectConfigurationOption}
       >
@@ -200,7 +233,7 @@ const ConfigurationSelector = props => {
           </Button>
           <Button
             classes={{ root: "confirm-create-configuration" }}
-            // onClick={newConfiguration}
+            onClick={newConfiguration}
             color="primary"
             autoFocus
           >
@@ -232,7 +265,8 @@ ConfigurationSelector.propTypes = {
   directionalColor: PropTypes.string.isRequired,
   hemisphereColor: PropTypes.string.isRequired,
   ambientColor: PropTypes.string.isRequired,
-  currentEnvironmentOption: PropTypes.object.isRequired
+  currentEnvironmentOption: PropTypes.object.isRequired,
+  onAddConfiguration: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -261,7 +295,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.setCurrentConfigurationName(name)),
   onSetCurrentConfigurationId: id =>
     dispatch(actions.setCurrentConfigurationId(id)),
-  onSetConfiguration: config => dispatch(actions.setConfiguration(config))
+  onSetConfiguration: config => dispatch(actions.setConfiguration(config)),
+  onAddConfiguration: config => dispatch(actions.addConfiguration(config))
 });
 
 export default connect(
