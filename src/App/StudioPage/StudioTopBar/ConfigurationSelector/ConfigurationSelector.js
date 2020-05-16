@@ -10,7 +10,6 @@ import {
   DialogActions,
   DialogTitle,
   DialogContent,
-  DialogContentText,
   TextField,
   FormControlLabel,
   Checkbox,
@@ -40,6 +39,8 @@ const ConfigurationSelector = props => {
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState("");
   const [snackBarOpen, setSnackBarOpen] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [configToDelete, setConfigToDelete] = useState(null);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -185,6 +186,36 @@ const ConfigurationSelector = props => {
       });
   };
 
+  const deleteConfiguration = () => {
+    backendAxios
+      .delete("/api/configurations", {
+        configurationId: configToDelete.id,
+        userId: user.sub
+      })
+      .then(resp => {
+        console.log(resp);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const garbageClick = (e, configId, configName) => {
+    e.stopPropagation();
+
+    setConfigToDelete({
+      id: configId,
+      name: configName
+    });
+
+    setConfirmDelete(true);
+  };
+
+  const handleCancelDelete = () => {
+    setConfirmDelete(false);
+    setConfigToDelete(null);
+  };
+
   const configurationOptions = props.allConfigurations.map(configuration => {
     const optionClasses =
       props.currentConfigurationName === configuration.name
@@ -209,7 +240,7 @@ const ConfigurationSelector = props => {
           aria-label="delete-configuration"
           classes={{ root: "delete-configuration-button" }}
           size="small"
-          // onClick={() => fileExporter()}
+          onClick={e => garbageClick(e, configuration.id, configuration.name)}
         >
           <DeleteIcon />
         </IconButton>
@@ -314,6 +345,41 @@ const ConfigurationSelector = props => {
             autoFocus
           >
             Create
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        className="create-configuration-dialog"
+        open={confirmDelete}
+        onClose={handleCancelDelete}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle
+          className="config-delete-dialog-title"
+          id="alert-dialog-title"
+        >
+          Are you sure you want to permanently delete the{" "}
+          <span className="config-to-delete">
+            {configToDelete ? configToDelete.name : ""}
+          </span>{" "}
+          configuration?
+        </DialogTitle>
+        <DialogActions>
+          <Button
+            classes={{ root: "cancel-create-configuration" }}
+            onClick={handleCancelDelete}
+            color="primary"
+          >
+            Cancel
+          </Button>
+          <Button
+            classes={{ root: "confirm-create-configuration" }}
+            onClick={deleteConfiguration}
+            color="primary"
+            autoFocus
+          >
+            Delete
           </Button>
         </DialogActions>
       </Dialog>
