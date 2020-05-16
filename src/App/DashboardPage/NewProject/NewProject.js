@@ -168,7 +168,7 @@ const NewProject = props => {
           <h3>Upload Model</h3>
           <DropzoneArea
             dropzoneClass="new-project-drop-zone"
-            dropzoneText="Drag and drop your glb model here or click to upload"
+            dropzoneText=""
             acceptedFiles={[".glb"]}
             maxFileSize={10000000}
             filesLimit={1}

@@ -75,12 +75,23 @@
   }
 
   .new-project-drop-zone {
+    border-radius: 1em;
+    border: solid 1px var(--gradient-top);
+
     div {
       .MuiSvgIcon-root {
         width: 100px;
         height: 100px;
+        margin-top: 2em;
         fill: url(#gradient-vertical);
       }
     }
+  }
+
+  #default-model-1,
+  #default-model-2,
+  #default-model-3 {
+    border-radius: 1em;
+    overflow: hidden;
   }
 }
