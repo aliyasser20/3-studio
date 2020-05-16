@@ -18,8 +18,6 @@
   float: right;
   .media-top-nav-item {
     transition: 0.3s;
-    margin-left: 0.5em;
-    margin-right: 0.5em;
     color: #fff;
     circle {
       color: #a84432;
@@ -33,7 +31,10 @@
   .recording {
     animation: pump 0.5s ease-in-out infinite alternate;
   }
-
+}
+.timer-popover {
+  position: relative;
+  top:20;
   .timer-div {
     display: grid;
     grid-auto-flow: column;
@@ -43,4 +44,5 @@
     align-items: center;
     height: 100%;
   }
+  
 }

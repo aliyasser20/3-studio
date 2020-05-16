@@ -10,6 +10,11 @@ import {
 } from "../screenshotsHelpers/screenshotsHandler";
 import { useAuth0 } from "../../../../../react-auth0-spa";
 
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import Popover from "@material-ui/core/Popover";
+import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
+
 import Slide from "@material-ui/core/Slide";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -19,6 +24,7 @@ import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import Alert from "../../../../UI/Alert/Alert";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
+import { Timer } from "easytimer.js";
 
 import "./MediaTopNav.scss";
 
@@ -34,7 +40,7 @@ const MediaTopNav = (props) => {
   const [screenshot, setScreenshot] = useState();
   const [counter, setCounter] = useState(props.currentProject.counter);
   const [recording, setRecording] = useState("");
-  const [seconds, setSeconds] = useState(10);
+  const [timeValue, setTimeValue] = useState({ s: 10, ms: 0 });
 
   const { user } = useAuth0();
 
@@ -58,7 +64,7 @@ const MediaTopNav = (props) => {
     setCounter((prev) => prev + 1);
     console.log(counter);
     setOpen(true);
-    // handleCounter()
+    handleCounter();
     const preview = createImage();
     setScreenshot(preview);
   };
@@ -93,7 +99,8 @@ const MediaTopNav = (props) => {
       vid.controls = true;
       preview.appendChild(vid);
     };
-    const startRecording = (canvas, timer) => {
+
+    const startRecording = (canvas, timerValue) => {
       setRecording("recording");
       const chunks = [];
       const stream = canvas.captureStream();
@@ -104,28 +111,78 @@ const MediaTopNav = (props) => {
         setRecording("");
         exportVid(new Blob(chunks, { type: "video/mp4" }));
       };
-
+      const timer = new Timer({ target: { seconds: timerValue } });
+      timer.start({ precision: "secondTenths" });
+      timer.addEventListener("secondTenthsUpdated", (e) => {
+        const { secondTenths, seconds } = timer.getTimeValues([
+          "seconds",
+          "secondTenths",
+        ]);
+        setTimeValue((prev) => ({
+          ...prev,
+          s: timerValue - seconds,
+          ms: 9 - secondTenths,
+        }));
+      });
       rec.start();
       setTimeout(() => {
         rec.stop();
-      }, timer * 1000);
+      }, timerValue * 1000);
     };
     const canvas = document.querySelector("canvas");
-    startRecording(canvas, 10);
+    startRecording(canvas, timeValue);
   };
 
   return (
     <div className="media-top-nav">
-      <div className="timer-div">
-        <RemoveIcon
-          onClick={() => seconds >= 1 && setSeconds((prev) => prev - 1)}
-        />
-        <span className="media-top-nav-item">
-          00:{seconds < 10 ? `0${seconds}` : seconds}
-        </span>
-        onClick={() => seconds <= 30 && setSeconds((prev) => prev + 1)}
-        <AddIcon />
-      </div>
+      <PopupState
+        variant="popover"
+        popupId="demo-popup-popover"
+      >
+        {(popupState) => (
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              {...bindTrigger(popupState)}
+            >
+              Set Timer
+            </Button>
+            <Popover
+              {...bindPopover(popupState)}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+            >
+              <Box p={2} classes={{ root: "timer-popover" }}>
+                <div className="timer-div">
+                  <RemoveIcon
+                    onClick={() =>
+                      timeValue.s > 0 &&
+                      setTimeValue((prev) => ({ ...prev, s: prev.s - 1 }))
+                    }
+                  />
+                  <span className="media-top-nav-item">
+                    {timeValue.s < 10 ? `0${timeValue.s}` : timeValue.s}:
+                    {timeValue.ms}0
+                  </span>
+                  <AddIcon
+                    onClick={() =>
+                      timeValue.s < 30 &&
+                      setTimeValue((prev) => ({ ...prev, s: prev.s + 1 }))
+                    }
+                  />
+                </div>
+              </Box>
+            </Popover>
+          </div>
+        )}
+      </PopupState>
       <FiberManualRecordIcon
         onClick={(e) => handleRecord()}
         fontSize="large"
