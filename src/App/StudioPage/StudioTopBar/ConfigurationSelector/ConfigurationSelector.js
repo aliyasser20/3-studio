@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { Button, Popover, IconButton } from "@material-ui/core";
+import { Button, Popover, IconButton, CardActions } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
+
+import * as actions from "../../../../store/actions/index";
 
 import "./ConfigurationSelector.scss";
 
@@ -29,8 +31,18 @@ const ConfigurationSelector = props => {
         ? "configuration-option selected"
         : "configuration-option";
 
+    const handleSelectConfigurationOption = () => {
+      props.onSetCurrentConfigurationName(configuration.name);
+      props.onSetCurrentConfigurationId(configuration.id);
+      props.onSetConfiguration(JSON.parse(configuration.config_data));
+    };
+
     return (
-      <div key={configuration.name} className={optionClasses}>
+      <div
+        key={configuration.name}
+        className={optionClasses}
+        onClick={handleSelectConfigurationOption}
+      >
         <p className="configuration-name">{configuration.name}</p>
         <IconButton
           aria-label="delete-configuration"
@@ -91,7 +103,10 @@ const ConfigurationSelector = props => {
 
 ConfigurationSelector.propTypes = {
   currentConfigurationName: PropTypes.string.isRequired,
-  allConfigurations: PropTypes.array.isRequired
+  allConfigurations: PropTypes.array.isRequired,
+  onSetCurrentConfigurationName: PropTypes.func.isRequired,
+  onSetCurrentConfigurationId: PropTypes.func.isRequired,
+  onSetConfiguration: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -99,4 +114,15 @@ const mapStateToProps = state => ({
   allConfigurations: state.configurations.allConfigurations
 });
 
-export default connect(mapStateToProps, null)(ConfigurationSelector);
+const mapDispatchToProps = dispatch => ({
+  onSetCurrentConfigurationName: name =>
+    dispatch(actions.setCurrentConfigurationName(name)),
+  onSetCurrentConfigurationId: id =>
+    dispatch(actions.setCurrentConfigurationId(id)),
+  onSetConfiguration: config => dispatch(actions.setConfiguration(config))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConfigurationSelector);
