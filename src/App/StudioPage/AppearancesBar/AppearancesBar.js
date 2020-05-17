@@ -54,6 +54,7 @@ const AppearancesBar = props => {
 
   const [value, setValue] = React.useState(0);
   const [search, setSearch] = useState(true);
+  const [searchField, setSearchField] = useState("");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -68,6 +69,7 @@ const AppearancesBar = props => {
   const woodComponents = [];
   const syntheticComponents = [];
   const otherComponents = [];
+  const searchComponents = [];
 
   materials
     .sort((a, b) => {
@@ -127,6 +129,12 @@ const AppearancesBar = props => {
       if (material.group === "other") {
         otherComponents.push(newMaterial);
       }
+
+      if (material.name.includes(searchField)) {
+        searchComponents.push(newMaterial);
+      } else if (searchField.length === 0) {
+        searchComponents.push(newMaterial);
+      }
     });
 
   return (
@@ -139,9 +147,6 @@ const AppearancesBar = props => {
             </div>
             <div className="tab-area">
               {search ? (
-                // <div className="search-input">
-
-                // </div>
                 <input
                   autoFocus
                   type="text"
@@ -185,7 +190,11 @@ const AppearancesBar = props => {
           </div>
           <div className="content-area">
             {search ? (
-              <div className="search-content"></div>
+              <div className="search-content">
+                <TabPanel value={value} index={0}>
+                  {searchComponents}
+                </TabPanel>
+              </div>
             ) : (
               <Fragment>
                 <TabPanel value={value} index={0}>
