@@ -23,6 +23,7 @@ import KLight from "./Items/kLight";
 import LSphere from "./Items/lSphere";
 import DLight from "./Items/dLight";
 import BLight from "./Items/bLight";
+import PGround from "./Items/pGround";
 
 const ObjectListItem = (props) => {
   return (
@@ -71,6 +72,15 @@ const ObjectListItem = (props) => {
           onSetDragObjects={props.onSetMediaDragObjects}
         />
       )}
+
+      {props.pGround && (
+        <PGround
+          onSetPGround={props.onSetMediaPGround}
+          bLight={props.pGround}
+          dragObjects={props.dragObjects}
+          onSetDragObjects={props.onSetMediaDragObjects}
+        />
+      )}
     </List>
   );
 };
@@ -81,13 +91,15 @@ ObjectListItem.propTypes = {
   kLight: PropTypes.object,
   dLight: PropTypes.object,
   bLight: PropTypes.object,
+  pGround: PropTypes.object,
   onSetMediaDLight: PropTypes.func.isRequired,
   onSetMediaBLight: PropTypes.func.isRequired,
+  onSetMediaLSphere: PropTypes.func.isRequired,
   onSetMediaSphere: PropTypes.func.isRequired,
+  onSetMediaPGround: PropTypes.func.isRequired,
   dragObjects: PropTypes.array,
   onSetMediaDragObjects: PropTypes.func,
   onSetMediaKeyLight: PropTypes.func.isRequired,
-  onSetMediaLSphere: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -97,6 +109,7 @@ const mapStateToProps = (state) => ({
   kLight: state.mediaControls.keyLight,
   dLight: state.mediaControls.dLight,
   bLight: state.mediaControls.bLight,
+  pGround: state.mediaControls.pGround,
 });
 const mapDispatchToState = (dispatch) => ({
   onSetMediaSphere: (arg) => dispatch(actions.setMediaSphere(arg)),
@@ -106,6 +119,7 @@ const mapDispatchToState = (dispatch) => ({
   onSetMediaKeyLight: (kLight) => dispatch(actions.setMediaKeyLight(kLight)),
   onSetMediaDLight: (dLight) => dispatch(actions.setMediaDLight(dLight)),
   onSetMediaBLight: (bLight) => dispatch(actions.setMediaBLight(bLight)),
+  onSetMediaPGround: (pGround) => dispatch(actions.setMediaPGround(pGround)),
 });
 
 export default connect(mapStateToProps, mapDispatchToState)(ObjectListItem);
