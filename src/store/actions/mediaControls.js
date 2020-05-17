@@ -20,8 +20,15 @@ export const toggleMediaNoB = () => ({
 export const toggleDefaultLight = () => ({
   type: actionTypes.TOGGLE_DEFAULT_LIGHT,
 });
+
 //
 
+// user model drag controls
+export const toggleUserModelDrag = () => ({
+  type: actionTypes.TOGGLE_USER_MODEL_DRAG 
+})
+
+//
 // Camera
 export const toggleMediaLock = () => ({
   type: actionTypes.TOGGLE_MEDIA_LOCK,
