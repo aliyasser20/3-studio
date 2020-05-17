@@ -20,6 +20,8 @@ import "./ObjectListItem.scss";
 import { connect } from "react-redux";
 import WSphere from "./Items/wSphere";
 import KLight from "./Items/kLight";
+import LSphere from "./Items/lSphere";
+import DLight from "./Items/dLight";
 
 const ObjectListItem = (props) => {
   return (
@@ -36,10 +38,26 @@ const ObjectListItem = (props) => {
           onSetDragObjects={props.onSetMediaDragObjects}
         />
       )}
+      {props.lSphere && (
+        <LSphere
+          onSetMediaLSphere={props.onSetMediaLSphere}
+          lSphere={props.lSphere}
+          dragObjects={props.dragObjects}
+          onSetDragObjects={props.onSetMediaDragObjects}
+        />
+      )}
       {props.kLight && (
         <KLight
           onSetKLight={props.onSetMediaKeyLight}
           kLight={props.kLight}
+          dragObjects={props.dragObjects}
+          onSetDragObjects={props.onSetMediaDragObjects}
+        />
+      )}
+      {props.dLight && (
+        <DLight
+          onSetDLight={props.onSetMediaDLight}
+          dLight={props.dLight}
           dragObjects={props.dragObjects}
           onSetDragObjects={props.onSetMediaDragObjects}
         />
@@ -50,23 +68,31 @@ const ObjectListItem = (props) => {
 
 ObjectListItem.propTypes = {
   wSphere: PropTypes.object,
+  lSphere: PropTypes.object,
+  kLight: PropTypes.object,
+  dLight: PropTypes.object,
+  onSetMediaDLight: PropTypes.func.isRequired,
   onSetMediaSphere: PropTypes.func.isRequired,
   dragObjects: PropTypes.array,
   onSetMediaDragObjects: PropTypes.func,
-  kLight: PropTypes.object,
   onSetMediaKeyLight: PropTypes.func.isRequired,
+  onSetMediaLSphere: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   wSphere: state.mediaControls.sphere,
+  lSphere: state.mediaControls.lSphere,
   dragObjects: state.mediaState.dragObjects,
   kLight: state.mediaControls.keyLight,
+  dLight: state.mediaControls.dLight,
 });
 const mapDispatchToState = (dispatch) => ({
   onSetMediaSphere: (arg) => dispatch(actions.setMediaSphere(arg)),
+  onSetMediaLSphere: (arg) => dispatch(actions.setMediaLSphere(arg)),
   onSetMediaDragObjects: (dragObject) =>
     dispatch(actions.setMediaDragObjects(dragObject)),
   onSetMediaKeyLight: (kLight) => dispatch(actions.setMediaKeyLight(kLight)),
+  onSetMediaDLight: (dLight) => dispatch(actions.setMediaDLight(dLight)),
 });
 
 export default connect(mapStateToProps, mapDispatchToState)(ObjectListItem);

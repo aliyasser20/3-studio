@@ -1,9 +1,9 @@
 @keyframes pump {
   0% {
-      transform: scale(1.0);
+    transform: scale(1);
   }
   100% {
-      transform: scale(1.2);
+    transform: scale(1.2);
   }
 }
 
@@ -18,19 +18,66 @@
   float: right;
   .media-top-nav-item {
     transition: 0.3s;
-    margin-left: 0.5em;
-    margin-right: 0.5em;
-    color: #FFF;
-    circle{
-      color:#a84432;
+    color: #fff;
+    circle {
+      color: #a84432;
     }
     &:hover {
       cursor: pointer;
-      transform: scale(1.2)
+      transform: scale(1.2);
     }
   }
 
   .recording {
     animation: pump 0.5s ease-in-out infinite alternate;
+  }
+  .recording-text{
+    display: inline-block;
+    position: relative;
+    width: 100px;
+  }
+  .timer-btn {
+    color: #fff;
+    border-radius: 25px;;
+    background: linear-gradient(
+      var(--gradient-top),
+      var(--gradient-bottom)
+    );
+    &:hover {
+      background: linear-gradient(
+        var(--gradient-top-darker),
+        var(--gradient-bottom-darker)
+      );
+    }
+  }
+}
+
+.timer-popover {
+  .MuiPaper-root.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
+    top: 140px !important;
+    background: #252525;
+    border-radius: 8px;
+  }
+  .timer-div {
+    padding: 0.8em;
+    border: 1px solid #696969;
+    border-radius: 8px;
+    font-size: 1.4em;
+    color: #fff;
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 0.75em;
+    align-items: center;
+    height: 100%;
+    svg {
+      transition: 0.3s;
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+        color: var(--gradient-top);
+      }
+    }
   }
 }
