@@ -24,6 +24,7 @@ import LSphere from "./Items/lSphere";
 import DLight from "./Items/dLight";
 import BLight from "./Items/bLight";
 import PGround from "./Items/pGround";
+import PWall from "./Items/pWall";
 
 const ObjectListItem = (props) => {
   return (
@@ -81,6 +82,14 @@ const ObjectListItem = (props) => {
           onSetDragObjects={props.onSetMediaDragObjects}
         />
       )}
+      {props.pWall && (
+        <PWall
+          onSetPWall={props.onSetMediaPWall}
+          pWall={props.pWall}
+          dragObjects={props.dragObjects}
+          onSetDragObjects={props.onSetMediaDragObjects}
+        />
+      )}
     </List>
   );
 };
@@ -92,6 +101,7 @@ ObjectListItem.propTypes = {
   dLight: PropTypes.object,
   bLight: PropTypes.object,
   pGround: PropTypes.object,
+  pWall: PropTypes.object,
   onSetMediaDLight: PropTypes.func.isRequired,
   onSetMediaBLight: PropTypes.func.isRequired,
   onSetMediaLSphere: PropTypes.func.isRequired,
@@ -110,6 +120,7 @@ const mapStateToProps = (state) => ({
   dLight: state.mediaControls.dLight,
   bLight: state.mediaControls.bLight,
   pGround: state.mediaControls.pGround,
+  pWall: state.mediaControls.pWall,
 });
 const mapDispatchToState = (dispatch) => ({
   onSetMediaSphere: (arg) => dispatch(actions.setMediaSphere(arg)),
@@ -120,6 +131,7 @@ const mapDispatchToState = (dispatch) => ({
   onSetMediaDLight: (dLight) => dispatch(actions.setMediaDLight(dLight)),
   onSetMediaBLight: (bLight) => dispatch(actions.setMediaBLight(bLight)),
   onSetMediaPGround: (pGround) => dispatch(actions.setMediaPGround(pGround)),
+  onSetMediaPwall: (pWall) => dispatch(actions.setMediaPWall(pWall)),
 });
 
 export default connect(mapStateToProps, mapDispatchToState)(ObjectListItem);
