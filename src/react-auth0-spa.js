@@ -21,7 +21,8 @@ export const Auth0Provider = ({
     const initAuth0 = async () => {
       const auth0FromHook = await createAuth0Client({
         ...initOptions,
-        cacheLocation: "localstorage"
+        useRefreshTokens: true
+        // cacheLocation: "localstorage"
       });
       setAuth0(auth0FromHook);
 
