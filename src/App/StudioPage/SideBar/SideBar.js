@@ -18,8 +18,8 @@ const SideBar = props => {
   const theme = themeCreator("#ffffff", "#212121");
 
   const [expandedPanels, setExpandedPanels] = useState([
-    // "ENVIRONMENT-CONTROLS",
-    // "LIGHT-CONTROLS",
+    "ENVIRONMENT-CONTROLS",
+    "LIGHT-CONTROLS"
     // "MATERIAL-DETAILS"
   ]);
 
