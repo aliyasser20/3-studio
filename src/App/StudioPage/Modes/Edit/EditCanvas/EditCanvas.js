@@ -3,6 +3,7 @@ import { Canvas, Dom } from "react-three-fiber";
 import * as THREE from "three";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import lo from "lodash";
 
 import Controls from "../Controls/Controls";
 import Environment from "../Enivronment/Environment";
@@ -77,17 +78,23 @@ const EditCanvas = props => {
     }
   };
 
-  const handlePartClick = e => {
-    const part = e.object;
+  // const [move, setMove] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-    // Order of inputs is important
-    createPartModel(
-      e.object,
-      props.onSetPartFar,
-      props.onSetPartSizeBounding,
-      props.onSetPartNear,
-      props.onSetPartModel
-    );
+  const handlePartClick = e => {
+    // Differentiate between click and drag
+    if (e.clientX === mousePosition.x && e.clientY === mousePosition.y) {
+      const part = e.object.clone();
+
+      // Order of inputs is important
+      createPartModel(
+        part,
+        props.onSetPartFar,
+        props.onSetPartSizeBounding,
+        props.onSetPartNear,
+        props.onSetPartModel
+      );
+    }
   };
 
   // ? Canvas output
@@ -116,8 +123,14 @@ const EditCanvas = props => {
       <primitive
         object={props.model}
         dispose={null}
-        onPointerMove={e => handleDrop(e)},
-        onClick={e => handlePartClick(e)}
+        onPointerMove={e => handleDrop(e)}
+        onPointerDown={e => {
+          setMousePosition({
+            x: e.clientX,
+            y: e.clientY
+          });
+        }}
+        onPointerUp={e => handlePartClick(e)}
       />
       {props.directionalLight && (
         <directionalLight

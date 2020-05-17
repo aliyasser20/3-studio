@@ -1,8 +1,8 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  partModel: null,
-  partFov: 45,
+  currentPartModel: null,
+  partFov: 40,
   partFar: 0,
   partNear: 0,
   partSizeBounding: { x: 0, y: 0, z: 0 }
@@ -13,7 +13,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_PART_MODEL:
       return {
         ...state,
-        partModel: action.model
+        currentPartModel: action.model
       };
     case actionTypes.SET_PART_FOV:
       return {
@@ -30,7 +30,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         partNear: action.near
       };
-    case actionTypes.SET_SIZE_PART_BOUNDING:
+    case actionTypes.SET_PART_SIZE_BOUNDING:
       return {
         ...state,
         partSizeBounding: action.sizeBounding

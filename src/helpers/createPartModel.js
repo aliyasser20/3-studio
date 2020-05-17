@@ -32,7 +32,7 @@ export const createPartModel = (
   // ?
 
   // ? Set model material to default
-  partModel.material = materialLibrary().blackDefault;
+  partModel.material = materialLibrary().greyDefault;
   // ?
 
   // ? Set states

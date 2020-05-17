@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import Camera from "../Camera/Camera";
+import Controls from "../Controls/Controls";
 
 import materialLibrary from "../../../../../helpers/materialLibrary";
 import * as actions from "../../../../../store/actions/index";
@@ -47,26 +48,19 @@ const PartCanvas = props => {
   //   }
   // }, [props, props.cameraMode]);
 
-  const handleDrop = e => {
-    // console.log(e);
-    if (props.selectedMaterial) {
-      // console.log(e.object);
-
-      props.onUpdateMaterial(e.object.name, {
-        name: props.selectedMaterial
-      });
-
-      e.object.material = materialLibrary()[props.selectedMaterial];
-      props.onSetSelectedMaterial("");
-
-      // Trigger unsaved changes
-      props.onSetConfigurationUnsaved();
-    }
-  };
-
   // ? Canvas output
-  const canvasElement = props.model ? (
+  const canvasElement = props.partModel ? (
     <Canvas
+      camera={{
+        position: [
+          -props.partSizeBounding.x,
+          props.partSizeBounding.y,
+          props.partSizeBounding.z
+        ],
+        fov: props.partFov,
+        far: props.partFar,
+        near: props.partNear
+      }}
       onCreated={({ gl, scene }) => {
         gl.toneMapping = THREE.ACESFilmicToneMapping;
         gl.outputEncoding = THREE.sRGBEncoding;
@@ -75,27 +69,31 @@ const PartCanvas = props => {
         scene.background = new THREE.Color("#ffffff");
       }}
     >
-      <Camera
+      {/* <Camera
         position={[
-          -props.sizeBounding.x,
-          props.sizeBounding.y,
-          props.sizeBounding.z
+          -props.partSizeBounding.x,
+          props.partSizeBounding.y,
+          props.partSizeBounding.z
         ]}
-        fov={props.fov}
-        far={props.far}
-        near={props.near}
-      />
-      <primitive
-        object={props.model}
-        dispose={null}
-        onPointerMove={e => handleDrop(e)}
-      />
+        fov={45}
+        far={props.partFar}
+        near={props.partNear}
+      /> */}
+      <primitive object={props.partModel} dispose={null} />
       <directionalLight
         intensity={0.8 * Math.PI}
         position={directionalPosition}
       />
-      <hemisphereLight intensity={1} />
+      {/* <hemisphereLight intensity={1} /> */}
       <ambientLight intensity={0.3} />
+      {/* <axesHelper
+        scale={[
+          0.75 * props.partSizeBounding.x,
+          0.75 * props.partSizeBounding.y,
+          0.75 * props.partSizeBounding.z
+        ]}
+      /> */}
+      <Controls />
     </Canvas>
   ) : null;
 
@@ -132,7 +130,12 @@ PartCanvas.propTypes = {
   ambientLightColor: PropTypes.string.isRequired,
   onUpdateMaterial: PropTypes.func.isRequired,
   materials: PropTypes.object.isRequired,
-  onSetConfigurationUnsaved: PropTypes.func.isRequired
+  onSetConfigurationUnsaved: PropTypes.func.isRequired,
+  partModel: PropTypes.object,
+  partFar: PropTypes.number.isRequired,
+  partFov: PropTypes.number.isRequired,
+  partNear: PropTypes.number.isRequired,
+  partSizeBounding: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -162,7 +165,12 @@ const mapStateToProps = state => ({
   ambientLightColor: state.lightControls.ambientLightColor,
   directionalLightColor: state.lightControls.directionalLightColor,
   hemisphereLightColor: state.lightControls.hemisphereLightColor,
-  materials: state.appearanceControls.materials
+  materials: state.appearanceControls.materials,
+  partModel: state.partModel.currentPartModel,
+  partNear: state.partModel.partNear,
+  partSizeBounding: state.partModel.partSizeBounding,
+  partFar: state.partModel.partFar,
+  partFov: state.partModel.partFov
 });
 
 const mapDispatchToProps = dispatch => ({

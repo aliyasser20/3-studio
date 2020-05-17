@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import EditCanvas from "../../Modes/Edit/EditCanvas/EditCanvas";
+import PartCanvas from "../../Modes/Edit/PartCanvas/PartCanvas";
 
 import "./MaterialDetails.scss";
 
@@ -37,7 +37,7 @@ const MaterialDetails = props => (
           to be included here. Material stuff to be included here. Material
           stuff to be included here. Material stuff to be included here.
         </Typography> */}
-        {/* <EditCanvas /> */}
+        <PartCanvas />
       </ExpansionPanelDetails>
     </ExpansionPanel>
   </div>
