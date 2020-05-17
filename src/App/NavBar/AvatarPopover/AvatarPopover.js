@@ -75,7 +75,13 @@ const AvatarPopover = props => {
             <div>
               <Button
                 classes={{ root: "sign-out-button" }}
-                onClick={props.logout}
+                onClick={() => {
+                  if (process.env.NODE_ENV === "development") {
+                    props.logout();
+                  } else {
+                    props.logout({ returnTo: "https://3-studio.netlify.app/" });
+                  }
+                }}
               >
                 Sign out
               </Button>
