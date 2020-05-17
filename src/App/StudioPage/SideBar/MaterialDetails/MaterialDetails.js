@@ -9,6 +9,8 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
+import EditCanvas from "../../Modes/Edit/EditCanvas/EditCanvas";
+
 import "./MaterialDetails.scss";
 
 const MaterialDetails = props => (
@@ -27,14 +29,15 @@ const MaterialDetails = props => (
         <Typography>Material Details</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className="details-section">
-        <Typography>
+        {/* <Typography>
           Material stuff to be included here. Material stuff to be included
           here. Material stuff to be included here. Material stuff to be
           included here. Material stuff to be included here. Material stuff to
           be included here. Material stuff to be included here. Material stuff
           to be included here. Material stuff to be included here. Material
           stuff to be included here. Material stuff to be included here.
-        </Typography>
+        </Typography> */}
+        {/* <EditCanvas /> */}
       </ExpansionPanelDetails>
     </ExpansionPanel>
   </div>
