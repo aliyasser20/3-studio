@@ -16,16 +16,25 @@ import * as actions from "../store/actions/index";
 import "./App.scss";
 
 const App = props => {
-  const { isAuthenticated, loading, user, getTokenSilently } = useAuth0();
+  const {
+    isAuthenticated,
+    loading,
+    user,
+    getTokenSilently,
+    loginWithRedirect
+  } = useAuth0();
 
   useEffect(() => {
     if (user) {
-      getTokenSilently();
+      if (!isAuthenticated) {
+        loginWithRedirect();
+      }
+      // getTokenSilently();
       props.onGetProjects(user.sub);
       props.onGetTheme(user.sub);
       props.onSetProfileImage(user.picture);
     }
-  }, [getTokenSilently, props, user]);
+  }, [getTokenSilently, isAuthenticated, loginWithRedirect, props, user]);
 
   const routes = (
     <Switch>
