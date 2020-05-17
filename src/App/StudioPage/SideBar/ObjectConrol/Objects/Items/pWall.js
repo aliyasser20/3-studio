@@ -71,7 +71,7 @@ const PWall = (props) => {
         <ListItemIcon>
           <HighlightOffIcon onClick={() => handleRemovePWall()} />
         </ListItemIcon>
-        <ListItemText primary="P-Ground" />
+        <ListItemText primary="P-WALL" />
         {openPWall ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={openPWall} timeout="auto" unmountOnExit>

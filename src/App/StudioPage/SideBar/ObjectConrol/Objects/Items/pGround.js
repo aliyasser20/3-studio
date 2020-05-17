@@ -71,7 +71,7 @@ const PGround = (props) => {
         <ListItemIcon>
           <HighlightOffIcon onClick={() => handleRemovePGround()} />
         </ListItemIcon>
-        <ListItemText primary="P-Ground" />
+        <ListItemText primary="P-GROUND" />
         {openPGround ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={openPGround} timeout="auto" unmountOnExit>
