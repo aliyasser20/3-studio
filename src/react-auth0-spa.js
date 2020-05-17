@@ -19,11 +19,12 @@ export const Auth0Provider = ({
 
   useEffect(() => {
     const initAuth0 = async () => {
-      const auth0FromHook = await createAuth0Client({
-        ...initOptions
-        // useRefreshTokens: true
-        // cacheLocation: "localstorage"
-      });
+      const auth0FromHook = await createAuth0Client(initOptions);
+      // const auth0FromHook = await createAuth0Client({
+      //   ...initOptions
+      //   // useRefreshTokens: true
+      //   // cacheLocation: "localstorage"
+      // });
       setAuth0(auth0FromHook);
 
       if (
