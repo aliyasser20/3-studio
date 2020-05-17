@@ -68,19 +68,19 @@ const onRedirectCallback = appState => {
 };
 
 const app = (
-  <Provider store={store}>
-    <BrowserRouter>
-      <CssBaseline />
-      <Auth0Provider
-        domain={config.domain}
-        client_id={config.clientId}
-        redirect_uri={window.location.origin}
-        onRedirectCallback={onRedirectCallback}
-      >
+  <Auth0Provider
+    domain={config.domain}
+    client_id={config.clientId}
+    redirect_uri={window.location.origin}
+    onRedirectCallback={onRedirectCallback}
+  >
+    <Provider store={store}>
+      <BrowserRouter>
+        <CssBaseline />
         <App />
-      </Auth0Provider>
-    </BrowserRouter>
-  </Provider>
+      </BrowserRouter>
+    </Provider>
+  </Auth0Provider>
 );
 
 ReactDOM.render(app, document.getElementById("root"));
