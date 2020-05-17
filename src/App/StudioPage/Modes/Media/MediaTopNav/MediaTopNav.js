@@ -45,6 +45,11 @@ const MediaTopNav = (props) => {
   const [blob, setBlob] = useState();
   const { user } = useAuth0();
 
+  const preset = {
+    aKey: process.env.REACT_APP_API_KEY,
+    sUpreset: process.env.REACT_APP_SCREENSHOT_UPLOAD_PRESET,
+  };
+
   const closeSnackbar = () => {
     setSeverity("");
     setSnackbar(false);
@@ -53,6 +58,8 @@ const MediaTopNav = (props) => {
     setOpen(false);
     const preview = document.querySelector("#preview-video");
     const vid = document.querySelector("video");
+    const img = document.querySelector("#preview-img");
+    img.src = "";
     vid && preview.removeChild(vid);
     setScreenshot("");
     URL.revokeObjectURL(blob);
@@ -78,20 +85,24 @@ const MediaTopNav = (props) => {
   };
 
   const handleSave = () => {
-    saveToCloud(screenshot, props.currentProject, counter).then((res) => {
-      res.status === 200
-        ? snackbarSet("success", "Screenshot saved.")
-        : snackbarSet("error", "Error, screenshot not saved.");
-      setSnackbar(true);
-      setOpen(false);
-      setScreenshot("");
-    });
+    saveToCloud(screenshot, props.currentProject, counter, preset).then(
+      (res) => {
+        res.status === 200
+          ? snackbarSet("success", "Screenshot saved.")
+          : snackbarSet("error", "Error, screenshot not saved.");
+        setSnackbar(true);
+        setOpen(false);
+        setScreenshot("");
+      }
+    );
     handleCounter(user.sub, counter, props.currentProject.id).then((res) =>
       console.log(res)
     );
   };
   const handleRecord = () => {
     setScreenshot("");
+    const img = document.querySelector("#preview-img");
+    img.src = "";
     const ctx = document.querySelector("canvas");
     const exportVid = (blob) => {
       setBlob(blob);
