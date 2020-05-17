@@ -168,14 +168,6 @@ const ProfilePage = props => {
     });
   };
 
-  // Click on change profile picture and setOpenProfilePictureChanger(false);
-  // Open dialog
-  // Have upload and/or dropzone to add picture
-  // Add picture to cloudinary and take response as filepath
-  // Set uploaded picture to user.picture in backend (put router / patch axios request to /users)
-  // If success, show success message and close dialog (setOpenProfilePictureChanger(false))
-  // If failure, show fail message and return to dialog, user could reattempt uploading or click on "x" in dialog and setOpenProfilePictureChanger(false)]
-
   const page = (
     <Container maxWidth="md" classes={{ root: "container-padding" }}>
       <div className="profile-page">
@@ -213,15 +205,6 @@ const ProfilePage = props => {
                   </Button>
                 </DialogActions>
               </Dialog>
-              // {/* // <DropzoneDialog */}
-              //   cancelButtonText="Cancel"
-              //   submitButtonText="Submit"
-              //   open={open}
-              //   acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
-              //   showPreviews
-              //   maxFileSize={5000000}
-              //   onClose={handleProfilePictureClickClose}
-              // />
             )}
           </div>
           <div className="theme-selector-area">
