@@ -136,9 +136,9 @@ const ObjectsBar = (props) => {
       vol = 4 * Math.PI * radius;
     }
     const initPosition = radius > 100 ? radius : radius * 0.3;
-    props.onSetMediaBLight({
+    props.onSetMediaPGround({
       radius: radius / 2,
-      args: [radius ** 2, radius ** 2],
+      args: [radius * 100, radius * 100],
       color: "fff",
       brightness: 0.1,
       scale: [1, 1, 1],
@@ -218,7 +218,7 @@ const ObjectsBar = (props) => {
             }}
             className="object pground"
           >
-            B-LIGHT
+            P-GROUND
           </div>
         </Paper>
       </div>

@@ -105,12 +105,12 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_MEDIA_P_WALL:
       return {
         ...state,
-        backWall: action.backWall,
+        pWall: action.pWall,
       };
     case actionTypes.SET_MEDIA_P_GROUND:
       return {
         ...state,
-        pWall: action.pGround,
+        pGround: action.pGround,
       };
     // box
     case actionTypes.SET_MEDIA_M_BOX:

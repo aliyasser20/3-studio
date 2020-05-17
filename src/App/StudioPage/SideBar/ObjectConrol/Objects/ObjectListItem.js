@@ -76,7 +76,7 @@ const ObjectListItem = (props) => {
       {props.pGround && (
         <PGround
           onSetPGround={props.onSetMediaPGround}
-          bLight={props.pGround}
+          pGround={props.pGround}
           dragObjects={props.dragObjects}
           onSetDragObjects={props.onSetMediaDragObjects}
         />

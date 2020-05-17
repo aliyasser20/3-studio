@@ -24,32 +24,41 @@ const PGround = (props) => {
     console.log(currentDragObjects);
     const removed = currentDragObjects.filter((obj) => obj.name !== "p-ground");
     props.onSetDragObjects(removed);
-    props.onSetMediaPGround(null);
+    props.onSetPGround(null);
     setOpenPGround(false);
   };
 
   const handleColorSet = (color) => {
     const PGroundArgs = { ...props.pGround, color };
-    props.onSetMediaPGround(PGroundArgs);
+    props.onSetPGround(PGroundArgs);
   };
 
   const handleScaleChange = (e, newValue) => {
     const currentScale = [newValue, newValue, newValue];
     const newScale = { ...props.pGround, scale: [...currentScale] };
-    props.onSetMediaPGround(newScale);
+    props.onSetPGround(newScale);
   };
 
   const handleXrotation = () => {
-    const toggleRotateX = { ...props.pGround, rotateX: !props.pGround.rotateX };
-    props.onSetMediaPGround(toggleRotateX);
+    const toggleRotateX = {
+      ...props.pGround,
+      rotate: { ...props.pGround.rotate, x: !props.pGround.rotate.x },
+    };
+    props.onSetPGround(toggleRotateX);
   };
   const handleYrotation = () => {
-    const toggleRotateY = { ...props.pGround, rotateY: !props.pGround.rotateY };
-    props.onSetMediaPGround(toggleRotateY);
+    const toggleRotateY = {
+      ...props.pGround,
+      rotate: { ...props.pGround.rotate, y: !props.pGround.rotate.y },
+    };
+    props.onSetPGround(toggleRotateY);
   };
   const handleZrotation = () => {
-    const toggleRotateZ = { ...props.pGround, rotateZ: !props.pGround.rotateZ };
-    props.onSetMediaPGround(toggleRotateZ);
+    const toggleRotateZ = {
+      ...props.pGround,
+      rotate: { ...props.pGround.rotate, z: !props.pGround.rotate.z },
+    };
+    props.onSetPGround(toggleRotateZ);
   };
 
   return (
@@ -75,7 +84,7 @@ const PGround = (props) => {
                   control={
                     <Checkbox
                       className="custom-checkbox"
-                      checked={props.pGround.rotateX}
+                      checked={props.pGround.rotate.x}
                       onChange={handleXrotation}
                       name="x-rotation"
                     />
@@ -93,7 +102,7 @@ const PGround = (props) => {
                   control={
                     <Checkbox
                       className="custom-checkbox"
-                      checked={props.pGround.rotateY}
+                      checked={props.pGround.rotate.y}
                       onChange={handleYrotation}
                       name="y-rotation"
                     />
@@ -111,7 +120,7 @@ const PGround = (props) => {
                   control={
                     <Checkbox
                       className="custom-checkbox"
-                      checked={props.pGround.rotateZ}
+                      checked={props.pGround.rotate.z}
                       onChange={handleZrotation}
                       name="z-rotation"
                     />
@@ -154,7 +163,7 @@ const PGround = (props) => {
 };
 
 PGround.propTypes = {
-  onSetMediaPGround: PropTypes.func.isRequired,
+  onSetPGround: PropTypes.func.isRequired,
   pGround: PropTypes.object,
   dragObjects: PropTypes.array,
   onSetDragObjects: PropTypes.func,

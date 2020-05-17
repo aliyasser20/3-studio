@@ -22,6 +22,7 @@ import KLight from "../Models/KLight";
 import LSphere from "../Models/LSphere";
 import DLight from "../Models/DLight";
 import BLight from "../Models/Blight";
+import PGround from "../Models/PGround";
 
 const MediaCanvas = (props) => {
   console.log(props.currentEnvOption);
@@ -86,12 +87,12 @@ const MediaCanvas = (props) => {
           <Controls autoRotate={props.mediaControls.mediaAutorotate} />
         )}
         <DControls dragObjects={props.mediaState.dragObjects} />
-        {/* <UserModel
+        <UserModel
           model={props.mediaModel}
           toggleMediaLock={props.onToggleMediaLock}
           setDrag={props.onSetMediaDragObjects}
           dragObjects={props.mediaState.dragObjects}
-        /> */}
+        />
         {props.mediaControls.sphere && (
           <WSphere
             sphere={props.mediaControls.sphere}
@@ -132,7 +133,15 @@ const MediaCanvas = (props) => {
             dragObjects={props.mediaState.dragObjects}
           />
         )}
-        <GroundPlane />
+
+        {props.mediaControls.pGround && (
+          <PGround
+            pGround={props.mediaControls.pGround}
+            toggleMediaLock={props.onToggleMediaLock}
+            setDrag={props.onSetMediaDragObjects}
+            dragObjects={props.mediaState.dragObjects}
+          />
+        )}
       </Canvas>
     </>
   ) : (
@@ -157,7 +166,7 @@ MediaCanvas.propTypes = {
   solidBgColor: PropTypes.string.isRequired,
   mediaMapEnv: PropTypes.bool.isRequired,
   defaultLight: PropTypes.bool.isRequired,
-  onToggleDefaultLight: PropTypes.func.isRequired,
+  // onToggleDefaultLight: PropTypes.func.isRequired,
   mediaState: PropTypes.object.isRequired,
   onSetMediaDragObjects: PropTypes.func.isRequired,
   onToggleMediaLock: PropTypes.func.isRequired,
