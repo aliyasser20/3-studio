@@ -8,9 +8,9 @@ import Controls from "../Controls/Controls";
 import Environment from "../Enivronment/Environment";
 import Bridge from "../Bridge/Bridge";
 import Camera from "../Camera/Camera";
+import LoaderModel from "../../../LoaderModal/LoaderModel";
 
 import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
-
 import materialLibrary from "../../../../../helpers/materialLibrary";
 import * as actions from "../../../../../store/actions/index";
 import { createPartModel } from "../../../../../helpers/createPartModel";
@@ -21,11 +21,15 @@ const EditCanvas = props => {
   // ! State ------------------------------------------------- //
   const [directionalPosition] = useState([0.5, 0, 0.86]);
 
+  const [loading, setLoading] = useState(true);
+
   // ? Cameras
   const [perspective, setPerspective] = useState(true);
   const [ortho, setOrtho] = useState(null);
 
   // ! ------------------------------------------------- //
+
+  setTimeout(() => setLoading(false), 1500);
 
   // ? Fallback case
   const fallbackElement = (
@@ -66,7 +70,9 @@ const EditCanvas = props => {
         name: props.selectedMaterial
       });
 
-      e.object.material = materialLibrary()[props.selectedMaterial];
+      e.object.material = materialLibrary(props.selectedMaterial)[
+        props.selectedMaterial
+      ];
       props.onSetSelectedMaterial("");
 
       // Trigger unsaved changes
@@ -175,7 +181,11 @@ const EditCanvas = props => {
     </Canvas>
   ) : null;
 
-  return <div className="edit-canvas">{canvasElement}</div>;
+  return (
+    <div className="edit-canvas">
+      {loading ? <LoaderModel /> : canvasElement}
+    </div>
+  );
 };
 
 EditCanvas.propTypes = {

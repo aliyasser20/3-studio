@@ -8,7 +8,7 @@ export const savePictureToCloud = files => {
   formData.append("file", files[0]);
   formData.append("tags", "profile-picture");
   formData.append("upload_preset", "profilePictureUpdate");
-  formData.append("api_key", "463438241363482");
+  formData.append("api_key", process.env.REACT_APP_API_KEY);
   formData.append("timestamp", (Date.now() / 1000) | 0);
   return cloudinaryAxios
     .post(uploadUrl, formData, {
