@@ -12,6 +12,7 @@ import EditCanvas from "./Modes/Edit/EditCanvas/EditCanvas";
 import MediaCanvas from "./Modes/Media/MediaCanvas/MediaCanvas";
 import ViewControls from "./ViewControls/ViewControls";
 import ExtraControls from "./ExtraControls/ExtraControls";
+import ViewContainer from "./Modes/View/ViewContainer/ViewContainer";
 
 import createModel from "../../helpers/createModel";
 import * as actions from "../../store/actions/index";
@@ -73,32 +74,39 @@ const StudioPage = props => {
     }
   }, [props]);
 
+  const editAndMediaModesComponents = (
+    <div className="working-area">
+      <div className="left-bar-area">
+        <SideBar />
+        {props.currentMode === "EDIT" && <PartCanvasArea />}
+      </div>
+      <div className="sub-working-area">
+        <div className="canvas-and-controls-area">
+          {props.currentMode === "EDIT" && <EditCanvas />}
+          {props.currentMode === "MEDIA" && <MediaCanvas />}
+          {props.currentMode === "EDIT" && (
+            <Fragment>
+              <ViewControls />
+              <ExtraControls />
+            </Fragment>
+          )}
+        </div>
+        {props.currentMode === "EDIT" && <AppearancesBar />}
+        {props.currentMode === "MEDIA" && <ObjectsBar />}
+      </div>
+    </div>
+  );
+
   const page =
     props.currentProject && props.currentProject.modelLink ? (
       <div className="studio-page">
         <Container maxWidth="xl" classes={{ root: "container-padding" }}>
           <div className="custom-grid">
             <StudioTopBar />
-            <div className="working-area">
-              <div className="left-bar-area">
-                <SideBar />
-                {props.currentMode === "EDIT" && <PartCanvasArea />}
-              </div>
-              <div className="sub-working-area">
-                <div className="canvas-and-controls-area">
-                  {props.currentMode === "EDIT" && <EditCanvas />}
-                  {props.currentMode === "MEDIA" && <MediaCanvas />}
-                  {props.currentMode === "EDIT" && (
-                    <Fragment>
-                      <ViewControls />
-                      <ExtraControls />
-                    </Fragment>
-                  )}
-                </div>
-                {props.currentMode === "EDIT" && <AppearancesBar />}
-                {props.currentMode === "MEDIA" && <ObjectsBar />}
-              </div>
-            </div>
+            {props.currentMode === "EDIT" || props.currentMode === "MEDIA"
+              ? editAndMediaModesComponents
+              : null}
+            {props.currentMode === "VIEW" && <ViewContainer />}
           </div>
         </Container>
       </div>

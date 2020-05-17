@@ -13,7 +13,7 @@ import * as actions from "../../../../store/actions/index";
 
 import "./ModeSelector.scss";
 
-const ModeSelector = (props) => {
+const ModeSelector = props => {
   let modes;
 
   const viewClasses =
@@ -31,7 +31,11 @@ const ModeSelector = (props) => {
         aria-label="outlined primary button group"
       >
         <Button
-          onClick={() => props.onModeSelect("VIEW")}
+          onClick={() => {
+            props.onModeSelect("VIEW");
+            props.onResetMediaState();
+            props.onResetMediaControls();
+          }}
           classes={{ root: viewClasses }}
         >
           <VisibilityIcon fontSize="small" />
@@ -40,8 +44,8 @@ const ModeSelector = (props) => {
         <Button
           onClick={() => {
             props.onModeSelect("EDIT");
-            props.onResetMediaState()
-            props.onResetMediaControls()
+            props.onResetMediaState();
+            props.onResetMediaControls();
           }}
           classes={{ root: editClasses }}
         >
@@ -64,17 +68,17 @@ ModeSelector.propTypes = {
   currentMode: PropTypes.string.isRequired,
   onModeSelect: PropTypes.func.isRequired,
   onResetMediaState: PropTypes.func.isRequired,
-  onResetMediaControls: PropTypes.func.isRequired,
+  onResetMediaControls: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  currentMode: state.modeControl.currentMode,
+const mapStateToProps = state => ({
+  currentMode: state.modeControl.currentMode
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onModeSelect: (mode) => dispatch(actions.modeSelect(mode)),
+const mapDispatchToProps = dispatch => ({
+  onModeSelect: mode => dispatch(actions.modeSelect(mode)),
   onResetMediaState: () => dispatch(actions.resetMediaState()),
-  onResetMediaControls: () => dispatch(actions.resetMediaControls()),
+  onResetMediaControls: () => dispatch(actions.resetMediaControls())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModeSelector);

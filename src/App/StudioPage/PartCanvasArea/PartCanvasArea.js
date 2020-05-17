@@ -21,7 +21,9 @@ const PartCanvasArea = props => {
         name: props.selectedMaterial
       });
 
-      props.selectedPart.material = materialLibrary()[props.selectedMaterial];
+      props.selectedPart.material = materialLibrary(props.selectedMaterial)[
+        props.selectedMaterial
+      ];
 
       props.onSetSelectedMaterial("");
       // Set unsaved
