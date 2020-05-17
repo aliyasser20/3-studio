@@ -172,9 +172,9 @@ const PWall = (props) => {
               className="scale-slider"
               value={props.pWall.scale[0]}
               valueLabelDisplay="auto"
-              step={0.1}
+              step={0.01}
               min={0}
-              max={10}
+              max={1}
               onChange={handleScaleChange}
             />
           </ListItem>

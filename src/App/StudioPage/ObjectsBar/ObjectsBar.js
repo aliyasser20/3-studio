@@ -147,7 +147,30 @@ const ObjectsBar = (props) => {
       rotate: { x: false, y: false, z: false },
       orbit: { x: false, y: false, z: false },
       wire: false,
-      lock:false
+      lock: false,
+    });
+  };
+  const handlePWallGrab = () => {
+    const radius = Math.ceil(props.boxRadius.geometry.boundingSphere.radius);
+    let vol;
+    if (radius > 50) {
+      vol = (4 * Math.PI * radius) / 100;
+    } else {
+      vol = 4 * Math.PI * radius;
+    }
+    const initPosition = radius > 100 ? radius : radius * 0.3;
+    props.onSetMediaPWall({
+      radius: radius / 2,
+      args: [radius * 100, radius * 100],
+      color: "fff",
+      brightness: 0.1,
+      scale: [0.2, 0.2, 0.2],
+      initPosition,
+      power: 0.5,
+      rotate: { x: false, y: false, z: false },
+      orbit: { x: false, y: false, z: false },
+      wire: false,
+      lock: false,
     });
   };
 
@@ -221,6 +244,17 @@ const ObjectsBar = (props) => {
           >
             P-GROUND
           </div>
+          <div
+            id="plain-wall"
+            draggable
+            onDragEnd={(e) => {
+              e.dataTransfer.dropEffect = "link";
+              handlePWallGrab();
+            }}
+            className="object pwall"
+          >
+            P-Wall
+          </div>
         </Paper>
       </div>
     </ThemeProvider>
@@ -235,6 +269,7 @@ ObjectsBar.propTypes = {
   onSetMediaDLight: PropTypes.func,
   onSetMediaBLight: PropTypes.func,
   onSetMediaPGround: PropTypes.func,
+  onSetMediaPWall: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -247,6 +282,7 @@ const mapDispatchToProps = (dispatch) => ({
   onSetMediaDLight: (dLight) => dispatch(actions.setMediaDLight(dLight)),
   onSetMediaBLight: (bLight) => dispatch(actions.setMediaBLight(bLight)),
   onSetMediaPGround: (pGround) => dispatch(actions.setMediaPGround(pGround)),
+  onSetMediaPWall: (pWall) => dispatch(actions.setMediaPWall(pWall)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ObjectsBar);
