@@ -44,7 +44,12 @@ const MediaTopNav = (props) => {
   const [dots, setDots] = useState(".");
   const [blob, setBlob] = useState();
   const { user } = useAuth0();
-  console.log(process.env.REACT_APP_SCREENSHOT_UPLOAD_PRESET);
+
+  const preset = {
+    aKey: process.env.REACT_APP_API_KEY,
+    sUpreset: process.env.REACT_APP_SCREENSHOT_UPLOAD_PRESET,
+  };
+
   const closeSnackbar = () => {
     setSeverity("");
     setSnackbar(false);
@@ -78,14 +83,16 @@ const MediaTopNav = (props) => {
   };
 
   const handleSave = () => {
-    saveToCloud(screenshot, props.currentProject, counter).then((res) => {
-      res.status === 200
-        ? snackbarSet("success", "Screenshot saved.")
-        : snackbarSet("error", "Error, screenshot not saved.");
-      setSnackbar(true);
-      setOpen(false);
-      setScreenshot("");
-    });
+    saveToCloud(screenshot, props.currentProject, counter, preset).then(
+      (res) => {
+        res.status === 200
+          ? snackbarSet("success", "Screenshot saved.")
+          : snackbarSet("error", "Error, screenshot not saved.");
+        setSnackbar(true);
+        setOpen(false);
+        setScreenshot("");
+      }
+    );
     handleCounter(user.sub, counter, props.currentProject.id).then((res) =>
       console.log(res)
     );
