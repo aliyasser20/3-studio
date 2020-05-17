@@ -114,3 +114,12 @@ export const RESET_CONFIGURATIONS = "RESET_CONFIGURATIONS";
 // Users
 export const SET_PROFILE_IMAGE = "SET_PROFILE_IMAGE";
 //
+
+// Part Model
+export const SET_PART_MODEL = "SET_PART_MODEL";
+export const SET_PART_FOV = "SET_PART_FOV";
+export const SET_PART_FAR = "SET_PART_FAR";
+export const SET_PART_NEAR = "SET_PART_NEAR";
+export const SET_PART_SIZE_BOUNDING = "SET_PART_SIZE_BOUNDING";
+export const RESET_PART_STATE = "RESET_PART_STATE";
+//

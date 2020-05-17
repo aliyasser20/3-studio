@@ -104,3 +104,12 @@ export {
 } from "./configurations";
 
 export { setProfileImage } from "./users";
+
+export {
+  setPartModel,
+  setPartFar,
+  setPartFov,
+  setPartNear,
+  setPartSizeBounding,
+  resetPartState
+} from "./partModel";
