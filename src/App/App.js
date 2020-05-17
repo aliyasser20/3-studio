@@ -16,15 +16,16 @@ import * as actions from "../store/actions/index";
 import "./App.scss";
 
 const App = props => {
-  const { isAuthenticated, loading, user } = useAuth0();
+  const { isAuthenticated, loading, user, getTokenSilently } = useAuth0();
 
   useEffect(() => {
     if (user) {
+      getTokenSilently();
       props.onGetProjects(user.sub);
       props.onGetTheme(user.sub);
       props.onSetProfileImage(user.picture);
     }
-  }, [props, user]);
+  }, [getTokenSilently, props, user]);
 
   const routes = (
     <Switch>
