@@ -147,8 +147,7 @@ const ProfilePage = props => {
 
   const handlePictureUpdate = () => {
     if (picture.length !== 1) {
-      console.log("upload yalaaa");
-      setMessage("Please upload a picture");
+      setMessage("Please upload a picture.");
       setSeverity("error");
       setOpen(true);
       setOpenPictureChanger(false);
