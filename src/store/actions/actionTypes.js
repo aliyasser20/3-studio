@@ -33,6 +33,7 @@ export const SET_NEAR = "SET_NEAR";
 export const SET_SIZE_BOUNDING = "SET_SIZE_BOUNDING";
 export const SET_BOX = "SET_BOX";
 export const RESET_EDIT_STATE = "RESET_EDIT_STATE";
+export const SET_SELECTED_PART = "SET_SELECTED_PART";
 //
 
 // Camera Controls

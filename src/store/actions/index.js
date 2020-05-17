@@ -26,7 +26,8 @@ export {
   setFov,
   setNear,
   setSizeBounding,
-  resetEditState
+  resetEditState,
+  setSelectedPart
 } from "./currentModel";
 
 export { setCameraMode } from "./cameraControls";
