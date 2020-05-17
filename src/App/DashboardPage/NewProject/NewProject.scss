@@ -79,13 +79,27 @@
   .new-project-drop-zone {
     border-radius: 1em;
     border: solid 1px var(--gradient-top);
+    background-color: #171717 !important;
+    overflow: hidden;
+
+    &:focus {
+      outline-color: var(--gradient-top);
+    }
 
     div {
+      height: 100%;
       .MuiSvgIcon-root {
         width: 100px;
         height: 100px;
         margin-top: 2em;
         fill: url(#gradient-vertical);
+      }
+    }
+
+    .MuiGrid-root {
+      svg {
+        width: 60px;
+        height: 60px;
       }
     }
   }
