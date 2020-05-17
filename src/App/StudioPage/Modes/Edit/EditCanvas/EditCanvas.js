@@ -3,7 +3,6 @@ import { Canvas, Dom } from "react-three-fiber";
 import * as THREE from "three";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import lo from "lodash";
 
 import Controls from "../Controls/Controls";
 import Environment from "../Enivronment/Environment";
@@ -20,11 +19,7 @@ import "./EditCanvas.scss";
 
 const EditCanvas = props => {
   // ! State ------------------------------------------------- //
-  const [directionalPosition, setDirectionalPosition] = useState([
-    0.5,
-    0,
-    0.86
-  ]);
+  const [directionalPosition] = useState([0.5, 0, 0.86]);
 
   // ? Cameras
   const [perspective, setPerspective] = useState(true);
