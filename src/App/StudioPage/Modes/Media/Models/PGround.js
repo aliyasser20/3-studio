@@ -39,6 +39,7 @@ const PGround = (props) => {
       // onClick={(e) => props.toggleMediaLock()}
       onPointerOver={(e) => props.pGround.lock && props.toggleMediaLock()}
       onPointerOut={(e) => props.pGround.lock && props.toggleMediaLock()}
+      scale={props.pGround.scale}
     >
       <planeBufferGeometry attach="geometry" args={props.pGround.args} />
       <meshStandardMaterial attach="material" color="#FFF" />

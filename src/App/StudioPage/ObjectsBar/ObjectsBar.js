@@ -141,12 +141,13 @@ const ObjectsBar = (props) => {
       args: [radius * 100, radius * 100],
       color: "fff",
       brightness: 0.1,
-      scale: [1, 1, 1],
+      scale: [0.2, 0.2, 0.2],
       initPosition,
       power: 0.5,
       rotate: { x: false, y: false, z: false },
       orbit: { x: false, y: false, z: false },
       wire: false,
+      lock:false
     });
   };
 

@@ -61,6 +61,10 @@ const PGround = (props) => {
     props.onSetPGround(toggleRotateZ);
   };
 
+  const handleDragLock = () => {
+    props.onSetPGround({ ...props.pGround, lock: !props.pGround.lock });
+  };
+
   return (
     <>
       <ListItem button onClick={handleClick}>
@@ -131,6 +135,24 @@ const PGround = (props) => {
             </ListItem>
           </List>
         </Collapse>
+        <List component="div" className="details-section" disablePadding>
+          <ListItem>
+            <ListItemIcon>
+              <FormControlLabel
+                className="custom-label"
+                control={
+                  <Checkbox
+                    className="custom-checkbox"
+                    checked={props.pGround.lock}
+                    onChange={handleDragLock}
+                    name="drag"
+                  />
+                }
+              />
+            </ListItemIcon>
+            <ListItemText primary="Drag" />
+          </ListItem>
+        </List>
         <List component="div" disablePadding>
           <ListItem>
             <ListItemIcon>
