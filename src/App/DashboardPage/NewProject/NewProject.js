@@ -1,3 +1,4 @@
+/* eslint-disable no-lonely-if */
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import {
@@ -15,13 +16,15 @@ import { object } from "prop-types";
 import { saveModelToCloude, createNewProject } from "./NewProjectHelper";
 import { useAuth0 } from "../../../react-auth0-spa";
 import Loader from "../../UI/Loader/Loader";
+import Snackbar from "@material-ui/core/Snackbar";
 import * as actions from "../../../store/actions/index";
+import Alert from "../../UI/Alert/Alert";
 
 const NewProject = (props) => {
   const { user } = useAuth0();
   const [open, setOpen] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
   const [files, setFiles] = useState([]);
-  const uploadUrl = "/raw/upload/";
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [defaultLink, setDefaultLink] = useState("");
@@ -29,6 +32,16 @@ const NewProject = (props) => {
   const [defaultModelClass1, setModelClass1] = useState("default-model-pic");
   const [defaultModelClass2, setModelClass2] = useState("default-model-pic");
   const [defaultModelClass3, setModelClass3] = useState("default-model-pic");
+  const [alert, setAlert] = useState("");
+
+  const handleAlertClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+      setAlertOpen(false);
+      setAlert("");
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -54,37 +67,50 @@ const NewProject = (props) => {
   };
 
   const handleCreate = () => {
-    if (files.length > 0) {
-      console.log(files);
-      setLoading(true);
-      saveModelToCloude(files).then((modelLink) => {
-        console.log(name, description, modelLink);
+    if (
+      !name ||
+      !description ||
+      (files.length === 0 && !defaultLink)
+    ) {
+      if (!name) setAlert("Please provide a name");
+      if (!description) setAlert("Please provide a description");
+      if (files.length === 0 && !defaultLink)
+        setAlert("Please provide a model");
+      setAlertOpen(true);
+    } else {
+
+      if (files.length > 0) {
+        console.log(files);
+        setLoading(true);
+        saveModelToCloude(files).then((modelLink) => {
+          console.log(name, description, modelLink);
+          createNewProject({
+            userId: user.sub,
+            name,
+            description,
+            modelLink,
+          }).then((data) => {
+            props.onNewProject(data);
+            setLoading(false);
+            setOpen(false);
+            resetForm();
+          });
+        });
+      } else if (files.length === 0) {
+        // console.log("default");
+        setLoading(true);
         createNewProject({
           userId: user.sub,
           name,
           description,
-          modelLink,
+          modelLink: defaultLink,
         }).then((data) => {
           props.onNewProject(data);
           setLoading(false);
           setOpen(false);
           resetForm();
         });
-      });
-    } else if (files.length === 0) {
-      console.log("default");
-      setLoading(true);
-      createNewProject({
-        userId: user.sub,
-        name,
-        description,
-        modelLink: defaultLink,
-      }).then((data) => {
-        props.onNewProject(data);
-        setLoading(false);
-        setOpen(false);
-        resetForm();
-      });
+      }
     }
   };
 
@@ -216,6 +242,15 @@ const NewProject = (props) => {
             Create
           </Button>
         </DialogActions>
+        <Snackbar
+          open={alertOpen}
+          autoHideDuration={3000}
+          onClose={handleAlertClose}
+        >
+          <Alert onClose={handleAlertClose} severity="error">
+            {alert}
+          </Alert>
+        </Snackbar>
       </Dialog>
     </div>
   );
