@@ -27,15 +27,15 @@ const App = props => {
   useEffect(() => {
     if (user) {
       // getTokenSilently();
-
       // if (!isAuthenticated) {
       //   loginWithRedirect();
       // }
+
       props.onGetProjects(user.sub);
       props.onGetTheme(user.sub);
       props.onSetProfileImage(user.picture);
     }
-  }, [getTokenSilently, isAuthenticated, loginWithRedirect, props, user]);
+  }, [isAuthenticated, props, user]);
 
   const routes = (
     <Switch>
