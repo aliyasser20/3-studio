@@ -79,6 +79,10 @@ const EditCanvas = props => {
   const handlePartClick = e => {
     // Differentiate between click and drag
     if (e.clientX === mousePosition.x && e.clientY === mousePosition.y) {
+      // Set selected part in redux
+      props.onSetSelectedPart(e.object);
+
+      // Clone for part canvas
       const part = e.object.clone();
 
       // Order of inputs is important
@@ -207,7 +211,8 @@ EditCanvas.propTypes = {
   onSetPartModel: PropTypes.func.isRequired,
   onSetPartFar: PropTypes.func.isRequired,
   onSetPartNear: PropTypes.func.isRequired,
-  onSetPartSizeBounding: PropTypes.func.isRequired
+  onSetPartSizeBounding: PropTypes.func.isRequired,
+  onSetSelectedPart: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -250,7 +255,8 @@ const mapDispatchToProps = dispatch => ({
   onSetPartModel: partModel => dispatch(actions.setPartModel(partModel)),
   onSetPartFar: far => dispatch(actions.setPartFar(far)),
   onSetPartNear: near => dispatch(actions.setPartNear(near)),
-  onSetPartSizeBounding: size => dispatch(actions.setPartSizeBounding(size))
+  onSetPartSizeBounding: size => dispatch(actions.setPartSizeBounding(size)),
+  onSetSelectedPart: part => dispatch(actions.setSelectedPart(part))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditCanvas);
