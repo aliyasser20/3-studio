@@ -21,6 +21,7 @@ import { connect } from "react-redux";
 import WSphere from "./Items/wSphere";
 import KLight from "./Items/kLight";
 import LSphere from "./Items/lSphere";
+import DLight from "./Items/dLight";
 
 const ObjectListItem = (props) => {
   return (
@@ -53,6 +54,14 @@ const ObjectListItem = (props) => {
           onSetDragObjects={props.onSetMediaDragObjects}
         />
       )}
+      {props.kLight && (
+        <DLight
+          onSetDLight={props.onSetMediaDLight}
+          dLight={props.dLight}
+          dragObjects={props.dragObjects}
+          onSetDragObjects={props.onSetMediaDragObjects}
+        />
+      )}
     </List>
   );
 };
@@ -60,10 +69,12 @@ const ObjectListItem = (props) => {
 ObjectListItem.propTypes = {
   wSphere: PropTypes.object,
   lSphere: PropTypes.object,
+  kLight: PropTypes.object,
+  dLight: PropTypes.object,
+  onSetMediaDLight: PropTypes.func.isRequired,
   onSetMediaSphere: PropTypes.func.isRequired,
   dragObjects: PropTypes.array,
   onSetMediaDragObjects: PropTypes.func,
-  kLight: PropTypes.object,
   onSetMediaKeyLight: PropTypes.func.isRequired,
   onSetMediaLSphere: PropTypes.func.isRequired,
 };
@@ -73,6 +84,7 @@ const mapStateToProps = (state) => ({
   lSphere: state.mediaControls.lSphere,
   dragObjects: state.mediaState.dragObjects,
   kLight: state.mediaControls.keyLight,
+  dLight: state.mediaControls.dLight,
 });
 const mapDispatchToState = (dispatch) => ({
   onSetMediaSphere: (arg) => dispatch(actions.setMediaSphere(arg)),
@@ -80,6 +92,7 @@ const mapDispatchToState = (dispatch) => ({
   onSetMediaDragObjects: (dragObject) =>
     dispatch(actions.setMediaDragObjects(dragObject)),
   onSetMediaKeyLight: (kLight) => dispatch(actions.setMediaKeyLight(kLight)),
+  onSetMediaDLight: (dLight) => dispatch(actions.setMediaDLight(dLight)),
 });
 
 export default connect(mapStateToProps, mapDispatchToState)(ObjectListItem);
