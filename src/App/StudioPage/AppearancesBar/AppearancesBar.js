@@ -53,7 +53,7 @@ const AppearancesBar = props => {
   const theme = themeCreator("#ffffff", "#212121");
 
   const [value, setValue] = React.useState(0);
-  const [search, setSearch] = useState(true);
+  const [search, setSearch] = useState(false);
   const [searchField, setSearchField] = useState("");
 
   const handleChange = (event, newValue) => {
@@ -84,7 +84,7 @@ const AppearancesBar = props => {
     .forEach(material => {
       const newMaterial = (
         <div
-          key={material.name}
+          key={material.imgPath}
           draggable
           onDragStart={e => props.onSetSelectedMaterial(material.actionName)}
           className="material"
@@ -137,6 +137,8 @@ const AppearancesBar = props => {
       }
     });
 
+  const searchButtonClasses = search ? "search-button active" : "search-button";
+
   return (
     <ThemeProvider theme={theme}>
       <div className="appearances-bar">
@@ -152,6 +154,7 @@ const AppearancesBar = props => {
                   type="text"
                   className="search-input"
                   placeholder="Search materials ..."
+                  onChange={e => setSearchField(e.target.value)}
                 />
               ) : (
                 <Tabs
@@ -178,8 +181,8 @@ const AppearancesBar = props => {
             <div className="search-area">
               <span className="gradient-button">
                 <Button
-                  classes={{ root: "search-button" }}
-                  // onClick={deleteAccount}
+                  classes={{ root: searchButtonClasses }}
+                  onClick={() => setSearch(!search)}
                   color="primary"
                   autoFocus
                 >
@@ -191,9 +194,9 @@ const AppearancesBar = props => {
           <div className="content-area">
             {search ? (
               <div className="search-content">
-                <TabPanel value={value} index={0}>
-                  {searchComponents}
-                </TabPanel>
+                <div className="custom-tab-panel">
+                  <div className="custom-tab-content">{searchComponents}</div>{" "}
+                </div>
               </div>
             ) : (
               <Fragment>
