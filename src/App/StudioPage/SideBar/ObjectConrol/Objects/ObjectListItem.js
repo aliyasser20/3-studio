@@ -107,6 +107,7 @@ ObjectListItem.propTypes = {
   onSetMediaLSphere: PropTypes.func.isRequired,
   onSetMediaSphere: PropTypes.func.isRequired,
   onSetMediaPGround: PropTypes.func.isRequired,
+  onSetMediaPWall: PropTypes.func.isRequired,
   dragObjects: PropTypes.array,
   onSetMediaDragObjects: PropTypes.func,
   onSetMediaKeyLight: PropTypes.func.isRequired,
@@ -131,7 +132,7 @@ const mapDispatchToState = (dispatch) => ({
   onSetMediaDLight: (dLight) => dispatch(actions.setMediaDLight(dLight)),
   onSetMediaBLight: (bLight) => dispatch(actions.setMediaBLight(bLight)),
   onSetMediaPGround: (pGround) => dispatch(actions.setMediaPGround(pGround)),
-  onSetMediaPwall: (pWall) => dispatch(actions.setMediaPWall(pWall)),
+  onSetMediaPWall: (pWall) => dispatch(actions.setMediaPWall(pWall)),
 });
 
 export default connect(mapStateToProps, mapDispatchToState)(ObjectListItem);

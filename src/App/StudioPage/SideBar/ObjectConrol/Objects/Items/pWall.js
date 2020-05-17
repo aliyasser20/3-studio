@@ -22,7 +22,7 @@ const PWall = (props) => {
   const handleRemovePWall = () => {
     const currentDragObjects = [...props.dragObjects];
     console.log(currentDragObjects);
-    const removed = currentDragObjects.filter((obj) => obj.name !== "p-ground");
+    const removed = currentDragObjects.filter((obj) => obj.name !== "p-wall");
     props.onSetDragObjects(removed);
     props.onSetPWall(null);
     setOpenPWall(false);

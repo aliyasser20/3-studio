@@ -23,6 +23,7 @@ import LSphere from "../Models/LSphere";
 import DLight from "../Models/DLight";
 import BLight from "../Models/Blight";
 import PGround from "../Models/PGround";
+import PWall from "../Models/PWall";
 
 const MediaCanvas = (props) => {
   console.log(props.currentEnvOption);
@@ -137,6 +138,15 @@ const MediaCanvas = (props) => {
         {props.mediaControls.pGround && (
           <PGround
             pGround={props.mediaControls.pGround}
+            toggleMediaLock={props.onToggleMediaLock}
+            setDrag={props.onSetMediaDragObjects}
+            dragObjects={props.mediaState.dragObjects}
+          />
+        )}
+
+        {props.mediaControls.pWall && (
+          <PWall
+            pWall={props.mediaControls.pWall}
             toggleMediaLock={props.onToggleMediaLock}
             setDrag={props.onSetMediaDragObjects}
             dragObjects={props.mediaState.dragObjects}
