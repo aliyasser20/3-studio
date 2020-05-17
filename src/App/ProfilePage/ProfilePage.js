@@ -134,6 +134,7 @@ const ProfilePage = props => {
 
   const handleDialogClose = () => {
     setOpenDialog(false);
+    setPicture([]);
   };
 
   const handleDrop = file => {
@@ -145,27 +146,35 @@ const ProfilePage = props => {
   };
 
   const handlePictureUpdate = () => {
-    savePictureToCloud(picture).then(pictureLink => {
-      updateProfilePicture({
-        userId: user.sub,
-        picture: pictureLink.data.url
-      })
-        .then(() => {
-          setProfilePicture(pictureLink.data.url);
-          setMessage("Successfully changed profile picture!");
-          setSeverity("success");
-          setOpen(true);
-          setOpenPictureChanger(false);
-          props.onSetProfileImage(pictureLink.data.url);
+    if (picture.length !== 1) {
+      console.log("upload yalaaa");
+      setMessage("Please upload a picture");
+      setSeverity("error");
+      setOpen(true);
+      setOpenPictureChanger(false);
+    } else {
+      savePictureToCloud(picture).then(pictureLink => {
+        updateProfilePicture({
+          userId: user.sub,
+          picture: pictureLink.data.url
         })
-        .catch(err => {
-          console.log(err);
-          setMessage("Could not update profile picture!");
-          setSeverity("error");
-          setOpen(true);
-          setOpenPictureChanger(false);
-        });
-    });
+          .then(() => {
+            setProfilePicture(pictureLink.data.url);
+            setMessage("Successfully changed profile picture!");
+            setSeverity("success");
+            setOpen(true);
+            setOpenPictureChanger(false);
+            props.onSetProfileImage(pictureLink.data.url);
+          })
+          .catch(err => {
+            console.log(err);
+            setMessage("Could not update profile picture!");
+            setSeverity("error");
+            setOpen(true);
+            setOpenPictureChanger(false);
+          });
+      });
+    }
   };
 
   const page = (
