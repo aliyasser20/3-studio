@@ -454,301 +454,305 @@ const materialLibrary = material => {
           "https://res.cloudinary.com/aajfinal/image/upload/v1589521563/appearances/tiles/tilesnumber5/Tiles032_2K_Displacement_luhcow.jpg"
       });
       break;
-    case "":
+    case "scuffedPlastic":
+      materials.scuffedPlastic = createMaterial({
+        name: "scuffed-plastic",
+        group: "plastics",
+        colorMap: true,
+        colorMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589517594/appearances/plastics/scuffed/scuffed-plastic4-alb_xsojm8.png",
+        ambientOcclusionMap: true,
+        ambientOcclusionMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589517602/appearances/plastics/scuffed/scuffed-plastic-ao_du3js6.png",
+        normalMap: true,
+        normalMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589517598/appearances/plastics/scuffed/scuffed-plastic-normal_gzkdwr.png",
+        roughnessMetalnessMap: true,
+        roughnessMetalnessMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589517606/appearances/plastics/scuffed/scuffed-plastic-rough_j7h2wh.png"
+      });
+      break;
+    case "woodOne":
+      materials.woodOne = createMaterial({
+        name: "wood-one",
+        group: "woods",
+        colorMap: true,
+        colorMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589401356/appearances/woods/wood-one/color_ln7tbv.jpg",
+        bumpMap: true,
+        bumpMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589401357/appearances/woods/wood-one/normal_ca9qka.jpg",
+        bumpScale: 1,
+        roughnessMetalnessMap: true,
+        roughnessMetalnessMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589401354/appearances/woods/wood-one/roughness-metalness_lpzitz.jpg",
+        displacementMap: true,
+        displacementMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589401351/appearances/woods/wood-one/displacement_qvzm6k.jpg",
+        displacementScale: 1
+      });
+      break;
+    case "woodFlooringOne":
+      materials.woodFlooringOne = createMaterial({
+        name: "wood-flooring-one",
+        group: "woods",
+        colorMap: true,
+        colorMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589401355/appearances/woods/wood-flooring-one/color_dybvyw.jpg",
+        bumpMap: true,
+        bumpMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589401350/appearances/woods/wood-flooring-one/normal_lxzs0x.jpg",
+        bumpScale: 1,
+        roughnessMetalnessMap: true,
+        roughnessMetalnessMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589401350/appearances/woods/wood-flooring-one/roughness-metalness_zunnxy.jpg",
+        displacementMap: true,
+        displacementMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589401346/appearances/woods/wood-flooring-one/displacement_afnlwj.jpg",
+        displacementScale: 1
+      });
+      break;
+    case "woodFlooringTwo":
+      materials.woodFlooringTwo = createMaterial({
+        name: "wood-flooring-two",
+        group: "woods",
+        colorMap: true,
+        colorMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589401356/appearances/woods/wood-flooring-two/color_wnurig.jpg",
+        bumpMap: true,
+        bumpMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589401351/appearances/woods/wood-flooring-two/normal_ff2oec.jpg",
+        bumpScale: 1,
+        roughnessMetalnessMap: true,
+        roughnessMetalnessMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589401355/appearances/woods/wood-flooring-two/roughness-metalness_jqqxmw.jpg",
+        ambientOcclusionMap: true,
+        ambientOcclusionMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589401348/appearances/woods/wood-flooring-two/ao_e2u4xj.jpg",
+        displacementMap: true,
+        displacementMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589401350/appearances/woods/wood-flooring-two/displacement_fmcylk.jpg",
+        displacementScale: 1
+      });
+      break;
+    case "fleece":
+      materials.fleece = createMaterial({
+        name: "fleece",
+        group: "fabric",
+        colorMap: true,
+        colorMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589502764/appearances/fabric/Fleece/color_lyuqix.jpg",
+        color: "#171717",
+        normalMap: true,
+        normalMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589502741/appearances/fabric/Fleece/normal_evwarj.jpg",
+        roughnessMetalnessMap: true,
+        roughnessMetalnessMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589503024/appearances/fabric/Fleece/roughness-metalness_c4kftv.jpg",
+        displacementMap: true,
+        displacementMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589502793/appearances/fabric/Fleece/displacement_jktllc.tiff",
+        displacementScale: 0.2
+      });
+      break;
+    case "leather":
+      materials.leather = createMaterial({
+        name: "leather",
+        group: "fabric",
+        colorMap: true,
+        colorMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589503475/appearances/fabric/Leather/color_cpg5od.jpg",
+        color: "#191919",
+        ambientOcclusionMap: true,
+        ambientOcclusionMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589503448/appearances/fabric/Leather/ao_ixcdcy.jpg",
+        normalMap: true,
+        normalMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589503431/appearances/fabric/Leather/normal_bkb1ye.jpg",
+        roughnessMetalnessMap: true,
+        roughnessMetalnessMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589503506/appearances/fabric/Leather/roughness-metalness_c9ev2e.jpg",
+        displacementMap: true,
+        displacementMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589503491/appearances/fabric/Leather/displacement_l7rcfa.jpg",
+        displacementScale: 0.3
+      });
+      break;
+    case "carpetOne":
+      materials.carpetOne = createMaterial({
+        name: "carpet-one",
+        group: "fabric",
+        colorMap: true,
+        colorMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589518430/appearances/fabric/carpet-1/Carpet006_2K_Color_wrv4ew.jpg",
+        color: "#191919",
+        ambientOcclusionMap: true,
+        ambientOcclusionMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589518433/appearances/fabric/carpet-1/Carpet006_2K_AmbientOcclusion_bqpm6b.jpg",
+        normalMap: true,
+        normalMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589518585/appearances/fabric/carpet-1/Carpet006_2K_Normal_i3mboe.jpg",
+        roughnessMetalnessMap: true,
+        roughnessMetalnessMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589518438/appearances/fabric/carpet-1/Carpet006_2K_Roughness_i4kuau.jpg",
+        displacementMap: true,
+        displacementMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589518434/appearances/fabric/carpet-1/Carpet006_2K_Displacement_dkmzbf.jpg",
+        displacementScale: 0.3
+      });
+      break;
+    case "leatherButtoned":
+      materials.leatherButtoned = createMaterial({
+        name: "leather-buttoned",
+        group: "fabric",
+        colorMap: true,
+        colorMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589519613/appearances/fabric/leatherbuttoned/Leather011_2K_Color_fxzh1f.jpg",
+        color: "#191919",
+        normalMap: true,
+        normalMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589519617/appearances/fabric/leatherbuttoned/Leather011_2K_Normal_h3gt6q.jpg",
+        roughnessMetalnessMap: true,
+        roughnessMetalnessMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589519614/appearances/fabric/leatherbuttoned/Leather011_2K_Roughness_midmzu.jpg",
+        displacementMap: true,
+        displacementMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589519613/appearances/fabric/leatherbuttoned/Leather011_2K_Displacement_uchjza.jpg",
+        displacementScale: 0.3
+      });
+      break;
+    case "leatherButtonedTwo":
+      materials.leatherButtonedTwo = createMaterial({
+        name: "leather-buttoned-two",
+        group: "fabric",
+        colorMap: true,
+        colorMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589519613/appearances/fabric/leatherbuttoned/Leather011_2K_Color_fxzh1f.jpg",
+        normalMap: true,
+        normalMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589519617/appearances/fabric/leatherbuttoned/Leather011_2K_Normal_h3gt6q.jpg",
+        roughnessMetalnessMap: true,
+        roughnessMetalnessMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589519614/appearances/fabric/leatherbuttoned/Leather011_2K_Roughness_midmzu.jpg",
+        displacementMap: true,
+        displacementMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589519613/appearances/fabric/leatherbuttoned/Leather011_2K_Displacement_uchjza.jpg",
+        displacementScale: 0.3
+      });
+      break;
+    case "basketWeave":
+      materials.basketWeave = createMaterial({
+        name: "basket-weave",
+        group: "fabric",
+        colorMap: true,
+        colorMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589519895/appearances/fabric/basketweave/simple-basket-weave1-albedo_xx5qyy.png",
+        normalMap: true,
+        normalMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589519897/appearances/fabric/basketweave/simple-basket-weave1-normal-dx_m7ozzf.png",
+        roughnessMetalnessMap: true,
+        roughnessMetalnessMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589519893/appearances/fabric/basketweave/simple-basket-weave1-roughness_ftt6tn.png",
+        ambientOcclusionMap: true,
+        ambientOcclusionMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589519892/appearances/fabric/basketweave/simple-basket-weave1-ao_uyaqw5.png"
+      });
+      break;
+    case "gridPatternPlastic":
+      materials.gridPatternPlastic = createMaterial({
+        name: "grid-pattern-plastic",
+        group: "plastics",
+        colorMap: true,
+        colorMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589520842/appearances/plastics/gridpattern/plasticpattern1-albedo_qaumfg.png",
+        normalMap: true,
+        normalMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589520845/appearances/plastics/gridpattern/plasticpattern1-normal2b_fnsjks.png",
+        roughnessMetalnessMap: true,
+        roughnessMetalnessMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589520849/appearances/plastics/gridpattern/plasticpattern1-roughness2_anjdjl.png"
+      });
+      break;
+    case "rubber":
+      materials.rubber = createMaterial({
+        name: "rubber",
+        group: "synthetics",
+        colorMap: true,
+        color: "#212121",
+        colorMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589518039/appearances/synthetics/rubber/synth-rubber-albedo_rlqldd.png",
+        normalMap: true,
+        normalMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589518154/appearances/synthetics/rubber/synth-rubber-normal_sleptr.jpg",
+        roughnessMetalnessMap: true,
+        roughnessMetalnessMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589518257/appearances/synthetics/rubber/synth-rubber-roughness_ktg2bd.png"
+      });
+      break;
+    case "foam":
+      materials.foam = createMaterial({
+        name: "foam",
+        group: "synthetics",
+        colorMap: true,
+        color: "#212121",
+        colorMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589520539/appearances/synthetics/foam/foam-grip1-albedo_fgw0qx.png",
+        normalMap: true,
+        normalMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589520541/appearances/synthetics/foam/foam-grip1-normal-ogl_q1ckus.png",
+        roughnessMetalnessMap: true,
+        roughnessMetalnessMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589520624/appearances/synthetics/foam/foam-grip1-roughness_ylfwhy.png",
+        ambientOcclusionMap: true,
+        ambientOcclusionMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589520540/appearances/synthetics/foam/foam-grip1-ao_qhfbdv.png"
+      });
+      break;
+    case "solarPanel":
+      materials.solarPanel = createMaterial({
+        name: "solar-panel",
+        group: "other",
+        colorMap: true,
+        colorMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589520300/appearances/other/solarpanel/SolarPanel003_2K_Color_aqr68z.jpg",
+        normalMap: true,
+        normalMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589520301/appearances/other/solarpanel/SolarPanel003_2K_Normal_ioud1m.jpg",
+        roughnessMetalnessMap: true,
+        roughnessMetalnessMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589520296/appearances/other/solarpanel/SolarPanel003_2K_Roughness_u0jcdl.jpg",
+        displacementMap: true,
+        displacementMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589520297/appearances/other/solarpanel/SolarPanel003_2K_Displacement_dfemoc.jpg"
+      });
+      break;
+    case "mixedMoss":
+      materials.mixedMoss = createMaterial({
+        name: "mixed-moss",
+        group: "other",
+        colorMap: true,
+        colorMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589521116/appearances/other/mixedMoss/mixedmoss-albedo2_ybjika.png",
+        normalMap: true,
+        normalMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589521114/appearances/other/mixedMoss/mixedmoss-normal2_tr1qgr.png",
+        roughnessMetalnessMap: true,
+        roughnessMetalnessMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589521115/appearances/other/mixedMoss/mixedmoss-roughness_ykwfth.png",
+        ambientOcclusionMap: true,
+        ambientOcclusionMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589521110/appearances/other/mixedMoss/mixedmoss-ao2_sg9fie.png",
+        displacementMap: true,
+        displacementMapPath:
+          "https://res.cloudinary.com/aajfinal/image/upload/v1589521239/appearances/other/mixedMoss/mixedmoss-height_gcfph5.png",
+        displacementScale: 2
+      });
       break;
 
     default:
       break;
   }
   // ?
-
-  // ? Woods
-  // materials.woodOne = createMaterial({
-  //   name: "wood-one",
-  //   group: "woods",
-  //   colorMap: true,
-  //   colorMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589401356/appearances/woods/wood-one/color_ln7tbv.jpg",
-  //   bumpMap: true,
-  //   bumpMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589401357/appearances/woods/wood-one/normal_ca9qka.jpg",
-  //   bumpScale: 1,
-  //   roughnessMetalnessMap: true,
-  //   roughnessMetalnessMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589401354/appearances/woods/wood-one/roughness-metalness_lpzitz.jpg",
-  //   displacementMap: true,
-  //   displacementMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589401351/appearances/woods/wood-one/displacement_qvzm6k.jpg",
-  //   displacementScale: 1
-  // });
-
-  // materials.woodFlooringOne = createMaterial({
-  //   name: "wood-flooring-one",
-  //   group: "woods",
-  //   colorMap: true,
-  //   colorMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589401355/appearances/woods/wood-flooring-one/color_dybvyw.jpg",
-  //   bumpMap: true,
-  //   bumpMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589401350/appearances/woods/wood-flooring-one/normal_lxzs0x.jpg",
-  //   bumpScale: 1,
-  //   roughnessMetalnessMap: true,
-  //   roughnessMetalnessMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589401350/appearances/woods/wood-flooring-one/roughness-metalness_zunnxy.jpg",
-  //   displacementMap: true,
-  //   displacementMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589401346/appearances/woods/wood-flooring-one/displacement_afnlwj.jpg",
-  //   displacementScale: 1
-  // });
-
-  // materials.woodFlooringTwo = createMaterial({
-  //   name: "wood-flooring-two",
-  //   group: "woods",
-  //   colorMap: true,
-  //   colorMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589401356/appearances/woods/wood-flooring-two/color_wnurig.jpg",
-  //   bumpMap: true,
-  //   bumpMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589401351/appearances/woods/wood-flooring-two/normal_ff2oec.jpg",
-  //   bumpScale: 1,
-  //   roughnessMetalnessMap: true,
-  //   roughnessMetalnessMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589401355/appearances/woods/wood-flooring-two/roughness-metalness_jqqxmw.jpg",
-  //   ambientOcclusionMap: true,
-  //   ambientOcclusionMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589401348/appearances/woods/wood-flooring-two/ao_e2u4xj.jpg",
-  //   displacementMap: true,
-  //   displacementMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589401350/appearances/woods/wood-flooring-two/displacement_fmcylk.jpg",
-  //   displacementScale: 1
-  // });
-  // // ?
-
-  // // ? Fabrics
-  // materials.fleece = createMaterial({
-  //   name: "fleece",
-  //   group: "fabric",
-  //   colorMap: true,
-  //   colorMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589502764/appearances/fabric/Fleece/color_lyuqix.jpg",
-  //   color: "#171717",
-  //   normalMap: true,
-  //   normalMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589502741/appearances/fabric/Fleece/normal_evwarj.jpg",
-  //   roughnessMetalnessMap: true,
-  //   roughnessMetalnessMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589503024/appearances/fabric/Fleece/roughness-metalness_c4kftv.jpg",
-  //   displacementMap: true,
-  //   displacementMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589502793/appearances/fabric/Fleece/displacement_jktllc.tiff",
-  //   displacementScale: 0.2
-  // });
-
-  // materials.leather = createMaterial({
-  //   name: "leather",
-  //   group: "fabric",
-  //   colorMap: true,
-  //   colorMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589503475/appearances/fabric/Leather/color_cpg5od.jpg",
-  //   color: "#191919",
-  //   ambientOcclusionMap: true,
-  //   ambientOcclusionMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589503448/appearances/fabric/Leather/ao_ixcdcy.jpg",
-  //   normalMap: true,
-  //   normalMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589503431/appearances/fabric/Leather/normal_bkb1ye.jpg",
-  //   roughnessMetalnessMap: true,
-  //   roughnessMetalnessMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589503506/appearances/fabric/Leather/roughness-metalness_c9ev2e.jpg",
-  //   displacementMap: true,
-  //   displacementMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589503491/appearances/fabric/Leather/displacement_l7rcfa.jpg",
-  //   displacementScale: 0.3
-  // });
-
-  // materials.carpetOne = createMaterial({
-  //   name: "carpet-one",
-  //   group: "fabric",
-  //   colorMap: true,
-  //   colorMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589518430/appearances/fabric/carpet-1/Carpet006_2K_Color_wrv4ew.jpg",
-  //   color: "#191919",
-  //   ambientOcclusionMap: true,
-  //   ambientOcclusionMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589518433/appearances/fabric/carpet-1/Carpet006_2K_AmbientOcclusion_bqpm6b.jpg",
-  //   normalMap: true,
-  //   normalMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589518585/appearances/fabric/carpet-1/Carpet006_2K_Normal_i3mboe.jpg",
-  //   roughnessMetalnessMap: true,
-  //   roughnessMetalnessMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589518438/appearances/fabric/carpet-1/Carpet006_2K_Roughness_i4kuau.jpg",
-  //   displacementMap: true,
-  //   displacementMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589518434/appearances/fabric/carpet-1/Carpet006_2K_Displacement_dkmzbf.jpg",
-  //   displacementScale: 0.3
-  // });
-
-  // materials.leatherButtoned = createMaterial({
-  //   name: "leather-buttoned",
-  //   group: "fabric",
-  //   colorMap: true,
-  //   colorMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589519613/appearances/fabric/leatherbuttoned/Leather011_2K_Color_fxzh1f.jpg",
-  //   color: "#191919",
-  //   normalMap: true,
-  //   normalMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589519617/appearances/fabric/leatherbuttoned/Leather011_2K_Normal_h3gt6q.jpg",
-  //   roughnessMetalnessMap: true,
-  //   roughnessMetalnessMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589519614/appearances/fabric/leatherbuttoned/Leather011_2K_Roughness_midmzu.jpg",
-  //   displacementMap: true,
-  //   displacementMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589519613/appearances/fabric/leatherbuttoned/Leather011_2K_Displacement_uchjza.jpg",
-  //   displacementScale: 0.3
-  // });
-
-  // materials.leatherButtonedTwo = createMaterial({
-  //   name: "leather-buttoned-two",
-  //   group: "fabric",
-  //   colorMap: true,
-  //   colorMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589519613/appearances/fabric/leatherbuttoned/Leather011_2K_Color_fxzh1f.jpg",
-  //   normalMap: true,
-  //   normalMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589519617/appearances/fabric/leatherbuttoned/Leather011_2K_Normal_h3gt6q.jpg",
-  //   roughnessMetalnessMap: true,
-  //   roughnessMetalnessMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589519614/appearances/fabric/leatherbuttoned/Leather011_2K_Roughness_midmzu.jpg",
-  //   displacementMap: true,
-  //   displacementMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589519613/appearances/fabric/leatherbuttoned/Leather011_2K_Displacement_uchjza.jpg",
-  //   displacementScale: 0.3
-  // });
-
-  // materials.basketWeave = createMaterial({
-  //   name: "basket-weave",
-  //   group: "fabric",
-  //   colorMap: true,
-  //   colorMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589519895/appearances/fabric/basketweave/simple-basket-weave1-albedo_xx5qyy.png",
-  //   normalMap: true,
-  //   normalMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589519897/appearances/fabric/basketweave/simple-basket-weave1-normal-dx_m7ozzf.png",
-  //   roughnessMetalnessMap: true,
-  //   roughnessMetalnessMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589519893/appearances/fabric/basketweave/simple-basket-weave1-roughness_ftt6tn.png",
-  //   ambientOcclusionMap: true,
-  //   ambientOcclusionMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589519892/appearances/fabric/basketweave/simple-basket-weave1-ao_uyaqw5.png"
-  // });
-  // // ?
-
-  // materials.scuffedPlastic = createMaterial({
-  //   name: "scuffed-plastic",
-  //   group: "plastics",
-  //   colorMap: true,
-  //   colorMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589517594/appearances/plastics/scuffed/scuffed-plastic4-alb_xsojm8.png",
-  //   ambientOcclusionMap: true,
-  //   ambientOcclusionMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589517602/appearances/plastics/scuffed/scuffed-plastic-ao_du3js6.png",
-  //   normalMap: true,
-  //   normalMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589517598/appearances/plastics/scuffed/scuffed-plastic-normal_gzkdwr.png",
-  //   roughnessMetalnessMap: true,
-  //   roughnessMetalnessMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589517606/appearances/plastics/scuffed/scuffed-plastic-rough_j7h2wh.png"
-  // });
-
-  // materials.gridPatternPlastic = createMaterial({
-  //   name: "grid-pattern-plastic",
-  //   group: "plastics",
-  //   colorMap: true,
-  //   colorMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589520842/appearances/plastics/gridpattern/plasticpattern1-albedo_qaumfg.png",
-  //   normalMap: true,
-  //   normalMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589520845/appearances/plastics/gridpattern/plasticpattern1-normal2b_fnsjks.png",
-  //   roughnessMetalnessMap: true,
-  //   roughnessMetalnessMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589520849/appearances/plastics/gridpattern/plasticpattern1-roughness2_anjdjl.png"
-  // });
-  // // ?
-
-  // // ? Synthetics
-  // materials.rubber = createMaterial({
-  //   name: "rubber",
-  //   group: "synthetics",
-  //   colorMap: true,
-  //   color: "#212121",
-  //   colorMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589518039/appearances/synthetics/rubber/synth-rubber-albedo_rlqldd.png",
-  //   normalMap: true,
-  //   normalMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589518154/appearances/synthetics/rubber/synth-rubber-normal_sleptr.jpg",
-  //   roughnessMetalnessMap: true,
-  //   roughnessMetalnessMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589518257/appearances/synthetics/rubber/synth-rubber-roughness_ktg2bd.png"
-  // });
-
-  // materials.foam = createMaterial({
-  //   name: "foam",
-  //   group: "synthetics",
-  //   colorMap: true,
-  //   color: "#212121",
-  //   colorMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589520539/appearances/synthetics/foam/foam-grip1-albedo_fgw0qx.png",
-  //   normalMap: true,
-  //   normalMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589520541/appearances/synthetics/foam/foam-grip1-normal-ogl_q1ckus.png",
-  //   roughnessMetalnessMap: true,
-  //   roughnessMetalnessMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589520624/appearances/synthetics/foam/foam-grip1-roughness_ylfwhy.png",
-  //   ambientOcclusionMap: true,
-  //   ambientOcclusionMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589520540/appearances/synthetics/foam/foam-grip1-ao_qhfbdv.png"
-  // });
-  // // ?
-
-  // // ? Other
-  // materials.solarPanel = createMaterial({
-  //   name: "solar-panel",
-  //   group: "other",
-  //   colorMap: true,
-  //   colorMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589520300/appearances/other/solarpanel/SolarPanel003_2K_Color_aqr68z.jpg",
-  //   normalMap: true,
-  //   normalMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589520301/appearances/other/solarpanel/SolarPanel003_2K_Normal_ioud1m.jpg",
-  //   roughnessMetalnessMap: true,
-  //   roughnessMetalnessMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589520296/appearances/other/solarpanel/SolarPanel003_2K_Roughness_u0jcdl.jpg",
-  //   displacementMap: true,
-  //   displacementMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589520297/appearances/other/solarpanel/SolarPanel003_2K_Displacement_dfemoc.jpg"
-  // });
-
-  // materials.mixedMoss = createMaterial({
-  //   name: "mixed-moss",
-  //   group: "other",
-  //   colorMap: true,
-  //   colorMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589521116/appearances/other/mixedMoss/mixedmoss-albedo2_ybjika.png",
-  //   normalMap: true,
-  //   normalMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589521114/appearances/other/mixedMoss/mixedmoss-normal2_tr1qgr.png",
-  //   roughnessMetalnessMap: true,
-  //   roughnessMetalnessMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589521115/appearances/other/mixedMoss/mixedmoss-roughness_ykwfth.png",
-  //   ambientOcclusionMap: true,
-  //   ambientOcclusionMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589521110/appearances/other/mixedMoss/mixedmoss-ao2_sg9fie.png",
-  //   displacementMap: true,
-  //   displacementMapPath:
-  //     "https://res.cloudinary.com/aajfinal/image/upload/v1589521239/appearances/other/mixedMoss/mixedmoss-height_gcfph5.png",
-  //   displacementScale: 2
-  // });
-  // // ?
 
   return materials;
 };
