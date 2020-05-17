@@ -19,8 +19,12 @@ import TestingDrag from "../Models/TestingDrag";
 import DControls from "../DragControls/DControls";
 import GroundPlane from "../OldCanvas/GroundPlane/GroundPlane";
 import KLight from "../Models/KLight";
+import LSphere from "../Models/LSphere";
+import DLight from "../Models/DLight";
+
 
 const MediaCanvas = (props) => {
+  console.log(props.currentEnvOption);
   const [loading, setLoading] = useState(true);
   const { mediaFov, mediaFar, mediaNear, mediaBox, mediaSizeBounding } = props;
   useEffect(() => {
@@ -77,14 +81,16 @@ const MediaCanvas = (props) => {
           mapEnvironment={props.mediaMapEnv}
           environmentPath={props.currentEnvOption.hdrPath}
         />
-        {!props.mediaControls.mediaLock && <Controls />}
+        {!props.mediaControls.mediaLock && (
+          <Controls autoRotate={props.mediaControls.mediaAutorotate} />
+        )}
         <DControls dragObjects={props.mediaState.dragObjects} />
-        <UserModel
+        {/* <UserModel
           model={props.mediaModel}
           toggleMediaLock={props.onToggleMediaLock}
           setDrag={props.onSetMediaDragObjects}
           dragObjects={props.mediaState.dragObjects}
-        />
+        /> */}
         {props.mediaControls.sphere && (
           <WSphere
             sphere={props.mediaControls.sphere}
@@ -93,9 +99,25 @@ const MediaCanvas = (props) => {
             dragObjects={props.mediaState.dragObjects}
           />
         )}
+        {props.mediaControls.lSphere && (
+          <LSphere
+            lSphere={props.mediaControls.lSphere}
+            toggleMediaLock={props.onToggleMediaLock}
+            setDrag={props.onSetMediaDragObjects}
+            dragObjects={props.mediaState.dragObjects}
+          />
+        )}
         {props.mediaControls.keyLight && (
           <KLight
             kLight={props.mediaControls.keyLight}
+            toggleMediaLock={props.onToggleMediaLock}
+            setDrag={props.onSetMediaDragObjects}
+            dragObjects={props.mediaState.dragObjects}
+          />
+        )}
+        {props.mediaControls.dLight && (
+          <DLight
+            dLight={props.mediaControls.dLight}
             toggleMediaLock={props.onToggleMediaLock}
             setDrag={props.onSetMediaDragObjects}
             dragObjects={props.mediaState.dragObjects}
@@ -111,7 +133,7 @@ const MediaCanvas = (props) => {
 
 MediaCanvas.propTypes = {
   modelSettings: PropTypes.object,
-  currentProject: PropTypes.object,
+  // currentProject: PropTypes.object,
   onSetMediaModel: PropTypes.func.isRequired,
   onSetMediaFov: PropTypes.func.isRequired,
   onSetMediaFar: PropTypes.func.isRequired,
