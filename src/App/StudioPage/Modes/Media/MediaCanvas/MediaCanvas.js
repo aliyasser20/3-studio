@@ -26,7 +26,6 @@ import PGround from "../Models/PGround";
 import PWall from "../Models/PWall";
 
 const MediaCanvas = (props) => {
-  console.log(props.currentEnvOption);
   const [loading, setLoading] = useState(true);
   const { mediaFov, mediaFar, mediaNear, mediaBox, mediaSizeBounding } = props;
   useEffect(() => {
@@ -90,6 +89,7 @@ const MediaCanvas = (props) => {
         <DControls dragObjects={props.mediaState.dragObjects} />
         <UserModel
           model={props.mediaModel}
+          userModelDrag={props.mediaControls.mediaUserModelDrag}
           toggleMediaLock={props.onToggleMediaLock}
           setDrag={props.onSetMediaDragObjects}
           dragObjects={props.mediaState.dragObjects}
