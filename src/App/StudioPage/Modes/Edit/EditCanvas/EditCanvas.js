@@ -70,7 +70,9 @@ const EditCanvas = props => {
         name: props.selectedMaterial
       });
 
-      e.object.material = materialLibrary()[props.selectedMaterial];
+      e.object.material = materialLibrary(props.selectedMaterial)[
+        props.selectedMaterial
+      ];
       props.onSetSelectedMaterial("");
 
       // Trigger unsaved changes
