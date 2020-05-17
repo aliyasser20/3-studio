@@ -26,10 +26,11 @@ const App = props => {
 
   useEffect(() => {
     if (user) {
-      if (!isAuthenticated) {
-        loginWithRedirect();
-      }
       // getTokenSilently();
+
+      // if (!isAuthenticated) {
+      //   loginWithRedirect();
+      // }
       props.onGetProjects(user.sub);
       props.onGetTheme(user.sub);
       props.onSetProfileImage(user.picture);
