@@ -85,12 +85,12 @@ const MediaCanvas = (props) => {
           <Controls autoRotate={props.mediaControls.mediaAutorotate} />
         )}
         <DControls dragObjects={props.mediaState.dragObjects} />
-        <UserModel
+        {/* <UserModel
           model={props.mediaModel}
           toggleMediaLock={props.onToggleMediaLock}
           setDrag={props.onSetMediaDragObjects}
           dragObjects={props.mediaState.dragObjects}
-        />
+        /> */}
         {props.mediaControls.sphere && (
           <WSphere
             sphere={props.mediaControls.sphere}
