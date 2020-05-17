@@ -115,7 +115,7 @@ const ObjectsBar = (props) => {
     const initPosition = radius > 100 ? radius : radius * 0.3;
     props.onSetMediaBLight({
       radius: radius / 2,
-      args: [radius/4, 0],
+      args: [radius / 4, 0],
       color: "fff",
       brightness: 0.1,
       scale: [0.3, 0.3, 0.3],
@@ -126,6 +126,30 @@ const ObjectsBar = (props) => {
       wire: false,
     });
   };
+
+  const handlePGroundGrab = () => {
+    const radius = Math.ceil(props.boxRadius.geometry.boundingSphere.radius);
+    let vol;
+    if (radius > 50) {
+      vol = (4 * Math.PI * radius) / 100;
+    } else {
+      vol = 4 * Math.PI * radius;
+    }
+    const initPosition = radius > 100 ? radius : radius * 0.3;
+    props.onSetMediaBLight({
+      radius: radius / 2,
+      args: [radius ** 2, radius ** 2],
+      color: "fff",
+      brightness: 0.1,
+      scale: [1, 1, 1],
+      initPosition,
+      power: 0.5,
+      rotate: { x: false, y: false, z: false },
+      orbit: { x: false, y: false, z: false },
+      wire: false,
+    });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div className="objects-bar">
@@ -185,6 +209,17 @@ const ObjectsBar = (props) => {
           >
             B-LIGHT
           </div>
+          <div
+            id="plain-ground"
+            draggable
+            onDragEnd={(e) => {
+              e.dataTransfer.dropEffect = "link";
+              handlePGroundGrab();
+            }}
+            className="object pground"
+          >
+            B-LIGHT
+          </div>
         </Paper>
       </div>
     </ThemeProvider>
@@ -198,6 +233,7 @@ ObjectsBar.propTypes = {
   onSetMediaLSphere: PropTypes.func,
   onSetMediaDLight: PropTypes.func,
   onSetMediaBLight: PropTypes.func,
+  onSetMediaPGround: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -209,6 +245,7 @@ const mapDispatchToProps = (dispatch) => ({
   onSetMediaKeyLight: (kLight) => dispatch(actions.setMediaKeyLight(kLight)),
   onSetMediaDLight: (dLight) => dispatch(actions.setMediaDLight(dLight)),
   onSetMediaBLight: (bLight) => dispatch(actions.setMediaBLight(bLight)),
+  onSetMediaPGround: (pGround) => dispatch(actions.setMediaPGround(pGround)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ObjectsBar);
