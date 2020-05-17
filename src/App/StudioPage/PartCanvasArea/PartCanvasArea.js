@@ -1,18 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import { Paper } from "@material-ui/core";
 
 import PartCanvas from "../Modes/Edit/PartCanvas/PartCanvas";
 
+import materialLibrary from "../../../helpers/materialLibrary";
+
 import "./PartCanvasArea.scss";
 
 const PartCanvasArea = props => {
-  let classes;
+  const handleDrop = () => {
+    props.selectedPart.material = materialLibrary()[props.selectedMaterial];
+  };
+
   return (
     <div className="part-canvas-area">
       <Paper classes={{ root: "custom-paper" }} elevation={3}>
-        <div className="canvas-container">
+        <div
+          onDragOver={e => e.preventDefault()}
+          onDrop={handleDrop}
+          className="canvas-container"
+        >
           <PartCanvas />
         </div>
       </Paper>
@@ -20,6 +30,14 @@ const PartCanvasArea = props => {
   );
 };
 
-PartCanvasArea.propTypes = {};
+PartCanvasArea.propTypes = {
+  selectedPart: PropTypes.object,
+  selectedMaterial: PropTypes.string
+};
 
-export default PartCanvasArea;
+const mapStateToProps = state => ({
+  selectedPart: state.currentModel.selectedPart,
+  selectedMaterial: state.appearanceControls.selectedMaterial
+});
+
+export default connect(mapStateToProps, null)(PartCanvasArea);

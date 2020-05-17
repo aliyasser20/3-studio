@@ -79,6 +79,7 @@ const AppearancesBar = props => {
           key={material.imgPath}
           draggable
           onDragStart={e => props.onSetSelectedMaterial(material.actionName)}
+          // onDragEnd={e => console.log(e.target)}
           className="material"
         >
           <img src={material.imgPath} alt={material.name} />
