@@ -22,7 +22,6 @@ import KLight from "../Models/KLight";
 import LSphere from "../Models/LSphere";
 import DLight from "../Models/DLight";
 
-
 const MediaCanvas = (props) => {
   console.log(props.currentEnvOption);
   const [loading, setLoading] = useState(true);
@@ -33,7 +32,8 @@ const MediaCanvas = (props) => {
     !props.mediaNear && props.onSetMediaNear(props.modelSettings.near);
     !props.mediaSizeBounding &&
       props.onSetMediaSizeBounding(props.modelSettings.sizeBounding);
-    !props.mediaModel && props.onSetMediaModel(props.modelSettings.model);
+    !props.mediaModel &&
+      props.onSetMediaModel(props.modelSettings.model.clone());
   }, []);
 
   setTimeout(() => setLoading(false), 1500);
@@ -85,12 +85,12 @@ const MediaCanvas = (props) => {
           <Controls autoRotate={props.mediaControls.mediaAutorotate} />
         )}
         <DControls dragObjects={props.mediaState.dragObjects} />
-        {/* <UserModel
+        <UserModel
           model={props.mediaModel}
           toggleMediaLock={props.onToggleMediaLock}
           setDrag={props.onSetMediaDragObjects}
           dragObjects={props.mediaState.dragObjects}
-        /> */}
+        />
         {props.mediaControls.sphere && (
           <WSphere
             sphere={props.mediaControls.sphere}
