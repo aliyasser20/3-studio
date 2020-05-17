@@ -20,6 +20,8 @@ import DControls from "../DragControls/DControls";
 import GroundPlane from "../OldCanvas/GroundPlane/GroundPlane";
 import KLight from "../Models/KLight";
 import LSphere from "../Models/LSphere";
+import DLight from "../Models/DLight";
+
 
 const MediaCanvas = (props) => {
   console.log(props.currentEnvOption);
@@ -113,7 +115,15 @@ const MediaCanvas = (props) => {
             dragObjects={props.mediaState.dragObjects}
           />
         )}
-        {/* <GroundPlane /> */}
+        {props.mediaControls.dLight && (
+          <DLight
+            dLight={props.mediaControls.dLight}
+            toggleMediaLock={props.onToggleMediaLock}
+            setDrag={props.onSetMediaDragObjects}
+            dragObjects={props.mediaState.dragObjects}
+          />
+        )}
+        <GroundPlane />
       </Canvas>
     </>
   ) : (
@@ -123,7 +133,7 @@ const MediaCanvas = (props) => {
 
 MediaCanvas.propTypes = {
   modelSettings: PropTypes.object,
-  currentProject: PropTypes.object,
+  // currentProject: PropTypes.object,
   onSetMediaModel: PropTypes.func.isRequired,
   onSetMediaFov: PropTypes.func.isRequired,
   onSetMediaFar: PropTypes.func.isRequired,

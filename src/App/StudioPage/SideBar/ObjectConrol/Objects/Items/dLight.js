@@ -14,6 +14,8 @@ import { FormControlLabel, Checkbox, Slider } from "@material-ui/core";
 const DLight = (props) => {
   const [openDLight, setOpenDLight] = useState(false);
   const [orbit, setOrbit] = useState(false);
+  const [rotations, setRotations] = useState(false);
+
   const handleClick = () => {
     setOpenDLight(!openDLight);
   };
@@ -62,6 +64,28 @@ const DLight = (props) => {
       orbit: { ...props.dLight.orbit, z: !props.dLight.orbit.z },
     };
     props.onSetDLight(toggleMovmentZ);
+  };
+
+  const handleXrotation = () => {
+    const toggleRotateX = {
+      ...props.dLight,
+      rotate: { ...props.dLight.rotate, x: !props.dLight.rotate.x },
+    };
+    props.onSetDLight(toggleRotateX);
+  };
+  const handleYrotation = () => {
+    const toggleRotateY = {
+      ...props.dLight,
+      rotate: { ...props.dLight.rotate, y: !props.dLight.rotate.y },
+    };
+    props.onSetDLight(toggleRotateY);
+  };
+  const handleZrotation = () => {
+    const toggleRotateZ = {
+      ...props.dLight,
+      rotate: { ...props.dLight.rotate, z: !props.dLight.rotate.z },
+    };
+    props.onSetDLight(toggleRotateZ);
   };
 
   return (
@@ -130,6 +154,66 @@ const DLight = (props) => {
                   }
                 />
               </ListItemIcon>
+              <ListItemText primary="Z-movment" />
+            </ListItem>
+          </List>
+        </Collapse>
+        <ListItem button onClick={() => setRotations(!rotations)}>
+          <ListItemText primary="Rotation Options" />
+          {rotations ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={rotations} timeaout="auto" unmountOnExit>
+          <List component="div" className="details-section" disablePadding>
+            <ListItem>
+              <ListItemIcon>
+                <FormControlLabel
+                  className="custom-label"
+                  control={
+                    <Checkbox
+                      className="custom-checkbox"
+                      checked={props.dLight.rotate.x}
+                      onChange={handleXrotation}
+                      name="x-rotation"
+                    />
+                  }
+                />
+              </ListItemIcon>
+              <ListItemText primary="X-rotation" />
+            </ListItem>
+          </List>
+          <List component="div" className="details-section" disablePadding>
+            <ListItem>
+              <ListItemIcon>
+                <FormControlLabel
+                  className="custom-label"
+                  control={
+                    <Checkbox
+                      className="custom-checkbox"
+                      checked={props.dLight.rotate.y}
+                      onChange={handleYrotation}
+                      name="y-rotation"
+                    />
+                  }
+                />
+              </ListItemIcon>
+              <ListItemText primary="Y-rotation" />
+            </ListItem>
+          </List>
+          <List component="div" className="details-section" disablePadding>
+            <ListItem>
+              <ListItemIcon>
+                <FormControlLabel
+                  className="custom-label"
+                  control={
+                    <Checkbox
+                      className="custom-checkbox"
+                      checked={props.dLight.rotate.z}
+                      onChange={handleZrotation}
+                      name="z-rotation"
+                    />
+                  }
+                />
+              </ListItemIcon>
               <ListItemText primary="Z-rotation" />
             </ListItem>
           </List>
@@ -155,7 +239,7 @@ const DLight = (props) => {
               valueLabelDisplay="auto"
               step={0.01}
               min={0}
-              max={1}
+              max={3}
               onChange={handleScaleChange}
             />
           </ListItem>
@@ -169,7 +253,7 @@ const DLight = (props) => {
               valueLabelDisplay="auto"
               step={0.01}
               min={0}
-              max={8}
+              max={10}
               onChange={handlePowerChange}
             />
           </ListItem>

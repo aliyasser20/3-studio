@@ -80,6 +80,47 @@ const ObjectsBar = (props) => {
   };
 
   const handleDLightGrab = () => {
+    // create just one triangle
+    const front = Math.tan(Math.PI / 6);
+    const back = Math.cos(Math.PI / 6);
+    const vertices = [
+      0,
+      1,
+      0, // 0: top
+      1,
+      0,
+      front, // 1: right
+      -1,
+      0,
+      front, // 2: left
+      0,
+      0,
+      -back, // 3: back middle
+      0,
+      -1,
+      0, // 4: bottom
+    ];
+    const faces = [
+      2,
+      1,
+      0, // left, right, top
+      1,
+      3,
+      0, // right, back, top
+      3,
+      2,
+      0, // back, left, top
+      2,
+      4,
+      1, // left, bottom, right
+      1,
+      4,
+      3, // right, bottom, back
+      3,
+      4,
+      2, // back, bottom, left
+    ];
+
     const radius = Math.ceil(props.boxRadius.geometry.boundingSphere.radius);
     let vol;
     if (radius > 50) {
@@ -89,7 +130,8 @@ const ObjectsBar = (props) => {
     }
     const initPosition = radius > 100 ? radius : radius * 0.3;
     props.onSetMediaDLight({
-      args: [radius / 4, vol, vol],
+      radius: radius / 2,
+      args: [vertices, faces, 30, 0],
       color: "fff",
       brightness: 0.1,
       scale: [0.3, 0.3, 0.3],
@@ -145,7 +187,7 @@ const ObjectsBar = (props) => {
             }}
             className="object dlight"
           >
-            K-LIGHT
+            D-LIGHT
           </div>
         </Paper>
       </div>
@@ -168,7 +210,7 @@ const mapDispatchToProps = (dispatch) => ({
   onSetMediaSphere: (sphere) => dispatch(actions.setMediaSphere(sphere)),
   onSetMediaLSphere: (lSphere) => dispatch(actions.setMediaLSphere(lSphere)),
   onSetMediaKeyLight: (kLight) => dispatch(actions.setMediaKeyLight(kLight)),
-  onSetMediaDLight: (dLight) => dispatch(actions.setMediaKeyLight(dLight)),
+  onSetMediaDLight: (dLight) => dispatch(actions.setMediaDLight(dLight)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ObjectsBar);
