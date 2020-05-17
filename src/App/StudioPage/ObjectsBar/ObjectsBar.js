@@ -135,6 +135,7 @@ const mapDispatchToProps = (dispatch) => ({
   onSetMediaSphere: (sphere) => dispatch(actions.setMediaSphere(sphere)),
   onSetMediaLSphere: (lSphere) => dispatch(actions.setMediaLSphere(lSphere)),
   onSetMediaKeyLight: (kLight) => dispatch(actions.setMediaKeyLight(kLight)),
+  onSetMediaDLight: (dLight) => dispatch(actions.setMediaKeyLight(dLight)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ObjectsBar);

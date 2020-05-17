@@ -70,7 +70,7 @@ const DLight = (props) => {
         <ListItemIcon>
           <HighlightOffIcon onClick={handleRemoveDLight} />
         </ListItemIcon>
-        <ListItemText primary="K-LIGHT" />
+        <ListItemText primary="D-LIGHT" />
         {openDLight ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={openDLight} timeout="auto" unmountOnExit>

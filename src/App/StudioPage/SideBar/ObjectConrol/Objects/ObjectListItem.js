@@ -54,7 +54,7 @@ const ObjectListItem = (props) => {
           onSetDragObjects={props.onSetMediaDragObjects}
         />
       )}
-      {props.kLight && (
+      {props.dLight && (
         <DLight
           onSetDLight={props.onSetMediaDLight}
           dLight={props.dLight}
