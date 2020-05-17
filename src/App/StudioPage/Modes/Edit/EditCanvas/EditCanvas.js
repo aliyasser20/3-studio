@@ -61,6 +61,7 @@ const EditCanvas = props => {
     if (props.selectedMaterial) {
       // console.log(e.object);
 
+      // Order is important
       props.onUpdateMaterial(e.object.name, {
         name: props.selectedMaterial
       });

@@ -12,11 +12,21 @@ import * as actions from "../../../store/actions/index";
 import "./PartCanvasArea.scss";
 
 const PartCanvasArea = props => {
-  const handleDrop = () => {
-    props.selectedPart.material = materialLibrary()[props.selectedMaterial];
+  const handleDrop = e => {
+    e.preventDefault();
 
-    // Set unsaved
-    props.onSetConfigurationUnsaved();
+    if (props.selectedMaterial) {
+      // Order is important
+      props.onUpdateMaterial(props.selectedPart.name, {
+        name: props.selectedMaterial
+      });
+
+      props.selectedPart.material = materialLibrary()[props.selectedMaterial];
+
+      props.onSetSelectedMaterial("");
+      // Set unsaved
+      props.onSetConfigurationUnsaved();
+    }
   };
 
   return (
@@ -24,7 +34,7 @@ const PartCanvasArea = props => {
       <Paper classes={{ root: "custom-paper" }} elevation={3}>
         <div
           onDragOver={e => e.preventDefault()}
-          onDrop={handleDrop}
+          onDrop={e => handleDrop(e)}
           className="canvas-container"
         >
           <PartCanvas />
@@ -37,7 +47,9 @@ const PartCanvasArea = props => {
 PartCanvasArea.propTypes = {
   selectedPart: PropTypes.object,
   selectedMaterial: PropTypes.string,
-  onSetConfigurationUnsaved: PropTypes.func.isRequired
+  onSetConfigurationUnsaved: PropTypes.func.isRequired,
+  onSetSelectedMaterial: PropTypes.func.isRequired,
+  onUpdateMaterial: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -46,7 +58,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSetConfigurationUnsaved: () => dispatch(actions.setConfigurationUnsaved())
+  onSetConfigurationUnsaved: () => dispatch(actions.setConfigurationUnsaved()),
+  onSetSelectedMaterial: material =>
+    dispatch(actions.setSelectedMaterial(material)),
+  onUpdateMaterial: (partName, material) =>
+    dispatch(actions.updateMaterials(partName, material))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PartCanvasArea);
