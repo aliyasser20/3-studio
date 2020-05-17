@@ -58,6 +58,8 @@ const MediaTopNav = (props) => {
     setOpen(false);
     const preview = document.querySelector("#preview-video");
     const vid = document.querySelector("video");
+    const img = document.querySelector("#preview-img");
+    img.src = "";
     vid && preview.removeChild(vid);
     setScreenshot("");
     URL.revokeObjectURL(blob);
@@ -99,6 +101,8 @@ const MediaTopNav = (props) => {
   };
   const handleRecord = () => {
     setScreenshot("");
+    const img = document.querySelector("#preview-img");
+    img.src = "";
     const ctx = document.querySelector("canvas");
     const exportVid = (blob) => {
       setBlob(blob);

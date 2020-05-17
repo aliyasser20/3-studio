@@ -31,18 +31,15 @@
   .recording {
     animation: pump 0.5s ease-in-out infinite alternate;
   }
-  .recording-text{
+  .recording-text {
     display: inline-block;
     position: relative;
     width: 100px;
   }
   .timer-btn {
     color: #fff;
-    border-radius: 25px;;
-    background: linear-gradient(
-      var(--gradient-top),
-      var(--gradient-bottom)
-    );
+    border-radius: 25px;
+    background: linear-gradient(var(--gradient-top), var(--gradient-bottom));
     &:hover {
       background: linear-gradient(
         var(--gradient-top-darker),
@@ -77,6 +74,41 @@
         cursor: pointer;
         transform: scale(1.2);
         color: var(--gradient-top);
+      }
+    }
+  }
+}
+
+.screenshot-preview {
+  .MuiPaper-root.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm.MuiPaper-elevation24.MuiPaper-rounded {
+    overflow: hidden;
+    align-items: center;
+    width: 70%;
+    background-color: rgba(26, 26, 26, 0.9);
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .MuiDialogActions-root.MuiDialogActions-spacing {
+      display: grid;
+      grid-auto-flow: column;
+      align-items: center;
+      justify-content: center;
+      grid-gap: 1em;
+      padding-bottom: 1em;
+      .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary {
+        color:#fff;
+        background: linear-gradient(
+          var(--gradient-top),
+          var(--gradient-bottom)
+        );
+        &:hover {
+          background: linear-gradient(
+            var(--gradient-top-darker),
+            var(--gradient-bottom-darker)
+          );
+        }
       }
     }
   }
