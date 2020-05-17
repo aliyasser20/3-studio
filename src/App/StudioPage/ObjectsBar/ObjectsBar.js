@@ -76,6 +76,7 @@ const ObjectsBar = (props) => {
       power: 0.1,
       rotate: { x: false, y: false, z: false },
       orbit: { x: false, y: false, z: false },
+      wire: false,
     });
   };
 
@@ -139,6 +140,29 @@ const ObjectsBar = (props) => {
       power: 0.5,
       rotate: { x: false, y: false, z: false },
       orbit: { x: false, y: false, z: false },
+      wire: false,
+    });
+  };
+
+  const handleBLightGrab = () => {
+    const radius = Math.ceil(props.boxRadius.geometry.boundingSphere.radius);
+    let vol;
+    if (radius > 50) {
+      vol = (4 * Math.PI * radius) / 100;
+    } else {
+      vol = 4 * Math.PI * radius;
+    }
+    const initPosition = radius > 100 ? radius : radius * 0.3;
+    props.onSetMediaBLight({
+      args: [radius / 4, vol, vol],
+      color: "fff",
+      brightness: 0.1,
+      scale: [0.3, 0.3, 0.3],
+      initPosition,
+      power: 0.1,
+      rotate: { x: false, y: false, z: false },
+      orbit: { x: false, y: false, z: false },
+      wire: false,
     });
   };
   return (
@@ -189,6 +213,17 @@ const ObjectsBar = (props) => {
           >
             D-LIGHT
           </div>
+          <div
+            id="box-Light"
+            draggable
+            onDragEnd={(e) => {
+              e.dataTransfer.dropEffect = "link";
+              handleBLightGrab();
+            }}
+            className="object dlight"
+          >
+            B-LIGHT
+          </div>
         </Paper>
       </div>
     </ThemeProvider>
@@ -201,6 +236,7 @@ ObjectsBar.propTypes = {
   onSetMediaKeyLight: PropTypes.func,
   onSetMediaLSphere: PropTypes.func,
   onSetMediaDLight: PropTypes.func,
+  onSetMediaBLight: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -211,6 +247,7 @@ const mapDispatchToProps = (dispatch) => ({
   onSetMediaLSphere: (lSphere) => dispatch(actions.setMediaLSphere(lSphere)),
   onSetMediaKeyLight: (kLight) => dispatch(actions.setMediaKeyLight(kLight)),
   onSetMediaDLight: (dLight) => dispatch(actions.setMediaDLight(dLight)),
+  onSetMediaBLight: (bLight) => dispatch(actions.setMediaDLight(bLight)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ObjectsBar);
