@@ -22,6 +22,7 @@ import WSphere from "./Items/wSphere";
 import KLight from "./Items/kLight";
 import LSphere from "./Items/lSphere";
 import DLight from "./Items/dLight";
+import BLight from "./Items/bLight";
 
 const ObjectListItem = (props) => {
   return (
@@ -62,6 +63,14 @@ const ObjectListItem = (props) => {
           onSetDragObjects={props.onSetMediaDragObjects}
         />
       )}
+      {props.bLight && (
+        <BLight
+          onSetBLight={props.onSetMediaBLight}
+          bLight={props.bLight}
+          dragObjects={props.dragObjects}
+          onSetDragObjects={props.onSetMediaDragObjects}
+        />
+      )}
     </List>
   );
 };
@@ -71,7 +80,9 @@ ObjectListItem.propTypes = {
   lSphere: PropTypes.object,
   kLight: PropTypes.object,
   dLight: PropTypes.object,
+  bLight: PropTypes.object,
   onSetMediaDLight: PropTypes.func.isRequired,
+  onSetMediaBLight: PropTypes.func.isRequired,
   onSetMediaSphere: PropTypes.func.isRequired,
   dragObjects: PropTypes.array,
   onSetMediaDragObjects: PropTypes.func,
@@ -85,6 +96,7 @@ const mapStateToProps = (state) => ({
   dragObjects: state.mediaState.dragObjects,
   kLight: state.mediaControls.keyLight,
   dLight: state.mediaControls.dLight,
+  bLight: state.mediaControls.bLight,
 });
 const mapDispatchToState = (dispatch) => ({
   onSetMediaSphere: (arg) => dispatch(actions.setMediaSphere(arg)),
@@ -93,6 +105,7 @@ const mapDispatchToState = (dispatch) => ({
     dispatch(actions.setMediaDragObjects(dragObject)),
   onSetMediaKeyLight: (kLight) => dispatch(actions.setMediaKeyLight(kLight)),
   onSetMediaDLight: (dLight) => dispatch(actions.setMediaDLight(dLight)),
+  onSetMediaBLight: (bLight) => dispatch(actions.setMediaBLight(bLight)),
 });
 
 export default connect(mapStateToProps, mapDispatchToState)(ObjectListItem);

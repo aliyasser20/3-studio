@@ -21,6 +21,7 @@ import GroundPlane from "../OldCanvas/GroundPlane/GroundPlane";
 import KLight from "../Models/KLight";
 import LSphere from "../Models/LSphere";
 import DLight from "../Models/DLight";
+import BLight from "../Models/Blight";
 
 const MediaCanvas = (props) => {
   console.log(props.currentEnvOption);
@@ -118,6 +119,14 @@ const MediaCanvas = (props) => {
         {props.mediaControls.dLight && (
           <DLight
             dLight={props.mediaControls.dLight}
+            toggleMediaLock={props.onToggleMediaLock}
+            setDrag={props.onSetMediaDragObjects}
+            dragObjects={props.mediaState.dragObjects}
+          />
+        )}
+        {props.mediaControls.bLight && (
+          <BLight
+            bLight={props.mediaControls.bLight}
             toggleMediaLock={props.onToggleMediaLock}
             setDrag={props.onSetMediaDragObjects}
             dragObjects={props.mediaState.dragObjects}
