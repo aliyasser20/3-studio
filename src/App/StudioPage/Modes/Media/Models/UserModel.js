@@ -8,11 +8,11 @@ const UserModel = (props) => {
   const currentModel = useRef();
 
   //for drag controls
-  // useEffect(() => {
-  //   currentModel.current &&
-  //     !props.dragObjects.includes(currentModel.current) &&
-  //     props.setDrag(currentModel.current);
-  // }, []);
+  useEffect(() => {
+    currentModel.current &&
+      !props.dragObjects.includes(currentModel.current) &&
+      props.setDrag([...props.dragObjects, currentModel.current]);
+  }, []);
 
   const render = model ? (
     <primitive
@@ -20,8 +20,8 @@ const UserModel = (props) => {
       ref={currentModel}
       dispose={null}
       castShadow
-      // onPointerOver={(e) => props.toggleMediaLock()}
-      // onPointerOut={(e) => props.toggleMediaLock()}
+      onPointerOver={(e) => props.toggleMediaLock()}
+      onPointerOut={(e) => props.toggleMediaLock()}
       rotation={[0, 0, 0]}
     />
   ) : null;
