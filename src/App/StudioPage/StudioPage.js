@@ -16,6 +16,7 @@ import ExtraControls from "./ExtraControls/ExtraControls";
 import createModel from "../../helpers/createModel";
 import * as actions from "../../store/actions/index";
 import LoaderModel from "./LoaderModal/LoaderModel";
+import PartCanvasArea from "./PartCanvasArea/PartCanvasArea";
 
 import "./StudioPage.scss";
 import ObjectsBar from "./ObjectsBar/ObjectsBar";
@@ -79,7 +80,10 @@ const StudioPage = props => {
           <div className="custom-grid">
             <StudioTopBar />
             <div className="working-area">
-              <SideBar />
+              <div className="left-bar-area">
+                <SideBar />
+                {props.currentMode === "EDIT" && <PartCanvasArea />}
+              </div>
               <div className="sub-working-area">
                 <div className="canvas-and-controls-area">
                   {props.currentMode === "EDIT" && <EditCanvas />}
