@@ -7,74 +7,97 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
-import StarBorder from "@material-ui/icons/StarBorder";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import ColorPickerPopover from "../../../ColorPickerPopover/ColorPickerPopover";
 import { FormControlLabel, Checkbox, Slider } from "@material-ui/core";
 
-const KLight = (props) => {
-  const [openKLight, setOpenKLight] = useState(false);
+const DLight = (props) => {
+  const [openDLight, setOpenDLight] = useState(false);
   const [orbit, setOrbit] = useState(false);
+  const [rotations, setRotations] = useState(false);
+
   const handleClick = () => {
-    setOpenKLight(!openKLight);
+    setOpenDLight(!openDLight);
   };
 
-  const handleRemoveKLight = () => {
+  const handleRemoveDLight = () => {
     const currentDragObjects = [...props.dragObjects];
     console.log(currentDragObjects);
-    const removed = currentDragObjects.filter((obj) => obj.name !== "k-light");
+    const removed = currentDragObjects.filter((obj) => obj.name !== "d-light");
     props.onSetDragObjects(removed);
-    props.onSetKLight(null);
-    setOpenKLight(false);
+    props.onSetDLight(null);
+    setOpenDLight(false);
   };
 
   const handleColorSet = (color) => {
-    const kLightColor = { ...props.kLight, color };
-    props.onSetKLight(kLightColor);
+    const dLightColor = { ...props.dLight, color };
+    props.onSetDLight(dLightColor);
   };
 
   const handleScaleChange = (e, newValue) => {
     const currentScale = [newValue, newValue, newValue];
-    const newScale = { ...props.kLight, scale: [...currentScale] };
-    props.onSetKLight(newScale);
+    const newScale = { ...props.dLight, scale: [...currentScale] };
+    props.onSetDLight(newScale);
   };
   const handlePowerChange = (e, newValue) => {
     const power = newValue;
-    const newSpread = { ...props.kLight, power };
-    props.onSetKLight(newSpread);
+    const newSpread = { ...props.dLight, power };
+    props.onSetDLight(newSpread);
   };
   const handleXmovment = () => {
     const toggleMovmentX = {
-      ...props.kLight,
-      orbit: { ...props.kLight.orbit, x: !props.kLight.orbit.x },
+      ...props.dLight,
+      orbit: { ...props.dLight.orbit, x: !props.dLight.orbit.x },
     };
-    props.onSetKLight(toggleMovmentX);
+    props.onSetDLight(toggleMovmentX);
   };
   const handleYmovment = () => {
     const toggleMovmentY = {
-      ...props.kLight,
-      orbit: { ...props.kLight.orbit, y: !props.kLight.orbit.y },
+      ...props.dLight,
+      orbit: { ...props.dLight.orbit, y: !props.dLight.orbit.y },
     };
-    props.onSetKLight(toggleMovmentY);
+    props.onSetDLight(toggleMovmentY);
   };
   const handleZmovment = () => {
     const toggleMovmentZ = {
-      ...props.kLight,
-      orbit: { ...props.kLight.orbit, z: !props.kLight.orbit.z },
+      ...props.dLight,
+      orbit: { ...props.dLight.orbit, z: !props.dLight.orbit.z },
     };
-    props.onSetKLight(toggleMovmentZ);
+    props.onSetDLight(toggleMovmentZ);
+  };
+
+  const handleXrotation = () => {
+    const toggleRotateX = {
+      ...props.dLight,
+      rotate: { ...props.dLight.rotate, x: !props.dLight.rotate.x },
+    };
+    props.onSetDLight(toggleRotateX);
+  };
+  const handleYrotation = () => {
+    const toggleRotateY = {
+      ...props.dLight,
+      rotate: { ...props.dLight.rotate, y: !props.dLight.rotate.y },
+    };
+    props.onSetDLight(toggleRotateY);
+  };
+  const handleZrotation = () => {
+    const toggleRotateZ = {
+      ...props.dLight,
+      rotate: { ...props.dLight.rotate, z: !props.dLight.rotate.z },
+    };
+    props.onSetDLight(toggleRotateZ);
   };
 
   return (
     <>
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
-          <HighlightOffIcon onClick={handleRemoveKLight} />
+          <HighlightOffIcon onClick={handleRemoveDLight} />
         </ListItemIcon>
-        <ListItemText primary="K-LIGHT" />
-        {openKLight ? <ExpandLess /> : <ExpandMore />}
+        <ListItemText primary="D-LIGHT" />
+        {openDLight ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
-      <Collapse in={openKLight} timeout="auto" unmountOnExit>
+      <Collapse in={openDLight} timeout="auto" unmountOnExit>
         <ListItem button onClick={() => setOrbit(!orbit)}>
           <ListItemText primary="Movment Options" />
           {orbit ? <ExpandLess /> : <ExpandMore />}
@@ -88,7 +111,7 @@ const KLight = (props) => {
                   control={
                     <Checkbox
                       className="custom-checkbox"
-                      checked={props.kLight.orbit.x}
+                      checked={props.dLight.orbit.x}
                       onChange={handleXmovment}
                       name="x-movment"
                     />
@@ -106,7 +129,7 @@ const KLight = (props) => {
                   control={
                     <Checkbox
                       className="custom-checkbox"
-                      checked={props.kLight.orbit.y}
+                      checked={props.dLight.orbit.y}
                       onChange={handleYmovment}
                       name="Y-movment"
                     />
@@ -124,9 +147,69 @@ const KLight = (props) => {
                   control={
                     <Checkbox
                       className="custom-checkbox"
-                      checked={props.kLight.orbit.z}
+                      checked={props.dLight.orbit.z}
                       onChange={handleZmovment}
                       name="Z-movement"
+                    />
+                  }
+                />
+              </ListItemIcon>
+              <ListItemText primary="Z-movment" />
+            </ListItem>
+          </List>
+        </Collapse>
+        <ListItem button onClick={() => setRotations(!rotations)}>
+          <ListItemText primary="Rotation Options" />
+          {rotations ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={rotations} timeaout="auto" unmountOnExit>
+          <List component="div" className="details-section" disablePadding>
+            <ListItem>
+              <ListItemIcon>
+                <FormControlLabel
+                  className="custom-label"
+                  control={
+                    <Checkbox
+                      className="custom-checkbox"
+                      checked={props.dLight.rotate.x}
+                      onChange={handleXrotation}
+                      name="x-rotation"
+                    />
+                  }
+                />
+              </ListItemIcon>
+              <ListItemText primary="X-rotation" />
+            </ListItem>
+          </List>
+          <List component="div" className="details-section" disablePadding>
+            <ListItem>
+              <ListItemIcon>
+                <FormControlLabel
+                  className="custom-label"
+                  control={
+                    <Checkbox
+                      className="custom-checkbox"
+                      checked={props.dLight.rotate.y}
+                      onChange={handleYrotation}
+                      name="y-rotation"
+                    />
+                  }
+                />
+              </ListItemIcon>
+              <ListItemText primary="Y-rotation" />
+            </ListItem>
+          </List>
+          <List component="div" className="details-section" disablePadding>
+            <ListItem>
+              <ListItemIcon>
+                <FormControlLabel
+                  className="custom-label"
+                  control={
+                    <Checkbox
+                      className="custom-checkbox"
+                      checked={props.dLight.rotate.z}
+                      onChange={handleZrotation}
+                      name="z-rotation"
                     />
                   }
                 />
@@ -140,7 +223,7 @@ const KLight = (props) => {
             <ListItemIcon>
               <ColorPickerPopover
                 visible
-                color={props.kLight.color}
+                color={props.dLight.color}
                 setColor={handleColorSet}
               />
             </ListItemIcon>
@@ -152,11 +235,11 @@ const KLight = (props) => {
             <ListItemText primary="Scale" />
             <Slider
               className="scale-slider"
-              value={props.kLight.scale[0]}
+              value={props.dLight.scale[0]}
               valueLabelDisplay="auto"
               step={0.01}
               min={0}
-              max={1}
+              max={3}
               onChange={handleScaleChange}
             />
           </ListItem>
@@ -166,11 +249,11 @@ const KLight = (props) => {
             <ListItemText primary="Power" />
             <Slider
               className="scale-slider"
-              value={props.kLight.power}
+              value={props.dLight.power}
               valueLabelDisplay="auto"
               step={0.01}
               min={0}
-              max={3}
+              max={10}
               onChange={handlePowerChange}
             />
           </ListItem>
@@ -180,11 +263,11 @@ const KLight = (props) => {
   );
 };
 
-KLight.propTypes = {
-  onSetKLight: PropTypes.func.isRequired,
-  kLight: PropTypes.object,
+DLight.propTypes = {
+  onSetDLight: PropTypes.func.isRequired,
+  dLight: PropTypes.object,
   dragObjects: PropTypes.array,
   onSetDragObjects: PropTypes.func,
 };
 
-export default KLight;
+export default DLight;

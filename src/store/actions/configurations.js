@@ -3,10 +3,12 @@ import backendAxios from "../../axiosInstances/backendAxios";
 
 import * as environmentControls from "./environmentControls";
 import * as lightControls from "./lightControls";
+import * as appearanceControls from "./appearanceControls";
 
 export const setConfiguration = config => dispatch => {
   dispatch(environmentControls.bulkSetEnvironmentControls(config));
   dispatch(lightControls.bulkSetLightControls(config));
+  dispatch(appearanceControls.updateEntireMaterials(config.materials));
 };
 
 export const setCurrentConfigurationId = id => ({
@@ -23,6 +25,10 @@ export const setConfigurationSaved = () => ({
   type: actionTypes.SET_CONFIGURATION_SAVED
 });
 
+export const setConfigurationUnsaved = () => ({
+  type: actionTypes.SET_CONFIGURATION_UNSAVED
+});
+
 export const setAllConfigurations = configs => ({
   type: actionTypes.SET_ALL_CONFIGURATIONS,
   configs
@@ -36,6 +42,16 @@ export const addConfiguration = config => ({
 export const deleteConfiguration = configId => ({
   type: actionTypes.DELETE_CONFIGURATION,
   configId
+});
+
+export const updateConfiguration = (configId, configData) => ({
+  type: actionTypes.UPDATE_CONFIGURATION,
+  configId,
+  configData
+});
+
+export const resetConfigurations = () => ({
+  type: actionTypes.RESET_CONFIGURATIONS
 });
 
 export const getConfigurations = projectId => dispatch => {

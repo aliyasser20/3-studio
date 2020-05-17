@@ -24,6 +24,7 @@ import Alert from "../../../UI/Alert/Alert";
 import * as actions from "../../../../store/actions/index";
 import backendAxios from "../../../../axiosInstances/backendAxios";
 import { useAuth0 } from "../../../../react-auth0-spa";
+import { updateModelMaterials } from "../../../../helpers/updateModelMaterials";
 
 import "./ConfigurationSelector.scss";
 
@@ -64,7 +65,7 @@ const ConfigurationSelector = props => {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  const saveConfig = () => {
+  const saveConfig = () =>
     backendAxios
       .put("/api/configurations", {
         userId: user.sub,
@@ -85,7 +86,7 @@ const ConfigurationSelector = props => {
             ambientLightColor: props.ambientLightColor,
             directionalLightColor: props.directionalLightColor,
             hemisphereLightColor: props.hemisphereLightColor,
-            materials: []
+            materials: props.materials
           }
         }
       })
@@ -95,7 +96,6 @@ const ConfigurationSelector = props => {
       .catch(err => {
         console.log(err);
       });
-  };
 
   const newConfiguration = () => {
     const newConfigData = {
@@ -119,7 +119,7 @@ const ConfigurationSelector = props => {
         ambientLightColor: props.ambientLightColor,
         directionalLightColor: props.directionalLightColor,
         hemisphereLightColor: props.hemisphereLightColor,
-        materials: []
+        materials: props.materials
       };
     } else {
       newConfigData.config_data = {
@@ -143,7 +143,7 @@ const ConfigurationSelector = props => {
         ambientLightColor: "ffffff",
         directionalLightColor: "ffffff",
         hemisphereLightColor: "ffffff",
-        materials: []
+        materials: {}
       };
     }
 
@@ -152,26 +152,55 @@ const ConfigurationSelector = props => {
         configuration: newConfigData
       })
       .then(resp => {
-        newConfigData.id = resp.data.id;
-
         // ! Order here is very important because of stringify!!!
-        props.onSetConfiguration(newConfigData.config_data);
+        saveConfig().then(() => {
+          newConfigData.id = resp.data.id;
+          props.onUpdateConfiguration(
+            props.currentConfigurationId,
+            JSON.stringify({
+              bgEnvironment: props.bgEnvironment,
+              bgSolid: props.bgSolid,
+              bgColor: props.bgColor,
+              mapEnvironment: props.mapEnvironment,
+              currentEnvironmentOption: props.currentEnvironmentOption,
+              ambientLight: props.ambientLight,
+              directionalLight: props.directionalLight,
+              hemisphereLight: props.hemisphereLight,
+              ambientLightIntensity: props.ambientIntensity,
+              directionalLightIntensity: props.directionalIntensity,
+              hemisphereLightIntensity: props.hemisphereIntensity,
+              ambientLightColor: props.ambientLightColor,
+              directionalLightColor: props.directionalLightColor,
+              hemisphereLightColor: props.hemisphereLightColor,
+              materials: props.materials
+            })
+          );
 
-        newConfigData.config_data = JSON.stringify(newConfigData.config_data);
+          props.onSetConfiguration(newConfigData.config_data);
 
-        saveConfig();
+          updateModelMaterials(
+            props.model,
+            newConfigData.config_data.materials
+          );
 
-        props.onAddConfiguration(newConfigData);
-        props.onSetCurrentConfigurationName(configurationNameField);
-        props.onSetCurrentConfigurationId(resp.data.id);
+          newConfigData.config_data = JSON.stringify(newConfigData.config_data);
 
-        // Order is important
-        setMessage(`Switched to new configuration: ${configurationNameField}`);
-        setSeverity("success");
-        setSnackBarOpen(true);
-        setCreateConfiguration(false);
-        setConfigurationNameField("");
-        setCopyCurrentConfiguration(false);
+          props.onResetPartState();
+
+          props.onAddConfiguration(newConfigData);
+          props.onSetCurrentConfigurationName(configurationNameField);
+          props.onSetCurrentConfigurationId(resp.data.id);
+
+          // Order is important
+          setMessage(
+            `Switched to new configuration: ${configurationNameField}`
+          );
+          setSeverity("success");
+          setSnackBarOpen(true);
+          setCreateConfiguration(false);
+          setConfigurationNameField("");
+          setCopyCurrentConfiguration(false);
+        });
       })
       .catch(err => {
         console.log(err);
@@ -195,10 +224,24 @@ const ConfigurationSelector = props => {
         }
       })
       .then(resp => {
-        console.log(resp);
-
         // Order is important
         props.onDeleteConfiguration(configToDelete.id);
+
+        if (props.currentConfigurationId === configToDelete.id) {
+          props.onSetConfiguration(
+            JSON.parse(props.allConfigurations[0].config_data)
+          );
+          props.onSetCurrentConfigurationName(props.allConfigurations[0].name);
+          props.onSetCurrentConfigurationId(props.allConfigurations[0].id);
+
+          updateModelMaterials(
+            props.model,
+            JSON.parse(props.allConfigurations[0].config_data).materials
+          );
+
+          props.onResetPartState();
+        }
+
         setMessage("Configuration successfully deleted!");
         setSeverity("success");
         setSnackBarOpen(true);
@@ -242,6 +285,36 @@ const ConfigurationSelector = props => {
       props.onSetCurrentConfigurationName(configuration.name);
       props.onSetCurrentConfigurationId(configuration.id);
 
+      saveConfig().then(() => {
+        props.onUpdateConfiguration(
+          props.currentConfigurationId,
+          JSON.stringify({
+            bgEnvironment: props.bgEnvironment,
+            bgSolid: props.bgSolid,
+            bgColor: props.bgColor,
+            mapEnvironment: props.mapEnvironment,
+            currentEnvironmentOption: props.currentEnvironmentOption,
+            ambientLight: props.ambientLight,
+            directionalLight: props.directionalLight,
+            hemisphereLight: props.hemisphereLight,
+            ambientLightIntensity: props.ambientIntensity,
+            directionalLightIntensity: props.directionalIntensity,
+            hemisphereLightIntensity: props.hemisphereIntensity,
+            ambientLightColor: props.ambientLightColor,
+            directionalLightColor: props.directionalLightColor,
+            hemisphereLightColor: props.hemisphereLightColor,
+            materials: props.materials
+          })
+        );
+
+        updateModelMaterials(
+          props.model,
+          JSON.parse(configuration.config_data).materials
+        );
+
+        props.onResetPartState();
+      });
+
       props.onSetConfiguration(JSON.parse(configuration.config_data));
     };
 
@@ -252,14 +325,16 @@ const ConfigurationSelector = props => {
         onClick={handleSelectConfigurationOption}
       >
         <p className="configuration-name">{configuration.name}</p>
-        <IconButton
-          aria-label="delete-configuration"
-          classes={{ root: "delete-configuration-button" }}
-          size="small"
-          onClick={e => garbageClick(e, configuration.id, configuration.name)}
-        >
-          <DeleteIcon />
-        </IconButton>
+        {configuration.name !== "default" && (
+          <IconButton
+            aria-label="delete-configuration"
+            classes={{ root: "delete-configuration-button" }}
+            size="small"
+            onClick={e => garbageClick(e, configuration.id, configuration.name)}
+          >
+            <DeleteIcon />
+          </IconButton>
+        )}
       </div>
     );
   });
@@ -329,7 +404,7 @@ const ConfigurationSelector = props => {
             type="text"
             fullWidth
             onChange={e =>
-              setConfigurationNameField(e.target.value.slice(0, 10))
+              setConfigurationNameField(e.target.value.slice(0, 15))
             }
           />
           <FormControlLabel
@@ -436,7 +511,11 @@ ConfigurationSelector.propTypes = {
   onAddConfiguration: PropTypes.func.isRequired,
   currentConfigurationId: PropTypes.number.isRequired,
   onSetConfigurationSaved: PropTypes.func.isRequired,
-  onDeleteConfiguration: PropTypes.func.isRequired
+  onDeleteConfiguration: PropTypes.func.isRequired,
+  onUpdateConfiguration: PropTypes.func.isRequired,
+  materials: PropTypes.object.isRequired,
+  model: PropTypes.object,
+  onResetPartState: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -457,7 +536,9 @@ const mapStateToProps = state => ({
   directionalLightColor: state.lightControls.directionalLightColor,
   hemisphereLightColor: state.lightControls.hemisphereLightColor,
   currentConfigurationId: state.configurations.currentConfigurationId,
-  currentEnvironmentOption: state.environmentControls.currentEnvironmentOption
+  currentEnvironmentOption: state.environmentControls.currentEnvironmentOption,
+  materials: state.appearanceControls.materials,
+  model: state.currentModel.model
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -469,7 +550,10 @@ const mapDispatchToProps = dispatch => ({
   onAddConfiguration: config => dispatch(actions.addConfiguration(config)),
   onSetConfigurationSaved: () => dispatch(actions.setConfigurationSaved()),
   onDeleteConfiguration: configId =>
-    dispatch(actions.deleteConfiguration(configId))
+    dispatch(actions.deleteConfiguration(configId)),
+  onUpdateConfiguration: (configId, configData) =>
+    dispatch(actions.updateConfiguration(configId, configData)),
+  onResetPartState: () => dispatch(actions.resetPartState())
 });
 
 export default connect(

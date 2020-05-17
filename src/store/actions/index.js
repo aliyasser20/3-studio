@@ -26,7 +26,8 @@ export {
   setFov,
   setNear,
   setSizeBounding,
-  resetEditState
+  resetEditState,
+  setSelectedPart
 } from "./currentModel";
 
 export { setCameraMode } from "./cameraControls";
@@ -39,16 +40,27 @@ export {
   resetExtraControls
 } from "./extraControls";
 
-export { setSelectedMaterial } from "./appearanceControls";
+export {
+  setSelectedMaterial,
+  updateMaterials,
+  updateEntireMaterials,
+  resetAppearanceControls
+} from "./appearanceControls";
+
 export {
   toggleMediaLock,
   toggleMediaBoundingBox,
   toggleMediaAxis,
   toggleMediaAutoRotate,
   setMediaSphere,
+  setMediaLSphere,
+  setMediaMBox,
+  setMediaWBox,
+  setMediaBLight,
+  setMediaDLight,
   setMediaKeyLight,
-  setMediaBackWall,
-  setMediaGroundPole,
+  setMediaPWall,
+  setMediaPGround,
   toggleMediaEnvB,
   toggleMediaSolidB,
   toggleMediaNoB,
@@ -86,12 +98,24 @@ export {
 export {
   getConfigurations,
   setConfigurationSaved,
+  setConfigurationUnsaved,
   setAllConfigurations,
   setConfiguration,
   setCurrentConfigurationId,
   setCurrentConfigurationName,
   addConfiguration,
-  deleteConfiguration
+  deleteConfiguration,
+  updateConfiguration,
+  resetConfigurations
 } from "./configurations";
 
 export { setProfileImage } from "./users";
+
+export {
+  setPartModel,
+  setPartFar,
+  setPartFov,
+  setPartNear,
+  setPartSizeBounding,
+  resetPartState
+} from "./partModel";

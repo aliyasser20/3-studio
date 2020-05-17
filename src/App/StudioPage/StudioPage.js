@@ -16,6 +16,7 @@ import ExtraControls from "./ExtraControls/ExtraControls";
 import createModel from "../../helpers/createModel";
 import * as actions from "../../store/actions/index";
 import LoaderModel from "./LoaderModal/LoaderModel";
+import PartCanvasArea from "./PartCanvasArea/PartCanvasArea";
 
 import "./StudioPage.scss";
 import ObjectsBar from "./ObjectsBar/ObjectsBar";
@@ -23,8 +24,19 @@ import ObjectsBar from "./ObjectsBar/ObjectsBar";
 const StudioPage = props => {
   // ? Load model with materials
   useEffect(() => {
-    if (props.currentProject && props.currentProject.modelLink) {
-      props.onGetConfigurations(props.currentProject.id);
+    if (
+      props.currentProject &&
+      props.currentProject.modelLink &&
+      props.allConfigurations[0]
+    ) {
+      let currentConfigData = JSON.parse(props.allConfigurations[0].config_data)
+        .materials;
+
+      props.allConfigurations.forEach(config => {
+        if (config.id === props.currentConfigurationId) {
+          currentConfigData = JSON.parse(config.config_data).materials;
+        }
+      });
 
       new GLTFLoader().load(props.currentProject.modelLink, gltf =>
         // Order of inputs is important
@@ -34,20 +46,32 @@ const StudioPage = props => {
           props.onSetFar,
           props.onSetModel,
           props.onSetSizeBounding,
-          props.onSetNear
+          props.onSetNear,
+          currentConfigData
         )
       );
     }
   }, [
-    props.onSetModel,
     props.currentProject,
     props.onSetBox,
-    props.onSetFar,
+    props.onSetModel,
     props.onSetSizeBounding,
+    props.onSetFar,
     props.onSetNear,
-    props
+    props.allConfigurations,
+    props.currentConfigurationId
   ]);
   //
+
+  useEffect(() => {
+    if (
+      props.currentProject &&
+      props.currentProject.modelLink &&
+      props.allConfigurations.length === 0
+    ) {
+      props.onGetConfigurations(props.currentProject.id);
+    }
+  }, [props]);
 
   const page =
     props.currentProject && props.currentProject.modelLink ? (
@@ -56,7 +80,10 @@ const StudioPage = props => {
           <div className="custom-grid">
             <StudioTopBar />
             <div className="working-area">
-              <SideBar />
+              <div className="left-bar-area">
+                <SideBar />
+                {props.currentMode === "EDIT" && <PartCanvasArea />}
+              </div>
               <div className="sub-working-area">
                 <div className="canvas-and-controls-area">
                   {props.currentMode === "EDIT" && <EditCanvas />}
@@ -89,12 +116,17 @@ StudioPage.propTypes = {
   onSetSizeBounding: PropTypes.func.isRequired,
   onSetBox: PropTypes.func.isRequired,
   currentMode: PropTypes.string.isRequired,
-  onGetConfigurations: PropTypes.func.isRequired
+  onGetConfigurations: PropTypes.func.isRequired,
+  materials: PropTypes.object.isRequired,
+  allConfigurations: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
   currentProject: state.projects.currentProject,
-  currentMode: state.modeControl.currentMode
+  currentMode: state.modeControl.currentMode,
+  materials: state.appearanceControls.materials,
+  allConfigurations: state.configurations.allConfigurations,
+  currentConfigurationId: state.configurations.currentConfigurationId
 });
 
 const mapDispatchToProps = dispatch => ({

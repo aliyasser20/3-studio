@@ -52,7 +52,7 @@ const StudioTopBar = props => {
             ambientLightColor: props.ambientLightColor,
             directionalLightColor: props.directionalLightColor,
             hemisphereLightColor: props.hemisphereLightColor,
-            materials: []
+            materials: props.materials
           }
         }
       })
@@ -137,7 +137,8 @@ StudioTopBar.propTypes = {
   currentConfigurationName: PropTypes.string.isRequired,
   currentEnvironmentOption: PropTypes.object.isRequired,
   onSetConfigurationSaved: PropTypes.func.isRequired,
-  configurationSaved: PropTypes.bool.isRequired
+  configurationSaved: PropTypes.bool.isRequired,
+  materials: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -159,7 +160,8 @@ const mapStateToProps = state => ({
   currentConfigurationId: state.configurations.currentConfigurationId,
   currentConfigurationName: state.configurations.currentConfigurationName,
   currentEnvironmentOption: state.environmentControls.currentEnvironmentOption,
-  configurationSaved: state.configurations.configurationSaved
+  configurationSaved: state.configurations.configurationSaved,
+  materials: state.appearanceControls.materials
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -13,16 +13,13 @@ import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
 
 import materialLibrary from "../../../../../helpers/materialLibrary";
 import * as actions from "../../../../../store/actions/index";
+import { createPartModel } from "../../../../../helpers/createPartModel";
 
 import "./EditCanvas.scss";
 
 const EditCanvas = props => {
   // ! State ------------------------------------------------- //
-  const [directionalPosition, setDirectionalPosition] = useState([
-    0.5,
-    0,
-    0.86
-  ]);
+  const [directionalPosition] = useState([0.5, 0, 0.86]);
 
   // ? Cameras
   const [perspective, setPerspective] = useState(true);
@@ -61,11 +58,42 @@ const EditCanvas = props => {
 
   const handleDrop = e => {
     // console.log(e);
-    // console.log(e.object);
-
     if (props.selectedMaterial) {
+      // console.log(e.object);
+
+      // Order is important
+      props.onUpdateMaterial(e.object.name, {
+        name: props.selectedMaterial
+      });
+
       e.object.material = materialLibrary()[props.selectedMaterial];
       props.onSetSelectedMaterial("");
+
+      // Trigger unsaved changes
+      props.onSetConfigurationUnsaved();
+    }
+  };
+
+  // const [move, setMove] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handlePartClick = e => {
+    // Differentiate between click and drag
+    if (e.clientX === mousePosition.x && e.clientY === mousePosition.y) {
+      // Set selected part in redux
+      props.onSetSelectedPart(e.object);
+
+      // Clone for part canvas
+      const part = e.object.clone();
+
+      // Order of inputs is important
+      createPartModel(
+        part,
+        props.onSetPartFar,
+        props.onSetPartSizeBounding,
+        props.onSetPartNear,
+        props.onSetPartModel
+      );
     }
   };
 
@@ -96,6 +124,13 @@ const EditCanvas = props => {
         object={props.model}
         dispose={null}
         onPointerMove={e => handleDrop(e)}
+        onPointerDown={e => {
+          setMousePosition({
+            x: e.clientX,
+            y: e.clientY
+          });
+        }}
+        onPointerUp={e => handlePartClick(e)}
       />
       {props.directionalLight && (
         <directionalLight
@@ -170,7 +205,15 @@ EditCanvas.propTypes = {
   directionalIntensity: PropTypes.number.isRequired,
   directionalLightColor: PropTypes.string.isRequired,
   hemisphereLightColor: PropTypes.string.isRequired,
-  ambientLightColor: PropTypes.string.isRequired
+  ambientLightColor: PropTypes.string.isRequired,
+  onUpdateMaterial: PropTypes.func.isRequired,
+  materials: PropTypes.object.isRequired,
+  onSetConfigurationUnsaved: PropTypes.func.isRequired,
+  onSetPartModel: PropTypes.func.isRequired,
+  onSetPartFar: PropTypes.func.isRequired,
+  onSetPartNear: PropTypes.func.isRequired,
+  onSetPartSizeBounding: PropTypes.func.isRequired,
+  onSetSelectedPart: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -199,13 +242,22 @@ const mapStateToProps = state => ({
   hemisphereIntensity: state.lightControls.hemisphereLightIntensity,
   ambientLightColor: state.lightControls.ambientLightColor,
   directionalLightColor: state.lightControls.directionalLightColor,
-  hemisphereLightColor: state.lightControls.hemisphereLightColor
+  hemisphereLightColor: state.lightControls.hemisphereLightColor,
+  materials: state.appearanceControls.materials
 });
 
 const mapDispatchToProps = dispatch => ({
   onSetFov: fov => dispatch(actions.setFov(fov)),
   onSetSelectedMaterial: material =>
-    dispatch(actions.setSelectedMaterial(material))
+    dispatch(actions.setSelectedMaterial(material)),
+  onUpdateMaterial: (partName, material) =>
+    dispatch(actions.updateMaterials(partName, material)),
+  onSetConfigurationUnsaved: () => dispatch(actions.setConfigurationUnsaved()),
+  onSetPartModel: partModel => dispatch(actions.setPartModel(partModel)),
+  onSetPartFar: far => dispatch(actions.setPartFar(far)),
+  onSetPartNear: near => dispatch(actions.setPartNear(near)),
+  onSetPartSizeBounding: size => dispatch(actions.setPartSizeBounding(size)),
+  onSetSelectedPart: part => dispatch(actions.setSelectedPart(part))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditCanvas);

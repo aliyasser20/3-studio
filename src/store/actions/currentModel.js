@@ -33,3 +33,8 @@ export const setBox = box => ({
 export const resetEditState = () => ({
   type: actionTypes.RESET_EDIT_STATE
 });
+
+export const setSelectedPart = selectedPart => ({
+  type: actionTypes.SET_SELECTED_PART,
+  selectedPart
+});

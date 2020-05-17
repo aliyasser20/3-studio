@@ -11,13 +11,6 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { connect } from "react-redux";
-import ColorPicker from "material-ui-color-picker";
-
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { SketchPicker } from "react-color";
 import * as actions from "../../../../store/actions/index";
 import ColorPickerPopover from "../ColorPickerPopover/ColorPickerPopover";
 
@@ -56,7 +49,18 @@ const MediaBackGroundControl = (props) => {
           <Typography>Background Control</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className="details-section">
-          <h5 className="section-title">Background</h5>
+          <FormControlLabel
+            className="custom-label"
+            control={
+              <Checkbox
+                className="custom-checkbox"
+                checked={props.mediaAutorotate}
+                onChange={props.onToggleMediaAutoRotate}
+                name="autoRotate"
+              />
+            }
+            label="Auto rotation"
+          />
           <div className="background-color-section">
             <FormControlLabel
               className="custom-label"
@@ -133,6 +137,8 @@ MediaBackGroundControl.propTypes = {
   onToggleMapEnv: PropTypes.func.isRequired,
   defaultLight: PropTypes.bool.isRequired,
   onToggleDefaultLight: PropTypes.func.isRequired,
+  onToggleMediaAutoRotate:PropTypes.func.isRequired,
+  mediaAutorotate: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -142,6 +148,7 @@ const mapStateToProps = (state) => ({
   solidBgColor: state.mediaState.mediaSolidBackground,
   mediaMapEnv: state.mediaControls.mediaMapEnvironment,
   defaultLight: state.mediaControls.defaultLight,
+  mediaAutorotate: state.mediaControls.mediaAutorotate
 });
 const mapDispatchToProps = (dispatch) => ({
   onToggleMediaEnvB: () => dispatch(actions.toggleMediaEnvB()),
@@ -151,6 +158,7 @@ const mapDispatchToProps = (dispatch) => ({
   onSetMediaSolidBackground: (hexColor) =>
     dispatch(actions.setMediaSolidBackground(hexColor)),
   onToggleDefaultLight: () => dispatch(actions.toggleDefaultLight()),
+  onToggleMediaAutoRotate: () => dispatch(actions.toggleMediaAutoRotate())
 });
 
 export default connect(

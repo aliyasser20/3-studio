@@ -11,6 +11,13 @@
       height: calc(100vh - 3em - 60px - 64px);
       grid-gap: 1em;
 
+      .left-bar-area {
+        height: 100%;
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-gap: 1em;
+      }
+
       .sub-working-area {
         display: grid;
         grid-gap: 1em;

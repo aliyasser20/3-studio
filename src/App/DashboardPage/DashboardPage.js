@@ -32,6 +32,9 @@ const DashboardPage = props => {
   props.onSetCameraMode("PERSPECTIVE");
   props.onResetEnvironmentControls();
   props.onResetExtraControls();
+  props.onResetConfigurations();
+  props.onResetAppearanceControls();
+  props.onResetPartState();
   // !
 
   const handleSnackBarClose = () => {
@@ -93,6 +96,12 @@ const DashboardPage = props => {
         )}
         {snackBarOpen && snackBar}
       </Container>
+      <svg>
+        <linearGradient id="gradient-vertical" x2="0" y2="1">
+          <stop offset="0%" stopColor="var(--gradient-top)" />
+          <stop offset="100%" stopColor="var(--gradient-bottom)" />
+        </linearGradient>
+      </svg>
     </div>
   );
 };
@@ -107,7 +116,10 @@ DashboardPage.propTypes = {
   onResetLights: PropTypes.func.isRequired,
   onSetCameraMode: PropTypes.func.isRequired,
   onResetEnvironmentControls: PropTypes.func.isRequired,
-  onResetExtraControls: PropTypes.func.isRequired
+  onResetExtraControls: PropTypes.func.isRequired,
+  onResetConfigurations: PropTypes.func.isRequired,
+  onResetAppearanceControls: PropTypes.func.isRequired,
+  onResetPartState: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -124,7 +136,10 @@ const mapDispatchToProps = dispatch => ({
   onSetCameraMode: mode => dispatch(actions.setCameraMode(mode)),
   onResetEnvironmentControls: () =>
     dispatch(actions.resetEnvironmentControls()),
-  onResetExtraControls: () => dispatch(actions.resetExtraControls())
+  onResetExtraControls: () => dispatch(actions.resetExtraControls()),
+  onResetConfigurations: () => dispatch(actions.resetConfigurations()),
+  onResetAppearanceControls: () => dispatch(actions.resetAppearanceControls()),
+  onResetPartState: () => dispatch(actions.resetPartState())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

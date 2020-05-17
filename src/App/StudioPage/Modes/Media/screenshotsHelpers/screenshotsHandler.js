@@ -5,14 +5,17 @@ const formatName = (name) => {
   return name.split(" ").join("-");
 };
 
-export const saveToCloud = (file, project,counter) => {
-  console.log(process.env.REACT_APP_SCREENSHOT_UPLOAD_PRESET)
+export const saveToCloud = (file, project, counter) => {
+  console.log(process.env.REACT_APP_SCREENSHOT_UPLOAD_PRESET);
   const formData = new FormData();
   formData.append("file", file);
-  formData.append("public_id", `${project.id}/${formatName(project.name)}-${counter}`);
+  formData.append(
+    "public_id",
+    `${project.id}/${formatName(project.name)}-${counter}`
+  );
   formData.append("upload_preset", "screenshotUpload"); // Replace the preset name with your own
   formData.append("api_key", "463438241363482"); // Replace API key with your own Cloudinary key
-  formData.append("timestamp", (Date.now() / 1000) | 0);
+  formData.append("timestamp", Date.now() / 1000 || 0);
   return cloudinaryAxios
     .post("/image/upload", formData, {
       headers: { "X-Requested-With": "XMLHttpRequest" },
@@ -30,7 +33,7 @@ export const createImage = () => {
   return dataUrl;
 };
 
-export const screeshotDownload = (file, project,counter) => {
+export const screeshotDownload = (file, project, counter) => {
   const a = document.createElement("a");
   document.body.append(a);
   a.style = "display: none";
