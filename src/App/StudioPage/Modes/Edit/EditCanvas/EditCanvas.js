@@ -13,6 +13,7 @@ import orthoViewPositions from "../../../../../helpers/orthoViewsPositions";
 
 import materialLibrary from "../../../../../helpers/materialLibrary";
 import * as actions from "../../../../../store/actions/index";
+import { createPartModel } from "../../../../../helpers/createPartModel";
 
 import "./EditCanvas.scss";
 
@@ -76,6 +77,19 @@ const EditCanvas = props => {
     }
   };
 
+  const handlePartClick = e => {
+    const part = e.object;
+
+    // Order of inputs is important
+    createPartModel(
+      e.object,
+      props.onSetPartFar,
+      props.onSetPartSizeBounding,
+      props.onSetPartNear,
+      props.onSetPartModel
+    );
+  };
+
   // ? Canvas output
   const canvasElement = props.model ? (
     <Canvas
@@ -102,7 +116,8 @@ const EditCanvas = props => {
       <primitive
         object={props.model}
         dispose={null}
-        onPointerMove={e => handleDrop(e)}
+        onPointerMove={e => handleDrop(e)},
+        onClick={e => handlePartClick(e)}
       />
       {props.directionalLight && (
         <directionalLight
@@ -180,7 +195,11 @@ EditCanvas.propTypes = {
   ambientLightColor: PropTypes.string.isRequired,
   onUpdateMaterial: PropTypes.func.isRequired,
   materials: PropTypes.object.isRequired,
-  onSetConfigurationUnsaved: PropTypes.func.isRequired
+  onSetConfigurationUnsaved: PropTypes.func.isRequired,
+  onSetPartModel: PropTypes.func.isRequired,
+  onSetPartFar: PropTypes.func.isRequired,
+  onSetPartNear: PropTypes.func.isRequired,
+  onSetPartSizeBounding: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -219,7 +238,11 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.setSelectedMaterial(material)),
   onUpdateMaterial: (partName, material) =>
     dispatch(actions.updateMaterials(partName, material)),
-  onSetConfigurationUnsaved: () => dispatch(actions.setConfigurationUnsaved())
+  onSetConfigurationUnsaved: () => dispatch(actions.setConfigurationUnsaved()),
+  onSetPartModel: partModel => dispatch(actions.setPartModel(partModel)),
+  onSetPartFar: far => dispatch(actions.setPartFar(far)),
+  onSetPartNear: near => dispatch(actions.setPartNear(near)),
+  onSetPartSizeBounding: size => dispatch(actions.setPartSizeBounding(size))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditCanvas);
