@@ -78,6 +78,27 @@ const ObjectsBar = (props) => {
       orbit: { x: false, y: false, z: false },
     });
   };
+
+  const handleDLightGrab = () => {
+    const radius = Math.ceil(props.boxRadius.geometry.boundingSphere.radius);
+    let vol;
+    if (radius > 50) {
+      vol = (4 * Math.PI * radius) / 100;
+    } else {
+      vol = 4 * Math.PI * radius;
+    }
+    const initPosition = radius > 100 ? radius : radius * 0.3;
+    props.onSetMediaDLight({
+      args: [radius / 4, vol, vol],
+      color: "fff",
+      brightness: 0.1,
+      scale: [0.3, 0.3, 0.3],
+      initPosition,
+      power: 0.5,
+      rotate: { x: false, y: false, z: false },
+      orbit: { x: false, y: false, z: false },
+    });
+  };
   return (
     <ThemeProvider theme={theme}>
       <div className="objects-bar">
@@ -115,6 +136,17 @@ const ObjectsBar = (props) => {
           >
             K-LIGHT
           </div>
+          <div
+            id="diamond-Light"
+            draggable
+            onDragEnd={(e) => {
+              e.dataTransfer.dropEffect = "link";
+              handleDLightGrab();
+            }}
+            className="object dlight"
+          >
+            K-LIGHT
+          </div>
         </Paper>
       </div>
     </ThemeProvider>
@@ -126,6 +158,7 @@ ObjectsBar.propTypes = {
   onSetMediaSphere: PropTypes.func,
   onSetMediaKeyLight: PropTypes.func,
   onSetMediaLSphere: PropTypes.func,
+  onSetMediaDLight: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
