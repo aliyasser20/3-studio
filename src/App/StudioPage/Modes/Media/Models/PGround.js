@@ -42,7 +42,10 @@ const PGround = (props) => {
       scale={props.pGround.scale}
     >
       <planeBufferGeometry attach="geometry" args={props.pGround.args} />
-      <meshStandardMaterial attach="material" color="#FFF" />
+      <meshStandardMaterial
+        attach="material"
+        color={`#${props.pGround.color}`}
+      />
     </mesh>
   );
 };

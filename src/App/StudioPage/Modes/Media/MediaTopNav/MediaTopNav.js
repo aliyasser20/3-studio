@@ -129,7 +129,7 @@ const MediaTopNav = (props) => {
         chunks.push(e.data);
       };
       rec.onstop = (e) => {
-        console.log(stream, rec);
+        setTimeValue({ s: 10, ms: 0 });
         setOpen(true);
         setRecording("");
         exportVid(new Blob(chunks, { type: "video/mp4" }));
