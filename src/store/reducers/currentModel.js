@@ -6,7 +6,8 @@ const initialState = {
   far: 0,
   near: 0,
   sizeBounding: { x: 0, y: 0, z: 0 },
-  box: null
+  box: null,
+  selectedPart: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -44,6 +45,11 @@ const reducer = (state = initialState, action) => {
     case actionTypes.RESET_EDIT_STATE:
       return {
         ...initialState
+      };
+    case actionTypes.SET_SELECTED_PART:
+      return {
+        ...state,
+        selectedPart: action.selectedPart
       };
     default:
       return state;

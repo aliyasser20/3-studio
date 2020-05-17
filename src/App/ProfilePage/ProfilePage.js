@@ -134,6 +134,7 @@ const ProfilePage = props => {
 
   const handleDialogClose = () => {
     setOpenDialog(false);
+    setPicture([]);
   };
 
   const handleDrop = file => {
@@ -145,36 +146,35 @@ const ProfilePage = props => {
   };
 
   const handlePictureUpdate = () => {
-    savePictureToCloud(picture).then(pictureLink => {
-      updateProfilePicture({
-        userId: user.sub,
-        picture: pictureLink.data.url
-      })
-        .then(() => {
-          setProfilePicture(pictureLink.data.url);
-          setMessage("Successfully changed profile picture!");
-          setSeverity("success");
-          setOpen(true);
-          setOpenPictureChanger(false);
-          props.onSetProfileImage(pictureLink.data.url);
+    if (picture.length !== 1) {
+      setMessage("Please upload a picture.");
+      setSeverity("error");
+      setOpen(true);
+      setOpenPictureChanger(false);
+    } else {
+      savePictureToCloud(picture).then(pictureLink => {
+        updateProfilePicture({
+          userId: user.sub,
+          picture: pictureLink.data.url
         })
-        .catch(err => {
-          console.log(err);
-          setMessage("Could not update profile picture!");
-          setSeverity("error");
-          setOpen(true);
-          setOpenPictureChanger(false);
-        });
-    });
+          .then(() => {
+            setProfilePicture(pictureLink.data.url);
+            setMessage("Successfully changed profile picture!");
+            setSeverity("success");
+            setOpen(true);
+            setOpenPictureChanger(false);
+            props.onSetProfileImage(pictureLink.data.url);
+          })
+          .catch(err => {
+            console.log(err);
+            setMessage("Could not update profile picture!");
+            setSeverity("error");
+            setOpen(true);
+            setOpenPictureChanger(false);
+          });
+      });
+    }
   };
-
-  // Click on change profile picture and setOpenProfilePictureChanger(false);
-  // Open dialog
-  // Have upload and/or dropzone to add picture
-  // Add picture to cloudinary and take response as filepath
-  // Set uploaded picture to user.picture in backend (put router / patch axios request to /users)
-  // If success, show success message and close dialog (setOpenProfilePictureChanger(false))
-  // If failure, show fail message and return to dialog, user could reattempt uploading or click on "x" in dialog and setOpenProfilePictureChanger(false)]
 
   const page = (
     <Container maxWidth="md" classes={{ root: "container-padding" }}>
@@ -213,15 +213,6 @@ const ProfilePage = props => {
                   </Button>
                 </DialogActions>
               </Dialog>
-              // {/* // <DropzoneDialog */}
-              //   cancelButtonText="Cancel"
-              //   submitButtonText="Submit"
-              //   open={open}
-              //   acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
-              //   showPreviews
-              //   maxFileSize={5000000}
-              //   onClose={handleProfilePictureClickClose}
-              // />
             )}
           </div>
           <div className="theme-selector-area">
