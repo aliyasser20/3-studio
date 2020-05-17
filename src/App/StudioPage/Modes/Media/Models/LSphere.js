@@ -8,7 +8,7 @@ const LSphere = (props) => {
     const dragObjs = [...props.dragObjects];
     if (lSphere.current) {
       props.setDrag([...dragObjs, lSphere.current]);
-      lSphere.current.material = materialLibrary().leather;
+      lSphere.current.material = materialLibrary("leater").leather;
     }
   }, []);
   useFrame(({ gl, scene, camera }) => {
