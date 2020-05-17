@@ -34,6 +34,7 @@ const DashboardPage = props => {
   props.onResetExtraControls();
   props.onResetConfigurations();
   props.onResetAppearanceControls();
+  props.onResetPartState();
   // !
 
   const handleSnackBarClose = () => {
@@ -117,7 +118,8 @@ DashboardPage.propTypes = {
   onResetEnvironmentControls: PropTypes.func.isRequired,
   onResetExtraControls: PropTypes.func.isRequired,
   onResetConfigurations: PropTypes.func.isRequired,
-  onResetAppearanceControls: PropTypes.func.isRequired
+  onResetAppearanceControls: PropTypes.func.isRequired,
+  onResetPartState: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -136,7 +138,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.resetEnvironmentControls()),
   onResetExtraControls: () => dispatch(actions.resetExtraControls()),
   onResetConfigurations: () => dispatch(actions.resetConfigurations()),
-  onResetAppearanceControls: () => dispatch(actions.resetAppearanceControls())
+  onResetAppearanceControls: () => dispatch(actions.resetAppearanceControls()),
+  onResetPartState: () => dispatch(actions.resetPartState())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

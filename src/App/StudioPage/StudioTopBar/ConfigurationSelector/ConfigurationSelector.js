@@ -185,6 +185,8 @@ const ConfigurationSelector = props => {
 
           newConfigData.config_data = JSON.stringify(newConfigData.config_data);
 
+          props.onResetPartState();
+
           props.onAddConfiguration(newConfigData);
           props.onSetCurrentConfigurationName(configurationNameField);
           props.onSetCurrentConfigurationId(resp.data.id);
@@ -236,6 +238,8 @@ const ConfigurationSelector = props => {
             props.model,
             JSON.parse(props.allConfigurations[0].config_data).materials
           );
+
+          props.onResetPartState();
         }
 
         setMessage("Configuration successfully deleted!");
@@ -307,6 +311,8 @@ const ConfigurationSelector = props => {
           props.model,
           JSON.parse(configuration.config_data).materials
         );
+
+        props.onResetPartState();
       });
 
       props.onSetConfiguration(JSON.parse(configuration.config_data));
@@ -508,7 +514,8 @@ ConfigurationSelector.propTypes = {
   onDeleteConfiguration: PropTypes.func.isRequired,
   onUpdateConfiguration: PropTypes.func.isRequired,
   materials: PropTypes.object.isRequired,
-  model: PropTypes.object
+  model: PropTypes.object,
+  onResetPartState: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -545,7 +552,8 @@ const mapDispatchToProps = dispatch => ({
   onDeleteConfiguration: configId =>
     dispatch(actions.deleteConfiguration(configId)),
   onUpdateConfiguration: (configId, configData) =>
-    dispatch(actions.updateConfiguration(configId, configData))
+    dispatch(actions.updateConfiguration(configId, configData)),
+  onResetPartState: () => dispatch(actions.resetPartState())
 });
 
 export default connect(

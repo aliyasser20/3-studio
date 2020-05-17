@@ -1,16 +1,8 @@
-import React from "react";
+import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import {
-  Paper,
-  ThemeProvider,
-  Tabs,
-  Tab,
-  Box,
-  Typography,
-  Button
-} from "@material-ui/core";
+import { Paper, ThemeProvider, Tabs, Tab, Button } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
 import { materials } from "./materials";
@@ -22,7 +14,6 @@ import "./AppearancesBar.scss";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -54,6 +45,8 @@ const AppearancesBar = props => {
   const theme = themeCreator("#ffffff", "#212121");
 
   const [value, setValue] = React.useState(0);
+  const [search, setSearch] = useState(false);
+  const [searchField, setSearchField] = useState("");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -68,6 +61,7 @@ const AppearancesBar = props => {
   const woodComponents = [];
   const syntheticComponents = [];
   const otherComponents = [];
+  const searchComponents = [];
 
   materials
     .sort((a, b) => {
@@ -82,13 +76,16 @@ const AppearancesBar = props => {
     .forEach(material => {
       const newMaterial = (
         <div
-          key={material.name}
+          key={material.imgPath}
           draggable
           onDragStart={e => props.onSetSelectedMaterial(material.actionName)}
+          // onDragEnd={e => console.log(e.target)}
           className="material"
         >
           <img src={material.imgPath} alt={material.name} />
-          <p className="material-label">{material.name}</p>
+          <p className="material-label">
+            {search ? material.name : material.name.slice(3)}
+          </p>
         </div>
       );
 
@@ -127,7 +124,15 @@ const AppearancesBar = props => {
       if (material.group === "other") {
         otherComponents.push(newMaterial);
       }
+
+      if (material.name.includes(searchField)) {
+        searchComponents.push(newMaterial);
+      } else if (searchField.length === 0) {
+        searchComponents.push(newMaterial);
+      }
     });
+
+  const searchButtonClasses = search ? "search-button active" : "search-button";
 
   return (
     <ThemeProvider theme={theme}>
@@ -138,31 +143,47 @@ const AppearancesBar = props => {
               <h4 className="title">Appearances</h4>
             </div>
             <div className="tab-area">
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                indicatorColor="primary"
-                textColor="primary"
-                variant="scrollable"
-                scrollButtons="auto"
-                aria-label="scrollable auto tabs example"
-              >
-                <Tab label="Metals" {...a11yProps(0)} />
-                <Tab label="Plastics" {...a11yProps(1)} />
-                <Tab label="Ceramics" {...a11yProps(2)} />
-                <Tab label="Stones" {...a11yProps(3)} />
-                <Tab label="Tiles" {...a11yProps(4)} />
-                <Tab label="Fabrics" {...a11yProps(5)} />
-                <Tab label="Woods" {...a11yProps(6)} />
-                <Tab label="Synthetics" {...a11yProps(7)} />
-                <Tab label="Other" {...a11yProps(8)} />
-              </Tabs>
+              {search ? (
+                <input
+                  autoFocus
+                  type="text"
+                  className="search-input"
+                  placeholder="Search materials ..."
+                  onChange={e => setSearchField(e.target.value)}
+                />
+              ) : (
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  indicatorColor="primary"
+                  textColor="primary"
+                  variant="scrollable"
+                  scrollButtons="auto"
+                  aria-label="scrollable auto tabs example"
+                >
+                  <Tab label="Metals" {...a11yProps(0)} />
+                  <Tab label="Plastics" {...a11yProps(1)} />
+                  <Tab label="Ceramics" {...a11yProps(2)} />
+                  <Tab label="Stones" {...a11yProps(3)} />
+                  <Tab label="Tiles" {...a11yProps(4)} />
+                  <Tab label="Fabrics" {...a11yProps(5)} />
+                  <Tab label="Woods" {...a11yProps(6)} />
+                  <Tab label="Synthetics" {...a11yProps(7)} />
+                  <Tab label="Other" {...a11yProps(8)} />
+                </Tabs>
+              )}
             </div>
             <div className="search-area">
               <span className="gradient-button">
                 <Button
-                  classes={{ root: "search-button" }}
-                  // onClick={deleteAccount}
+                  classes={{ root: searchButtonClasses }}
+                  onClick={() => {
+                    setSearch(!search);
+
+                    if (search) {
+                      setSearchField("");
+                    }
+                  }}
                   color="primary"
                   autoFocus
                 >
@@ -172,33 +193,43 @@ const AppearancesBar = props => {
             </div>
           </div>
           <div className="content-area">
-            <TabPanel value={value} index={0}>
-              {metalComponents}
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-              {plasticComponents}
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-              {ceramicComponents}
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-              {stoneComponents}
-            </TabPanel>
-            <TabPanel value={value} index={4}>
-              {tilesComponents}
-            </TabPanel>
-            <TabPanel value={value} index={5}>
-              {fabricComponents}
-            </TabPanel>
-            <TabPanel value={value} index={6}>
-              {woodComponents}
-            </TabPanel>
-            <TabPanel value={value} index={7}>
-              {syntheticComponents}
-            </TabPanel>
-            <TabPanel value={value} index={8}>
-              {otherComponents}
-            </TabPanel>
+            {search ? (
+              <div className="search-content">
+                <div className="custom-tab-panel">
+                  <div className="custom-tab-content">{searchComponents}</div>{" "}
+                </div>
+              </div>
+            ) : (
+              <Fragment>
+                <TabPanel value={value} index={0}>
+                  {metalComponents}
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                  {plasticComponents}
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                  {ceramicComponents}
+                </TabPanel>
+                <TabPanel value={value} index={3}>
+                  {stoneComponents}
+                </TabPanel>
+                <TabPanel value={value} index={4}>
+                  {tilesComponents}
+                </TabPanel>
+                <TabPanel value={value} index={5}>
+                  {fabricComponents}
+                </TabPanel>
+                <TabPanel value={value} index={6}>
+                  {woodComponents}
+                </TabPanel>
+                <TabPanel value={value} index={7}>
+                  {syntheticComponents}
+                </TabPanel>
+                <TabPanel value={value} index={8}>
+                  {otherComponents}
+                </TabPanel>
+              </Fragment>
+            )}
           </div>
         </Paper>
       </div>

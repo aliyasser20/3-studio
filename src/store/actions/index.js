@@ -26,7 +26,8 @@ export {
   setFov,
   setNear,
   setSizeBounding,
-  resetEditState
+  resetEditState,
+  setSelectedPart
 } from "./currentModel";
 
 export { setCameraMode } from "./cameraControls";
@@ -109,3 +110,12 @@ export {
 } from "./configurations";
 
 export { setProfileImage } from "./users";
+
+export {
+  setPartModel,
+  setPartFar,
+  setPartFov,
+  setPartNear,
+  setPartSizeBounding,
+  resetPartState
+} from "./partModel";

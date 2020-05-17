@@ -33,6 +33,7 @@ export const SET_NEAR = "SET_NEAR";
 export const SET_SIZE_BOUNDING = "SET_SIZE_BOUNDING";
 export const SET_BOX = "SET_BOX";
 export const RESET_EDIT_STATE = "RESET_EDIT_STATE";
+export const SET_SELECTED_PART = "SET_SELECTED_PART";
 //
 
 // Camera Controls
@@ -118,4 +119,13 @@ export const RESET_CONFIGURATIONS = "RESET_CONFIGURATIONS";
 
 // Users
 export const SET_PROFILE_IMAGE = "SET_PROFILE_IMAGE";
+//
+
+// Part Model
+export const SET_PART_MODEL = "SET_PART_MODEL";
+export const SET_PART_FOV = "SET_PART_FOV";
+export const SET_PART_FAR = "SET_PART_FAR";
+export const SET_PART_NEAR = "SET_PART_NEAR";
+export const SET_PART_SIZE_BOUNDING = "SET_PART_SIZE_BOUNDING";
+export const RESET_PART_STATE = "RESET_PART_STATE";
 //
