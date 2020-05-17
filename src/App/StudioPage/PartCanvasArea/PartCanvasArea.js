@@ -7,12 +7,16 @@ import { Paper } from "@material-ui/core";
 import PartCanvas from "../Modes/Edit/PartCanvas/PartCanvas";
 
 import materialLibrary from "../../../helpers/materialLibrary";
+import * as actions from "../../../store/actions/index";
 
 import "./PartCanvasArea.scss";
 
 const PartCanvasArea = props => {
   const handleDrop = () => {
     props.selectedPart.material = materialLibrary()[props.selectedMaterial];
+
+    // Set unsaved
+    props.onSetConfigurationUnsaved();
   };
 
   return (
@@ -32,7 +36,8 @@ const PartCanvasArea = props => {
 
 PartCanvasArea.propTypes = {
   selectedPart: PropTypes.object,
-  selectedMaterial: PropTypes.string
+  selectedMaterial: PropTypes.string,
+  onSetConfigurationUnsaved: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -40,4 +45,8 @@ const mapStateToProps = state => ({
   selectedMaterial: state.appearanceControls.selectedMaterial
 });
 
-export default connect(mapStateToProps, null)(PartCanvasArea);
+const mapDispatchToProps = dispatch => ({
+  onSetConfigurationUnsaved: () => dispatch(actions.setConfigurationUnsaved())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PartCanvasArea);
