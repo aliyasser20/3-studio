@@ -6,7 +6,6 @@ const formatName = (name) => {
 };
 
 export const saveToCloud = (file, project, counter) => {
-  console.log(process.env.REACT_APP_SCREENSHOT_UPLOAD_PRESET);
   const formData = new FormData();
   formData.append("file", file);
   formData.append(
@@ -29,7 +28,6 @@ export const createImage = () => {
   const preview = document.querySelector("#preview-img");
   preview.style = "display: unset";
   preview.src = dataUrl;
-
   return dataUrl;
 };
 

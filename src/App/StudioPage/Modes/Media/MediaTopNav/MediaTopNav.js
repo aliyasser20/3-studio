@@ -44,7 +44,7 @@ const MediaTopNav = (props) => {
   const [dots, setDots] = useState(".");
   const [blob, setBlob] = useState();
   const { user } = useAuth0();
-
+  console.log(process.env.REACT_APP_SCREENSHOT_UPLOAD_PRESET);
   const closeSnackbar = () => {
     setSeverity("");
     setSnackbar(false);
