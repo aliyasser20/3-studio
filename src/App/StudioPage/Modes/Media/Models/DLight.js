@@ -59,7 +59,6 @@ const DLight = (props) => {
         lookAt={[0, 0, 0]}
         onPointerOver={(e) => {
           props.toggleMediaLock();
-          console.log(pointLight.current);
         }}
         onPointerOut={(e) => props.toggleMediaLock()}
       >

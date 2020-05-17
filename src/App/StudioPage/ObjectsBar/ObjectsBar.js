@@ -131,7 +131,7 @@ const ObjectsBar = (props) => {
     const initPosition = radius > 100 ? radius : radius * 0.3;
     props.onSetMediaDLight({
       radius: radius / 2,
-      args: [vertices, faces, 30, 0],
+      args: [vertices, faces, radius / 4, 0],
       color: "fff",
       brightness: 0.1,
       scale: [0.3, 0.3, 0.3],
