@@ -35,6 +35,28 @@ const ObjectsBar = (props) => {
       rotateZ: false,
     });
   };
+  const handleLsphereGrab = () => {
+    const roundRadius = Math.ceil(
+      props.boxRadius.geometry.boundingSphere.radius
+    );
+    let vol;
+
+    if (roundRadius > 50) {
+      vol = (4 * Math.PI * roundRadius * 2) / 100;
+    } else {
+      vol = 4 * Math.PI * roundRadius * 2;
+    }
+
+    props.onSetMediaLSphere({
+      args: [roundRadius, vol, vol],
+      color: "00CCAA",
+      scale: [1, 1, 1],
+      position: { x: -1, y: 0, z: 0 },
+      rotateX: false,
+      rotateY: false,
+      rotateZ: false,
+    });
+  };
 
   const handleKeyLightGrab = () => {
     const radius = Math.ceil(props.boxRadius.geometry.boundingSphere.radius);
@@ -44,7 +66,7 @@ const ObjectsBar = (props) => {
     } else {
       vol = 4 * Math.PI * radius;
     }
-    const initPosition = radius > 100 ? radius : radius * 0.3
+    const initPosition = radius > 100 ? radius : radius * 0.3;
     props.onSetMediaKeyLight({
       args: [radius / 4, vol, vol],
       color: "fff",
@@ -72,6 +94,17 @@ const ObjectsBar = (props) => {
             W-SPHERE
           </div>
           <div
+            id="l-sphere"
+            draggable
+            onDragEnd={(e) => {
+              e.dataTransfer.dropEffect = "link";
+              handleLsphereGrab();
+            }}
+            className="object lSphere"
+          >
+            L-SPHERE
+          </div>
+          <div
             id="Key-Light"
             draggable
             onDragEnd={(e) => {
@@ -92,6 +125,7 @@ ObjectsBar.propTypes = {
   boxRadius: PropTypes.object,
   onSetMediaSphere: PropTypes.func,
   onSetMediaKeyLight: PropTypes.func,
+  onSetMediaLSphere: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -99,6 +133,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   onSetMediaSphere: (sphere) => dispatch(actions.setMediaSphere(sphere)),
+  onSetMediaLSphere: (lSphere) => dispatch(actions.setMediaLSphere(lSphere)),
   onSetMediaKeyLight: (kLight) => dispatch(actions.setMediaKeyLight(kLight)),
 });
 

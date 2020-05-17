@@ -61,7 +61,7 @@ const LSphere = (props) => {
         <ListItemText primary="L-SPHERE" />
         {openLSphere ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
-      <Collapse in={openWSphere} timeout="auto" unmountOnExit>
+      <Collapse in={openLSphere} timeout="auto" unmountOnExit>
         <ListItem button onClick={() => setRotations(!rotations)}>
           <ListItemText primary="Rotation Options" />
           {rotations ? <ExpandLess /> : <ExpandMore />}
@@ -122,18 +122,6 @@ const LSphere = (props) => {
             </ListItem>
           </List>
         </Collapse>
-        <List component="div" disablePadding>
-          <ListItem>
-            <ListItemIcon>
-              <ColorPickerPopover
-                visible
-                color={props.lSphere.color}
-                setColor={handleColorSet}
-              />
-            </ListItemIcon>
-            <ListItemText primary="Color" />
-          </ListItem>
-        </List>
         <List component="div" disablePadding>
           <ListItem>
             <ListItemText primary="Scale" />

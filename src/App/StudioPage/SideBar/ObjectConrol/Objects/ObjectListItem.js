@@ -20,6 +20,7 @@ import "./ObjectListItem.scss";
 import { connect } from "react-redux";
 import WSphere from "./Items/wSphere";
 import KLight from "./Items/kLight";
+import LSphere from "./Items/lSphere";
 
 const ObjectListItem = (props) => {
   return (
@@ -37,7 +38,7 @@ const ObjectListItem = (props) => {
         />
       )}
       {props.lSphere && (
-        <WSphere
+        <LSphere
           onSetMediaLSphere={props.onSetMediaLSphere}
           lSphere={props.lSphere}
           dragObjects={props.dragObjects}

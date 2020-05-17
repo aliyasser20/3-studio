@@ -49,14 +49,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         mediaEnvBackground: !state.mediaEnvBackground,
-        mediaSolidBackground: !state.mediaSolidBackground,
+        mediaSolidBackground:
+          state.mediaSolidBackground && !state.mediaSolidBackground,
       };
 
     case actionTypes.TOGGLE_MEDIA_SOLID_B:
       return {
         ...state,
         mediaSolidBackground: !state.mediaSolidBackground,
-        mediaEnvBackground: !state.mediaEnvBackground,
+        mediaEnvBackground:
+          state.mediaEnvBackground && !state.mediaEnvBackground,
       };
     case actionTypes.TOGGLE_MAP_ENV:
       return {
