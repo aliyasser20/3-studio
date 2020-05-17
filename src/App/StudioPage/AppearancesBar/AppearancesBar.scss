@@ -100,6 +100,7 @@
           padding-left: 1em;
           grid-auto-columns: max-content;
           overflow-x: scroll;
+          overscroll-behavior-x: none;
           overflow-y: hidden;
 
           .material {

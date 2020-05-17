@@ -2,15 +2,7 @@ import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import {
-  Paper,
-  ThemeProvider,
-  Tabs,
-  Tab,
-  Box,
-  Typography,
-  Button
-} from "@material-ui/core";
+import { Paper, ThemeProvider, Tabs, Tab, Button } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
 import { materials } from "./materials";
@@ -90,7 +82,9 @@ const AppearancesBar = props => {
           className="material"
         >
           <img src={material.imgPath} alt={material.name} />
-          <p className="material-label">{material.name}</p>
+          <p className="material-label">
+            {search ? material.name : material.name.slice(3)}
+          </p>
         </div>
       );
 
@@ -182,7 +176,13 @@ const AppearancesBar = props => {
               <span className="gradient-button">
                 <Button
                   classes={{ root: searchButtonClasses }}
-                  onClick={() => setSearch(!search)}
+                  onClick={() => {
+                    setSearch(!search);
+
+                    if (search) {
+                      setSearchField("");
+                    }
+                  }}
                   color="primary"
                   autoFocus
                 >
