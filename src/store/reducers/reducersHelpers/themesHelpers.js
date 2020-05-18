@@ -33,6 +33,17 @@ export const availableThemes = [
     }
   },
   {
+    name: "ibiza sunset",
+    hslColor: {
+      topFirst: "25",
+      topSecond: "100%",
+      topThird: "50%",
+      bottomFirst: "331",
+      bottomSecond: "93%",
+      bottomThird: "48%"
+    }
+  },
+  {
     name: "harmonic energy",
     hslColor: {
       topFirst: "48",
@@ -43,28 +54,28 @@ export const availableThemes = [
       bottomThird: "36%"
     }
   },
-  {
-    name: "witching hour",
-    hslColor: {
-      topFirst: "350",
-      topSecond: "81%",
-      topThird: "42%",
-      bottomFirst: "275",
-      bottomSecond: "66%",
-      bottomThird: "13%"
-    }
-  },
-  {
-    name: "lush",
-    hslColor: {
-      topFirst: "87",
-      topSecond: "67%",
-      topThird: "63%",
-      bottomFirst: "101",
-      bottomSecond: "57%",
-      bottomThird: "43%"
-    }
-  },
+  // {
+  //   name: "witching hour",
+  //   hslColor: {
+  //     topFirst: "350",
+  //     topSecond: "81%",
+  //     topThird: "42%",
+  //     bottomFirst: "275",
+  //     bottomSecond: "66%",
+  //     bottomThird: "13%"
+  //   }
+  // },
+  // {
+  //   name: "lush",
+  //   hslColor: {
+  //     topFirst: "87",
+  //     topSecond: "67%",
+  //     topThird: "63%",
+  //     bottomFirst: "101",
+  //     bottomSecond: "57%",
+  //     bottomThird: "43%"
+  //   }
+  // },
   {
     name: "dimigo",
     hslColor: {
@@ -76,17 +87,17 @@ export const availableThemes = [
       bottomThird: "46%"
     }
   },
-  {
-    name: "cherry blossoms",
-    hslColor: {
-      topFirst: "327",
-      topSecond: "83%",
-      topThird: "91%",
-      bottomFirst: "328",
-      bottomSecond: "55%",
-      bottomThird: "47%"
-    }
-  },
+  // {
+  //   name: "cherry blossoms",
+  //   hslColor: {
+  //     topFirst: "327",
+  //     topSecond: "83%",
+  //     topThird: "91%",
+  //     bottomFirst: "328",
+  //     bottomSecond: "55%",
+  //     bottomThird: "47%"
+  //   }
+  // },
   {
     name: "sublime vivid",
     hslColor: {
@@ -97,29 +108,18 @@ export const availableThemes = [
       bottomSecond: "96%",
       bottomThird: "62%"
     }
-  },
-  {
-    name: "velvet sun",
-    hslColor: {
-      topFirst: "78",
-      topSecond: "56%",
-      topThird: "85%",
-      bottomFirst: "359",
-      bottomSecond: "84%",
-      bottomThird: "63%"
-    }
-  },
-  {
-    name: "ibiza sunset",
-    hslColor: {
-      topFirst: "25",
-      topSecond: "100%",
-      topThird: "50%",
-      bottomFirst: "331",
-      bottomSecond: "93%",
-      bottomThird: "48%"
-    }
   }
+  // {
+  //   name: "velvet sun",
+  //   hslColor: {
+  //     topFirst: "78",
+  //     topSecond: "56%",
+  //     topThird: "85%",
+  //     bottomFirst: "359",
+  //     bottomSecond: "84%",
+  //     bottomThird: "63%"
+  //   }
+  // },
 ];
 
 export const toggleCSSGlobalColors = (themes, selectedTheme) => {
@@ -133,6 +133,14 @@ export const toggleCSSGlobalColors = (themes, selectedTheme) => {
       root.style.setProperty("--bottom-first", theme.hslColor.bottomFirst);
       root.style.setProperty("--bottom-second", theme.hslColor.bottomSecond);
       root.style.setProperty("--bottom-third", theme.hslColor.bottomThird);
+    }
+  }
+};
+
+export const setCurrentThemeDetailed = (themes, selectedTheme) => {
+  for (const theme of themes) {
+    if (theme.name === selectedTheme) {
+      return theme;
     }
   }
 };
