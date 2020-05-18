@@ -67,20 +67,25 @@ const onRedirectCallback = appState => {
   );
 };
 
+const redirectUri =
+  process.env.NODE_ENV === "development"
+    ? window.location.origin
+    : "https://3-studio.netlify.app/callback";
+
 const app = (
-  <Auth0Provider
-    domain={config.domain}
-    client_id={config.clientId}
-    redirect_uri={window.location.origin}
-    onRedirectCallback={onRedirectCallback}
-  >
-    <Provider store={store}>
-      <BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <Auth0Provider
+        domain={config.domain}
+        client_id={config.clientId}
+        redirect_uri={redirectUri}
+        onRedirectCallback={onRedirectCallback}
+      >
         <CssBaseline />
         <App />
-      </BrowserRouter>
-    </Provider>
-  </Auth0Provider>
+      </Auth0Provider>
+    </BrowserRouter>
+  </Provider>
 );
 
 ReactDOM.render(app, document.getElementById("root"));
