@@ -193,34 +193,9 @@ const ProfilePage = props => {
             <Button onClick={handleChangePictureButton}>
               Change profile picture
             </Button>
-            {openPictureChanger && (
-              <Dialog
-                open={openDialog}
-                onClose={handleDialogClose}
-                aria-labelledby="Update picture"
-              >
-                <DropzoneArea
-                  dropzoneText="Drag profile picture here"
-                  acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
-                  maxFileSize={10000000}
-                  filesLimit={1}
-                  onDrop={e => handleDrop(e)}
-                  onDelete={handleDelete}
-                />
-
-                <DialogActions>
-                  <Button onClick={handleDialogClose} color="primary">
-                    Cancel
-                  </Button>
-                  <Button onClick={handlePictureUpdate} color="primary">
-                    Update
-                  </Button>
-                </DialogActions>
-              </Dialog>
-            )}
           </div>
           <div className="theme-selector-area">
-            <p>Theme</p>
+            <p className="title">Theme</p>
             <Select
               labelId="theme"
               id="theme"
@@ -323,6 +298,31 @@ const ProfilePage = props => {
           </Button>
         </DialogActions>
       </Dialog>
+      {openPictureChanger && (
+        <Dialog
+          open={openDialog}
+          onClose={handleDialogClose}
+          aria-labelledby="Update picture"
+        >
+          <DropzoneArea
+            dropzoneText="Drag profile picture here"
+            acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
+            maxFileSize={10000000}
+            filesLimit={1}
+            onDrop={e => handleDrop(e)}
+            onDelete={handleDelete}
+          />
+
+          <DialogActions>
+            <Button onClick={handleDialogClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={handlePictureUpdate} color="primary">
+              Update
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </Container>
   );
 
