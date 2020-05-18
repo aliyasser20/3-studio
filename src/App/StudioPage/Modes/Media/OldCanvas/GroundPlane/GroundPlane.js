@@ -4,7 +4,7 @@ import materialLibrary from "../../../../../../helpers/materialLibrary";
 const GroundPlane = () => {
   const mesh = useRef();
   useEffect(() => {
-    // if (mesh.current) mesh.current.material = materialLibrary().leather;
+    if (mesh.current) mesh.current.material = materialLibrary("leather").leather;
   });
 
   return (

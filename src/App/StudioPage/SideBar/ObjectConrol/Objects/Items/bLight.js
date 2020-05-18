@@ -30,7 +30,8 @@ const BLight = (props) => {
   };
 
   const handleColorSet = (color) => {
-    const dLightColor = { ...props.dLight, color };
+    const dLightColor = { ...props.bLight, color };
+    // console.log(dLightColor)
     props.onSetBLight(dLightColor);
   };
 

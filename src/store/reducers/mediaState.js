@@ -55,15 +55,7 @@ const reducer = (state = initialState, action) => {
       };
     case actionTypes.RESET_MEDIA_STATE:
       return {
-        ...state,
-        mediaModel: null,
-        mediaFov: null,
-        mediaFar: null,
-        mediaNear: null,
-        mediaSizeBounding: null,
-        mediaBox: null,
-        mediaSolidBackground: "525252",
-        dragObjects: [],
+        ...initialState
       };
     default:
       return state;

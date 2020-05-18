@@ -46,9 +46,10 @@ const MediaBackGroundControl = (props) => {
           aria-controls="environment-controls-summary"
           id="environment-controls-summary"
         >
-          <Typography>Background Control</Typography>
+          <Typography>Global Control</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className="details-section">
+          {/* <h5 className="section-title">Background</h5> */}
           <FormControlLabel
             className="custom-label"
             control={
@@ -116,6 +117,22 @@ const MediaBackGroundControl = (props) => {
             }
             label="Default Light"
           />
+
+          <h5 className="section-title">User model</h5>
+          <div className="background-color-section">
+            <FormControlLabel
+              className="custom-label"
+              control={
+                <Checkbox
+                  className="custom-checkbox"
+                  checked={props.mediaControls.mediaUserModelDrag}
+                  onChange={props.onToggleUserModelDarg}
+                  name="userModelDrag"
+                />
+              }
+              label="User model Drag"
+            />
+          </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
@@ -137,8 +154,10 @@ MediaBackGroundControl.propTypes = {
   onToggleMapEnv: PropTypes.func.isRequired,
   defaultLight: PropTypes.bool.isRequired,
   onToggleDefaultLight: PropTypes.func.isRequired,
-  onToggleMediaAutoRotate:PropTypes.func.isRequired,
+  onToggleMediaAutoRotate: PropTypes.func.isRequired,
   mediaAutorotate: PropTypes.bool.isRequired,
+  mediaControls: PropTypes.object.isRequired,
+  onToggleUserModelDarg: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -148,7 +167,8 @@ const mapStateToProps = (state) => ({
   solidBgColor: state.mediaState.mediaSolidBackground,
   mediaMapEnv: state.mediaControls.mediaMapEnvironment,
   defaultLight: state.mediaControls.defaultLight,
-  mediaAutorotate: state.mediaControls.mediaAutorotate
+  mediaAutorotate: state.mediaControls.mediaAutorotate,
+  mediaControls: state.mediaControls,
 });
 const mapDispatchToProps = (dispatch) => ({
   onToggleMediaEnvB: () => dispatch(actions.toggleMediaEnvB()),
@@ -158,7 +178,8 @@ const mapDispatchToProps = (dispatch) => ({
   onSetMediaSolidBackground: (hexColor) =>
     dispatch(actions.setMediaSolidBackground(hexColor)),
   onToggleDefaultLight: () => dispatch(actions.toggleDefaultLight()),
-  onToggleMediaAutoRotate: () => dispatch(actions.toggleMediaAutoRotate())
+  onToggleMediaAutoRotate: () => dispatch(actions.toggleMediaAutoRotate()),
+  onToggleUserModelDarg: () => dispatch(actions.toggleUserModelDrag()),
 });
 
 export default connect(
