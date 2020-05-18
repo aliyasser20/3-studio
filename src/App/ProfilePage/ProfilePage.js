@@ -92,9 +92,9 @@ const ProfilePage = props => {
       })
       .then(() => {
         if (process.env.NODE_ENV === "development") {
-          props.logout();
+          logout();
         } else {
-          props.logout({ returnTo: "https://3-studio.netlify.app/" });
+          logout({ returnTo: "https://3-studio.netlify.app/" });
         }
       })
       .catch(error => {
