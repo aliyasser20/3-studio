@@ -12,7 +12,6 @@ const fileExporter = () => {
 
   //  Remove environment and lights from export scene
   scene.environment = null;
-  scene.children = [scene.children[0]];
 
   const gltfExporter = new GLTFExporter();
 
