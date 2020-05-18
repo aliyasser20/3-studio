@@ -127,14 +127,16 @@
   }
 }
 
-.cancel-delete-account {
+.cancel-delete-account,
+.cancel-upload-picture {
   color: #cecece !important;
   &:hover {
     color: white !important;
   }
 }
 
-.confirm-delete-account {
+.confirm-delete-account,
+.confirm-upload-picture {
   background: linear-gradient(var(--gradient-top), var(--gradient-bottom));
   color: white !important;
   &:hover {
@@ -156,5 +158,36 @@
 .MuiMenu-list {
   li {
     text-transform: capitalize;
+  }
+}
+
+.upload-picture-dialog {
+  .MuiPaper-root {
+    width: 500px;
+    padding-top: 1em;
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-bottom: 0.5em;
+    background-color: #212121;
+
+    .upload-picture-drop {
+      background-color: #171717;
+      display: grid;
+      align-items: center;
+      border: 1px solid var(--gradient-top);
+      border-radius: 4px;
+      margin-bottom: 0.5em;
+
+      &:focus {
+        outline-color: var(--gradient-top);
+      }
+
+      svg {
+        fill: url(#gradient-vertical);
+        width: 70px;
+        height: 70px;
+        margin-top: -10px;
+      }
+    }
   }
 }

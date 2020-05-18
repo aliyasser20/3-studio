@@ -300,12 +300,14 @@ const ProfilePage = props => {
       </Dialog>
       {openPictureChanger && (
         <Dialog
+          classes={{ root: "upload-picture-dialog" }}
           open={openDialog}
           onClose={handleDialogClose}
           aria-labelledby="Update picture"
         >
           <DropzoneArea
-            dropzoneText="Drag profile picture here"
+            dropzoneClass="upload-picture-drop"
+            dropzoneText=""
             acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
             maxFileSize={10000000}
             filesLimit={1}
@@ -314,15 +316,29 @@ const ProfilePage = props => {
           />
 
           <DialogActions>
-            <Button onClick={handleDialogClose} color="primary">
+            <Button
+              className="cancel-upload-picture"
+              onClick={handleDialogClose}
+              color="primary"
+            >
               Cancel
             </Button>
-            <Button onClick={handlePictureUpdate} color="primary">
+            <Button
+              className="confirm-upload-picture"
+              onClick={handlePictureUpdate}
+              color="primary"
+            >
               Update
             </Button>
           </DialogActions>
         </Dialog>
       )}
+      <svg>
+        <linearGradient id="gradient-vertical" x2="0" y2="1">
+          <stop offset="0%" stopColor="var(--gradient-top)" />
+          <stop offset="100%" stopColor="var(--gradient-bottom)" />
+        </linearGradient>
+      </svg>
     </Container>
   );
 
