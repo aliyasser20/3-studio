@@ -23,9 +23,10 @@
       grid-gap: 1em;
       align-items: center;
       padding-left: 0.3em;
+      grid-auto-columns: max-content;
 
       .screenshot-image {
-        width: 200px;
+        width: 170px;
         height: 103.5px;
         border-radius: 3px;
         cursor: pointer;
