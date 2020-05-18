@@ -88,6 +88,7 @@ export const SET_MEDIA_B_LIGHT = "SET_MEDIA_B_LIGHT";
 export const SET_MEDIA_P_WALL = "SET_MEDIA_P_WALL";
 export const SET_MEDIA_P_GROUND = "SET_MEDIA_P_GROUND";
 export const RESET_MEDIA_CONTROLS = "RESET_MEDIA_CONTROLS";
+export const TOGGLE_USER_MODEL_DRAG = "TOGGLE_USER_MODEL_DRAG";
 //
 
 // Light Controls

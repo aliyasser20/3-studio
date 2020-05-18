@@ -22,7 +22,6 @@ const KLight = (props) => {
   }, []);
 
   useFrame(() => {
-    console.log(sphere.current.position.x);
     const time = Date.now() * 0.001;
     if (sphere.current) {
       if (props.kLight.orbit.x)

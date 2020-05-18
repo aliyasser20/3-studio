@@ -4,7 +4,7 @@ export {
   toggleMapEnvironment,
   setBackgroundColor,
   setEnvironmentOption,
-  resetEnvironmentControls
+  resetEnvironmentControls,
 } from "./environmentControls";
 
 export {
@@ -12,7 +12,7 @@ export {
   deleteProject,
   newProject,
   getProjects,
-  setCurrentProject
+  setCurrentProject,
 } from "./projects";
 
 export { setTheme, getTheme } from "./themes";
@@ -27,7 +27,7 @@ export {
   setNear,
   setSizeBounding,
   resetEditState,
-  setSelectedPart
+  setSelectedPart,
 } from "./currentModel";
 
 export { setCameraMode } from "./cameraControls";
@@ -37,14 +37,14 @@ export {
   toggleAxis,
   toggleBoundingBox,
   toggleLock,
-  resetExtraControls
+  resetExtraControls,
 } from "./extraControls";
 
 export {
   setSelectedMaterial,
   updateMaterials,
   updateEntireMaterials,
-  resetAppearanceControls
+  resetAppearanceControls,
 } from "./appearanceControls";
 
 export {
@@ -66,7 +66,8 @@ export {
   toggleMediaNoB,
   resetMediaControls,
   toggleMapEnv,
-  toggleDefaultLight
+  toggleDefaultLight,
+  toggleUserModelDrag,
 } from "./mediaControls";
 
 export {
@@ -79,7 +80,7 @@ export {
   resetMediaState,
   setMediaEnvBackground,
   setMediaSolidBackground,
-  setMediaDragObjects
+  setMediaDragObjects,
 } from "./mediaState";
 
 export {
@@ -92,7 +93,7 @@ export {
   toggleAmbientLight,
   toggleDirectionalLight,
   toggleHemisphereLight,
-  resetLights
+  resetLights,
 } from "./lightControls";
 
 export {
@@ -106,7 +107,7 @@ export {
   addConfiguration,
   deleteConfiguration,
   updateConfiguration,
-  resetConfigurations
+  resetConfigurations,
 } from "./configurations";
 
 export { setProfileImage } from "./users";
@@ -117,5 +118,5 @@ export {
   setPartFov,
   setPartNear,
   setPartSizeBounding,
-  resetPartState
+  resetPartState,
 } from "./partModel";

@@ -1,6 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
+  mediaUserModelDrag: false,
   mediaLock: false,
   mediaBoundingBox: false,
   mediaAxis: false,
@@ -70,7 +71,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         defaultLight: !state.defaultLight,
       };
-
+    case actionTypes.TOGGLE_USER_MODEL_DRAG:
+      return {
+        ...state,
+        mediaUserModelDrag: !state.mediaUserModelDrag
+      }
     // Object
     // sphere
     case actionTypes.SET_MEDIA_SPHERE:
@@ -105,12 +110,12 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_MEDIA_P_WALL:
       return {
         ...state,
-        backWall: action.backWall,
+        pWall: action.pWall,
       };
     case actionTypes.SET_MEDIA_P_GROUND:
       return {
         ...state,
-        pWall: action.pGround,
+        pGround: action.pGround,
       };
     // box
     case actionTypes.SET_MEDIA_M_BOX:

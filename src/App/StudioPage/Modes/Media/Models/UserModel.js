@@ -7,12 +7,25 @@ const UserModel = (props) => {
   const { model } = props;
   const currentModel = useRef();
 
-  //for drag controls
+  const addDrag = (obj) => {
+    const dragObjs = [...props.dragObjects];
+
+    obj && props.setDrag([...dragObjs, currentModel.current]);
+  };
+
+  const removeDrag = (obj) => {
+    const currentDragObjects = [...props.dragObjects];
+    const removed = currentDragObjects.filter((obj) => obj.name !== model.name);
+    props.setDrag(removed);
+  };
   useEffect(() => {
-    currentModel.current &&
-      !props.dragObjects.includes(currentModel.current) &&
-      props.setDrag([...props.dragObjects, currentModel.current]);
-  }, []);
+    console.log(props.userModelDrag);
+    // if (mesh.current) mesh.current.material = materialLibrary("leather").leather;
+    if (currentModel.current)
+      props.userModelDrag
+        ? addDrag(currentModel.current)
+        : removeDrag(currentModel.current);
+  }, [props.userModelDrag]);
 
   const render = model ? (
     <primitive
@@ -20,8 +33,8 @@ const UserModel = (props) => {
       ref={currentModel}
       dispose={null}
       castShadow
-      onPointerOver={(e) => props.toggleMediaLock()}
-      onPointerOut={(e) => props.toggleMediaLock()}
+      onPointerOver={(e) => props.userModelDrag && props.toggleMediaLock()}
+      onPointerOut={(e) => props.userModelDrag && props.toggleMediaLock()}
       rotation={[0, 0, 0]}
     />
   ) : null;
