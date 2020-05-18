@@ -94,17 +94,37 @@ const DashboardPage = (props) => {
             },
             color: {
               value: {
-                h: 8,
-                s: 89,
-                l: 61,
+                h: Number(props.currentTheme.hslColor.topFirst),
+                s: Number(
+                  props.currentTheme.hslColor.topSecond.slice(
+                    0,
+                    props.currentTheme.hslColor.topSecond.length - 1
+                  )
+                ),
+                l: Number(
+                  props.currentTheme.hslColor.topThird.slice(
+                    0,
+                    props.currentTheme.hslColor.topThird.length - 1
+                  )
+                ),
               },
             },
             lineLinked: {
               color: {
                 value: {
-                  h: 353,
-                  s: 82,
-                  l: 56,
+                  h: Number(props.currentTheme.hslColor.bottomFirst),
+                  s: Number(
+                    props.currentTheme.hslColor.bottomSecond.slice(
+                      0,
+                      props.currentTheme.hslColor.bottomSecond.length - 1
+                    )
+                  ),
+                  l: Number(
+                    props.currentTheme.hslColor.bottomThird.slice(
+                      0,
+                      props.currentTheme.hslColor.bottomThird.length - 1
+                    )
+                  ),
                 },
               },
             },
@@ -168,6 +188,7 @@ DashboardPage.propTypes = {
 const mapStateToProps = (state) => ({
   allProjects: state.projects.allProjects,
   projectsLoading: state.projects.projectsLoading,
+  currentTheme: state.themes.currentThemeDetailed,
 });
 
 const mapDispatchToProps = (dispatch) => ({
