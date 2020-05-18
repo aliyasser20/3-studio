@@ -7,7 +7,7 @@ export const updateModelMaterials = (model, materials, setModel) => {
       // eslint-disable-next-line
       for (const part in materials) {
         if (o.name === part) {
-          o.material = materialLibrary([materials[part].name])[
+          o.material = materialLibrary(materials[part].name)[
             materials[part].name
           ];
         }
