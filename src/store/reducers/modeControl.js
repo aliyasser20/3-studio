@@ -1,7 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  currentMode: "EDIT"
+  currentMode: "VIEW"
 };
 
 const reducer = (state = initialState, action) => {
