@@ -77,7 +77,7 @@ const WSphere = (props) => {
                       className="custom-checkbox"
                       checked={props.wSphere.rotateX}
                       onChange={handleXrotation}
-                      name="x-rotation"
+                      name="X-rotation"
                     />
                   }
                 />
