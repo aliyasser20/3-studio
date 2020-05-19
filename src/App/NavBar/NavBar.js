@@ -32,21 +32,21 @@ const NavBar = props => {
     }
   }
 
-  // const content = isAuthenticated ? (
-  //   <AvatarPopover {...user} username={username} logout={logout} />
-  // ) : (
-  //   <Box>
-  //     <span className="gradient-button">
-  //       <Button
-  //         color="primary"
-  //         variant="contained"
-  //         onClick={() => loginWithRedirect({})}
-  //       >
-  //         <Box fontWeight="700">Get Started</Box>
-  //       </Button>
-  //     </span>
-  //   </Box>
-  // );
+  const content = isAuthenticated ? (
+    <AvatarPopover {...user} username={username} logout={logout} />
+  ) : (
+    <Box>
+      <span className="gradient-button">
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={() => loginWithRedirect({})}
+        >
+          <Box fontWeight="700">Get Started</Box>
+        </Button>
+      </span>
+    </Box>
+  );
 
   let width = "xl";
 
@@ -73,7 +73,7 @@ const NavBar = props => {
                     </div>
                   </Typography>
                 </Link>
-                {/* {content} */}
+                {content}
               </div>
             </Toolbar>
           </Container>

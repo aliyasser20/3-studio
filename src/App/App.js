@@ -28,9 +28,7 @@ const App = props => {
 
   const routes = (
     <Switch>
-      <Route path="/" exact component={DashboardPage}></Route>
-      <Route path="/studio" component={StudioPage} />
-      {/* <Route path="/profile" component={ProfilePage} /> */}
+      <Route path="/" exact component={LandingPage}></Route>
       <Redirect to="/" />
     </Switch>
   );
