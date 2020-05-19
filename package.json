@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "https://api-3-studio.herokuapp.com/",
+  "main": "public/electron.js",
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.8.1",
     "@material-ui/core": "^4.9.13",
@@ -16,6 +17,7 @@
     "cloudinary-react": "^1.5.0",
     "date-fns": "^2.13.0",
     "easytimer.js": "^4.1.1",
+    "electron-is-dev": "^1.2.0",
     "history": "^4.10.1",
     "lodash": "^4.17.15",
     "material-table": "^1.57.2",
@@ -42,10 +44,14 @@
     "three": "^0.115.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test",
+    "eject": "react-scripts eject",
+    "electron-dev": "concurrently \"BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-pack": "npm run build",
+    "electron-pack": "electron-builder build -l"
   },
   "browserslist": {
     "production": [
@@ -60,7 +66,12 @@
     ]
   },
   "devDependencies": {
+    "@rescripts/cli": "0.0.14",
+    "@rescripts/rescript-env": "0.0.12",
     "babel-eslint": "^9.0.0",
+    "concurrently": "^5.2.0",
+    "electron": "^9.0.0",
+    "electron-builder": "^22.6.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^4.3.0",
@@ -72,6 +83,36 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "prettier": "^1.19.1",
-    "redux-devtools": "^3.5.0"
+    "redux-devtools": "^3.5.0",
+    "typescript": "^3.9.2",
+    "wait-on": "^5.0.0"
+  },
+  "author": {
+    "name": "Ahmed Alwardani, Ali Sayed, Jayburbyga",
+    "email": "your.email@domain.com",
+    "url": "https://3-studio.netlify.app/"
+  },
+  "build": {
+    "appId": "com.my-website.my-app",
+    "productName": "3-studio",
+    "copyright": "Copyright © 2019 ${name}",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm"
+      ],
+      "category": "Development"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "release"
+    }
   }
 }

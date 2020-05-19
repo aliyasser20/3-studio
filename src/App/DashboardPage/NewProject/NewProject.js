@@ -95,7 +95,7 @@ const NewProject = props => {
         // console.log("default");
         setLoading(true);
         createNewProject({
-          userId: user.sub,
+          userId: "global",
           name,
           description,
           modelLink: defaultLink
