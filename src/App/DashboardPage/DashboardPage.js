@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import Particles from "react-particles-js";
 
 import { Container, Snackbar } from "@material-ui/core";
 
@@ -76,6 +77,68 @@ const DashboardPage = props => {
 
   return (
     <div className="dashboard-page">
+      <Particles
+        className="background"
+        width="100vw"
+        height="100vh"
+        params={{
+          background: {
+            color: "#171717"
+          },
+          particles: {
+            number: {
+              value: 50
+            },
+            size: {
+              value: 3
+            },
+            color: {
+              value: {
+                h: Number(props.currentTheme.hslColor.topFirst),
+                s: Number(
+                  props.currentTheme.hslColor.topSecond.slice(
+                    0,
+                    props.currentTheme.hslColor.topSecond.length - 1
+                  )
+                ),
+                l: Number(
+                  props.currentTheme.hslColor.topThird.slice(
+                    0,
+                    props.currentTheme.hslColor.topThird.length - 1
+                  )
+                )
+              }
+            },
+            lineLinked: {
+              color: {
+                value: {
+                  h: Number(props.currentTheme.hslColor.bottomFirst),
+                  s: Number(
+                    props.currentTheme.hslColor.bottomSecond.slice(
+                      0,
+                      props.currentTheme.hslColor.bottomSecond.length - 1
+                    )
+                  ),
+                  l: Number(
+                    props.currentTheme.hslColor.bottomThird.slice(
+                      0,
+                      props.currentTheme.hslColor.bottomThird.length - 1
+                    )
+                  )
+                }
+              }
+            }
+          },
+          interactivity: {
+            events: {
+              onhover: {
+                enable: true,
+                mode: "repulse"
+              }
+            }
+          }
+        }}
+      />
       <Container maxWidth="xl" classes={{ root: "container-padding" }}>
         <div className="project-area">
           <h1>Dashboard</h1>
@@ -119,12 +182,14 @@ DashboardPage.propTypes = {
   onResetExtraControls: PropTypes.func.isRequired,
   onResetConfigurations: PropTypes.func.isRequired,
   onResetAppearanceControls: PropTypes.func.isRequired,
-  onResetPartState: PropTypes.func.isRequired
+  onResetPartState: PropTypes.func.isRequired,
+  currentTheme: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   allProjects: state.projects.allProjects,
-  projectsLoading: state.projects.projectsLoading
+  projectsLoading: state.projects.projectsLoading,
+  currentTheme: state.themes.currentThemeDetailed
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -44,7 +44,7 @@ const MediaTopNav = (props) => {
   const [dots, setDots] = useState(".");
   const [blob, setBlob] = useState();
   const { user } = useAuth0();
-
+  console.log(document.querySelectorAll("canvas"))
   const preset = {
     aKey: process.env.REACT_APP_API_KEY,
     sUpreset: process.env.REACT_APP_SCREENSHOT_UPLOAD_PRESET,
@@ -103,6 +103,7 @@ const MediaTopNav = (props) => {
     setScreenshot("");
     const img = document.querySelector("#preview-img");
     img.src = "";
+
     const ctx = document.querySelector("canvas");
     const exportVid = (blob) => {
       setBlob(blob);

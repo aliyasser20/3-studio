@@ -18,6 +18,7 @@ import VpnKeyIcon from "@material-ui/icons/VpnKey";
 
 import { DropzoneArea } from "material-ui-dropzone";
 
+import Particles from "react-particles-js";
 import SingleField from "./SingleField/SingleField";
 import Alert from "../UI/Alert/Alert";
 
@@ -183,6 +184,70 @@ const ProfilePage = props => {
   const page = (
     <Container maxWidth="md" classes={{ root: "container-padding" }}>
       <div className="profile-page">
+        <Particles
+          className="background"
+          width="100vw"
+          height="100vh"
+          params={{
+            background: {
+              color: "#171717"
+            },
+            particles: {
+              number: {
+                value: 50
+              },
+              size: {
+                value: 3
+              },
+              color: {
+                value: {
+                  h: Number(props.currentThemeDetailed.hslColor.topFirst),
+                  s: Number(
+                    props.currentThemeDetailed.hslColor.topSecond.slice(
+                      0,
+                      props.currentThemeDetailed.hslColor.topSecond.length - 1
+                    )
+                  ),
+                  l: Number(
+                    props.currentThemeDetailed.hslColor.topThird.slice(
+                      0,
+                      props.currentThemeDetailed.hslColor.topThird.length - 1
+                    )
+                  )
+                }
+              },
+              lineLinked: {
+                color: {
+                  value: {
+                    h: Number(props.currentThemeDetailed.hslColor.bottomFirst),
+                    s: Number(
+                      props.currentThemeDetailed.hslColor.bottomSecond.slice(
+                        0,
+                        props.currentThemeDetailed.hslColor.bottomSecond
+                          .length - 1
+                      )
+                    ),
+                    l: Number(
+                      props.currentThemeDetailed.hslColor.bottomThird.slice(
+                        0,
+                        props.currentThemeDetailed.hslColor.bottomThird.length -
+                          1
+                      )
+                    )
+                  }
+                }
+              }
+            },
+            interactivity: {
+              events: {
+                onhover: {
+                  enable: true,
+                  mode: "repulse"
+                }
+              }
+            }
+          }}
+        />
         <div className="top-section">
           <div className="picture-container">
             <img
@@ -190,7 +255,10 @@ const ProfilePage = props => {
               src={profilePicture}
               alt="profile picture"
             />
-            <Button onClick={handleChangePictureButton}>
+            <Button
+              className="upload-pic-button"
+              onClick={handleChangePictureButton}
+            >
               Change profile picture
             </Button>
           </div>
@@ -351,11 +419,13 @@ ProfilePage.propTypes = {
   onModeSelect: PropTypes.func.isRequired,
   onResetMediaState: PropTypes.func.isRequired,
   onResetMediaControls: PropTypes.func.isRequired,
-  onSetProfileImage: PropTypes.func.isRequired
+  onSetProfileImage: PropTypes.func.isRequired,
+  currentThemeDetailed: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  currentTheme: state.themes.currentTheme
+  currentTheme: state.themes.currentTheme,
+  currentThemeDetailed: state.themes.currentThemeDetailed
 });
 
 const mapDispatchToProps = dispatch => ({

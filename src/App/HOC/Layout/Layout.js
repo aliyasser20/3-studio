@@ -6,7 +6,7 @@ import MainBody from "../MainBody/MainBody";
 
 import "./Layout.scss";
 
-const Layout = props => (
+const Layout = (props) => (
   <Fragment>
     <NavBar />
     <MainBody>{props.children}</MainBody>
@@ -14,7 +14,7 @@ const Layout = props => (
 );
 
 Layout.propTypes = {
-  children: PropTypes.element
+  children: PropTypes.element,
 };
 
 export default Layout;

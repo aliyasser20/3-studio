@@ -22,7 +22,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.UPDATE_PROJECT_DETAILS:
+    case actionTypes.SET_THEME:
       toggleCSSGlobalColors(availableThemes, action.theme);
 
       return {
