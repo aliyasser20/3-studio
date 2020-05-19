@@ -1,17 +1,19 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useState } from "react";
 import { useFrame } from "react-three-fiber";
 
-const DLight = (props) => {
+const DLight = props => {
   const [lightPosition, setLightPosition] = useState([0, 0, 0]);
+
+  // object referance
   const diamond = useRef();
   const pointLight = useRef();
 
   useEffect(() => {
+    // on load add to draggable objects
     const dragObjs = [...props.dragObjects];
-
     diamond.current && props.setDrag([...dragObjs, diamond.current]);
+    // config shadow casting
 
     if (pointLight.current) {
       pointLight.current.shadow.camera.top = 100;
@@ -22,8 +24,9 @@ const DLight = (props) => {
   }, []);
 
   useFrame(() => {
-    console.log(diamond.current.position.x);
+    // movement configuration and calculations for x , y ,z and orbit around
     const time = Date.now() * 0.001;
+    // movement
     if (diamond.current) {
       if (props.dLight.orbit.x)
         diamond.current.position.x +=
@@ -35,13 +38,14 @@ const DLight = (props) => {
         diamond.current.position.z +=
           props.dLight.radius * 0.07 * Math.cos(time * 0.7);
 
+      // rotation
       if (props.dLight.rotate.x) diamond.current.rotation.x += 0.009;
       if (props.dLight.rotate.y) diamond.current.rotation.y += 0.009;
       if (props.dLight.rotate.z) diamond.current.rotation.z += 0.009;
       setLightPosition([
         diamond.current.position.x,
         diamond.current.position.y,
-        diamond.current.position.z,
+        diamond.current.position.z
       ]);
     }
   });
@@ -57,10 +61,10 @@ const DLight = (props) => {
         scale={props.dLight.scale}
         position={[-props.dLight.initPosition, 0, 0]}
         lookAt={[0, 0, 0]}
-        onPointerOver={(e) => {
+        onPointerOver={e => {
           props.toggleMediaLock();
         }}
-        onPointerOut={(e) => props.toggleMediaLock()}
+        onPointerOut={e => props.toggleMediaLock()}
       >
         <polyhedronGeometry attach="geometry" args={props.dLight.args} />
         <meshBasicMaterial
@@ -91,7 +95,7 @@ const DLight = (props) => {
 DLight.propTypes = {
   toggleMediaLock: PropTypes.func.isRequired,
   dragObjects: PropTypes.array.isRequired,
-  dLight: PropTypes.object,
+  dLight: PropTypes.object
 };
 
 export default DLight;

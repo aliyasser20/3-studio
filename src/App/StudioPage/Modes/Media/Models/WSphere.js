@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import { useFrame } from "react-three-fiber";
+import PropTypes from "prop-types";
 
-const WSphere = (props) => {
+const WSphere = props => {
   const wSphere = useRef();
   useEffect(() => {
     const dragObjs = [...props.dragObjects];
@@ -20,8 +21,8 @@ const WSphere = (props) => {
       name="w-sphere"
       visible
       userData={{ name: "w-sphere" }}
-      onPointerOver={(e) => props.toggleMediaLock()}
-      onPointerOut={(e) => props.toggleMediaLock()}
+      onPointerOver={e => props.toggleMediaLock()}
+      onPointerOut={e => props.toggleMediaLock()}
       castShadow
       scale={[...props.sphere.scale]}
     >
@@ -36,6 +37,12 @@ const WSphere = (props) => {
       />
     </mesh>
   );
+};
+
+WSphere.propTypes = {
+  sphere: PropTypes.object.isRequired,
+  dragObjects: PropTypes.array.isRequired,
+  toggleMediaLock: PropTypes.func.isRequired
 };
 
 export default WSphere;
