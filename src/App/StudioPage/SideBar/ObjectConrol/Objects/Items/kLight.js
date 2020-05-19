@@ -43,26 +43,26 @@ const KLight = (props) => {
     const newSpread = { ...props.kLight, power };
     props.onSetKLight(newSpread);
   };
-  const handleXmovment = () => {
-    const toggleMovmentX = {
+  const handleXmovement = () => {
+    const togglemovementX = {
       ...props.kLight,
       orbit: { ...props.kLight.orbit, x: !props.kLight.orbit.x },
     };
-    props.onSetKLight(toggleMovmentX);
+    props.onSetKLight(togglemovementX);
   };
-  const handleYmovment = () => {
-    const toggleMovmentY = {
+  const handleYmovement = () => {
+    const togglemovementY = {
       ...props.kLight,
       orbit: { ...props.kLight.orbit, y: !props.kLight.orbit.y },
     };
-    props.onSetKLight(toggleMovmentY);
+    props.onSetKLight(togglemovementY);
   };
-  const handleZmovment = () => {
-    const toggleMovmentZ = {
+  const handleZmovement = () => {
+    const togglemovementZ = {
       ...props.kLight,
       orbit: { ...props.kLight.orbit, z: !props.kLight.orbit.z },
     };
-    props.onSetKLight(toggleMovmentZ);
+    props.onSetKLight(togglemovementZ);
   };
 
   return (
@@ -76,7 +76,7 @@ const KLight = (props) => {
       </ListItem>
       <Collapse in={openKLight} timeout="auto" unmountOnExit>
         <ListItem button onClick={() => setOrbit(!orbit)}>
-          <ListItemText primary="Movment Options" />
+          <ListItemText primary="Movement Options" />
           {orbit ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={orbit} timeaout="auto" unmountOnExit>
@@ -89,13 +89,13 @@ const KLight = (props) => {
                     <Checkbox
                       className="custom-checkbox"
                       checked={props.kLight.orbit.x}
-                      onChange={handleXmovment}
-                      name="x-movment"
+                      onChange={handleXmovement}
+                      name="x-movement"
                     />
                   }
                 />
               </ListItemIcon>
-              <ListItemText primary="X-movment" />
+              <ListItemText primary="X-movement" />
             </ListItem>
           </List>
           <List component="div" className="details-section" disablePadding>
@@ -107,13 +107,13 @@ const KLight = (props) => {
                     <Checkbox
                       className="custom-checkbox"
                       checked={props.kLight.orbit.y}
-                      onChange={handleYmovment}
-                      name="Y-movment"
+                      onChange={handleYmovement}
+                      name="Y-movement"
                     />
                   }
                 />
               </ListItemIcon>
-              <ListItemText primary="Y-movment" />
+              <ListItemText primary="Y-movement" />
             </ListItem>
           </List>
           <List component="div" className="details-section" disablePadding>
@@ -125,7 +125,7 @@ const KLight = (props) => {
                     <Checkbox
                       className="custom-checkbox"
                       checked={props.kLight.orbit.z}
-                      onChange={handleZmovment}
+                      onChange={handleZmovement}
                       name="Z-movement"
                     />
                   }

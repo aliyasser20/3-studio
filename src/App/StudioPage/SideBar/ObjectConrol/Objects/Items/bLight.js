@@ -45,26 +45,26 @@ const BLight = (props) => {
     const newSpread = { ...props.bLight, power };
     props.onSetBLight(newSpread);
   };
-  const handleXmovment = () => {
-    const toggleMovmentX = {
+  const handleXmovement = () => {
+    const togglemovementX = {
       ...props.bLight,
       orbit: { ...props.bLight.orbit, x: !props.bLight.orbit.x },
     };
-    props.onSetBLight(toggleMovmentX);
+    props.onSetBLight(togglemovementX);
   };
-  const handleYmovment = () => {
-    const toggleMovmentY = {
+  const handleYmovement = () => {
+    const togglemovementY = {
       ...props.bLight,
       orbit: { ...props.bLight.orbit, y: !props.bLight.orbit.y },
     };
-    props.onSetBLight(toggleMovmentY);
+    props.onSetBLight(togglemovementY);
   };
-  const handleZmovment = () => {
-    const toggleMovmentZ = {
+  const handleZmovement = () => {
+    const togglemovementZ = {
       ...props.bLight,
       orbit: { ...props.bLight.orbit, z: !props.bLight.orbit.z },
     };
-    props.onSetBLight(toggleMovmentZ);
+    props.onSetBLight(togglemovementZ);
   };
 
   const handleXrotation = () => {
@@ -100,7 +100,7 @@ const BLight = (props) => {
       </ListItem>
       <Collapse in={openBLight} timeout="auto" unmountOnExit>
         <ListItem button onClick={() => setOrbit(!orbit)}>
-          <ListItemText primary="Movment Options" />
+          <ListItemText primary="Movement Options" />
           {orbit ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={orbit} timeaout="auto" unmountOnExit>
@@ -113,13 +113,13 @@ const BLight = (props) => {
                     <Checkbox
                       className="custom-checkbox"
                       checked={props.bLight.orbit.x}
-                      onChange={handleXmovment}
-                      name="x-movment"
+                      onChange={handleXmovement}
+                      name="x-movement"
                     />
                   }
                 />
               </ListItemIcon>
-              <ListItemText primary="X-movment" />
+              <ListItemText primary="X-movement" />
             </ListItem>
           </List>
           <List component="div" className="details-section" disablePadding>
@@ -131,13 +131,13 @@ const BLight = (props) => {
                     <Checkbox
                       className="custom-checkbox"
                       checked={props.bLight.orbit.y}
-                      onChange={handleYmovment}
-                      name="Y-movment"
+                      onChange={handleYmovement}
+                      name="Y-movement"
                     />
                   }
                 />
               </ListItemIcon>
-              <ListItemText primary="Y-movment" />
+              <ListItemText primary="Y-movement" />
             </ListItem>
           </List>
           <List component="div" className="details-section" disablePadding>
@@ -149,13 +149,13 @@ const BLight = (props) => {
                     <Checkbox
                       className="custom-checkbox"
                       checked={props.bLight.orbit.z}
-                      onChange={handleZmovment}
+                      onChange={handleZmovement}
                       name="Z-movement"
                     />
                   }
                 />
               </ListItemIcon>
-              <ListItemText primary="Z-movment" />
+              <ListItemText primary="Z-movement" />
             </ListItem>
           </List>
         </Collapse>
