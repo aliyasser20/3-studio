@@ -182,7 +182,8 @@ DashboardPage.propTypes = {
   onResetExtraControls: PropTypes.func.isRequired,
   onResetConfigurations: PropTypes.func.isRequired,
   onResetAppearanceControls: PropTypes.func.isRequired,
-  onResetPartState: PropTypes.func.isRequired
+  onResetPartState: PropTypes.func.isRequired,
+  currentTheme: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

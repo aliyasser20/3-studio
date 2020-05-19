@@ -1,10 +1,27 @@
 .profile-page {
-  margin-top: 3em;
-  height: 500px;
   width: 100%;
   display: grid;
+  padding-top: 2em;
+
   grid-template-rows: 200px;
   grid-gap: 2em;
+  min-height: 96vh;
+  grid-template-rows: 230px 200px 200px;
+
+  .background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100% !important;
+    z-index: -3;
+
+    canvas {
+      height: 100% !important;
+      border-radius: 0;
+    }
+  }
 
   .top-section {
     display: grid;
@@ -25,6 +42,10 @@
         border-radius: 75px;
         box-shadow: 0 0 5px rgba($color: #000000, $alpha: 0.4);
       }
+
+      .upload-pic-button {
+        color: white;
+      }
     }
 
     .theme-selector-area {
@@ -37,6 +58,7 @@
         font-weight: 500;
         margin-block-start: 0;
         margin-block-end: 0.5em;
+        color: white;
       }
 
       #theme {
