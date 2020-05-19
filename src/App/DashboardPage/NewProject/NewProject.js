@@ -6,21 +6,21 @@ import {
   DialogTitle,
   DialogContent,
   TextField,
-  DialogActions,
+  DialogActions
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { DropzoneArea } from "material-ui-dropzone";
 import "./NewProject.scss";
 import { connect } from "react-redux";
 import { object } from "prop-types";
+import Snackbar from "@material-ui/core/Snackbar";
 import { saveModelToCloude, createNewProject } from "./NewProjectHelper";
 import { useAuth0 } from "../../../react-auth0-spa";
 import Loader from "../../UI/Loader/Loader";
-import Snackbar from "@material-ui/core/Snackbar";
 import * as actions from "../../../store/actions/index";
 import Alert from "../../UI/Alert/Alert";
 
-const NewProject = (props) => {
+const NewProject = props => {
   const { user } = useAuth0();
   const [open, setOpen] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
@@ -38,8 +38,8 @@ const NewProject = (props) => {
     if (reason === "clickaway") {
       return;
     }
-      setAlertOpen(false);
-      setAlert("");
+    setAlertOpen(false);
+    setAlert("");
   };
 
   const handleClickOpen = () => {
@@ -50,7 +50,7 @@ const NewProject = (props) => {
     setOpen(false);
   };
 
-  const handleDrop = (file) => {
+  const handleDrop = file => {
     setFiles(file);
   };
   const handleRemove = () => {
@@ -67,29 +67,24 @@ const NewProject = (props) => {
   };
 
   const handleCreate = () => {
-    if (
-      !name ||
-      !description ||
-      (files.length === 0 && !defaultLink)
-    ) {
+    if (!name || !description || (files.length === 0 && !defaultLink)) {
       if (!name) setAlert("Please provide a name");
       if (!description) setAlert("Please provide a description");
       if (files.length === 0 && !defaultLink)
         setAlert("Please provide a model");
       setAlertOpen(true);
     } else {
-
       if (files.length > 0) {
         console.log(files);
         setLoading(true);
-        saveModelToCloude(files).then((modelLink) => {
+        saveModelToCloude(files).then(modelLink => {
           console.log(name, description, modelLink);
           createNewProject({
             userId: user.sub,
             name,
             description,
-            modelLink,
-          }).then((data) => {
+            modelLink
+          }).then(data => {
             props.onNewProject(data);
             setLoading(false);
             setOpen(false);
@@ -103,8 +98,8 @@ const NewProject = (props) => {
           userId: user.sub,
           name,
           description,
-          modelLink: defaultLink,
-        }).then((data) => {
+          modelLink: defaultLink
+        }).then(data => {
           props.onNewProject(data);
           setLoading(false);
           setOpen(false);
@@ -114,22 +109,22 @@ const NewProject = (props) => {
     }
   };
 
-  const handleName = (e) => {
+  const handleName = e => {
     e.preventDefault();
     setName(e.target.value);
   };
-  const handleDescription = (e) => {
+  const handleDescription = e => {
     e.preventDefault();
     setDescription(e.target.value);
   };
 
-  const handleDefaultSelect = (e) => {
+  const handleDefaultSelect = e => {
     switch (e) {
       case 1:
         setModelClass1("default-model-pic-selected");
         setModelClass2("default-model-pic");
         setModelClass3("default-model-pic");
-        setDefaultLink("models/car.glb");
+        setDefaultLink("models/range.glb");
         break;
       case 2:
         setModelClass1("default-model-pic");
@@ -172,7 +167,7 @@ const NewProject = (props) => {
         <DialogContent>
           <TextField
             value={name}
-            onChange={(e) => handleName(e)}
+            onChange={e => handleName(e)}
             autoFocus
             margin="dense"
             id="project-name"
@@ -183,7 +178,7 @@ const NewProject = (props) => {
           />
           <TextField
             value={description}
-            onChange={(e) => handleDescription(e)}
+            onChange={e => handleDescription(e)}
             margin="dense"
             id="project-description"
             label="Description"
@@ -198,31 +193,31 @@ const NewProject = (props) => {
             acceptedFiles={[".glb"]}
             maxFileSize={10000000}
             filesLimit={1}
-            onDrop={(e) => handleDrop(e)}
-            onDelete={(e) => handleRemove()}
+            onDrop={e => handleDrop(e)}
+            onDelete={e => handleRemove()}
           />
           <h3>Or choose one of our default models</h3>
           <div className="default-model-area">
             <img
               id="default-model-1"
               className={defaultModelClass1}
-              src="assets/car.png"
+              src="assets/range.png"
               alt="defaultmodel-car"
-              onClick={(e) => handleDefaultSelect(1)}
+              onClick={e => handleDefaultSelect(1)}
             />
             <img
               id="default-model-2"
               className={defaultModelClass2}
               src="assets/wolf.png"
               alt="defaultmodel-wolf"
-              onClick={(e) => handleDefaultSelect(2)}
+              onClick={e => handleDefaultSelect(2)}
             />
             <img
               id="default-model-3"
               className={defaultModelClass3}
               src="assets/controller.png"
               alt="defaultmodel-controller"
-              onClick={(e) => handleDefaultSelect(3)}
+              onClick={e => handleDefaultSelect(3)}
             />
           </div>
         </DialogContent>
@@ -258,8 +253,8 @@ const NewProject = (props) => {
 
 NewProject.prototype = {};
 
-const mapDispatchToProps = (dispatch) => ({
-  onNewProject: (data) => dispatch(actions.newProject(data)),
+const mapDispatchToProps = dispatch => ({
+  onNewProject: data => dispatch(actions.newProject(data))
 });
 
 export default connect(null, mapDispatchToProps)(NewProject);
