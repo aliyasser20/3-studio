@@ -38,6 +38,7 @@ const ProjectCard = props => {
   const [loader, setLoader] = useState(false);
 
   const saveChanges = () => {
+    setLoader(true);
     backendAxios
       .put("/api/projects", {
         project: {
