@@ -141,6 +141,23 @@ const LandingPage = props => {
           </div>
         </Container>
       </div>
+      <div className="materials-section">
+        <Container maxWidth="lg" classes={{ root: "container-padding" }}>
+          <div className="materials-container">
+            <h2 className="section-title">Appearances</h2>
+            <p className="section-description">
+              Choose and apply appearances from 80+ materials. <br /> From
+              metals to plastics, ceramics, fabrics, stones, and much more …
+              we’ve got you covered!
+            </p>
+            <img
+              src="./assets/materials.png"
+              alt="materials"
+              className="materials"
+            />
+          </div>
+        </Container>
+      </div>
     </div>
   );
 };
