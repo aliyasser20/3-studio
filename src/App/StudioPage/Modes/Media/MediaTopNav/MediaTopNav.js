@@ -199,7 +199,6 @@ const MediaTopNav = (props) => {
                     </span>
                     <AddIcon
                       onClick={() =>
-                        timeValue.s < 30 &&
                         setTimeValue((prev) => ({ ...prev, s: prev.s + 1 }))
                       }
                     />

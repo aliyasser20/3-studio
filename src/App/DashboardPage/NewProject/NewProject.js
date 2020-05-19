@@ -80,7 +80,7 @@ const NewProject = props => {
         saveModelToCloude(files).then(modelLink => {
           console.log(name, description, modelLink);
           createNewProject({
-            userId: user.sub,
+            userId: "General",
             name,
             description,
             modelLink
