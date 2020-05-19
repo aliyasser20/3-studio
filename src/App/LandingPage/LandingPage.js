@@ -11,7 +11,7 @@ import {
   Button,
   Dialog,
   DialogActions,
-  DialogTitle
+  DialogTitle,
 } from "@material-ui/core";
 import AppleIcon from "@material-ui/icons/Apple";
 
@@ -22,9 +22,19 @@ import { useAuth0 } from "../../react-auth0-spa";
 
 import "./LandingPage.scss";
 
-const LandingPage = props => {
+const LandingPage = (props) => {
   const { loginWithRedirect } = useAuth0();
 
+  const handleLinux = () => {
+    const a = document.createElement("a");
+    document.body.append(a);
+    a.style = "display: none";
+    a.href =
+      "https://drive.google.com/uc?id=1MokBUfCoNlvmiAjLylznyL8apCp-8p1U&export=download";
+    a.download = "3Studio";
+    a.click();
+    document.body.removeElement(a);
+  };
   return (
     <div className="landing-page">
       <Particles
@@ -33,14 +43,14 @@ const LandingPage = props => {
         height="100vh"
         params={{
           background: {
-            color: "#171717"
+            color: "#171717",
           },
           particles: {
             number: {
-              value: 50
+              value: 50,
             },
             size: {
-              value: 3
+              value: 3,
             },
             color: {
               value: {
@@ -56,8 +66,8 @@ const LandingPage = props => {
                     0,
                     props.currentThemeDetailed.hslColor.topThird.length - 1
                   )
-                )
-              }
+                ),
+              },
             },
             lineLinked: {
               color: {
@@ -75,19 +85,19 @@ const LandingPage = props => {
                       0,
                       props.currentThemeDetailed.hslColor.bottomThird.length - 1
                     )
-                  )
-                }
-              }
-            }
+                  ),
+                },
+              },
+            },
           },
           interactivity: {
             events: {
               onhover: {
                 enable: true,
-                mode: "repulse"
-              }
-            }
-          }
+                mode: "repulse",
+              },
+            },
+          },
         }}
       />
       <div className="hero">
@@ -124,11 +134,7 @@ const LandingPage = props => {
                   <Button
                     variant="contained"
                     startIcon={<PenguinIcon />}
-                    // onClick={() => {
-                    //   if (!disabled) {
-                    //     resetPassword();
-                    //   }
-                    // }}
+                    onClick={() => handleLinux()}
                   >
                     Linux OS
                   </Button>
@@ -212,11 +218,11 @@ const LandingPage = props => {
 };
 
 LandingPage.propTypes = {
-  currentThemeDetailed: PropTypes.object.isRequired
+  currentThemeDetailed: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  currentThemeDetailed: state.themes.currentThemeDetailed
+const mapStateToProps = (state) => ({
+  currentThemeDetailed: state.themes.currentThemeDetailed,
 });
 
 export default connect(mapStateToProps, null)(LandingPage);
