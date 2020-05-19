@@ -14,7 +14,7 @@ import * as actions from "../../store/actions/index";
 
 import "./Dashboard.scss";
 
-const DashboardPage = props => {
+const DashboardPage = (props) => {
   const [snackBarOpen, setSnackBarOpen] = useState(false);
   const [snackBarStatus, setSnackBarStatus] = useState("");
   const [snackBarMessage, setSnackBarMessage] = useState("");
@@ -54,7 +54,7 @@ const DashboardPage = props => {
     setSnackBarOpen(true);
   };
 
-  const projectCards = props.allProjects.map(project => (
+  const projectCards = props.allProjects.map((project) => (
     <ProjectCard
       handleSnackBarClose={handleSnackBarClose}
       handleSnackBarOpen={handleSnackBarOpen}
@@ -83,14 +83,14 @@ const DashboardPage = props => {
         height="100vh"
         params={{
           background: {
-            color: "#171717"
+            color: "#171717",
           },
           particles: {
             number: {
-              value: 50
+              value: 50,
             },
             size: {
-              value: 3
+              value: 3,
             },
             color: {
               value: {
@@ -106,8 +106,8 @@ const DashboardPage = props => {
                     0,
                     props.currentTheme.hslColor.topThird.length - 1
                   )
-                )
-              }
+                ),
+              },
             },
             lineLinked: {
               color: {
@@ -124,36 +124,33 @@ const DashboardPage = props => {
                       0,
                       props.currentTheme.hslColor.bottomThird.length - 1
                     )
-                  )
-                }
-              }
-            }
+                  ),
+                },
+              },
+            },
           },
           interactivity: {
             events: {
               onhover: {
                 enable: true,
-                mode: "repulse"
-              }
-            }
-          }
+                mode: "repulse",
+              },
+            },
+          },
         }}
       />
       <Container maxWidth="xl" classes={{ root: "container-padding" }}>
         <div className="project-area">
-          <h1>Dashboard</h1>
           <NewProject />
         </div>
         {props.allProjects.length > 0 ? (
           <div className="projects">{projectCards}</div>
         ) : (
           <Fragment>
-            {props.projectsLoading ? (
+            {props.projectsLoading && (
               <div className="loader-container">
                 <Loader />
               </div>
-            ) : (
-              <h2>No projects yet ...</h2>
             )}
           </Fragment>
         )}
@@ -183,28 +180,28 @@ DashboardPage.propTypes = {
   onResetConfigurations: PropTypes.func.isRequired,
   onResetAppearanceControls: PropTypes.func.isRequired,
   onResetPartState: PropTypes.func.isRequired,
-  currentTheme: PropTypes.object.isRequired
+  currentTheme: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   allProjects: state.projects.allProjects,
   projectsLoading: state.projects.projectsLoading,
-  currentTheme: state.themes.currentThemeDetailed
+  currentTheme: state.themes.currentThemeDetailed,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onModeSelect: mode => dispatch(actions.modeSelect(mode)),
+const mapDispatchToProps = (dispatch) => ({
+  onModeSelect: (mode) => dispatch(actions.modeSelect(mode)),
   onResetMediaState: () => dispatch(actions.resetMediaState()),
   onResetMediaControls: () => dispatch(actions.resetMediaControls()),
   onResetEditState: () => dispatch(actions.resetEditState()),
   onResetLights: () => dispatch(actions.resetLights()),
-  onSetCameraMode: mode => dispatch(actions.setCameraMode(mode)),
+  onSetCameraMode: (mode) => dispatch(actions.setCameraMode(mode)),
   onResetEnvironmentControls: () =>
     dispatch(actions.resetEnvironmentControls()),
   onResetExtraControls: () => dispatch(actions.resetExtraControls()),
   onResetConfigurations: () => dispatch(actions.resetConfigurations()),
   onResetAppearanceControls: () => dispatch(actions.resetAppearanceControls()),
-  onResetPartState: () => dispatch(actions.resetPartState())
+  onResetPartState: () => dispatch(actions.resetPartState()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);
