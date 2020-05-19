@@ -85,7 +85,7 @@ const LandingPage = props => (
       }}
     />
     <div className="hero">
-      <Container maxWidth="xl" classes={{ root: "container-padding" }}>
+      <Container maxWidth="lg" classes={{ root: "container-padding" }}>
         <div className="hero-container">
           <div className="left">
             <h1 className="title">3 Studio</h1>
@@ -143,7 +143,9 @@ const LandingPage = props => (
               </span>
             </div>
           </div>
-          <div className="right"></div>
+          <div className="right">
+            <img src="./assets/rocket.png" alt="rocket model" />
+          </div>
         </div>
       </Container>
     </div>

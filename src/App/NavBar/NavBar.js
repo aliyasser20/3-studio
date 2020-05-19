@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
+import PropTypes from "prop-types";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -46,11 +48,17 @@ const NavBar = props => {
     </Box>
   );
 
+  let width = "xl";
+
+  if (props.location.pathname === "/") {
+    width = "lg";
+  }
+
   return (
     <ThemeProvider theme={themeCreator(grey[900])}>
       <div className="navbar">
         <AppBar position="fixed" color="primary">
-          <Container maxWidth="xl">
+          <Container maxWidth={width}>
             <Toolbar classes={{ root: "nav-toolbar" }}>
               <div className="navbar-flex">
                 <Link to="/">
@@ -75,4 +83,8 @@ const NavBar = props => {
   );
 };
 
-export default NavBar;
+NavBar.propTypes = {
+  location: PropTypes.object
+};
+
+export default withRouter(NavBar);
