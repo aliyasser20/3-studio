@@ -158,6 +158,16 @@ const LandingPage = props => {
           </div>
         </Container>
       </div>
+      <footer>
+        <Container maxWidth="lg" classes={{ root: "container-padding" }}>
+          <p className="title">3 Studio</p>
+          <div className="line"></div>
+          <span className="copyright">
+            &copy; 2020 Ali Sayed, Jay Burbyga, Ahmed Alwardani - All Rights
+            Reserved
+          </span>
+        </Container>
+      </footer>
     </div>
   );
 };
