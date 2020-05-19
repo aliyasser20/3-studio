@@ -158,6 +158,45 @@ const LandingPage = props => {
           </div>
         </Container>
       </div>
+      <div className="developers-section">
+        <Container maxWidth="lg" classes={{ root: "container-padding" }}>
+          <div className="developers-container">
+            <h2 className="section-title">Developers</h2>
+            <div className="section-content-developers">
+              <div className="developer">
+                <img src="/assets/ali.jpg" alt="ali sayed" />
+                <a
+                  href="https://github.com/aliyasser20"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <h3>Ali Sayed</h3>
+                </a>
+              </div>
+              <div className="developer">
+                <img src="/assets/jay.png" alt="jay burbyga" />
+                <a
+                  href="https://github.com/Jaybur1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <h3>Jay Burbyga</h3>
+                </a>
+              </div>
+              <div className="developer">
+                <img src="/assets/ahmed.jpg" alt="ahmed alwardani" />
+                <a
+                  href="https://github.com/ahmedalwardani"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <h3>Ahmed Alwardani</h3>
+                </a>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
       <footer>
         <Container maxWidth="lg" classes={{ root: "container-padding" }}>
           <p className="title">3 Studio</p>
