@@ -12,7 +12,7 @@ import {
   Button,
   Box,
   IconButton,
-  TextField,
+  TextField
 } from "@material-ui/core";
 import CameraIcon from "@material-ui/icons/Camera";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -28,7 +28,7 @@ import * as actions from "../../../store/actions/index";
 
 import "./ProjectCard.scss";
 
-const ProjectCard = (props) => {
+const ProjectCard = props => {
   const { user } = useAuth0();
 
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -38,14 +38,15 @@ const ProjectCard = (props) => {
   const [loader, setLoader] = useState(false);
 
   const saveChanges = () => {
+    setLoader(true);
     backendAxios
       .put("/api/projects", {
         project: {
           id: props.id,
           name: nameField.trim(),
-          description: descriptionField.trim(),
+          description: descriptionField.trim()
         },
-        userId: user.sub,
+        userId: user.sub
       })
       .then(() => {
         props.onUpdateProjectDetails(
@@ -61,7 +62,7 @@ const ProjectCard = (props) => {
         setEdit(false);
         props.handleSnackBarOpen("success", "Changes saved!");
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
 
         props.handleSnackBarOpen("error", "Could not update project!");
@@ -77,14 +78,14 @@ const ProjectCard = (props) => {
       .delete("/api/projects", {
         data: {
           projectId: props.id,
-          userId: user.sub,
-        },
+          userId: user.sub
+        }
       })
       .then(() => {
         props.handleSnackBarOpen("success", "Project deleted!");
         props.onDeleteProject(props.id);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
 
         props.handleSnackBarOpen("error", "Could not delete project!");
@@ -149,7 +150,7 @@ const ProjectCard = (props) => {
               multiline
               variant="outlined"
               value={nameField}
-              onChange={(e) => setNameField(e.target.value.slice(0, 40))}
+              onChange={e => setNameField(e.target.value.slice(0, 40))}
             />
             <TextField
               required
@@ -158,7 +159,7 @@ const ProjectCard = (props) => {
               multiline
               rowsMax={4}
               value={descriptionField}
-              onChange={(e) => setDescriptionField(e.target.value)}
+              onChange={e => setDescriptionField(e.target.value)}
               variant="outlined"
             />
           </form>
@@ -185,7 +186,7 @@ const ProjectCard = (props) => {
 
   return (
     <div className="project-card">
-      <Card classes={{ root: "single-card" }}>
+      <Card classes={{ root: "single-card" }} elevation={4}>
         <SwipePictures
           clickable
           pictures={
@@ -194,8 +195,8 @@ const ProjectCard = (props) => {
               : [
                   {
                     label: "default image",
-                    path: "assets/testLogo3.png",
-                  },
+                    path: "assets/testLogo3.png"
+                  }
                 ]
           }
         />
@@ -283,15 +284,15 @@ ProjectCard.propTypes = {
   handleSnackBarOpen: PropTypes.func.isRequired,
   createdAt: PropTypes.string.isRequired,
   updatedAt: PropTypes.string.isRequired,
-  onSetCurrentProject: PropTypes.func.isRequired,
+  onSetCurrentProject: PropTypes.func.isRequired
 };
 
-const MapDispatchToProps = (dispatch) => ({
+const MapDispatchToProps = dispatch => ({
   onUpdateProjectDetails: (id, name, description) =>
     dispatch(actions.updateProjectDetails(id, name, description)),
-  onDeleteProject: (id) => dispatch(actions.deleteProject(id)),
-  onSetCurrentProject: (projectId) =>
-    dispatch(actions.setCurrentProject(projectId)),
+  onDeleteProject: id => dispatch(actions.deleteProject(id)),
+  onSetCurrentProject: projectId =>
+    dispatch(actions.setCurrentProject(projectId))
 });
 
 export default connect(null, MapDispatchToProps)(ProjectCard);

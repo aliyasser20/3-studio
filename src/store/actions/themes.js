@@ -2,7 +2,7 @@ import * as actionTypes from "./actionTypes";
 import backendAxios from "../../axiosInstances/backendAxios";
 
 export const setTheme = theme => ({
-  type: actionTypes.UPDATE_PROJECT_DETAILS,
+  type: actionTypes.SET_THEME,
   theme
 });
 
