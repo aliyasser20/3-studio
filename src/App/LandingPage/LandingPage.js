@@ -108,7 +108,7 @@ const LandingPage = props => {
             <div className="left">
               <h1 className="title">3 Studio</h1>
               <p className="description">
-                Explore your creative three dimensional side.
+                Unleash your inner creativity with 3D designing.
               </p>
               <div className="buttons-area">
                 <span className="gradient-button">
@@ -151,7 +151,7 @@ const LandingPage = props => {
             <h2 className="section-title">Models</h2>
             <p className="section-description">
               Create new projects with your own models or try out one of our
-              default models.
+              demo defaults.
             </p>
             <video autoPlay loop>
               <source src="/assets/car-rotation.mp4" type="video/mp4" />
