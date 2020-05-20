@@ -17,9 +17,6 @@ DControls.propTypes = {
   dragObjects: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  dragObjects: state.mediaState.dragObjects,
-});
 
 
 export default DControls;
