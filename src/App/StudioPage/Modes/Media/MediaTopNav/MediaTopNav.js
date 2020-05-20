@@ -10,7 +10,6 @@ import {
 } from "../screenshotsHelpers/screenshotsHandler";
 import { useAuth0 } from "../../../../../react-auth0-spa";
 
-import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Popover from "@material-ui/core/Popover";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
@@ -44,7 +43,7 @@ const MediaTopNav = (props) => {
   const [dots, setDots] = useState(".");
   const [blob, setBlob] = useState();
   const { user } = useAuth0();
-  console.log(document.querySelectorAll("canvas"))
+  console.log(document.querySelectorAll("canvas"));
   const preset = {
     aKey: process.env.REACT_APP_API_KEY,
     sUpreset: process.env.REACT_APP_SCREENSHOT_UPLOAD_PRESET,

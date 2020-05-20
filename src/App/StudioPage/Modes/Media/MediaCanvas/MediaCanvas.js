@@ -12,12 +12,10 @@ import Camera from "../../Edit/Camera/Camera";
 import Controls from "../../Edit/Controls/Controls";
 
 import "./MediaCanvas.scss";
-import Loading from "../OldCanvas/Loading/Loading";
 import LoaderModel from "../../../LoaderModal/LoaderModel";
 import WSphere from "../Models/WSphere";
 import TestingDrag from "../Models/TestingDrag";
 import DControls from "../DragControls/DControls";
-import GroundPlane from "../OldCanvas/GroundPlane/GroundPlane";
 import KLight from "../Models/KLight";
 import LSphere from "../Models/LSphere";
 import DLight from "../Models/DLight";

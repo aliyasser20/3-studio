@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from "react";
-import materialLibrary from "../../../../../helpers/materialLibrary";
+// import materialLibrary from "../../../../../helpers/materialLibrary";
 import { useFrame } from "react-three-fiber";
+import PropTypes from "prop-types";
+
 const PGround = (props) => {
   const mesh = useRef();
   const addDrag = (obj) => {
@@ -48,6 +50,12 @@ const PGround = (props) => {
       />
     </mesh>
   );
+};
+
+PGround.propTypes = {
+  toggleMediaLock: PropTypes.func.isRequired,
+  dragObjects: PropTypes.array.isRequired,
+  bLight: PropTypes.object,
 };
 
 export default PGround;

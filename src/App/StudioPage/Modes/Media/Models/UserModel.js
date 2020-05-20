@@ -1,7 +1,5 @@
 import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
-import lo from "lodash";
-import { connect } from "react-redux";
 
 const UserModel = (props) => {
   const { model } = props;
@@ -43,6 +41,9 @@ const UserModel = (props) => {
 
 UserModel.propTypes = {
   model: PropTypes.object.isRequired,
+  userModelDrag: PropTypes.bool,
+  toggleMediaLock: PropTypes.func.isRequired,
+  dragObjects: PropTypes.array.isRequired
 };
 
 export default UserModel;
