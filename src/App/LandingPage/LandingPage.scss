@@ -16,10 +16,6 @@
     }
   }
 
-  .container-padding {
-    padding-right: 0 !important;
-  }
-
   .hero {
     width: 100%;
     height: 550px;
@@ -77,15 +73,18 @@
           justify-content: right;
 
           img {
-            // padding-top: 2em;
             width: 500px;
           }
         }
       }
     }
+
+    .container-padding {
+      padding-right: 0 !important;
+    }
   }
 
-  .materials-container {
+  .models-container {
     display: grid;
     align-content: center;
     justify-content: center;
@@ -110,20 +109,95 @@
       font-size: 17px;
     }
 
+    video {
+      border: 1px solid rgb(85, 85, 85);
+      border-radius: 3px;
+      width: 100%;
+    }
+  }
+
+  .materials-container {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 5em;
+    padding-top: 3em;
+    border-top: 1px solid rgb(85, 85, 85);
+
+    .section-title {
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      padding-bottom: 1em;
+    }
+
+    .section-description {
+      color: white;
+      padding-bottom: 3em;
+      text-align: center;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      font-size: 17px;
+    }
+
     .materials {
       width: 1000px;
+    }
+  }
+
+  .media-container {
+    display: grid;
+    align-content: center;
+    padding-top: 3em;
+    padding-bottom: 1em;
+    margin-top: 4em;
+    grid-gap: 1em;
+    border-top: 1px solid rgb(85, 85, 85);
+
+    .section-title {
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      padding-bottom: 1em;
+    }
+
+    .section-content {
+      display: grid;
+      grid-auto-flow: column;
+      align-items: center;
+      justify-content: center;
+      grid-gap: 3em;
+
+      .section-description {
+        color: white;
+        padding: 0 2em;
+        text-align: center;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        font-size: 17px;
+      }
+
+      video {
+        width: 820px;
+        border: 1px solid rgb(85, 85, 85);
+        border-radius: 3px;
+      }
     }
   }
 
   .developers-container {
     display: grid;
     align-content: center;
-    // justify-content: center;
     justify-items: center;
     margin-top: 3.5em;
     padding-top: 3em;
     grid-gap: 2em;
-    border-top: 1px solid white;
+    border-top: 1px solid rgb(85, 85, 85);
 
     .section-title {
       color: white;
@@ -149,7 +223,7 @@
           width: 270px;
           border-radius: 150px;
           box-shadow: 0 0 6px rgba($color: #000000, $alpha: 0.5);
-          border: 1px solid white;
+          border: 1px solid rgb(85, 85, 85);
         }
 
         a {
