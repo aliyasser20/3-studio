@@ -2,17 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import {
-  Container,
-  MenuItem,
-  Select,
-  Paper,
-  Snackbar,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogTitle
-} from "@material-ui/core";
+import { Container, Button } from "@material-ui/core";
 import AppleIcon from "@material-ui/icons/Apple";
 
 import Particles from "react-particles-js";
@@ -155,6 +145,21 @@ const LandingPage = props => {
           </div>
         </Container>
       </div>
+      <div className="models-section">
+        <Container maxWidth="lg" classes={{ root: "container-padding" }}>
+          <div className="models-container">
+            <h2 className="section-title">Models</h2>
+            <p className="section-description">
+              Create new projects with your own models or try out one of our
+              default models.
+            </p>
+            <video autoPlay loop>
+              <source src="/assets/car-rotation.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </Container>
+      </div>
       <div className="materials-section">
         <Container maxWidth="lg" classes={{ root: "container-padding" }}>
           <div className="materials-container">
@@ -169,6 +174,24 @@ const LandingPage = props => {
               alt="materials"
               className="materials"
             />
+          </div>
+        </Container>
+      </div>
+      <div className="media-section">
+        <Container maxWidth="lg" classes={{ root: "container-padding" }}>
+          <div className="media-container">
+            <h2 className="section-title">Media</h2>
+            <div className="section-content">
+              <p className="section-description">
+                Adjust your work area (lights, environment, and more) to match
+                your needs, take and save screenshots, download a video of your
+                model, and share with friends and colleagues!
+              </p>
+              <video autoPlay loop>
+                <source src="/assets/wolfywolf.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
         </Container>
       </div>
