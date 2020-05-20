@@ -1,17 +1,19 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useState } from "react";
 import { useFrame } from "react-three-fiber";
 
-const KLight = (props) => {
+const KLight = props => {
   const [lightPosition, setLightPosition] = useState([0, 0, 0]);
+
+  // object referance
   const sphere = useRef();
   const pointLight = useRef();
 
   useEffect(() => {
+    // on load add to draggable objects
     const dragObjs = [...props.dragObjects];
-
     sphere.current && props.setDrag([...dragObjs, sphere.current]);
+    // config shadow casting
 
     if (pointLight.current) {
       pointLight.current.shadow.camera.top = 100;
@@ -34,13 +36,10 @@ const KLight = (props) => {
         sphere.current.position.z +=
           props.kLight.args[0] * 0.07 * Math.cos(time * 0.7);
 
-      // // // sphere.current.position.y = 10 * Math.cos(time * 0.5) * 40;
-      // sphere.current.position.z +=
-      //   props.kLight.args[0] * 0.03 * Math.cos(time * 0.7);
       setLightPosition([
         sphere.current.position.x,
         sphere.current.position.y,
-        sphere.current.position.z,
+        sphere.current.position.z
       ]);
     }
   });
@@ -55,10 +54,10 @@ const KLight = (props) => {
         scale={props.kLight.scale}
         position={[-props.kLight.initPosition, 0, 0]}
         lookAt={[0, 0, 0]}
-        onPointerOver={(e) => {
+        onPointerOver={e => {
           props.toggleMediaLock();
         }}
-        onPointerOut={(e) => props.toggleMediaLock()}
+        onPointerOut={e => props.toggleMediaLock()}
       >
         <sphereGeometry attach="geometry" args={props.kLight.args} />
         <meshBasicMaterial
@@ -89,6 +88,7 @@ const KLight = (props) => {
 KLight.propTypes = {
   toggleMediaLock: PropTypes.func.isRequired,
   dragObjects: PropTypes.array.isRequired,
+  kLight: PropTypes.object
 };
 
 export default KLight;
