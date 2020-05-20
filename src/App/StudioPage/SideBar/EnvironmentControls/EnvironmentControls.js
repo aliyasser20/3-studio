@@ -19,94 +19,91 @@ import * as actions from "../../../../store/actions/index";
 
 import "./EnvironmentControls.scss";
 
-const EnvironmentControls = props => {
-  let classes;
-  return (
-    <div className="environment-controls">
-      <ExpansionPanel
-        className="custom-panel"
-        expanded={props.expanded.includes("ENVIRONMENT-CONTROLS")}
-        onChange={() => props.handleChange("ENVIRONMENT-CONTROLS")}
+const EnvironmentControls = props => (
+  <div className="environment-controls">
+    <ExpansionPanel
+      className="custom-panel"
+      expanded={props.expanded.includes("ENVIRONMENT-CONTROLS")}
+      onChange={() => props.handleChange("ENVIRONMENT-CONTROLS")}
+    >
+      <ExpansionPanelSummary
+        className="summary-section"
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="environment-controls-summary"
+        id="environment-controls-summary"
       >
-        <ExpansionPanelSummary
-          className="summary-section"
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="environment-controls-summary"
-          id="environment-controls-summary"
-        >
-          <Typography>Environment</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails className="details-section">
-          <FormControlLabel
-            className="custom-label"
-            control={
-              <Checkbox
-                className="custom-checkbox"
-                checked={props.mapEnvironment}
-                onChange={() => {
-                  // Trigger unsaved changes
-                  props.onSetConfigurationUnsaved();
-                  //
-                  props.onToggleMapEnvironment();
-                }}
-                name="environmentMap"
-              />
-            }
-            label="Environment Map"
-          />
-          <EnvironmentOptions />
-          <h5 className="section-title">Background</h5>
-          <div className="background-color-section">
-            <FormControlLabel
-              className="custom-label"
-              control={
-                <Checkbox
-                  className="custom-checkbox"
-                  checked={props.bgSolid}
-                  onChange={() => {
-                    // Trigger unsaved changes
-                    props.onSetConfigurationUnsaved();
-                    //
-                    props.onSetBackgroundSolid();
-                  }}
-                  name="solidBackground"
-                />
-              }
-              label="Solid"
-            />
-            <ColorPickPopover
-              color={props.bgColor}
-              visible={props.bgSolid}
-              setColor={color => {
+        <Typography>Environment</Typography>
+      </ExpansionPanelSummary>
+      <ExpansionPanelDetails className="details-section">
+        <FormControlLabel
+          className="custom-label"
+          control={
+            <Checkbox
+              className="custom-checkbox"
+              checked={props.mapEnvironment}
+              onChange={() => {
                 // Trigger unsaved changes
                 props.onSetConfigurationUnsaved();
                 //
-                props.onSetBackgroundColor(color);
+                props.onToggleMapEnvironment();
               }}
+              name="environmentMap"
             />
-          </div>
+          }
+          label="Environment Map"
+        />
+        <EnvironmentOptions />
+        <h5 className="section-title">Background</h5>
+        <div className="background-color-section">
           <FormControlLabel
             className="custom-label"
             control={
               <Checkbox
                 className="custom-checkbox"
-                checked={props.bgEnvironment}
+                checked={props.bgSolid}
                 onChange={() => {
                   // Trigger unsaved changes
                   props.onSetConfigurationUnsaved();
                   //
-                  props.onSetBackgroundEnvironment();
+                  props.onSetBackgroundSolid();
                 }}
-                name="environmentBackground"
+                name="solidBackground"
               />
             }
-            label="Environment"
+            label="Solid"
           />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-    </div>
-  );
-};
+          <ColorPickPopover
+            color={props.bgColor}
+            visible={props.bgSolid}
+            setColor={color => {
+              // Trigger unsaved changes
+              props.onSetConfigurationUnsaved();
+              //
+              props.onSetBackgroundColor(color);
+            }}
+          />
+        </div>
+        <FormControlLabel
+          className="custom-label"
+          control={
+            <Checkbox
+              className="custom-checkbox"
+              checked={props.bgEnvironment}
+              onChange={() => {
+                // Trigger unsaved changes
+                props.onSetConfigurationUnsaved();
+                //
+                props.onSetBackgroundEnvironment();
+              }}
+              name="environmentBackground"
+            />
+          }
+          label="Environment"
+        />
+      </ExpansionPanelDetails>
+    </ExpansionPanel>
+  </div>
+);
 
 EnvironmentControls.propTypes = {
   expanded: PropTypes.array.isRequired,
