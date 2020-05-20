@@ -24,12 +24,6 @@ Customize your profile page!
 
 ---
 
-Login or sign up using your preferred method
-
-## ![Login/Sign up](./docs/login-signup.png)
-
----
-
 Sample dashboard page with projects
 
 ## ![Dashboard](./docs/dashboard.png)
