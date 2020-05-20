@@ -1,4 +1,6 @@
 .objects-bar {
+  overflow: hidden;
+
   .custom-paper {
     color: #fff;
     background-color: #2f2f2f;
@@ -10,6 +12,9 @@
     align-items: center;
     padding-left: 2em;
     grid-auto-columns: max-content;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    overscroll-behavior-x: none;
 
     .object {
       height: 90px;
