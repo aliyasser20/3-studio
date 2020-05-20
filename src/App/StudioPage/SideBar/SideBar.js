@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { Paper, ThemeProvider } from "@material-ui/core";
 
 import EnvironmentControls from "./EnvironmentControls/EnvironmentControls";
-import MaterialDetails from "./MaterialDetails/MaterialDetails";
+// import MaterialDetails from "./MaterialDetails/MaterialDetails";
 import LightControls from "./LightControls/LightControls";
 
 import themeCreator from "../../../helpers/themeCreator";

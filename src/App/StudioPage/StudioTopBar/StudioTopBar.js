@@ -7,11 +7,9 @@ import {
   Box,
   Typography,
   ThemeProvider,
-  Button,
   IconButton
 } from "@material-ui/core";
 import GetAppIcon from "@material-ui/icons/GetApp";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import SaveIcon from "@material-ui/icons/Save";
 
 import ModeSelector from "./ModeSelector/ModeSelector";

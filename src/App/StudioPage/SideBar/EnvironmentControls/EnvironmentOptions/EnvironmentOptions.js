@@ -7,8 +7,6 @@ import * as actions from "../../../../../store/actions/index";
 import "./EnvironmentOptions.scss";
 
 const EnvironmentOptions = props => {
-  let classes;
-
   const options = props.environmentOptions.map(option => (
     // eslint-disable-next-line
     <div  key={option.name} onClick={() => {

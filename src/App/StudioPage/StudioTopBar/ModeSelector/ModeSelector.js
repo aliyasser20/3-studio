@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { Button, ButtonGroup } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VideocamIcon from "@material-ui/icons/Videocam";
-import BuildRoundedIcon from "@material-ui/icons/BuildRounded";
 
 import EditIcon from "../../../UI/SVGIcons/EditIcon";
 
@@ -14,8 +13,6 @@ import * as actions from "../../../../store/actions/index";
 import "./ModeSelector.scss";
 
 const ModeSelector = props => {
-  let modes;
-
   const viewClasses =
     props.currentMode === "VIEW" ? "mode-button selected" : "mode-button";
   const editClasses =
