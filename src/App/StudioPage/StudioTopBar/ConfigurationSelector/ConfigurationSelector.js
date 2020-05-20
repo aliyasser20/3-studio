@@ -339,6 +339,11 @@ const ConfigurationSelector = props => {
     );
   });
 
+  const createButtonClasses =
+    configurationNameField.length === 0
+      ? "confirm-create-configuration disabled"
+      : "confirm-create-configuration";
+
   return (
     <div className="configuration-selector">
       <span className="gradient-button">
@@ -430,7 +435,7 @@ const ConfigurationSelector = props => {
             Cancel
           </Button>
           <Button
-            classes={{ root: "confirm-create-configuration" }}
+            classes={{ root: createButtonClasses }}
             onClick={newConfiguration}
             color="primary"
             autoFocus

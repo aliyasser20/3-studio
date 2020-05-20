@@ -107,6 +107,13 @@
         var(--gradient-bottom-darker)
       );
     }
+    &.disabled {
+      background: linear-gradient(
+        var(--gradient-top-darker),
+        var(--gradient-bottom-darker)
+      );
+      cursor: not-allowed;
+    }
   }
 
   .dialog-title {
