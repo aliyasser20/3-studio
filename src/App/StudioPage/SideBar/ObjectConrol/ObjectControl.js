@@ -13,7 +13,7 @@ import "./ObjectControl.scss";
 import ObjectListItem from "./Objects/ObjectListItem";
 
 const ObjectControl = (props) => (
-  <div className="material-details">
+  <div className="environment-controls material-details">
     <ExpansionPanel
       className="custom-panel objects"
       expanded={props.expanded.includes("MATERIAL-DETAILS")}

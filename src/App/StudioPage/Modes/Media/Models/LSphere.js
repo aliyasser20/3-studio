@@ -1,9 +1,11 @@
 import React, { useRef, useEffect } from "react";
 import { useFrame } from "react-three-fiber";
+import PropTypes from "prop-types";
 import materialLibrary from "../../../../../helpers/materialLibrary";
 
-const LSphere = (props) => {
+const LSphere = props => {
   const lSphere = useRef();
+  // on crate configure drag control and set material
   useEffect(() => {
     const dragObjs = [...props.dragObjects];
     if (lSphere.current) {
@@ -11,6 +13,8 @@ const LSphere = (props) => {
       lSphere.current.material = materialLibrary("leather").leather;
     }
   }, []);
+
+  // rotation animation controls
   useFrame(({ gl, scene, camera }) => {
     gl.render(scene, camera);
     if (props.lSphere.rotateX) lSphere.current.rotation.x += 0.007;
@@ -23,21 +27,20 @@ const LSphere = (props) => {
       name="l-sphere"
       visible
       userData={{ name: "l-sphere" }}
-      onPointerOver={(e) => props.toggleMediaLock()}
-      onPointerOut={(e) => props.toggleMediaLock()}
+      onPointerOver={e => props.toggleMediaLock()}
+      onPointerOut={e => props.toggleMediaLock()}
       castShadow
       scale={[...props.lSphere.scale]}
     >
       <sphereGeometry attach="geometry" args={[...props.lSphere.args]} />
-      {/* <meshStandardMaterial
-        attach="material"
-        color={`#${props.lSphere.color}`}
-        transparent
-        roughness={1}
-        metalness={0}
-      /> */}
     </mesh>
   );
 };
 
+LSphere.propTypes = {
+  lSphere: PropTypes.object.isRequired,
+  dragObjects: PropTypes.array.isRequired,
+  setDrag: PropTypes.func.isRequired,
+  toggleMediaLock: PropTypes.func.isRequired,
+};
 export default LSphere;
