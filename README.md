@@ -1,5 +1,3 @@
-# Final Project
-
 # 3 Studio
 
 3 Studio is an interactive and user-friendly web app that lets you import a GLB model, customize it by changing its appearances/materials, environment, lighting, and much more! Once satisfied with your model, you can conveniently download it back to your computer. It further allows you to take screenshot and videos of your model and select the theme colour of your choice as well. Finally, it provides you with various login/authentication methods. 3 Studio is deployed on [Netlify](https://3-studio.netlify.app/dashboard).The back-end api repo that complements this app can be found here: https://github.com/Jaybur1/3-studio-api. We have also developed an electron app to run the app locally. You can find the link for it here: https://github.com/Jaybur1/3-studio-electron
