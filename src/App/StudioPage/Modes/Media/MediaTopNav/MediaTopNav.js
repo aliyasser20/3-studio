@@ -10,6 +10,7 @@ import {
   screeshotDownload,
   saveToCloud,
   handleCounter,
+  createVideoPreview,
 } from "../screenshotsHelpers/screenshotsHandler";
 import { useAuth0 } from "../../../../../react-auth0-spa";
 
@@ -46,7 +47,6 @@ const MediaTopNav = (props) => {
   const [dots, setDots] = useState(".");
   const [blob, setBlob] = useState();
   const { user } = useAuth0();
-  console.log(document.querySelectorAll("canvas"));
   const preset = {
     aKey: process.env.REACT_APP_API_KEY,
     sUpreset: process.env.REACT_APP_SCREENSHOT_UPLOAD_PRESET,
@@ -56,6 +56,7 @@ const MediaTopNav = (props) => {
     setSeverity("");
     setSnackbar(false);
   };
+
   const handleClose = () => {
     setOpen(false);
     const preview = document.querySelector("#preview-video");
@@ -67,6 +68,7 @@ const MediaTopNav = (props) => {
     URL.revokeObjectURL(blob);
     setBlob(null);
   };
+
   const snackbarSet = (type, message) => {
     setSeverity(type);
     setSnackMessage(message);
@@ -74,7 +76,6 @@ const MediaTopNav = (props) => {
 
   const handleScreenshot = () => {
     setCounter((prev) => prev + 1);
-    console.log(counter);
     setOpen(true);
     handleCounter();
     const preview = createImage();
@@ -97,26 +98,17 @@ const MediaTopNav = (props) => {
         setScreenshot("");
       }
     );
-    handleCounter(user.sub, counter, props.currentProject.id).then((res) =>
-      console.log(res)
-    );
+    handleCounter(user.sub, counter, props.currentProject.id);
   };
   const handleRecord = () => {
     setScreenshot("");
     const img = document.querySelector("#preview-img");
     img.src = "";
-    const ctx = document.querySelector("canvas");
+    const mediaCanvas = document.querySelector("canvas");
 
     const exportVid = (blob) => {
       setBlob(blob);
-      const preview = document.querySelector("#preview-video");
-      const vid = document.createElement("video");
-      vid.style.width = "100%";
-      vid.style.height = "70%";
-      blob.name = "preview";
-      vid.src = URL.createObjectURL(blob);
-      vid.controls = true;
-      preview.appendChild(vid);
+      createVideoPreview(blob);
     };
 
     const startRecording = (canvas, timerValue) => {
@@ -127,16 +119,14 @@ const MediaTopNav = (props) => {
         videoBitsPerSecond: 15000000,
         mimeType: "video/webm;codecs=vp8",
       });
-      rec.ondataavailable = (e) => {
-        // console.log(e);
-        chunks.push(e.data);
-      };
+      rec.ondataavailable = (e) => chunks.push(e.data);
       rec.onstop = (e) => {
         setTimeValue({ s: 10, ms: 0 });
         setOpen(true);
         setRecording("");
         exportVid(new Blob(chunks, { type: "video/mp4" }));
       };
+ 
       const timer = new Timer({ target: { seconds: timerValue } });
       timer.start({ precision: "secondTenths" });
       timer.addEventListener("secondTenthsUpdated", (e) => {
@@ -144,20 +134,24 @@ const MediaTopNav = (props) => {
           "seconds",
           "secondTenths",
         ]);
+
         setTimeValue((prev) => ({
           ...prev,
           s: timerValue - seconds,
           ms: secondTenths > 0 ? 10 - secondTenths : 0,
         }));
+
         setDots((prev) => (prev.length < 6 ? `${prev}.` : "."));
       });
+
       rec.start();
+      
       setTimeout(() => {
         rec.stop();
       }, timerValue * 1000);
     };
 
-    startRecording(ctx, timeValue.s);
+    startRecording(mediaCanvas, timeValue.s);
   };
 
   return (

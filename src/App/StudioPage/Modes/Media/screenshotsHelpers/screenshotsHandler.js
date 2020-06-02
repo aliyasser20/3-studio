@@ -45,3 +45,14 @@ export const handleCounter = (userId, counter, projectId) => {
     .put("/api/projects/counter", { userId, counter, projectId })
     .then((res) => res.data);
 };
+
+export const createVideoPreview = (blob) => {
+  const preview = document.querySelector("#preview-video");
+  const vid = document.createElement("video");
+  vid.style.width = "100%";
+  vid.style.height = "70%";
+  blob.name = "preview";
+  vid.src = URL.createObjectURL(blob);
+  vid.controls = true;
+  preview.appendChild(vid);
+}
