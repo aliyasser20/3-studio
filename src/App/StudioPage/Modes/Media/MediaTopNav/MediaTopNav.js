@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable import/order */
+/* eslint-disable prettier/prettier */
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -102,15 +105,15 @@ const MediaTopNav = (props) => {
     setScreenshot("");
     const img = document.querySelector("#preview-img");
     img.src = "";
-
     const ctx = document.querySelector("canvas");
+
     const exportVid = (blob) => {
       setBlob(blob);
       const preview = document.querySelector("#preview-video");
       const vid = document.createElement("video");
       vid.style.width = "100%";
       vid.style.height = "70%";
-      blob.name = "test";
+      blob.name = "preview";
       vid.src = URL.createObjectURL(blob);
       vid.controls = true;
       preview.appendChild(vid);
@@ -125,7 +128,7 @@ const MediaTopNav = (props) => {
         mimeType: "video/webm;codecs=vp8",
       });
       rec.ondataavailable = (e) => {
-        console.log(e);
+        // console.log(e);
         chunks.push(e.data);
       };
       rec.onstop = (e) => {
@@ -146,7 +149,7 @@ const MediaTopNav = (props) => {
           s: timerValue - seconds,
           ms: secondTenths > 0 ? 10 - secondTenths : 0,
         }));
-        setDots((prev) => (prev.length < 6 ? prev + "." : "."));
+        setDots((prev) => (prev.length < 6 ? `${prev}.` : "."));
       });
       rec.start();
       setTimeout(() => {
