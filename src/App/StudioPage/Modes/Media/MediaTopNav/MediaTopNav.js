@@ -100,10 +100,8 @@ const MediaTopNav = (props) => {
     );
     handleCounter(user.sub, counter, props.currentProject.id);
   };
+
   const handleRecord = () => {
-    setScreenshot("");
-    const img = document.querySelector("#preview-img");
-    img.src = "";
     const mediaCanvas = document.querySelector("canvas");
 
     const exportVid = (blob) => {
@@ -145,7 +143,7 @@ const MediaTopNav = (props) => {
       });
 
       rec.start();
-      
+
       setTimeout(() => {
         rec.stop();
       }, timerValue * 1000);
