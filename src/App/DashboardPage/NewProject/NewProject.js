@@ -71,6 +71,7 @@ const NewProject = props => {
   };
 
   const handleCreate = () => {
+    console.log("heree");
     if (!name || !description || (files.length === 0 && !defaultLink)) {
       if (!name) setAlert("Please provide a name");
       if (!description) setAlert("Please provide a description");
@@ -78,6 +79,7 @@ const NewProject = props => {
         setAlert("Please provide a model");
       setAlertOpen(true);
     } else {
+      console.log("new");
       if (files.length > 0) {
         console.log(files);
         setLoading(true);
@@ -88,27 +90,32 @@ const NewProject = props => {
             name,
             description,
             modelLink
-          }).then(data => {
-            props.onNewProject(data);
-            setLoading(false);
-            setOpen(false);
-            resetForm();
-          });
+          })
+            .then(data => {
+              props.onNewProject(data);
+              setLoading(false);
+              setOpen(false);
+              resetForm();
+            })
+            .catch(err => console.log(err));
         });
       } else if (files.length === 0) {
-        // console.log("default");
+        console.log("default");
         setLoading(true);
         createNewProject({
           userId: user.sub,
           name,
           description,
           modelLink: defaultLink
-        }).then(data => {
-          props.onNewProject(data);
-          setLoading(false);
-          setOpen(false);
-          resetForm();
-        });
+        })
+          .then(data => {
+            console.log("broke");
+            props.onNewProject(data);
+            setLoading(false);
+            setOpen(false);
+            resetForm();
+          })
+          .catch(err => console.log(err));
       }
     }
   };
@@ -135,7 +142,7 @@ const NewProject = props => {
         setModelClass2("default-model-pic-selected");
         setModelClass3("default-model-pic");
         setDefaultLink(
-          "https://res.cloudinary.com/aajfinal/raw/upload/v1589122332/models/WOLF_okocpw.glb"
+          "https://res.cloudinary.com/cloud3studio/raw/upload/v1591141097/models/WOLF_tsnmm1.glb"
         );
         break;
       default:
@@ -143,7 +150,7 @@ const NewProject = props => {
         setModelClass2("default-model-pic");
         setModelClass3("default-model-pic-selected");
         setDefaultLink(
-          "https://res.cloudinary.com/aajfinal/raw/upload/v1589160418/models/controller_yt5zl6.glb"
+          "https://res.cloudinary.com/cloud3studio/raw/upload/v1591147076/models/controller_hx52pf.glb"
         );
         break;
     }

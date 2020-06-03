@@ -2,58 +2,58 @@ export const environmentOptions = [
   {
     name: "studio-1",
     hdrPath:
-      "https://res.cloudinary.com/aajfinal/raw/upload/v1589352709/environments/studio-1_ugueaj.hdr",
+      "https://res.cloudinary.com/cloud3studio/raw/upload/v1591147171/environments/studio-1_gihmwv.hdr",
     imgPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589352866/environments/studio-1_sl7xag.jpg"
+      "https://res.cloudinary.com/cloud3studio/image/upload/v1591147462/environments/studio-1_sl7xag_pmeaql.jpg"
   },
   {
     name: "studio-2",
     hdrPath:
-      "https://res.cloudinary.com/aajfinal/raw/upload/v1589352709/environments/studio-2_kwkvf3.hdr",
+      "https://res.cloudinary.com/cloud3studio/raw/upload/v1591147281/environments/studio-2_kheb65.hdr",
     imgPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589352866/environments/studio-2_wldnl7.jpg"
+      "https://res.cloudinary.com/cloud3studio/image/upload/v1591147462/environments/studio-2_wldnl7_mo6uhh.jpg"
   },
   {
     name: "studio-3",
     hdrPath:
-      "https://res.cloudinary.com/aajfinal/raw/upload/v1589693655/environments/studio-5_syvhp5.hdr",
+      "https://res.cloudinary.com/cloud3studio/raw/upload/v1591147279/environments/studio-5_exofl5.hdr",
     imgPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589693719/environments/studio-5_eov90p.jpg"
+      "https://res.cloudinary.com/cloud3studio/image/upload/v1591147462/environments/studio-5_eov90p_qceydo.jpg"
   },
   {
     name: "venice",
     hdrPath:
-      "https://res.cloudinary.com/aajfinal/raw/upload/v1589352707/environments/venice_dnfkg2.hdr",
+      "https://res.cloudinary.com/cloud3studio/raw/upload/v1591147277/environments/venice_dfitsd.hdr",
     imgPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589352866/environments/venice_l717tn.jpg"
+      "https://res.cloudinary.com/cloud3studio/image/upload/v1591147463/environments/venice_l717tn_wiqjc1.jpg"
   },
   {
     name: "autoshop",
     hdrPath:
-      "https://res.cloudinary.com/aajfinal/raw/upload/v1589353565/environments/autoshop_vz8rnh.hdr",
+      "https://res.cloudinary.com/cloud3studio/raw/upload/v1591147279/environments/autoshop_rssj1z.hdr",
     imgPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589353643/environments/autoshop_eycjn3.jpg"
+      "https://res.cloudinary.com/cloud3studio/image/upload/v1591147462/environments/autoshop_eycjn3_cbh9gj.jpg"
   },
   {
     name: "beach",
     hdrPath:
-      "https://res.cloudinary.com/aajfinal/raw/upload/v1589400757/environments/spiaggia_di_mondello_beach_2k_yvrjeq.hdr",
+      "https://res.cloudinary.com/cloud3studio/raw/upload/v1591147461/environments/spiaggia_di_mondello_2k_v595nm.hdr",
     imgPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589400752/environments/spiaggia_di_mondello_beach_2k_ki67ny.jpg"
+      "https://res.cloudinary.com/cloud3studio/image/upload/v1591147462/environments/spiaggia_di_mondello_beach_2k_ki67ny_nso17m.jpg"
   },
   {
     name: "lounge",
     hdrPath:
-      "https://res.cloudinary.com/aajfinal/raw/upload/v1589402343/environments/aft_lounge_2k_kffqfy.hdr",
+      "https://res.cloudinary.com/cloud3studio/raw/upload/v1591147458/environments/aft_lounge_2k_e33ib7.hdr",
     imgPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589402325/environments/aft_lounge_2k_njbwuo.jpg"
+      "https://res.cloudinary.com/cloud3studio/image/upload/v1591147463/environments/aft_lounge_2k_njbwuo_xbowrq.jpg"
   },
   {
     name: "abandoned parking",
     hdrPath:
-      "https://res.cloudinary.com/aajfinal/raw/upload/v1589400036/environments/abandoned_parking_2k_uxz5zd.hdr",
+      "https://res.cloudinary.com/cloud3studio/raw/upload/v1591147511/environments/abandoned_parking_2k_uxz5zd_ypbpym.hdr",
     imgPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589400041/environments/abandoned_parking_2k_ckhqvp.jpg"
+      "https://res.cloudinary.com/cloud3studio/image/upload/v1591147463/environments/abandoned_parking_2k_ckhqvp_o1ur4l.jpg"
   },
   {
     name: "stars",
@@ -63,8 +63,8 @@ export const environmentOptions = [
   {
     name: "sidewalk",
     hdrPath:
-      "https://res.cloudinary.com/aajfinal/raw/upload/v1589693667/environments/sidewalk_oaxkun.hdr",
+      "https://res.cloudinary.com/cloud3studio/raw/upload/v1591147320/environments/sidewalk_gay3km.hdr",
     imgPath:
-      "https://res.cloudinary.com/aajfinal/image/upload/v1589693720/environments/sidewalk_dbdxcd.jpg"
+      "https://res.cloudinary.com/cloud3studio/image/upload/v1591147465/environments/sidewalk_dbdxcd_mpqrbe.jpg"
   }
 ];
