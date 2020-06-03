@@ -4,7 +4,7 @@ import backendAxios from "../../../axiosInstances/backendAxios";
 
 const uploadUrl = "/raw/upload/";
 
-export const saveModelToCloude = (files) => {
+export const saveModelToCloude = files => {
   const formData = new FormData();
   formData.append("file", files[0]);
   formData.append("tags", "rocket");
@@ -13,10 +13,13 @@ export const saveModelToCloude = (files) => {
   formData.append("timestamp", (Date.now() / 1000));
   return cloudinaryAxios
     .post(uploadUrl, formData, {
-      headers: { "X-Requested-With": "XMLHttpRequest" },
+      headers: { "X-Requested-With": "XMLHttpRequest" }
     })
-    .then((res) => res.data.secure_url);
+    .then(res => res.data.secure_url);
 };
 
-export const createNewProject = (projectData) =>
-  backendAxios.post("/api/projects", projectData).then((data) => data.data);
+export const createNewProject = projectData =>
+  backendAxios
+    .post("/api/projects", projectData)
+    .then(data => data.data)
+    .catch(err => console.log(err));

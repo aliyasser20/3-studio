@@ -96,10 +96,15 @@ const NewProject = (props) => {
             userId: user.sub,
             name,
             description,
-            modelLink,
-          }).then((data) => {
-            handleData(data);
-          });
+            modelLink
+          })
+            .then(data => {
+              props.onNewProject(data);
+              setLoading(false);
+              setOpen(false);
+              resetForm();
+            })
+            .catch(err => console.log(err));
         });
       } else if (files.length === 0) {
         setLoading(true);
@@ -107,10 +112,15 @@ const NewProject = (props) => {
           userId: user.sub,
           name,
           description,
-          modelLink: defaultLink,
-        }).then((data) => {
-          handleData(data);
-        });
+          modelLink: defaultLink
+        })
+          .then(data => {
+            props.onNewProject(data);
+            setLoading(false);
+            setOpen(false);
+            resetForm();
+          })
+          .catch(err => console.log(err));
       }
     }
   };
@@ -145,7 +155,7 @@ const NewProject = (props) => {
         setModelClass2("default-model-pic");
         setModelClass3("default-model-pic-selected");
         setDefaultLink(
-          "https://res.cloudinary.com/aajfinal/raw/upload/v1589160418/models/controller_yt5zl6.glb"
+          "https://res.cloudinary.com/cloud3studio/raw/upload/v1591147076/models/controller_hx52pf.glb"
         );
         break;
     }
