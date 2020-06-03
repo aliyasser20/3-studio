@@ -71,6 +71,7 @@ const NewProject = props => {
   };
 
   const handleCreate = () => {
+    console.log("heree");
     if (!name || !description || (files.length === 0 && !defaultLink)) {
       if (!name) setAlert("Please provide a name");
       if (!description) setAlert("Please provide a description");
@@ -78,6 +79,7 @@ const NewProject = props => {
         setAlert("Please provide a model");
       setAlertOpen(true);
     } else {
+      console.log("new");
       if (files.length > 0) {
         console.log(files);
         setLoading(true);
@@ -88,27 +90,32 @@ const NewProject = props => {
             name,
             description,
             modelLink
-          }).then(data => {
-            props.onNewProject(data);
-            setLoading(false);
-            setOpen(false);
-            resetForm();
-          });
+          })
+            .then(data => {
+              props.onNewProject(data);
+              setLoading(false);
+              setOpen(false);
+              resetForm();
+            })
+            .catch(err => console.log(err));
         });
       } else if (files.length === 0) {
-        // console.log("default");
+        console.log("default");
         setLoading(true);
         createNewProject({
           userId: user.sub,
           name,
           description,
           modelLink: defaultLink
-        }).then(data => {
-          props.onNewProject(data);
-          setLoading(false);
-          setOpen(false);
-          resetForm();
-        });
+        })
+          .then(data => {
+            console.log("broke");
+            props.onNewProject(data);
+            setLoading(false);
+            setOpen(false);
+            resetForm();
+          })
+          .catch(err => console.log(err));
       }
     }
   };
