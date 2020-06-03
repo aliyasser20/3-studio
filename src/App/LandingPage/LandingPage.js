@@ -20,7 +20,8 @@ const LandingPage = props => {
     document.body.append(a);
     a.style = "display: none";
     a.href =
-      "https://drive.google.com/uc?id=1MokBUfCoNlvmiAjLylznyL8apCp-8p1U&export=download";
+    // https://drive.google.com/uc?id=1jeDXDeyFShl82Rv3tMdbOJO0854uRtRy&export=download
+      "https://drive.google.com/uc?id=1jeDXDeyFShl82Rv3tMdbOJO0854uRtRy&export=download";
     a.download = "3Studio";
     a.click();
     // document.body.removeElement(a);
