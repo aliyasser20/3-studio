@@ -4,8 +4,6 @@ import backendAxios from "../../../axiosInstances/backendAxios";
 const uploadUrl = "/raw/upload/";
 
 export const saveModelToCloude = files => {
-  console.log("sdsdsdasdasd");
-
   const formData = new FormData();
   formData.append("file", files[0]);
   formData.append("tags", "rocket");
@@ -20,4 +18,7 @@ export const saveModelToCloude = files => {
 };
 
 export const createNewProject = projectData =>
-  backendAxios.post("/api/projects", projectData).then(data => data.data);
+  backendAxios
+    .post("/api/projects", projectData)
+    .then(data => data.data)
+    .catch(err => console.log(err));
