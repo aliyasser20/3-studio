@@ -39,7 +39,7 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "save": "^2.4.0",
-    "three": "^0.115.0"
+    "three": "^0.125.0"
   },
   "scripts": {
     "start": "react-scripts start",
